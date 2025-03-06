@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
-    <string name="app_name" translatable="false">Cat Calculator</string>
+    <string name="app_name" translatable="false">Calculator</string>
     <string name="app_name_display">Calculator</string>
     <string name="zero" translatable="false">0</string>
     <string name="one" translatable="false">1</string>
@@ -78,7 +78,7 @@
     <string name="about_other_category">OTHER</string>
     <string name="about_rate">Rate this app</string>
     <string name="app_version_title">Version</string>
-    <string name="thanks_for_using_app">Thanks for using Cat Calculator ❤️</string>
+    <string name="thanks_for_using_app">Thanks for using Calculator ❤️</string>
     <string name="preferences_number_precision">Number of decimal places</string>
     <string name="privacy_policy">Privacy policy</string>
     <string name="about_title">About</string>

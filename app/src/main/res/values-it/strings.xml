@@ -30,6 +30,6 @@
     <string name="preferences_radians_instead_of_degrees_by_default_title">Radianti</string>
     <string name="app_version_title">Versione</string>
     <string name="preferences_number_precision">Numero di cifre decimali</string>
-    <string name="thanks_for_using_app">Grazie per aver scelto Cat Calculator ❤️</string>
+    <string name="thanks_for_using_app">Grazie per aver scelto Calculator ❤️</string>
     <string name="privacy_policy">Informativa sulla Privacy</string>
 </resources>
