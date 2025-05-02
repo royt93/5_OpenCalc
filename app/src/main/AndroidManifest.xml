@@ -18,6 +18,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="UnusedAttribute,DiscouragedApi,LockedOrientationActivity">
+        <!-- Khai báo AdMob App ID -->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-3612191981543807~9558426247" /> <!-- Sample AdMob App ID -->
 
         <activity
             android:name="com.mckimquyen.opencal.ui.SettingsActivity"
