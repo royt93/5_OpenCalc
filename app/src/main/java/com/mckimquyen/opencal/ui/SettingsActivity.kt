@@ -5,26 +5,23 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
-import android.widget.FrameLayout
 import android.widget.ImageView
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
-import com.applovin.mediation.ads.MaxAdView
 import com.mckimquyen.opencal.BaseActivity
 import com.mckimquyen.opencal.BuildConfig
 import com.mckimquyen.opencal.R
 import com.mckimquyen.opencal.db.MyPreferences
 import com.mckimquyen.opencal.model.Themes
 import com.mckimquyen.opencal.rateAppInApp
-import com.mckimquyen.watermark.utils.createAdBanner
-import com.mckimquyen.watermark.utils.destroyAdBanner
 import java.util.Locale
 
 class SettingsActivity : BaseActivity() {
 
-    private var adView: MaxAdView? = null
+    //TODO roy93~ banner
+//    private var adView: MaxAdView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,15 +61,15 @@ class SettingsActivity : BaseActivity() {
             finish()
         }
 
-        adView = this@SettingsActivity.createAdBanner(
-            logTag = SettingsActivity::class.simpleName,
-            viewGroup = findViewById<FrameLayout>(R.id.flAd),
-            isAdaptiveBanner = true,
-        )
+//        adView = this@SettingsActivity.createAdBanner(
+//            logTag = SettingsActivity::class.simpleName,
+//            viewGroup = findViewById<FrameLayout>(R.id.flAd),
+//            isAdaptiveBanner = true,
+//        )
     }
 
     override fun onDestroy() {
-        findViewById<FrameLayout>(R.id.flAd).destroyAdBanner(adView)
+//        findViewById<FrameLayout>(R.id.flAd).destroyAdBanner(adView)
         super.onDestroy()
     }
 

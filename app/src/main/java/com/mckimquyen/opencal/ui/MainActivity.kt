@@ -4,7 +4,6 @@ import android.animation.LayoutTransition
 import android.annotation.SuppressLint
 import android.content.ClipData
 import android.content.ClipboardManager
-import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -22,13 +21,8 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.applovin.mediation.MaxAd
-import com.applovin.mediation.MaxAdListener
-import com.applovin.mediation.MaxError
-import com.applovin.mediation.ads.MaxInterstitialAd
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.mckimquyen.opencal.BaseActivity
-import com.mckimquyen.opencal.BuildConfig
 import com.mckimquyen.opencal.R
 import com.mckimquyen.opencal.databinding.AMainBinding
 import com.mckimquyen.opencal.db.MyPreferences
@@ -246,7 +240,8 @@ class MainActivity : BaseActivity() {
             }
         })
 
-        createAdInter()
+        //TODO roy93~ inter
+//        createAdInter()
     }
 
     fun selectThemeDialog(menuItem: MenuItem) {
@@ -261,17 +256,19 @@ class MainActivity : BaseActivity() {
     }
 
     fun openAbout(menuItem: MenuItem) {
-        showAd {
-            val intent = Intent(this, AboutActivity::class.java)
-            startActivity(intent, null)
-        }
+        //TODO roy93~ inter
+//        showAd {
+//            val intent = Intent(this, AboutActivity::class.java)
+//            startActivity(intent, null)
+//        }
     }
 
     fun openSettings(menuItem: MenuItem) {
-        showAd {
-            val intent = Intent(this, SettingsActivity::class.java)
-            startActivity(intent, null)
-        }
+        //TODO roy93~ inter
+//        showAd {
+//            val intent = Intent(this, SettingsActivity::class.java)
+//            startActivity(intent, null)
+//        }
     }
 
     fun openGithub(menuItem: MenuItem) {
@@ -1070,99 +1067,100 @@ class MainActivity : BaseActivity() {
             .show()
     }
 
-    private var interstitialAd: MaxInterstitialAd? = null
-
-    private fun createAdInter() {
-        val enableAdInter = getString(R.string.EnableAdInter) == "true"
-        if (enableAdInter) {
-            interstitialAd = MaxInterstitialAd(getString(R.string.INTER), this)
-            interstitialAd?.let { ad ->
-                ad.setListener(object : MaxAdListener {
-                    override fun onAdLoaded(p0: MaxAd) {
-//                        logI("onAdLoaded")
-//                        retryAttempt = 0
-                    }
-
-                    override fun onAdDisplayed(p0: MaxAd) {
-//                        logI("onAdDisplayed")
-                    }
-
-                    override fun onAdHidden(p0: MaxAd) {
-//                        logI("onAdHidden")
-                        // Interstitial Ad is hidden. Pre-load the next ad
-                        interstitialAd?.loadAd()
-                    }
-
-                    override fun onAdClicked(p0: MaxAd) {
-//                        logI("onAdClicked")
-                    }
-
-                    override fun onAdLoadFailed(p0: String, p1: MaxError) {
-//                        logI("onAdLoadFailed")
-//                        retryAttempt++
-//                        val delayMillis =
-//                            TimeUnit.SECONDS.toMillis(2.0.pow(min(6, retryAttempt)).toLong())
+    //TODO roy93~ admob inter
+//    private var interstitialAd: MaxInterstitialAd? = null
 //
-//                        Handler(Looper.getMainLooper()).postDelayed(
-//                            {
-//                                interstitialAd?.loadAd()
-//                            }, delayMillis
-//                        )
-                    }
-
-                    override fun onAdDisplayFailed(p0: MaxAd, p1: MaxError) {
-//                        logI("onAdDisplayFailed")
-                        // Interstitial ad failed to display. We recommend loading the next ad.
-                        interstitialAd?.loadAd()
-                    }
-
-                })
-                ad.setRevenueListener {
-//                    logI("onAdDisplayed")
-                }
-
-                // Load the first ad.
-                ad.loadAd()
-            }
-        }
-    }
-
-    private fun showAd(runnable: Runnable? = null) {
-        val enableAdInter = getString(R.string.EnableAdInter) == "true"
-        if (enableAdInter) {
-            if (interstitialAd == null) {
-                runnable?.run()
-            } else {
-                interstitialAd?.let { ad ->
-                    if (ad.isReady) {
-//                        showDialogProgress()
-//                        setDelay(500.getRandomNumber() + 500) {
-//                            hideDialogProgress()
+//    private fun createAdInter() {
+//        val enableAdInter = getString(R.string.EnableAdInter) == "true"
+//        if (enableAdInter) {
+//            interstitialAd = MaxInterstitialAd(getString(R.string.INTER), this)
+//            interstitialAd?.let { ad ->
+//                ad.setListener(object : MaxAdListener {
+//                    override fun onAdLoaded(p0: MaxAd) {
+////                        logI("onAdLoaded")
+////                        retryAttempt = 0
+//                    }
+//
+//                    override fun onAdDisplayed(p0: MaxAd) {
+////                        logI("onAdDisplayed")
+//                    }
+//
+//                    override fun onAdHidden(p0: MaxAd) {
+////                        logI("onAdHidden")
+//                        // Interstitial Ad is hidden. Pre-load the next ad
+//                        interstitialAd?.loadAd()
+//                    }
+//
+//                    override fun onAdClicked(p0: MaxAd) {
+////                        logI("onAdClicked")
+//                    }
+//
+//                    override fun onAdLoadFailed(p0: String, p1: MaxError) {
+////                        logI("onAdLoadFailed")
+////                        retryAttempt++
+////                        val delayMillis =
+////                            TimeUnit.SECONDS.toMillis(2.0.pow(min(6, retryAttempt)).toLong())
+////
+////                        Handler(Looper.getMainLooper()).postDelayed(
+////                            {
+////                                interstitialAd?.loadAd()
+////                            }, delayMillis
+////                        )
+//                    }
+//
+//                    override fun onAdDisplayFailed(p0: MaxAd, p1: MaxError) {
+////                        logI("onAdDisplayFailed")
+//                        // Interstitial ad failed to display. We recommend loading the next ad.
+//                        interstitialAd?.loadAd()
+//                    }
+//
+//                })
+//                ad.setRevenueListener {
+////                    logI("onAdDisplayed")
+//                }
+//
+//                // Load the first ad.
+//                ad.loadAd()
+//            }
+//        }
+//    }
+//
+//    private fun showAd(runnable: Runnable? = null) {
+//        val enableAdInter = getString(R.string.EnableAdInter) == "true"
+//        if (enableAdInter) {
+//            if (interstitialAd == null) {
+//                runnable?.run()
+//            } else {
+//                interstitialAd?.let { ad ->
+//                    if (ad.isReady) {
+////                        showDialogProgress()
+////                        setDelay(500.getRandomNumber() + 500) {
+////                            hideDialogProgress()
+////                            ad.showAd()
+////                            runnable?.run()
+////                        }
+//                        if (BuildConfig.DEBUG) {
+//                            Toast.makeText(
+//                                this,
+//                                "Applovin show ad Inter in debug mode SUCCESSFULLY",
+//                                Toast.LENGTH_SHORT
+//                            ).show()
+//                        } else {
 //                            ad.showAd()
-//                            runnable?.run()
 //                        }
-                        if (BuildConfig.DEBUG) {
-                            Toast.makeText(
-                                this,
-                                "Applovin show ad Inter in debug mode SUCCESSFULLY",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        } else {
-                            ad.showAd()
-                        }
-                        runnable?.run()
-                    } else {
-                        runnable?.run()
-                    }
-                }
-            }
-        } else {
-            Toast.makeText(
-                this,
-                "Applovin show ad Inter in debug mode SUCCESSFULLY",
-                Toast.LENGTH_SHORT
-            ).show()
-            runnable?.run()
-        }
-    }
+//                        runnable?.run()
+//                    } else {
+//                        runnable?.run()
+//                    }
+//                }
+//            }
+//        } else {
+//            Toast.makeText(
+//                this,
+//                "Applovin show ad Inter in debug mode SUCCESSFULLY",
+//                Toast.LENGTH_SHORT
+//            ).show()
+//            runnable?.run()
+//        }
+//    }
 }

@@ -3,7 +3,6 @@ package com.mckimquyen.opencal.ui
 import android.os.Bundle
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import com.applovin.mediation.ads.MaxAdView
 import com.mckimquyen.opencal.BaseActivity
 import com.mckimquyen.opencal.BuildConfig
 import com.mckimquyen.opencal.R
@@ -15,12 +14,11 @@ import com.mckimquyen.opencal.ext.rateApp
 import com.mckimquyen.opencal.ext.shareApp
 import com.mckimquyen.opencal.model.Themes
 import com.mckimquyen.opencal.rateAppInApp
-import com.mckimquyen.watermark.utils.createAdBanner
-import com.mckimquyen.watermark.utils.destroyAdBanner
 
 class AboutActivity : BaseActivity() {
     private lateinit var binding: AAboutBinding
-    private var adView: MaxAdView? = null
+    //TODO roy93~ admob banner
+//    private var adView: MaxAdView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -88,15 +86,15 @@ class AboutActivity : BaseActivity() {
             }
         }
 
-        adView = this@AboutActivity.createAdBanner(
-            logTag = SettingsActivity::class.simpleName,
-            viewGroup = binding.flAd,
-            isAdaptiveBanner = true,
-        )
+//        adView = this@AboutActivity.createAdBanner(
+//            logTag = SettingsActivity::class.simpleName,
+//            viewGroup = binding.flAd,
+//            isAdaptiveBanner = true,
+//        )
     }
 
     override fun onDestroy() {
-        binding.flAd.destroyAdBanner(adView)
+//        binding.flAd.destroyAdBanner(adView)
         super.onDestroy()
     }
 }
