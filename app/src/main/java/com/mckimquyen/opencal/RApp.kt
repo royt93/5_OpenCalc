@@ -1,11 +1,19 @@
 package com.mckimquyen.opencal
 
 import android.app.Application
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_UNSPECIFIED
 import androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode
+import com.google.android.gms.ads.MobileAds
 import com.mckimquyen.opencal.db.MyPreferences
+import com.mckimquyen.opencal.sdkadbmob.AdMobManager
+import com.mckimquyen.opencal.sdkadbmob.AppLifecycleListener
+import com.mckimquyen.opencal.ui.SplashActivity
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 //TODO firebase
 //TODO splash screen
@@ -32,6 +40,7 @@ class RApp : Application() {
         super.onCreate()
 
 //        this.setupApplovinAd()
+        setupAdmob()
 
         // if the theme is overriding the system, the first creation doesn't work properly
         val forceDayNight = MyPreferences(this).forceDayNight
@@ -42,5 +51,41 @@ class RApp : Application() {
         if (BuildConfig.DEBUG) {
             Toast.makeText(this, "OpenCalcApplication onCreate", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun setupAdmob() {
+        CoroutineScope(Dispatchers.IO).launch {
+            MobileAds.initialize(this@RApp) {}
+            AdMobManager.init(this@RApp) { success, gaidCurrent ->
+                Log.d("roy93~", "AdMobManager init success $success, gaidCurrent $gaidCurrent")
+            }
+        }
+        registerActivityLifecycleCallbacks(
+            AppLifecycleListener(
+                { isForeground, activity ->
+                    if (isForeground) {
+                        Log.d("roy93~", "App moved to Foreground")
+                        if (activity.localClassName == SplashActivity::class.java.simpleName) {
+                            //do nothing
+                        } else {
+                            AdMobManager.showAppOpenAd(activity)
+                        }
+                    } else {
+                        Log.d("roy93~", "App moved to Background")
+                    }
+                }, { activity ->
+                    Log.d("roy93~", "callbackActivityCreated ${activity.localClassName}")
+                    if (activity.localClassName == SplashActivity::class.java.simpleName) {
+                        //do nothing
+                    } else {
+                        AdMobManager.loadAppOpenAd(
+                            context = this,
+                            adUnitId = BuildConfig.ADMOB_APP_OPEN_ID,
+                            onAdLoaded = {},
+                        )
+                    }
+                }
+            )
+        )
     }
 }

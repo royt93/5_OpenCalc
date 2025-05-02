@@ -1,5 +1,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
+    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowBackground">@drawable/startup</item>
+    </style>
+
     <!-- Default application theme. The dark version of the theme needs to override these properties -->
     <style name="AppTheme" parent="AppTheme.Base">
         <item name="android:windowLightStatusBar" tools:ignore="NewApi">true</item>
