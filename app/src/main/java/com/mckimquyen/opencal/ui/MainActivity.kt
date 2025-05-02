@@ -4,6 +4,7 @@ import android.animation.LayoutTransition
 import android.annotation.SuppressLint
 import android.content.ClipData
 import android.content.ClipboardManager
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -21,8 +22,11 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.gms.ads.AdError
+import com.google.android.gms.ads.LoadAdError
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.mckimquyen.opencal.BaseActivity
+import com.mckimquyen.opencal.BuildConfig
 import com.mckimquyen.opencal.R
 import com.mckimquyen.opencal.databinding.AMainBinding
 import com.mckimquyen.opencal.db.MyPreferences
@@ -37,6 +41,7 @@ import com.mckimquyen.opencal.helper.NumberFormatter
 import com.mckimquyen.opencal.model.History
 import com.mckimquyen.opencal.model.Themes
 import com.mckimquyen.opencal.model.adt.HistoryAdapter
+import com.mckimquyen.opencal.sdkadbmob.AdMobManager
 import com.sothree.slidinguppanel.PanelSlideListener
 import com.sothree.slidinguppanel.PanelState
 import kotlinx.coroutines.Dispatchers
@@ -49,7 +54,7 @@ import java.util.Locale
 
 var appLanguage: Locale = Locale.getDefault()
 
-class MainActivity : BaseActivity() {
+class MainActivity : BaseActivity(), AdMobManager.InterstitialAdListener {
     private lateinit var view: View
 
     private val decimalSeparatorSymbol =
@@ -77,6 +82,10 @@ class MainActivity : BaseActivity() {
         binding = AMainBinding.inflate(layoutInflater)
         view = binding.root
         setContentView(view)
+
+        AdMobManager.setCurrentActivity(this)
+        AdMobManager.interstitialListener = this
+        AdMobManager.loadInterstitial(this, BuildConfig.ADMOB_INTERSTITIAL_ID)
 
         // Disable the keyboard on display EditText
         binding.input.showSoftInputOnFocus = false
@@ -239,9 +248,6 @@ class MainActivity : BaseActivity() {
                 // Do nothing
             }
         })
-
-        //TODO roy93~ inter
-//        createAdInter()
     }
 
     fun selectThemeDialog(menuItem: MenuItem) {
@@ -256,19 +262,15 @@ class MainActivity : BaseActivity() {
     }
 
     fun openAbout(menuItem: MenuItem) {
-        //TODO roy93~ inter
-//        showAd {
-//            val intent = Intent(this, AboutActivity::class.java)
-//            startActivity(intent, null)
-//        }
+        val intent = Intent(this, AboutActivity::class.java)
+        startActivity(intent, null)
+        AdMobManager.showInterstitial(this)
     }
 
     fun openSettings(menuItem: MenuItem) {
-        //TODO roy93~ inter
-//        showAd {
-//            val intent = Intent(this, SettingsActivity::class.java)
-//            startActivity(intent, null)
-//        }
+        val intent = Intent(this, SettingsActivity::class.java)
+        startActivity(intent, null)
+        AdMobManager.showInterstitial(this)
     }
 
     fun openGithub(menuItem: MenuItem) {
@@ -1067,7 +1069,27 @@ class MainActivity : BaseActivity() {
             .show()
     }
 
-    //TODO roy93~ admob inter
+    override fun onAdLoaded() {
+    }
+
+    override fun onAdFailedToLoad(error: LoadAdError) {
+    }
+
+    override fun onAdShowed() {
+    }
+
+    override fun onAdDismissed() {
+    }
+
+    override fun onAdClicked() {
+    }
+
+    override fun onAdFailedToShow(error: AdError) {
+    }
+
+    override fun onAdNotAvailable() {
+    }
+
 //    private var interstitialAd: MaxInterstitialAd? = null
 //
 //    private fun createAdInter() {

@@ -5,23 +5,26 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
+import android.widget.FrameLayout
 import android.widget.ImageView
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
+import com.google.android.gms.ads.AdView
 import com.mckimquyen.opencal.BaseActivity
 import com.mckimquyen.opencal.BuildConfig
 import com.mckimquyen.opencal.R
 import com.mckimquyen.opencal.db.MyPreferences
 import com.mckimquyen.opencal.model.Themes
 import com.mckimquyen.opencal.rateAppInApp
+import com.mckimquyen.opencal.sdkadbmob.AdMobManager
 import java.util.Locale
 
 class SettingsActivity : BaseActivity() {
 
-    //TODO roy93~ banner
-//    private var adView: MaxAdView? = null
+    //    private var adView: MaxAdView? = null
+    private var adView: AdView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +35,7 @@ class SettingsActivity : BaseActivity() {
     override fun onResume() {
         super.onResume()
         rateAppInApp(BuildConfig.DEBUG)
+        adView?.resume()
     }
 
     private fun setupViews(savedInstanceState: Bundle?) {
@@ -66,9 +70,21 @@ class SettingsActivity : BaseActivity() {
 //            viewGroup = findViewById<FrameLayout>(R.id.flAd),
 //            isAdaptiveBanner = true,
 //        )
+        adView =
+            AdMobManager.loadBanner(
+                context = this,
+                adUnitId = BuildConfig.ADMOB_BANNER_ID,
+                container = findViewById<FrameLayout>(R.id.flAd),
+            )
+    }
+
+    override fun onPause() {
+        adView?.pause()
+        super.onPause()
     }
 
     override fun onDestroy() {
+        adView?.destroy()
 //        findViewById<FrameLayout>(R.id.flAd).destroyAdBanner(adView)
         super.onDestroy()
     }

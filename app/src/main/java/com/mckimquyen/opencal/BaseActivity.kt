@@ -4,15 +4,12 @@ import android.app.Activity
 import android.content.Context
 import android.content.res.Configuration
 import android.os.Build
-import android.util.Log
 import android.view.Display
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.play.core.review.ReviewInfo
 import com.google.android.play.core.review.ReviewManagerFactory
 import java.util.Calendar
-import kotlin.apply
-import kotlin.collections.maxByOrNull
 
 open class BaseActivity : AppCompatActivity() {
 
@@ -62,11 +59,11 @@ fun Activity.rateAppInApp(forceRateInApp: Boolean = false) {
 
     val sharedPreferences = getSharedPreferences("app_preferences", Context.MODE_PRIVATE)
     val lastReviewTime = sharedPreferences.getLong("last_review_time", 0L)
-    Log.d("roy93~", "requestReview lastReviewTime $lastReviewTime")
+//    Log.d("roy93~", "requestReview lastReviewTime $lastReviewTime")
     val currentTime = Calendar.getInstance().timeInMillis
     val daysSinceLastReview = (currentTime - lastReviewTime) / (1000 * 60 * 60 * 24)
-    Log.d("roy93~", "requestReview forceRateInApp $forceRateInApp")
-    Log.d("roy93~", "requestReview daysSinceLastReview $daysSinceLastReview")
+//    Log.d("roy93~", "requestReview forceRateInApp $forceRateInApp")
+//    Log.d("roy93~", "requestReview daysSinceLastReview $daysSinceLastReview")
     if (daysSinceLastReview >= 7 || forceRateInApp) {
 //    if (daysSinceLastReview >= 7) {
         val reviewManager = ReviewManagerFactory.create(this)
