@@ -5,6 +5,8 @@ import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.ViewGroup
 import android.widget.FrameLayout
@@ -25,11 +27,8 @@ import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.mckimquyen.opencal.BuildConfig
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.cancel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.lang.ref.WeakReference
 import kotlin.random.Random
@@ -280,10 +279,13 @@ object AdMobManager {
     fun loadAppOpenAd(
         context: Context,
         adUnitId: String,
-        onAdLoaded: () -> Unit,
+        onAdLoaded: (Boolean) -> Unit,
     ) {
         if (isVIPMember) {
             Log.d(TAG, "App Open Ad skipped due to whitelist device")
+            Handler(Looper.getMainLooper()).postDelayed({
+                onAdLoaded.invoke(false)
+            }, 1_000)
             return
         }
         if (isAppOpenLoading) {
@@ -292,6 +294,9 @@ object AdMobManager {
             } else {
                 if ((System.currentTimeMillis() - lastAppOpenLoadTime) < APP_OPEN_AD_TIME_OUT) {
                     Log.d(TAG, "App Open Ad is still valid or loading")
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        onAdLoaded.invoke(false)
+                    }, 1_000)
                     return
                 }
             }
@@ -306,12 +311,17 @@ object AdMobManager {
                     appOpenAd = ad
                     lastAppOpenLoadTime = System.currentTimeMillis()
                     isAppOpenLoading = false
-                    onAdLoaded.invoke();
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        onAdLoaded.invoke(true)
+                    }, 500)
                 }
 
                 override fun onAdFailedToLoad(error: LoadAdError) {
                     Log.d(TAG, "App Open Ad Failed to load: ${error.message}")
                     isAppOpenLoading = false
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        onAdLoaded.invoke(false)
+                    }, 1_000)
                 }
             },
         )
@@ -377,26 +387,26 @@ object AdMobManager {
         Log.d(TAG, "deleteVIPMember listGaidDevice $listGaidDevice => isVIPMember $isVIPMember")
     }
 
-    fun initSplashScreen(onComplete: () -> Unit) {
-        CoroutineScope(Dispatchers.Default).launch {
-            val parentJob = this // Tham chiếu đến coroutine cha
-            // Khởi tạo Job xử lý timeout 2 giây
-            val timeoutJob = launch {
-                delay(2_000) // Đợi 2 giây
-                onComplete.invoke()
-                parentJob.cancel() // Hủy toàn bộ coroutine sau khi xử lý
-            }
-            // Bắt đầu collect giá trị từ Flow
-            EventBus.eventFlow.collectLatest { value ->
-                timeoutJob.cancel() // Hủy timeout khi nhận được giá trị
-                Log.d("roy93~", "collectLatest: $value")
-                if (value) {
-                    onComplete.invoke()
-                    parentJob.cancel() // Dừng collect sau khi xử lý giá trị true
-                }
-            }
-        }
-    }
+//    fun initSplashScreen(onComplete: () -> Unit) {
+//        CoroutineScope(Dispatchers.Default).launch {
+//            val parentJob = this // Tham chiếu đến coroutine cha
+//            // Khởi tạo Job xử lý timeout 2 giây
+//            val timeoutJob = launch {
+//                delay(2_000) // Đợi 2 giây
+//                onComplete.invoke()
+//                parentJob.cancel() // Hủy toàn bộ coroutine sau khi xử lý
+//            }
+//            // Bắt đầu collect giá trị từ Flow
+//            EventBus.eventFlow.collectLatest { value ->
+//                timeoutJob.cancel() // Hủy timeout khi nhận được giá trị
+//                Log.d("roy93~", "collectLatest: $value")
+//                if (value) {
+//                    onComplete.invoke()
+//                    parentJob.cancel() // Dừng collect sau khi xử lý giá trị true
+//                }
+//            }
+//        }
+//    }
 
     interface InterstitialAdListener {
         fun onAdLoaded()

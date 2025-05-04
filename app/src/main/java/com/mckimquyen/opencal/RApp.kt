@@ -10,7 +10,6 @@ import com.google.android.gms.ads.MobileAds
 import com.mckimquyen.opencal.db.MyPreferences
 import com.mckimquyen.opencal.sdkadbmob.AdMobManager
 import com.mckimquyen.opencal.sdkadbmob.AppLifecycleListener
-import com.mckimquyen.opencal.ui.SplashActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -63,27 +62,27 @@ class RApp : Application() {
         registerActivityLifecycleCallbacks(
             AppLifecycleListener(
                 { isForeground, activity ->
-                    if (isForeground) {
-                        Log.d("roy93~", "App moved to Foreground")
-                        if (activity.localClassName == SplashActivity::class.java.simpleName) {
-                            //do nothing
-                        } else {
-                            AdMobManager.showAppOpenAd(activity)
-                        }
-                    } else {
-                        Log.d("roy93~", "App moved to Background")
-                    }
+//                    if (isForeground) {
+//                        Log.d("roy93~", "App moved to Foreground")
+//                        if (activity.localClassName == SplashActivity::class.java.simpleName) {
+//                            //do nothing
+//                        } else {
+//                            AdMobManager.showAppOpenAd(activity)
+//                        }
+//                    } else {
+//                        Log.d("roy93~", "App moved to Background")
+//                    }
                 }, { activity ->
-                    Log.d("roy93~", "callbackActivityCreated ${activity.localClassName}")
-                    if (activity.localClassName == SplashActivity::class.java.simpleName) {
-                        //do nothing
-                    } else {
-                        AdMobManager.loadAppOpenAd(
-                            context = this,
-                            adUnitId = BuildConfig.ADMOB_APP_OPEN_ID,
-                            onAdLoaded = {},
-                        )
-                    }
+//                    Log.d("roy93~", "callbackActivityCreated ${activity.localClassName}")
+//                    if (activity.localClassName == SplashActivity::class.java.simpleName) {
+//                        //do nothing
+//                    } else {
+//                        AdMobManager.loadAppOpenAd(
+//                            context = this,
+//                            adUnitId = BuildConfig.ADMOB_APP_OPEN_ID,
+//                            onAdLoaded = {},
+//                        )
+//                    }
                 }
             )
         )
