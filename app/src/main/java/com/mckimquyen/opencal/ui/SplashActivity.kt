@@ -18,6 +18,7 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         Log.d("roy93~", "onCreate")
         binding = ActivitySplashBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         AdMobManager.loadAppOpenAd(
             context = this@SplashActivity,
             adUnitId = BuildConfig.ADMOB_APP_OPEN_ID,
@@ -29,8 +30,7 @@ class SplashActivity : AppCompatActivity() {
         )
     }
 
-    fun goToMain() {
-        return
+    private fun goToMain() {
         val intent = Intent(this@SplashActivity, MainActivity::class.java)
         startActivity(intent)
         overridePendingTransition(0, 0)

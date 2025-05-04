@@ -14,9 +14,14 @@
         android:layout_weight="1"
         android:gravity="center">
 
-        <ProgressBar
+        <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_launcher_960" />
+
+        <!--        <ProgressBar-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content" />-->
     </LinearLayout>
 
     <TextView
@@ -26,5 +31,12 @@
         android:textColor="#000000"
         android:textSize="16dp"
         android:textStyle="bold" />
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:indeterminate="true" />
 
 </LinearLayout>
