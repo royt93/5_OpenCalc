@@ -30,6 +30,7 @@ class SplashActivity : AppCompatActivity() {
     }
 
     fun goToMain() {
+        return
         val intent = Intent(this@SplashActivity, MainActivity::class.java)
         startActivity(intent)
         overridePendingTransition(0, 0)
