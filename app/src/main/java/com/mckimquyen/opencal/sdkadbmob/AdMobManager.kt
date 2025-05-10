@@ -4,7 +4,6 @@ import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
-import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
@@ -29,16 +28,16 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.lang.ref.WeakReference
-import kotlin.random.Random
 
-//version 20240427
+//version 20250509
 object AdMobManager {
 
     private const val TAG = "roy93~AdMobManager"
 
-    private lateinit var application: Application
+    private var application: Application? = null
     private var interstitialAd: InterstitialAd? = null
     private var appOpenAd: AppOpenAd? = null
     private var isAppOpenLoading = false
@@ -46,7 +45,8 @@ object AdMobManager {
     private var lastAppOpenLoadTime: Long = 0
 
     private const val APP_OPEN_AD_TIME_OUT = 4 * 60 * 60 * 1000L // 4 hours
-    private const val SHOW_INTERSTITIAL_CHANCE = 40 // 40%
+
+    //    private const val SHOW_INTERSTITIAL_CHANCE = 40 // 40%
     const val TEST_VSMART_IRIS = "884670AFCACDD337E31BB6153C6DB17E"
     const val TEST_VIVO_Z9 = "05B522309BC31052952BBCD5CC85ACA8"
 
@@ -59,17 +59,24 @@ object AdMobManager {
 
     var interstitialListener: InterstitialAdListener? = null
 
+    private var lastInterstitialErrorTime: Long = 0
+    private var lastAppOpenErrorTime: Long = 0
+    private val ERROR_COOLDOWN = 15 * 60 * 1000L // 15 phút dưới dạng milliseconds
+
     fun init(
-        application: Application,
+        app: Application?,
         onComplete: (Boolean, String) -> Unit,
     ) {
-        appPreferences = AppPreferences.getInstance(application)
+        if (app == null) {
+            return
+        }
+        appPreferences = AppPreferences.getInstance(app)
         appPreferences?.getGAIDList()?.let {
             listGAIDVipMember.addAll(it)
         }
         Log.d(TAG, "###init listGAIDVipMember $listGAIDVipMember")
-        getGAID(application) { gaidCurrent ->
-            this.application = application
+        getGAID(app) { gaidCurrent ->
+            this.application = app
             this.currentDeviceGAID = gaidCurrent
             isVIPMember = listGAIDVipMember.contains(gaidCurrent)
             Log.d(
@@ -87,9 +94,13 @@ object AdMobManager {
             if (appPreferences?.isAddVIPMemberFirstInitSuccess() == true) {
                 //do nothing
             } else {
-//                var list = getMyListVipDevice()
-//                addVIPMember(list)
-//                appPreferences?.addVIPMemberFirstInitSuccess()
+                if (BuildConfig.DEBUG) {
+                    //do nothing
+                } else {
+                    var list = getMyListVipDevice()
+                    addVIPMember(list)
+                    appPreferences?.addVIPMemberFirstInitSuccess()
+                }
             }
             onComplete(true, gaidCurrent)
             CoroutineScope(Dispatchers.Default).launch {
@@ -121,7 +132,7 @@ object AdMobManager {
         list.add("8f6ccdc1-08fd-4611-abdf-f48bdadb5581")//tablet lenovo
         list.add("66e652de-79ef-4889-8074-9b482fd81b5a")//redmi a3
         list.add("4ed22dd8-e8fb-442e-a75e-081a3d977957")//ss s24u
-        return list;
+        return list
     }
 
     fun getGAID(context: Context, callback: (String) -> Unit) {
@@ -159,7 +170,7 @@ object AdMobManager {
         context: Context,
         adUnitId: String,
         container: ViewGroup,
-        adSize: AdSize = AdSize.LARGE_BANNER,
+        adSize: AdSize = AdSize.BANNER,
     ): AdView? {
         if (isVIPMember) {
             Log.d(TAG, "Banner Ad skipped due to whitelist device")
@@ -204,6 +215,20 @@ object AdMobManager {
             Log.d(TAG, "Interstitial Ad skipped due to whitelist device")
             return
         }
+        // Kiểm tra thời gian cooldown cho Interstitial
+        if (System.currentTimeMillis() - lastInterstitialErrorTime < ERROR_COOLDOWN) {
+            Log.d(TAG, "Interstitial Ad skipped due to recent error")
+            interstitialListener?.onAdFailedToLoad(
+                LoadAdError(
+                    /* code = */ 0,
+                    /* message = */ "Ad skipped due to cooldown",
+                    /* domain = */ "admob-wrapper",
+                    /* cause = */ null,
+                    /* responseInfo = */ null,
+                )
+            )
+            return
+        }
         InterstitialAd.load(
             context,
             adUnitId,
@@ -217,7 +242,11 @@ object AdMobManager {
                 }
 
                 override fun onAdFailedToLoad(error: LoadAdError) {
-                    Log.d(TAG, "Interstitial Ad Failed to load: ${error.message}")
+                    lastInterstitialErrorTime = System.currentTimeMillis() // Cập nhật thời điểm lỗi
+                    Log.d(
+                        TAG,
+                        "Interstitial Ad Failed to load: ${error.message}. Cooldown started."
+                    )
                     interstitialAd = null
                     interstitialListener?.onAdFailedToLoad(error)
                 }
@@ -234,9 +263,9 @@ object AdMobManager {
             override fun onAdDismissedFullScreenContent() {
                 Log.d(TAG, "Interstitial Ad Dismissed")
                 interstitialAd = null
-                currentActivity?.get()?.let {
-                    loadInterstitial(it, BuildConfig.ADMOB_INTERSTITIAL_ID)
-                }
+//                currentActivity?.get()?.let {
+//                    loadInterstitial(it, BuildConfig.ADMOB_INTERSTITIAL_ID)
+//                }
                 interstitialListener?.onAdDismissed()
             }
 
@@ -260,13 +289,13 @@ object AdMobManager {
             return
         }
 
-        val randomChance = Random.nextInt(1, 101)
-        Log.d(TAG, "Random chance: $randomChance")
-        if (randomChance > SHOW_INTERSTITIAL_CHANCE) {
-            Log.d(TAG, "Skipped showing interstitial because random > $SHOW_INTERSTITIAL_CHANCE")
-            interstitialListener?.onAdNotAvailable()
-            return
-        }
+//        val randomChance = Random.nextInt(1, 101)
+//        Log.d(TAG, "Random chance: $randomChance")
+//        if (randomChance > SHOW_INTERSTITIAL_CHANCE) {
+//            Log.d(TAG, "Skipped showing interstitial because random > $SHOW_INTERSTITIAL_CHANCE")
+//            interstitialListener?.onAdNotAvailable()
+//            return
+//        }
 
         if (interstitialAd != null) {
             interstitialAd?.show(activity)
@@ -276,15 +305,24 @@ object AdMobManager {
         }
     }
 
-    fun loadAppOpenAd(
+    private fun loadAppOpenAd(
         context: Context,
         adUnitId: String,
         onAdLoaded: (Boolean) -> Unit,
     ) {
+        Log.d(TAG, "~~~~~ loadAppOpenAd isVIPMember $isVIPMember")
         if (isVIPMember) {
             Log.d(TAG, "App Open Ad skipped due to whitelist device")
             Handler(Looper.getMainLooper()).postDelayed({
                 onAdLoaded.invoke(false)
+            }, 1_000)
+            return
+        }
+        // Kiểm tra thời gian cooldown cho App Open
+        if (System.currentTimeMillis() - lastAppOpenErrorTime < ERROR_COOLDOWN) {
+            Log.d(TAG, "App Open Ad skipped due to recent error")
+            Handler(Looper.getMainLooper()).postDelayed({
+                onAdLoaded(false)
             }, 1_000)
             return
         }
@@ -317,7 +355,8 @@ object AdMobManager {
                 }
 
                 override fun onAdFailedToLoad(error: LoadAdError) {
-                    Log.d(TAG, "App Open Ad Failed to load: ${error.message}")
+                    lastAppOpenErrorTime = System.currentTimeMillis() // Cập nhật thời điểm lỗi
+                    Log.d(TAG, "App Open Ad Failed to load: ${error.message}. Cooldown started.")
                     isAppOpenLoading = false
                     Handler(Looper.getMainLooper()).postDelayed({
                         onAdLoaded.invoke(false)
@@ -327,13 +366,18 @@ object AdMobManager {
         )
     }
 
-    fun showAppOpenAd(activity: Activity) {
+    private fun showAppOpenAd(
+        activity: Activity,
+        onAdDismiss: (Boolean) -> Unit,
+    ) {
         if (isVIPMember) {
             Log.d(TAG, "App Open Ad Show Skipped - Device in whitelist")
+            onAdDismiss.invoke(true)
             return
         }
         if (isAppOpenShowing) {
             Log.d(TAG, "Already showing App Open Ad")
+            onAdDismiss.invoke(true)
             return
         }
         if (appOpenAd != null) {
@@ -347,12 +391,14 @@ object AdMobManager {
                     Log.d(TAG, "App Open Ad Dismissed")
                     appOpenAd = null
                     isAppOpenShowing = false
+                    onAdDismiss.invoke(true)
                 }
 
                 override fun onAdFailedToShowFullScreenContent(adError: AdError) {
                     Log.d(TAG, "App Open Ad Failed to Show: ${adError.message}")
                     appOpenAd = null
                     isAppOpenShowing = false
+                    onAdDismiss.invoke(true)
                 }
 
                 override fun onAdClicked() {
@@ -362,6 +408,7 @@ object AdMobManager {
             appOpenAd?.show(activity)
         } else {
             Log.d(TAG, "App Open Ad not ready")
+            onAdDismiss.invoke(true)
         }
     }
 
@@ -387,26 +434,30 @@ object AdMobManager {
         Log.d(TAG, "deleteVIPMember listGaidDevice $listGaidDevice => isVIPMember $isVIPMember")
     }
 
-//    fun initSplashScreen(onComplete: () -> Unit) {
-//        CoroutineScope(Dispatchers.Default).launch {
-//            val parentJob = this // Tham chiếu đến coroutine cha
-//            // Khởi tạo Job xử lý timeout 2 giây
-//            val timeoutJob = launch {
-//                delay(2_000) // Đợi 2 giây
-//                onComplete.invoke()
-//                parentJob.cancel() // Hủy toàn bộ coroutine sau khi xử lý
-//            }
-//            // Bắt đầu collect giá trị từ Flow
-//            EventBus.eventFlow.collectLatest { value ->
-//                timeoutJob.cancel() // Hủy timeout khi nhận được giá trị
-//                Log.d("roy93~", "collectLatest: $value")
-//                if (value) {
-//                    onComplete.invoke()
-//                    parentJob.cancel() // Dừng collect sau khi xử lý giá trị true
-//                }
-//            }
-//        }
-//    }
+    fun initSplashScreen(activity: Activity, onAdLoaded: () -> Unit) {
+        Log.d(TAG, "~~~initSplashScreen")
+        CoroutineScope(Dispatchers.Default).launch {
+            EventBus.eventFlow.collectLatest { value ->
+                Log.d(TAG, "initSplashScreen collectLatest: $value")
+                CoroutineScope(Dispatchers.Main).launch {
+                    loadAppOpenAd(
+                        context = activity,
+                        adUnitId = BuildConfig.ADMOB_APP_OPEN_ID,
+                        onAdLoaded = { result ->
+                            Log.d(TAG, "onAdLoaded result $result")
+                            if (result) {
+                                showAppOpenAd(activity) {
+                                    onAdLoaded.invoke()
+                                }
+                            } else {
+                                onAdLoaded.invoke()
+                            }
+                        },
+                    )
+                }
+            }
+        }
+    }
 
     interface InterstitialAdListener {
         fun onAdLoaded()
@@ -471,43 +522,4 @@ object EventBus {
     suspend fun sendEvent(value: Boolean) {
         _eventFlow.emit(value)
     }
-}
-
-class AppLifecycleListener(
-    private val callbackForegroundBackground: (
-        isForeground: Boolean,
-        activity: Activity,
-    ) -> Unit,
-    private val callbackActivityCreated: (
-        activity: Activity,
-    ) -> Unit,
-) :
-    Application.ActivityLifecycleCallbacks {
-
-    private var activityCount = 0
-
-    override fun onActivityStarted(activity: Activity) {
-        activityCount++
-        if (activityCount == 1) {
-            // App moved to foreground
-            callbackForegroundBackground(true, activity)
-        }
-    }
-
-    override fun onActivityStopped(activity: Activity) {
-        activityCount--
-        if (activityCount == 0) {
-            // App moved to background
-            callbackForegroundBackground(false, activity)
-        }
-    }
-
-    override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
-        callbackActivityCreated(activity)
-    }
-
-    override fun onActivityResumed(activity: Activity) {}
-    override fun onActivityPaused(activity: Activity) {}
-    override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) {}
-    override fun onActivityDestroyed(activity: Activity) {}
 }

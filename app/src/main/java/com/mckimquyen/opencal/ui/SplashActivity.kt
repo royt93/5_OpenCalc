@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.mckimquyen.opencal.BuildConfig
 import com.mckimquyen.opencal.databinding.ActivitySplashBinding
 import com.mckimquyen.opencal.sdkadbmob.AdMobManager
 
@@ -19,21 +18,20 @@ class SplashActivity : AppCompatActivity() {
         Log.d("roy93~", "onCreate")
         binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        AdMobManager.loadAppOpenAd(
-            context = this@SplashActivity,
-            adUnitId = BuildConfig.ADMOB_APP_OPEN_ID,
-            onAdLoaded = { result ->
-                Log.d("roy93~", "onAdLoaded result $result")
-                goToMain()
-                AdMobManager.showAppOpenAd(this@SplashActivity)
-            },
-        )
+        AdMobManager.initSplashScreen(activity = this, onAdLoaded = {
+            goToMain()
+        })
     }
 
     private fun goToMain() {
         val intent = Intent(this@SplashActivity, MainActivity::class.java)
         startActivity(intent)
-        overridePendingTransition(0, 0)
-        finishAffinity()
+//        overridePendingTransition(0, 0)
+//        finishAffinity()
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+        // Trì hoãn finish để đợi animation hoàn tất
+        window.decorView.postDelayed({
+            finish() // Finish sau animation
+        }, 300) // delay khoảng 300ms (hoặc đúng thời gian của animation)
     }
 }

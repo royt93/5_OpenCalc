@@ -3,6 +3,7 @@ package com.mckimquyen.opencal.ui
 import android.os.Bundle
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
 import com.mckimquyen.opencal.BaseActivity
 import com.mckimquyen.opencal.BuildConfig
@@ -103,7 +104,8 @@ class AboutActivity : BaseActivity() {
         adView = AdMobManager.loadBanner(
             context = this,
             adUnitId = BuildConfig.ADMOB_BANNER_ID,
-            container = binding.flAd
+            container = binding.flAd,
+            adSize = AdSize.LARGE_BANNER,
         )
     }
 
