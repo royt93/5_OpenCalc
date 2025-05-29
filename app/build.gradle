@@ -10,8 +10,8 @@ android {
         resourceConfigurations += ['ar', 'az', 'bn', 'bs', 'de', 'el', 'es', 'fa', 'fr', 'hi', 'hr', 'in', 'it', 'ja', 'mk', 'nb-rNO', 'pt-rBR', 'ru', 'tr', 'uk', 'vi', 'zh-rHK', 'zh-rTW']
         minSdkVersion 24
         targetSdkVersion 35
-        versionCode 20250510
-        versionName "2025.05.10"
+        versionCode 20250529
+        versionName "2025.05.29"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
