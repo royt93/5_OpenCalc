@@ -2,16 +2,16 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdk 35
+    compileSdk 36
 
     namespace 'com.mckimquyen.opencal'
     defaultConfig {
         applicationId "com.mckimquyen.opencal"
         resourceConfigurations += ['ar', 'az', 'bn', 'bs', 'de', 'el', 'es', 'fa', 'fr', 'hi', 'hr', 'in', 'it', 'ja', 'mk', 'nb-rNO', 'pt-rBR', 'ru', 'tr', 'uk', 'vi', 'zh-rHK', 'zh-rTW']
         minSdkVersion 24
-        targetSdkVersion 35
-        versionCode 20250529
-        versionName "2025.05.29"
+        targetSdkVersion 36
+        versionCode 20250806
+        versionName "2025.08.06"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
