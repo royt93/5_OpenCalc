@@ -11,6 +11,7 @@ import android.os.Handler
 import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.HapticFeedbackConstants
 import android.view.MenuItem
 import android.view.View
@@ -51,6 +52,7 @@ import java.math.BigDecimal
 import java.math.RoundingMode
 import java.text.DecimalFormatSymbols
 import java.util.Locale
+import kotlin.jvm.java
 
 var appLanguage: Locale = Locale.getDefault()
 
@@ -138,7 +140,7 @@ class MainActivity : BaseActivity(), AdMobManager.InterstitialAdListener {
             override fun onPanelStateChanged(
                 panel: View,
                 previousState: PanelState,
-                newState: PanelState
+                newState: PanelState,
             ) {
                 if (newState == PanelState.ANCHORED) { // To prevent the panel from getting stuck in the middle
                     binding.slidingLayout.panelState = PanelState.EXPANDED
@@ -262,15 +264,27 @@ class MainActivity : BaseActivity(), AdMobManager.InterstitialAdListener {
     }
 
     fun openAbout(menuItem: MenuItem) {
-        val intent = Intent(this, AboutActivity::class.java)
-        startActivity(intent, null)
-        AdMobManager.showInterstitial(this)
+        AdMobManager.showInterstitial(this) { success ->
+            if (success) {
+                Log.d("roy93~", "Ad đã hiển thị và đóng thành công")
+            } else {
+                Log.d("roy93~", "Ad không hiển thị được hoặc có lỗi")
+            }
+            val intent = Intent(this, AboutActivity::class.java)
+            startActivity(intent, null)
+        }
     }
 
     fun openSettings(menuItem: MenuItem) {
-        val intent = Intent(this, SettingsActivity::class.java)
-        startActivity(intent, null)
-        AdMobManager.showInterstitial(this)
+        AdMobManager.showInterstitial(this) { success ->
+            if (success) {
+                Log.d("roy93~", "Ad đã hiển thị và đóng thành công")
+            } else {
+                Log.d("roy93~", "Ad không hiển thị được hoặc có lỗi")
+            }
+            val intent = Intent(this, SettingsActivity::class.java)
+            startActivity(intent, null)
+        }
     }
 
     fun openGithub(menuItem: MenuItem) {

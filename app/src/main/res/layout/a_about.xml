@@ -151,12 +151,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 
-    <FrameLayout
-        android:id="@+id/flAd"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="16dp"
-        android:paddingBottom="8dp">
-
-    </FrameLayout>
+    <include
+        android:id="@+id/layoutAdBanner"
+        layout="@layout/layout_ad_banner" />
 </LinearLayout>

@@ -5,12 +5,15 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
+import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
+import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
 import com.mckimquyen.opencal.BaseActivity
 import com.mckimquyen.opencal.BuildConfig
@@ -70,12 +73,16 @@ class SettingsActivity : BaseActivity() {
 //            viewGroup = findViewById<FrameLayout>(R.id.flAd),
 //            isAdaptiveBanner = true,
 //        )
-        adView =
-            AdMobManager.loadBanner(
-                context = this,
-                adUnitId = BuildConfig.ADMOB_BANNER_ID,
-                container = findViewById<FrameLayout>(R.id.flAd),
-            )
+        val layoutAdBanner = findViewById<ViewGroup>(R.id.layoutAdBanner)
+        val bannerContainer = layoutAdBanner.findViewById<FrameLayout>(R.id.bannerContainer)
+        val tvLabelAd = layoutAdBanner.findViewById<TextView>(R.id.tvLabelAd)
+        adView = AdMobManager.loadBanner(
+            context = this,
+            adUnitId = BuildConfig.ADMOB_BANNER_ID,
+            container = bannerContainer,
+            tvLabelAd = tvLabelAd,
+            adSize = AdSize.LARGE_BANNER,
+        )
     }
 
     override fun onPause() {

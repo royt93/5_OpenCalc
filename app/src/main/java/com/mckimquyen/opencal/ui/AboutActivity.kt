@@ -104,7 +104,8 @@ class AboutActivity : BaseActivity() {
         adView = AdMobManager.loadBanner(
             context = this,
             adUnitId = BuildConfig.ADMOB_BANNER_ID,
-            container = binding.flAd,
+            container = binding.layoutAdBanner.bannerContainer,
+            tvLabelAd = binding.layoutAdBanner.tvLabelAd,
             adSize = AdSize.LARGE_BANNER,
         )
     }
