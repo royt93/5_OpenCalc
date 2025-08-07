@@ -14,7 +14,7 @@
     <string name="theme_amoled">Schwarz</string>
     <string name="division_by_0">Teilen durch 0 nicht möglich</string>
     <string name="syntax_error">Syntaxfehler</string>
-    <string name="app_menu_settings">Einstellungen</string>
+    <string name="app_menu_settings">Einstellungen (Ads may appear)</string>
     <string name="value_too_large">Wert zu groß</string>
     <string name="preferences_title">Einstellungen</string>
     <string name="preferences_general_category">ALLGEMEIN</string>

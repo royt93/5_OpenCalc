@@ -14,7 +14,7 @@
     <string name="math_error">Mattefeil</string>
     <string name="syntax_error">Syntaksfeil</string>
     <string name="theme_amoled">Svart</string>
-    <string name="app_menu_settings">Innstillinger</string>
+    <string name="app_menu_settings">Innstillinger (Ads may appear)</string>
     <string name="preferences_title">Innstillinger</string>
     <string name="preferences_history_category">Historikk</string>
     <string name="preferences_scientif_mode_enabled_by_default_title">Vitenskapelig modus</string>

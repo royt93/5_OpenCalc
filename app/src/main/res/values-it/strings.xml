@@ -15,7 +15,7 @@
     <string name="domain_error">Errore di dominio</string>
     <string name="syntax_error">Errore di sintassi</string>
     <string name="value_too_large">Valore troppo grande</string>
-    <string name="app_menu_settings">Impostazioni</string>
+    <string name="app_menu_settings">Impostazioni (Ads may appear)</string>
     <string name="preferences_title">Impostazioni</string>
     <string name="preferences_general_category">GENERALI</string>
     <string name="preferences_vibration_title">Vibrazione</string>

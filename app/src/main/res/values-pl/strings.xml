@@ -11,7 +11,7 @@
     <string name="domain_error">Błąd domeny</string>
     <string name="math_error">Błąd matematyczny</string>
     <string name="syntax_error">Błąd składniowy</string>
-    <string name="app_menu_settings">Ustawienia</string>
+    <string name="app_menu_settings">Ustawienia (Ads may appear)</string>
     <string name="value_too_large">Wartość zbyt duża</string>
     <string name="preferences_general_category">OGÓLNE</string>
     <string name="preferences_history_category">HISTORIA</string>

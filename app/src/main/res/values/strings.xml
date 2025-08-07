@@ -51,7 +51,7 @@
     <string name="domain_error">Domain error</string>
     <string name="math_error">Math error</string>
     <string name="syntax_error">Syntax error</string>
-    <string name="app_menu_settings">Settings</string>
+    <string name="app_menu_settings">Settings (Ads may appear)</string>
     <string name="value_too_large">Value too large</string>
 
     <!-- Settings Activity Title -->

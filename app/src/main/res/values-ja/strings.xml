@@ -4,7 +4,7 @@
     <string name="app_menu_theme">テーマ</string>
     <string name="app_menu_about">About (Ads may appear)</string>
     <string name="infinity">無限大</string>
-    <string name="app_menu_settings">設定</string>
+    <string name="app_menu_settings">設定 (Ads may appear)</string>
     <string name="preferences_history_category">履歴</string>
     <string name="preferences_general_category">全般</string>
     <string name="preferences_radians_instead_of_degrees_by_default_title">ラジアン</string>

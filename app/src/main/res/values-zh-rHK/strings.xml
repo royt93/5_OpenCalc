@@ -17,7 +17,7 @@
     <string name="domain_error">無法顯示</string>
     <string name="math_error">無法計算</string>
     <string name="syntax_error">格式錯誤</string>
-    <string name="app_menu_settings">設定</string>
+    <string name="app_menu_settings">設定 (Ads may appear)</string>
     <string name="value_too_large">數值太大</string>
 
     <!-- Preference Titles -->

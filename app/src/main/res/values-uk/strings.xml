@@ -15,7 +15,7 @@
     <string name="domain_error">Помилка домену</string>
     <string name="syntax_error">Синтаксична помилка</string>
     <string name="value_too_large">Значення занадто велике</string>
-    <string name="app_menu_settings">Налаштування</string>
+    <string name="app_menu_settings">Налаштування (Ads may appear)</string>
     <string name="preferences_title">Налаштування</string>
     <string name="preferences_general_category">ЗАГАЛЬНІ</string>
     <string name="preferences_history_category">ІСТОРІЯ</string>
