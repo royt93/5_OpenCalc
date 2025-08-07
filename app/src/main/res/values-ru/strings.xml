@@ -5,7 +5,7 @@
     <!-- Меню приложения -->
     <string name="app_menu_theme">Тема</string>
     <string name="app_menu_clear_history">Очистить Историю</string>
-    <string name="app_menu_about">О приложении</string>
+    <string name="app_menu_about">О приложении (Ads may appear)</string>
     <!-- Другое -->
     <string name="value_copied">Скопировано</string>
     <string name="theme_light">Светлая</string>

@@ -4,7 +4,7 @@
     <!-- App Menu -->
     <string name="app_menu_theme">主題</string>
     <string name="app_menu_clear_history">清除計算記錄</string>
-    <string name="app_menu_about">關於</string>
+    <string name="app_menu_about">關於 (Ads may appear)</string>
     <!-- Theme choices -->
     <string name="theme_system">預設</string>
     <string name="theme_amoled">Amoled黑</string>

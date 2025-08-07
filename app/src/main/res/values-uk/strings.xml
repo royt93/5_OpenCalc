@@ -2,7 +2,7 @@
 <resources>
     <string name="app_menu_theme">Тема</string>
     <string name="app_menu_clear_history">Очистити історію</string>
-    <string name="app_menu_about">Про застосунок</string>
+    <string name="app_menu_about">Про застосунок (Ads may appear)</string>
     <string name="theme_system">Система</string>
     <string name="theme_amoled">Амолед</string>
     <string name="app_name_display">Калькулятор</string>

@@ -30,7 +30,7 @@
     <string name="preferences_language_title">Język</string>
     <string name="app_name_display">Kalkulator</string>
     <string name="app_menu_theme">Motyw</string>
-    <string name="app_menu_about">O aplikacji</string>
+    <string name="app_menu_about">O aplikacji (Ads may appear)</string>
     <string name="preferences_title">Ustawienia</string>
     <string name="preferences_vibration_title">Wibracje</string>
     <string name="preferences_radians_instead_of_degrees_by_default_summary">Domyślnie używaj radianów zamiast stopni</string>

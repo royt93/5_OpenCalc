@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name_display">कैलकुलेटर</string>
     <string name="app_menu_theme">थीम</string>
-    <string name="app_menu_about">ऐप के बारे में</string>
+    <string name="app_menu_about">ऐप के बारे में (Ads may appear)</string>
     <string name="infinity">अनंत</string>
     <string name="preferences_general_category">आम</string>
     <string name="preferences_history_category">इतिहास</string>

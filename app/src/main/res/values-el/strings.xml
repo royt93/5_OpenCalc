@@ -4,7 +4,7 @@
     <!-- App Menu -->
     <string name="app_menu_theme">Θέμα</string>
     <string name="app_menu_clear_history">Απαλοιφή ιστορικού</string>
-    <string name="app_menu_about">Σχετικά</string>
+    <string name="app_menu_about">Σχετικά (Ads may appear)</string>
     <!-- Theme choices -->
     <string name="theme_system">Συστήματος</string>
     <string name="theme_light">Φωτεινό</string>

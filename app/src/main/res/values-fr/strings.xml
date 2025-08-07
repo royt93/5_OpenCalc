@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name_display">Calculatrice</string>
     <string name="app_menu_theme">Thème</string>
-    <string name="app_menu_about">À propos</string>
+    <string name="app_menu_about">À propos (Ads may appear)</string>
     <string name="infinity">Infini</string>
     <string name="app_menu_clear_history">Supprimer l\'historique</string>
     <string name="value_copied">Copié</string>

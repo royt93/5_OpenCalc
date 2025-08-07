@@ -2,5 +2,5 @@
 <resources>
     <string name="app_name_display">ماشین حساب</string>
     <string name="app_menu_theme">تم</string>
-    <string name="app_menu_about">درباره</string>
+    <string name="app_menu_about"> (Ads may appear)درباره</string>
 </resources>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_menu_about">عن التطبيق</string>
+    <string name="app_menu_about">عن التطبيق (Ads may appear)</string>
     <string name="app_menu_theme">السمة</string>
     <string name="app_name_display">الحاسبة</string>
     <string name="infinity">Infinity</string>

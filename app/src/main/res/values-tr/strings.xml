@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name_display">Hesaplayıcı</string>
     <string name="app_menu_theme">Tema</string>
-    <string name="app_menu_about">Hakkında</string>
+    <string name="app_menu_about">Hakkında (Ads may appear)</string>
     <string name="infinity">Sonsuz</string>
     <string name="theme_light">Açık</string>
     <string name="app_menu_clear_history">Geçmişi Temizle</string>

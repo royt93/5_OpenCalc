@@ -2,7 +2,7 @@
 <resources>
     <string name="syntax_error">Синтаксна грешка</string>
     <string name="app_menu_clear_history">Обриши историју</string>
-    <string name="app_menu_about">О апликацији</string>
+    <string name="app_menu_about">О апликацији (Ads may appear)</string>
     <string name="app_menu_theme">Тема</string>
     <string name="theme_light">Светла</string>
     <string name="theme_dark">Тамна</string>

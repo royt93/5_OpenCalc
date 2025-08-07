@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name_display">Калкулатор</string>
     <string name="theme_amoled">Црна</string>
-    <string name="app_menu_about">За апликацијата</string>
+    <string name="app_menu_about">За апликацијата (Ads may appear)</string>
     <string name="app_menu_theme">Тема</string>
     <string name="app_menu_clear_history">Избриши историја</string>
     <string name="theme_system">Системска</string>

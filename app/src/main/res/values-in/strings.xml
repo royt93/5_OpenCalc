@@ -6,7 +6,7 @@
     <!-- App Menu -->
     <string name="app_menu_theme">Tema</string>
     <string name="app_menu_clear_history">Hapus Riwayat</string>
-    <string name="app_menu_about">Tentang</string>
+    <string name="app_menu_about">Tentang (Ads may appear)</string>
 
     <!-- Theme choices -->
     <string name="theme_system">Sistem</string>

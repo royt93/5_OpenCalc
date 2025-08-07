@@ -35,7 +35,7 @@
     <!-- App Menu -->
     <string name="app_menu_theme">Theme</string>
     <string name="app_menu_clear_history">Clear History</string>
-    <string name="app_menu_about">About</string>
+    <string name="app_menu_about">About (Ads may appear)</string>
 
     <!-- Theme choices -->
     <string name="theme_system">System</string>

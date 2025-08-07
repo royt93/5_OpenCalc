@@ -3,7 +3,7 @@
     <string name="app_name_display">Rechner</string>
     <!-- App Menu -->
     <string name="app_menu_theme">Design</string>
-    <string name="app_menu_about">Über</string>
+    <string name="app_menu_about">Über (Ads may appear)</string>
     <string name="infinity">Unendlich</string>a
     <string name="theme_light">Hell</string>
     <string name="value_copied">Kopiert</string>
