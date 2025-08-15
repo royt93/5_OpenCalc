@@ -6,4 +6,7 @@
   <component name="ProjectType">
     <option name="id" value="Android" />
   </component>
+  <component name="ProjectRunConfigurationManager">
+    <option name="customProjectIcon" value="$PROJECT_DIR$/icon.png" />
+  </component>
 </project>
