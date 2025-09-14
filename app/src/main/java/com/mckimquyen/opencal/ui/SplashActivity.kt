@@ -5,8 +5,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.mckimquyen.opencal.R
 import com.mckimquyen.opencal.databinding.ActivitySplashBinding
 import com.mckimquyen.opencal.sdkadbmob.AdMobManager
+import com.mckimquyen.opencal.sdkadbmob.UIUtils
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
@@ -16,8 +18,14 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d("roy93~", "onCreate")
+        UIUtils.setupEdgeToEdge1(window)
         binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        UIUtils.setupEdgeToEdge2(
+            rootView = findViewById(R.id.root_layout),
+            paddingTop = true,
+            paddingBottom = true,
+        )
         AdMobManager.initSplashScreen(activity = this, onAdLoaded = {
             goToMain()
         })
