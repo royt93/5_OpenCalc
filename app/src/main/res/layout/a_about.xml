@@ -1,157 +1,164 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutRoot"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <androidx.core.widget.NestedScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context=".opencal.ui.AboutActivity">
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
-            <ImageView
-                android:id="@+id/ivAboutBack"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginVertical="18dp"
-                android:background="@drawable/ic_baseline_arrow_back_24"
-                android:backgroundTint="?attr/text_color"
-                android:contentDescription="@string/app_name"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tvAboutBackText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:paddingVertical="18dp"
-                android:text="@string/about_title"
-                android:textColor="?attr/text_color"
-                android:textSize="22sp"
-                app:layout_constraintBottom_toBottomOf="@+id/ivAboutBack"
-                app:layout_constraintStart_toEndOf="@+id/ivAboutBack"
-                app:layout_constraintTop_toTopOf="@+id/ivAboutBack" />
-
-            <TextView
-                android:id="@+id/tvAboutHelpUsCategory"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="69dp"
-                android:layout_marginTop="20dp"
-                android:text="@string/about_help_us_category"
-                android:textColor="?attr/text_category_color"
-                android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@+id/tvAboutBackText" />
+                android:layout_height="match_parent"
+                tools:context=".opencal.ui.AboutActivity">
 
-            <TextView
-                android:id="@+id/tvAboutRate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="15dp"
-                android:drawablePadding="20dp"
-                android:gravity="center_vertical"
-                android:paddingVertical="12dp"
-                android:text="@string/about_rate"
-                android:textSize="@dimen/about_text"
-                app:color="?attr/text_color"
-                app:drawableLeftCompat="@drawable/ic_rate"
-                app:layout_constraintTop_toBottomOf="@+id/tvAboutHelpUsCategory" />
+                <ImageView
+                    android:id="@+id/ivAboutBack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginVertical="18dp"
+                    android:background="@drawable/ic_baseline_arrow_back_24"
+                    android:backgroundTint="?attr/text_color"
+                    android:contentDescription="@string/app_name"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/tvAboutMoreApp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="15dp"
-                android:drawablePadding="20dp"
-                android:gravity="center_vertical"
-                android:paddingVertical="12dp"
-                android:text="@string/get_more_apps"
-                android:textSize="@dimen/about_text"
-                app:color="?attr/text_color"
-                app:drawableLeftCompat="@drawable/ic_baseline_favorite_border_24"
-                app:drawableTint="@color/text_color"
-                app:layout_constraintTop_toBottomOf="@+id/tvAboutRate" />
+                <TextView
+                    android:id="@+id/tvAboutBackText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:paddingVertical="18dp"
+                    android:text="@string/about_title"
+                    android:textColor="?attr/text_color"
+                    android:textSize="22sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivAboutBack"
+                    app:layout_constraintStart_toEndOf="@+id/ivAboutBack"
+                    app:layout_constraintTop_toTopOf="@+id/ivAboutBack" />
 
-            <TextView
-                android:id="@+id/tvAboutShareApp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="15dp"
-                android:drawablePadding="20dp"
-                android:gravity="center_vertical"
-                android:paddingVertical="12dp"
-                android:text="@string/share_this_app"
-                android:textSize="@dimen/about_text"
-                app:color="?attr/text_color"
-                app:drawableLeftCompat="@drawable/ic_baseline_share_24"
-                app:drawableTint="@color/text_color"
-                app:layout_constraintTop_toBottomOf="@+id/tvAboutMoreApp" />
+                <TextView
+                    android:id="@+id/tvAboutHelpUsCategory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="69dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/about_help_us_category"
+                    android:textColor="?attr/text_category_color"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@+id/tvAboutBackText" />
 
-            <View
-                android:id="@+id/tvCategoryHelpUsSeparator"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginVertical="15dp"
-                android:background="?attr/foreground_color"
-                app:layout_constraintTop_toBottomOf="@+id/tvAboutShareApp" />
+                <TextView
+                    android:id="@+id/tvAboutRate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="15dp"
+                    android:drawablePadding="20dp"
+                    android:gravity="center_vertical"
+                    android:paddingVertical="12dp"
+                    android:text="@string/about_rate"
+                    android:textSize="@dimen/about_text"
+                    app:color="?attr/text_color"
+                    app:drawableLeftCompat="@drawable/ic_rate"
+                    app:layout_constraintTop_toBottomOf="@+id/tvAboutHelpUsCategory" />
 
-            <TextView
-                android:id="@+id/tvAboutOtherCategory"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="69dp"
-                android:layout_marginTop="15dp"
-                android:text="@string/about_other_category"
-                android:textColor="?attr/text_category_color"
-                android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@+id/tvCategoryHelpUsSeparator" />
+                <TextView
+                    android:id="@+id/tvAboutMoreApp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="15dp"
+                    android:drawablePadding="20dp"
+                    android:gravity="center_vertical"
+                    android:paddingVertical="12dp"
+                    android:text="@string/get_more_apps"
+                    android:textSize="@dimen/about_text"
+                    app:color="?attr/text_color"
+                    app:drawableLeftCompat="@drawable/ic_baseline_favorite_border_24"
+                    app:drawableTint="@color/text_color"
+                    app:layout_constraintTop_toBottomOf="@+id/tvAboutRate" />
 
-            <TextView
-                android:id="@+id/tvAboutPrivacyPolicy"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="15dp"
-                android:drawablePadding="20dp"
-                android:gravity="center_vertical"
-                android:paddingVertical="12dp"
-                android:text="@string/privacy_policy"
-                android:textSize="@dimen/about_text"
-                app:drawableLeftCompat="@drawable/ic_privacy"
-                app:layout_constraintTop_toBottomOf="@+id/tvAboutOtherCategory" />
+                <TextView
+                    android:id="@+id/tvAboutShareApp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="15dp"
+                    android:drawablePadding="20dp"
+                    android:gravity="center_vertical"
+                    android:paddingVertical="12dp"
+                    android:text="@string/share_this_app"
+                    android:textSize="@dimen/about_text"
+                    app:color="?attr/text_color"
+                    app:drawableLeftCompat="@drawable/ic_baseline_share_24"
+                    app:drawableTint="@color/text_color"
+                    app:layout_constraintTop_toBottomOf="@+id/tvAboutMoreApp" />
 
-            <TextView
-                android:id="@+id/tvAboutAppVersion"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="15dp"
-                android:drawablePadding="20dp"
-                android:gravity="center_vertical"
-                android:paddingVertical="12dp"
-                android:text="@string/app_version"
-                android:textSize="@dimen/about_text"
-                app:drawableLeftCompat="@drawable/ic_info"
-                app:layout_constraintTop_toBottomOf="@+id/tvAboutPrivacyPolicy" />
+                <View
+                    android:id="@+id/tvCategoryHelpUsSeparator"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginVertical="15dp"
+                    android:background="?attr/foreground_color"
+                    app:layout_constraintTop_toBottomOf="@+id/tvAboutShareApp" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginVertical="15dp"
-                android:background="?attr/foreground_color"
-                app:layout_constraintTop_toBottomOf="@+id/tvAboutAppVersion" />
+                <TextView
+                    android:id="@+id/tvAboutOtherCategory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="69dp"
+                    android:layout_marginTop="15dp"
+                    android:text="@string/about_other_category"
+                    android:textColor="?attr/text_category_color"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@+id/tvCategoryHelpUsSeparator" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.core.widget.NestedScrollView>
+                <TextView
+                    android:id="@+id/tvAboutPrivacyPolicy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="15dp"
+                    android:drawablePadding="20dp"
+                    android:gravity="center_vertical"
+                    android:paddingVertical="12dp"
+                    android:text="@string/privacy_policy"
+                    android:textSize="@dimen/about_text"
+                    app:drawableLeftCompat="@drawable/ic_privacy"
+                    app:layout_constraintTop_toBottomOf="@+id/tvAboutOtherCategory" />
 
-    <include
-        android:id="@+id/layoutAdBanner"
-        layout="@layout/layout_ad_banner" />
-</LinearLayout>
+                <TextView
+                    android:id="@+id/tvAboutAppVersion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="15dp"
+                    android:drawablePadding="20dp"
+                    android:gravity="center_vertical"
+                    android:paddingVertical="12dp"
+                    android:text="@string/app_version"
+                    android:textSize="@dimen/about_text"
+                    app:drawableLeftCompat="@drawable/ic_info"
+                    app:layout_constraintTop_toBottomOf="@+id/tvAboutPrivacyPolicy" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginVertical="15dp"
+                    android:background="?attr/foreground_color"
+                    app:layout_constraintTop_toBottomOf="@+id/tvAboutAppVersion" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <include
+            android:id="@+id/layoutAdBanner"
+            layout="@layout/layout_ad_banner" />
+    </LinearLayout>
+</FrameLayout>
