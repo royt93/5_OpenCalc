@@ -43,6 +43,7 @@ import com.mckimquyen.opencal.model.History
 import com.mckimquyen.opencal.model.Themes
 import com.mckimquyen.opencal.model.adt.HistoryAdapter
 import com.mckimquyen.opencal.sdkadbmob.AdMobManager
+import com.mckimquyen.opencal.sdkadbmob.UIUtils
 import com.sothree.slidinguppanel.PanelSlideListener
 import com.sothree.slidinguppanel.PanelState
 import kotlinx.coroutines.Dispatchers
@@ -81,9 +82,16 @@ class MainActivity : BaseActivity(), AdMobManager.InterstitialAdListener {
         themes.applyDayNightOverride()
         setTheme(themes.getTheme())
 
+        UIUtils.setupEdgeToEdge1(window)
+
         binding = AMainBinding.inflate(layoutInflater)
         view = binding.root
         setContentView(view)
+        UIUtils.setupEdgeToEdge2(
+            rootView = findViewById(R.id.layoutRoot),
+            paddingTop = true,
+            paddingBottom = true
+        )
 
         AdMobManager.setCurrentActivity(this)
         AdMobManager.interstitialListener = this
