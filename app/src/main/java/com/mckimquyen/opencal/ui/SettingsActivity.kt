@@ -22,6 +22,7 @@ import com.mckimquyen.opencal.db.MyPreferences
 import com.mckimquyen.opencal.model.Themes
 import com.mckimquyen.opencal.rateAppInApp
 import com.mckimquyen.opencal.sdkadbmob.AdMobManager
+import com.mckimquyen.opencal.sdkadbmob.UIUtils
 import java.util.Locale
 
 class SettingsActivity : BaseActivity() {
@@ -47,7 +48,14 @@ class SettingsActivity : BaseActivity() {
         themes.applyDayNightOverride()
         setTheme(themes.getTheme())
 
+        UIUtils.setupEdgeToEdge1(window)
         setContentView(R.layout.a_settings)
+        UIUtils.setupEdgeToEdge2(
+            rootView = findViewById(R.id.layoutRoot),
+            paddingTop = true,
+            paddingBottom = true
+        )
+
         if (savedInstanceState == null) {
             supportFragmentManager
                 .beginTransaction()
