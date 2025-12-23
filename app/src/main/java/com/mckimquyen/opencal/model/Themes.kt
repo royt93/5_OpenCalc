@@ -18,12 +18,24 @@ class Themes(private val context: Context) {
         private const val DEFAULT_THEME_INDEX = 0
         private const val AMOLED_THEME_INDEX = 1
         private const val MATERIAL_YOU_THEME_INDEX = 2
+        private const val SUNSET_THEME_INDEX = 3
+        private const val OCEAN_THEME_INDEX = 4
+        private const val FOREST_THEME_INDEX = 5
+        private const val NORD_THEME_INDEX = 6
+        private const val HIGHCONTRAST_THEME_INDEX = 7
+        private const val LAVENDER_THEME_INDEX = 8
 
         // used to go from Preference int value to actual theme
         private val themeMap = mapOf(
             DEFAULT_THEME_INDEX to R.style.AppTheme,
             AMOLED_THEME_INDEX to R.style.AmoledTheme,
-            MATERIAL_YOU_THEME_INDEX to R.style.MaterialYouTheme
+            MATERIAL_YOU_THEME_INDEX to R.style.MaterialYouTheme,
+            SUNSET_THEME_INDEX to R.style.SunsetTheme,
+            OCEAN_THEME_INDEX to R.style.OceanTheme,
+            FOREST_THEME_INDEX to R.style.ForestTheme,
+            NORD_THEME_INDEX to R.style.NordTheme,
+            HIGHCONTRAST_THEME_INDEX to R.style.HighContrastTheme,
+            LAVENDER_THEME_INDEX to R.style.LavenderTheme
         )
 
         // Styles - Combinations of theme + day/night mode
@@ -31,6 +43,12 @@ class Themes(private val context: Context) {
         private const val LIGHT_STYLE_INDEX = 1
         private const val DARK_STYLE_INDEX = 2
         private const val AMOLED_STYLE_INDEX = 3
+        private const val SUNSET_STYLE_INDEX = 4
+        private const val OCEAN_STYLE_INDEX = 5
+        private const val FOREST_STYLE_INDEX = 6
+        private const val NORD_STYLE_INDEX = 7
+        private const val HIGHCONTRAST_STYLE_INDEX = 8
+        private const val LAVENDER_STYLE_INDEX = 9
 
         fun openDialogThemeSelector(context: Context) {
 
@@ -49,12 +67,24 @@ class Themes(private val context: Context) {
                 SYSTEM_STYLE_INDEX to systemName,
                 LIGHT_STYLE_INDEX to context.getString(R.string.theme_light),
                 DARK_STYLE_INDEX to context.getString(R.string.theme_dark),
-                AMOLED_STYLE_INDEX to context.getString(R.string.theme_amoled)
+                AMOLED_STYLE_INDEX to context.getString(R.string.theme_amoled),
+                SUNSET_STYLE_INDEX to context.getString(R.string.theme_sunset),
+                OCEAN_STYLE_INDEX to context.getString(R.string.theme_ocean),
+                FOREST_STYLE_INDEX to context.getString(R.string.theme_forest),
+                NORD_STYLE_INDEX to context.getString(R.string.theme_nord),
+                HIGHCONTRAST_STYLE_INDEX to context.getString(R.string.theme_highcontrast),
+                LAVENDER_STYLE_INDEX to context.getString(R.string.theme_lavender)
             )
 
             val checkedItem = when (preferences.theme) {
                 AMOLED_THEME_INDEX -> AMOLED_STYLE_INDEX
                 MATERIAL_YOU_THEME_INDEX -> SYSTEM_STYLE_INDEX
+                SUNSET_THEME_INDEX -> SUNSET_STYLE_INDEX
+                OCEAN_THEME_INDEX -> OCEAN_STYLE_INDEX
+                FOREST_THEME_INDEX -> FOREST_STYLE_INDEX
+                NORD_THEME_INDEX -> NORD_STYLE_INDEX
+                HIGHCONTRAST_THEME_INDEX -> HIGHCONTRAST_STYLE_INDEX
+                LAVENDER_THEME_INDEX -> LAVENDER_STYLE_INDEX
                 else -> {
                     when (preferences.forceDayNight) {
                         AppCompatDelegate.MODE_NIGHT_NO -> LIGHT_STYLE_INDEX
@@ -89,6 +119,36 @@ class Themes(private val context: Context) {
                     AMOLED_STYLE_INDEX -> {
                         preferences.theme = AMOLED_THEME_INDEX
                         preferences.forceDayNight = AppCompatDelegate.MODE_NIGHT_YES
+                    }
+
+                    SUNSET_STYLE_INDEX -> {
+                        preferences.theme = SUNSET_THEME_INDEX
+                        preferences.forceDayNight = AppCompatDelegate.MODE_NIGHT_NO
+                    }
+
+                    OCEAN_STYLE_INDEX -> {
+                        preferences.theme = OCEAN_THEME_INDEX
+                        preferences.forceDayNight = AppCompatDelegate.MODE_NIGHT_NO
+                    }
+
+                    FOREST_STYLE_INDEX -> {
+                        preferences.theme = FOREST_THEME_INDEX
+                        preferences.forceDayNight = AppCompatDelegate.MODE_NIGHT_NO
+                    }
+
+                    NORD_STYLE_INDEX -> {
+                        preferences.theme = NORD_THEME_INDEX
+                        preferences.forceDayNight = AppCompatDelegate.MODE_NIGHT_NO
+                    }
+
+                    HIGHCONTRAST_STYLE_INDEX -> {
+                        preferences.theme = HIGHCONTRAST_THEME_INDEX
+                        preferences.forceDayNight = AppCompatDelegate.MODE_NIGHT_NO
+                    }
+
+                    LAVENDER_STYLE_INDEX -> {
+                        preferences.theme = LAVENDER_THEME_INDEX
+                        preferences.forceDayNight = AppCompatDelegate.MODE_NIGHT_NO
                     }
                 }
                 dialog.dismiss()

@@ -43,6 +43,12 @@
     <string name="theme_material_you" translatable="false">Material You</string>
     <string name="theme_light">Light</string>
     <string name="theme_dark">Dark</string>
+    <string name="theme_sunset">Sunset</string>
+    <string name="theme_ocean">Ocean</string>
+    <string name="theme_forest">Forest</string>
+    <string name="theme_nord">Nord</string>
+    <string name="theme_highcontrast">High Contrast</string>
+    <string name="theme_lavender">Lavender</string>
 
     <!-- Others -->
     <string name="value_copied">Copied</string>

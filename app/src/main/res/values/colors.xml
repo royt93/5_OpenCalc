@@ -36,4 +36,106 @@
     <color name="amoled_separator_color">#EFEFEF</color>
     <color name="amoled_switch_primary_color">#fff</color>
     <color name="amoled_switch_on_primary_color">#D3D3D3</color>
+
+    <!-- Sunset/Warm Theme -->
+    <color name="sunset_foreground_color">#FFE4CC</color>
+    <color name="sunset_background_color">#FFF5E6</color>
+    <color name="sunset_popup_background_color">#FFF5E6</color>
+    <color name="sunset_history_background_color">#FFF5E6</color>
+    <color name="sunset_text_color">#5D4037</color>
+    <color name="sunset_text_second_color">#8D6E63</color>
+    <color name="sunset_text_third_color">#A1887F</color>
+    <color name="sunset_text_category_color">#8D6E63</color>
+    <color name="sunset_button_color">#FFD6B3</color>
+    <color name="sunset_button_symbol_color">#FFB88C</color>
+    <color name="sunset_button_clear_color">#FFE6B3</color>
+    <color name="sunset_button_equals_color">#FF9999</color>
+    <color name="sunset_button_ripple_color">#FFCCAA</color>
+    <color name="sunset_switch_primary_color">#FFB88C</color>
+    <color name="sunset_switch_on_primary_color">#FFFFFF</color>
+
+    <!-- Ocean/Blue Theme -->
+    <color name="ocean_foreground_color">#BBDEFB</color>
+    <color name="ocean_background_color">#E3F2FD</color>
+    <color name="ocean_popup_background_color">#E3F2FD</color>
+    <color name="ocean_history_background_color">#E3F2FD</color>
+    <color name="ocean_text_color">#0D47A1</color>
+    <color name="ocean_text_second_color">#1565C0</color>
+    <color name="ocean_text_third_color">#1976D2</color>
+    <color name="ocean_text_category_color">#1565C0</color>
+    <color name="ocean_button_color">#90CAF9</color>
+    <color name="ocean_button_symbol_color">#42A5F5</color>
+    <color name="ocean_button_clear_color">#81D4FA</color>
+    <color name="ocean_button_equals_color">#5C6BC0</color>
+    <color name="ocean_button_ripple_color">#64B5F6</color>
+    <color name="ocean_switch_primary_color">#42A5F5</color>
+    <color name="ocean_switch_on_primary_color">#FFFFFF</color>
+
+    <!-- Forest/Green Theme -->
+    <color name="forest_foreground_color">#C8E6C9</color>
+    <color name="forest_background_color">#E8F5E9</color>
+    <color name="forest_popup_background_color">#E8F5E9</color>
+    <color name="forest_history_background_color">#E8F5E9</color>
+    <color name="forest_text_color">#1B5E20</color>
+    <color name="forest_text_second_color">#2E7D32</color>
+    <color name="forest_text_third_color">#388E3C</color>
+    <color name="forest_text_category_color">#2E7D32</color>
+    <color name="forest_button_color">#A5D6A7</color>
+    <color name="forest_button_symbol_color">#66BB6A</color>
+    <color name="forest_button_clear_color">#81C784</color>
+    <color name="forest_button_equals_color">#43A047</color>
+    <color name="forest_button_ripple_color">#81C784</color>
+    <color name="forest_switch_primary_color">#66BB6A</color>
+    <color name="forest_switch_on_primary_color">#FFFFFF</color>
+
+    <!-- Nord/Cool Theme -->
+    <color name="nord_foreground_color">#E5E9F0</color>
+    <color name="nord_background_color">#ECEFF4</color>
+    <color name="nord_popup_background_color">#ECEFF4</color>
+    <color name="nord_history_background_color">#ECEFF4</color>
+    <color name="nord_text_color">#2E3440</color>
+    <color name="nord_text_second_color">#3B4252</color>
+    <color name="nord_text_third_color">#4C566A</color>
+    <color name="nord_text_category_color">#3B4252</color>
+    <color name="nord_button_color">#D8DEE9</color>
+    <color name="nord_button_symbol_color">#88C0D0</color>
+    <color name="nord_button_clear_color">#A3BE8C</color>
+    <color name="nord_button_equals_color">#5E81AC</color>
+    <color name="nord_button_ripple_color">#BFC8D5</color>
+    <color name="nord_switch_primary_color">#88C0D0</color>
+    <color name="nord_switch_on_primary_color">#FFFFFF</color>
+
+    <!-- High Contrast Theme -->
+    <color name="highcontrast_foreground_color">#F0F0F0</color>
+    <color name="highcontrast_background_color">#FFFFFF</color>
+    <color name="highcontrast_popup_background_color">#FFFFFF</color>
+    <color name="highcontrast_history_background_color">#FFFFFF</color>
+    <color name="highcontrast_text_color">#000000</color>
+    <color name="highcontrast_text_second_color">#1A1A1A</color>
+    <color name="highcontrast_text_third_color">#333333</color>
+    <color name="highcontrast_text_category_color">#000000</color>
+    <color name="highcontrast_button_color">#E0E0E0</color>
+    <color name="highcontrast_button_symbol_color">#0066CC</color>
+    <color name="highcontrast_button_clear_color">#FF6600</color>
+    <color name="highcontrast_button_equals_color">#0099FF</color>
+    <color name="highcontrast_button_ripple_color">#CCCCCC</color>
+    <color name="highcontrast_switch_primary_color">#0066CC</color>
+    <color name="highcontrast_switch_on_primary_color">#FFFFFF</color>
+
+    <!-- Lavender/Purple Theme -->
+    <color name="lavender_foreground_color">#E1BEE7</color>
+    <color name="lavender_background_color">#F3E5F5</color>
+    <color name="lavender_popup_background_color">#F3E5F5</color>
+    <color name="lavender_history_background_color">#F3E5F5</color>
+    <color name="lavender_text_color">#4A148C</color>
+    <color name="lavender_text_second_color">#6A1B9A</color>
+    <color name="lavender_text_third_color">#7B1FA2</color>
+    <color name="lavender_text_category_color">#6A1B9A</color>
+    <color name="lavender_button_color">#CE93D8</color>
+    <color name="lavender_button_symbol_color">#AB47BC</color>
+    <color name="lavender_button_clear_color">#BA68C8</color>
+    <color name="lavender_button_equals_color">#8E24AA</color>
+    <color name="lavender_button_ripple_color">#C39BD3</color>
+    <color name="lavender_switch_primary_color">#AB47BC</color>
+    <color name="lavender_switch_on_primary_color">#FFFFFF</color>
 </resources>

@@ -82,6 +82,186 @@
         <item name="materialSwitchStyle">@style/Widget.App.Switch.Light_Material</item>
     </style>
 
+    <!-- Sunset/Warm theme. Based on AppTheme but with warm colors -->
+    <style name="SunsetTheme" parent="Theme.Material3.Light.NoActionBar">
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowLightStatusBar" tools:ignore="NewApi">true</item>
+        <item name="android:windowLightNavigationBar" tools:ignore="NewApi">true</item>
+        <item name="android:statusBarColor">@color/sunset_foreground_color</item>
+        <item name="android:navigationBarColor">@color/sunset_background_color</item>
+        <item name="foreground_color">@color/sunset_foreground_color</item>
+        <item name="background_color">@color/sunset_background_color</item>
+        <item name="popup_background_color">@color/sunset_popup_background_color</item>
+        <item name="android:colorBackground">@color/sunset_background_color</item>
+        <item name="history_background_color">@color/sunset_history_background_color</item>
+        <item name="text_color">@color/sunset_text_color</item>
+        <item name="text_second_color">@color/sunset_text_second_color</item>
+        <item name="text_third_color">@color/sunset_text_third_color</item>
+        <item name="text_category_color">@color/sunset_text_category_color</item>
+        <item name="button_color">@color/sunset_button_color</item>
+        <item name="button_symbol_color">@color/sunset_button_symbol_color</item>
+        <item name="button_clear_color">@color/sunset_button_clear_color</item>
+        <item name="button_equals_color">@color/sunset_button_equals_color</item>
+        <item name="button_ripple_color">@color/sunset_button_ripple_color</item>
+        <item name="separator_color">@color/sunset_background_color</item>
+        <item name="about_button_color">@color/sunset_button_color</item>
+        <item name="popupMenuStyle">@style/Widget.Material3.PopupMenu</item>
+        <item name="colorSecondary">@color/sunset_text_third_color</item>
+        <item name="colorPrimary">@color/sunset_switch_primary_color</item>
+        <item name="colorOnPrimary">@color/sunset_switch_on_primary_color</item>
+        <item name="materialSwitchStyle">@style/Widget.App.Switch</item>
+    </style>
+
+    <!-- Ocean/Blue theme -->
+    <style name="OceanTheme" parent="Theme.Material3.Light.NoActionBar">
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowLightStatusBar" tools:ignore="NewApi">true</item>
+        <item name="android:windowLightNavigationBar" tools:ignore="NewApi">true</item>
+        <item name="android:statusBarColor">@color/ocean_foreground_color</item>
+        <item name="android:navigationBarColor">@color/ocean_background_color</item>
+        <item name="foreground_color">@color/ocean_foreground_color</item>
+        <item name="background_color">@color/ocean_background_color</item>
+        <item name="popup_background_color">@color/ocean_popup_background_color</item>
+        <item name="android:colorBackground">@color/ocean_background_color</item>
+        <item name="history_background_color">@color/ocean_history_background_color</item>
+        <item name="text_color">@color/ocean_text_color</item>
+        <item name="text_second_color">@color/ocean_text_second_color</item>
+        <item name="text_third_color">@color/ocean_text_third_color</item>
+        <item name="text_category_color">@color/ocean_text_category_color</item>
+        <item name="button_color">@color/ocean_button_color</item>
+        <item name="button_symbol_color">@color/ocean_button_symbol_color</item>
+        <item name="button_clear_color">@color/ocean_button_clear_color</item>
+        <item name="button_equals_color">@color/ocean_button_equals_color</item>
+        <item name="button_ripple_color">@color/ocean_button_ripple_color</item>
+        <item name="separator_color">@color/ocean_background_color</item>
+        <item name="about_button_color">@color/ocean_button_color</item>
+        <item name="popupMenuStyle">@style/Widget.Material3.PopupMenu</item>
+        <item name="colorSecondary">@color/ocean_text_third_color</item>
+        <item name="colorPrimary">@color/ocean_switch_primary_color</item>
+        <item name="colorOnPrimary">@color/ocean_switch_on_primary_color</item>
+        <item name="materialSwitchStyle">@style/Widget.App.Switch</item>
+    </style>
+
+    <!-- Forest/Green theme -->
+    <style name="ForestTheme" parent="Theme.Material3.Light.NoActionBar">
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowLightStatusBar" tools:ignore="NewApi">true</item>
+        <item name="android:windowLightNavigationBar" tools:ignore="NewApi">true</item>
+        <item name="android:statusBarColor">@color/forest_foreground_color</item>
+        <item name="android:navigationBarColor">@color/forest_background_color</item>
+        <item name="foreground_color">@color/forest_foreground_color</item>
+        <item name="background_color">@color/forest_background_color</item>
+        <item name="popup_background_color">@color/forest_popup_background_color</item>
+        <item name="android:colorBackground">@color/forest_background_color</item>
+        <item name="history_background_color">@color/forest_history_background_color</item>
+        <item name="text_color">@color/forest_text_color</item>
+        <item name="text_second_color">@color/forest_text_second_color</item>
+        <item name="text_third_color">@color/forest_text_third_color</item>
+        <item name="text_category_color">@color/forest_text_category_color</item>
+        <item name="button_color">@color/forest_button_color</item>
+        <item name="button_symbol_color">@color/forest_button_symbol_color</item>
+        <item name="button_clear_color">@color/forest_button_clear_color</item>
+        <item name="button_equals_color">@color/forest_button_equals_color</item>
+        <item name="button_ripple_color">@color/forest_button_ripple_color</item>
+        <item name="separator_color">@color/forest_background_color</item>
+        <item name="about_button_color">@color/forest_button_color</item>
+        <item name="popupMenuStyle">@style/Widget.Material3.PopupMenu</item>
+        <item name="colorSecondary">@color/forest_text_third_color</item>
+        <item name="colorPrimary">@color/forest_switch_primary_color</item>
+        <item name="colorOnPrimary">@color/forest_switch_on_primary_color</item>
+        <item name="materialSwitchStyle">@style/Widget.App.Switch</item>
+    </style>
+
+    <!-- Nord/Cool theme -->
+    <style name="NordTheme" parent="Theme.Material3.Light.NoActionBar">
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowLightStatusBar" tools:ignore="NewApi">true</item>
+        <item name="android:windowLightNavigationBar" tools:ignore="NewApi">true</item>
+        <item name="android:statusBarColor">@color/nord_foreground_color</item>
+        <item name="android:navigationBarColor">@color/nord_background_color</item>
+        <item name="foreground_color">@color/nord_foreground_color</item>
+        <item name="background_color">@color/nord_background_color</item>
+        <item name="popup_background_color">@color/nord_popup_background_color</item>
+        <item name="android:colorBackground">@color/nord_background_color</item>
+        <item name="history_background_color">@color/nord_history_background_color</item>
+        <item name="text_color">@color/nord_text_color</item>
+        <item name="text_second_color">@color/nord_text_second_color</item>
+        <item name="text_third_color">@color/nord_text_third_color</item>
+        <item name="text_category_color">@color/nord_text_category_color</item>
+        <item name="button_color">@color/nord_button_color</item>
+        <item name="button_symbol_color">@color/nord_button_symbol_color</item>
+        <item name="button_clear_color">@color/nord_button_clear_color</item>
+        <item name="button_equals_color">@color/nord_button_equals_color</item>
+        <item name="button_ripple_color">@color/nord_button_ripple_color</item>
+        <item name="separator_color">@color/nord_background_color</item>
+        <item name="about_button_color">@color/nord_button_color</item>
+        <item name="popupMenuStyle">@style/Widget.Material3.PopupMenu</item>
+        <item name="colorSecondary">@color/nord_text_third_color</item>
+        <item name="colorPrimary">@color/nord_switch_primary_color</item>
+        <item name="colorOnPrimary">@color/nord_switch_on_primary_color</item>
+        <item name="materialSwitchStyle">@style/Widget.App.Switch</item>
+    </style>
+
+    <!-- High Contrast theme -->
+    <style name="HighContrastTheme" parent="Theme.Material3.Light.NoActionBar">
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowLightStatusBar" tools:ignore="NewApi">true</item>
+        <item name="android:windowLightNavigationBar" tools:ignore="NewApi">true</item>
+        <item name="android:statusBarColor">@color/highcontrast_foreground_color</item>
+        <item name="android:navigationBarColor">@color/highcontrast_background_color</item>
+        <item name="foreground_color">@color/highcontrast_foreground_color</item>
+        <item name="background_color">@color/highcontrast_background_color</item>
+        <item name="popup_background_color">@color/highcontrast_popup_background_color</item>
+        <item name="android:colorBackground">@color/highcontrast_background_color</item>
+        <item name="history_background_color">@color/highcontrast_history_background_color</item>
+        <item name="text_color">@color/highcontrast_text_color</item>
+        <item name="text_second_color">@color/highcontrast_text_second_color</item>
+        <item name="text_third_color">@color/highcontrast_text_third_color</item>
+        <item name="text_category_color">@color/highcontrast_text_category_color</item>
+        <item name="button_color">@color/highcontrast_button_color</item>
+        <item name="button_symbol_color">@color/highcontrast_button_symbol_color</item>
+        <item name="button_clear_color">@color/highcontrast_button_clear_color</item>
+        <item name="button_equals_color">@color/highcontrast_button_equals_color</item>
+        <item name="button_ripple_color">@color/highcontrast_button_ripple_color</item>
+        <item name="separator_color">@color/highcontrast_background_color</item>
+        <item name="about_button_color">@color/highcontrast_button_color</item>
+        <item name="popupMenuStyle">@style/Widget.Material3.PopupMenu</item>
+        <item name="colorSecondary">@color/highcontrast_text_third_color</item>
+        <item name="colorPrimary">@color/highcontrast_switch_primary_color</item>
+        <item name="colorOnPrimary">@color/highcontrast_switch_on_primary_color</item>
+        <item name="materialSwitchStyle">@style/Widget.App.Switch</item>
+    </style>
+
+    <!-- Lavender/Purple theme -->
+    <style name="LavenderTheme" parent="Theme.Material3.Light.NoActionBar">
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowLightStatusBar" tools:ignore="NewApi">true</item>
+        <item name="android:windowLightNavigationBar" tools:ignore="NewApi">true</item>
+        <item name="android:statusBarColor">@color/lavender_foreground_color</item>
+        <item name="android:navigationBarColor">@color/lavender_background_color</item>
+        <item name="foreground_color">@color/lavender_foreground_color</item>
+        <item name="background_color">@color/lavender_background_color</item>
+        <item name="popup_background_color">@color/lavender_popup_background_color</item>
+        <item name="android:colorBackground">@color/lavender_background_color</item>
+        <item name="history_background_color">@color/lavender_history_background_color</item>
+        <item name="text_color">@color/lavender_text_color</item>
+        <item name="text_second_color">@color/lavender_text_second_color</item>
+        <item name="text_third_color">@color/lavender_text_third_color</item>
+        <item name="text_category_color">@color/lavender_text_category_color</item>
+        <item name="button_color">@color/lavender_button_color</item>
+        <item name="button_symbol_color">@color/lavender_button_symbol_color</item>
+        <item name="button_clear_color">@color/lavender_button_clear_color</item>
+        <item name="button_equals_color">@color/lavender_button_equals_color</item>
+        <item name="button_ripple_color">@color/lavender_button_ripple_color</item>
+        <item name="separator_color">@color/lavender_background_color</item>
+        <item name="about_button_color">@color/lavender_button_color</item>
+        <item name="popupMenuStyle">@style/Widget.Material3.PopupMenu</item>
+        <item name="colorSecondary">@color/lavender_text_third_color</item>
+        <item name="colorPrimary">@color/lavender_switch_primary_color</item>
+        <item name="colorOnPrimary">@color/lavender_switch_on_primary_color</item>
+        <item name="materialSwitchStyle">@style/Widget.App.Switch</item>
+    </style>
+
     <style name="Widget.App.Switch.Light_Material" parent="Widget.Material3.CompoundButton.MaterialSwitch">
         <item name="materialThemeOverlay">@style/ThemeOverlay.App.Switch.Light_Material</item>
     </style>
