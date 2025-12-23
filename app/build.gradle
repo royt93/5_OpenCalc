@@ -10,8 +10,8 @@ android {
         resourceConfigurations += ['ar', 'az', 'bn', 'bs', 'de', 'el', 'es', 'fa', 'fr', 'hi', 'hr', 'in', 'it', 'ja', 'mk', 'nb-rNO', 'pt-rBR', 'ru', 'tr', 'uk', 'vi', 'zh-rHK', 'zh-rTW']
         minSdkVersion 24
         targetSdkVersion 36
-        versionCode 20250914
-        versionName "2025.09.14"
+        versionCode 20251223
+        versionName "2025.12.23"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -31,7 +31,7 @@ android {
             minifyEnabled true
             shrinkResources true
             //used android.enableR8=true in gradle.properties
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
 //            applicationIdSuffix ".release"
             // nhớ check APPLICATION_ID trong manifest
@@ -42,7 +42,7 @@ android {
         debug {
             minifyEnabled false
             //used android.enableR8=true in gradle.properties
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 //            applicationIdSuffix ".debug"
             buildConfigField "String", "ADMOB_BANNER_ID", "\"ca-app-pub-3940256099942544/6300978111\""
             buildConfigField "String", "ADMOB_INTERSTITIAL_ID", "\"ca-app-pub-3940256099942544/1033173712\""
@@ -119,5 +119,5 @@ dependencies {
     implementation("com.google.ads.mediation:applovin:13.2.0.1")
     implementation("com.google.android.play:review:2.0.2")
     implementation("com.google.android.play:review-ktx:2.0.2")
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.14'
+//    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.14'
 }
