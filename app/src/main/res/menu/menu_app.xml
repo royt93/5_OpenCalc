@@ -5,6 +5,7 @@
     tools:ignore="AlwaysShowAction">
 
     <item
+        android:id="@+id/menu_show_history"
         android:onClick="showHistory"
         android:title="@string/app_menu_show_history"
         app:showAsAction="always" />

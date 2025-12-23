@@ -268,6 +268,15 @@ class MainActivity : BaseActivity(), AdMobManager.InterstitialAdListener {
         val popup = PopupMenu(this, view)
         val inflater = popup.menuInflater
         inflater.inflate(R.menu.menu_app, popup.menu)
+
+        // Update Show/Hide History menu item based on panel state
+        val historyMenuItem = popup.menu.findItem(R.id.menu_show_history)
+        if (binding.slidingLayout.panelState == PanelState.EXPANDED) {
+            historyMenuItem?.title = getString(R.string.app_menu_hide_history)
+        } else {
+            historyMenuItem?.title = getString(R.string.app_menu_show_history)
+        }
+
         popup.show()
     }
 
