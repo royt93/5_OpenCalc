@@ -111,38 +111,13 @@ class SettingsActivity : BaseActivity() {
             val appLanguagePreference =
                 findPreference<Preference>("mckimquyen.opencal.APP_LANGUAGE")
 
-            // remove the app language button if you are using an Android version lower than v33 (Android 13)
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
-                appLanguagePreference?.isVisible = false
-            } else {
-                // Display the current selected language
-                appLanguagePreference?.summary = Locale.getDefault().displayLanguage
-            }
-            // Select app language button
-            appLanguagePreference?.setOnPreferenceClickListener {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                    launchChangeAppLanguageIntent()
-                }
-                true
-            }
-        }
+            // Display the current selected language
+            appLanguagePreference?.summary = com.mckimquyen.opencal.util.LanguageHelper.getCurrentLanguageDisplayName(requireContext())
 
-        @RequiresApi(Build.VERSION_CODES.TIRAMISU)
-        fun launchChangeAppLanguageIntent() {
-            try {
-                Intent(Settings.ACTION_APP_LOCALE_SETTINGS).apply {
-                    data = Uri.fromParts("package", requireContext().packageName, null)
-                    startActivity(this)
-                }
-            } catch (e: Exception) {
-                try {
-                    Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
-                        data = Uri.fromParts("package", requireContext().packageName, null)
-                        startActivity(this)
-                    }
-                } catch (e: Exception) {
-                    println(e)
-                }
+            // Select app language button - Now works on ALL Android versions
+            appLanguagePreference?.setOnPreferenceClickListener {
+                activity?.let { com.mckimquyen.opencal.util.LanguageHelper.showLanguagePicker(it) }
+                true
             }
         }
     }

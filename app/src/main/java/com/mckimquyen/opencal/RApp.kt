@@ -1,6 +1,7 @@
 package com.mckimquyen.opencal
 
 import android.app.Application
+import android.content.Context
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
@@ -33,6 +34,12 @@ import kotlinx.coroutines.launch
 
 //https://github.com/tplloi/OpenCalc/tree/dev
 class RApp : Application() {
+
+    override fun attachBaseContext(base: Context) {
+        // Apply language BEFORE calling super.attachBaseContext()
+        val newContext = com.mckimquyen.opencal.util.LanguageHelper.applyLanguage(base)
+        super.attachBaseContext(newContext)
+    }
 
     override fun onCreate() {
         super.onCreate()

@@ -1,6 +1,7 @@
 package com.mckimquyen.opencal.db
 
 import android.content.Context
+import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate.*
 import androidx.preference.PreferenceManager
 import com.google.gson.Gson
@@ -21,6 +22,7 @@ class MyPreferences(context: Context) {
         private const val KEY_RADIANS_INSTEAD_OF_DEGREES_BY_DEFAULT =
             "royRADIANS_INSTEAD_OF_DEGREES_BY_DEFAULT"
         private const val KEY_NUMBER_PRECISION = "royNUMBER_PRECISION"
+        private const val KEY_APP_LANGUAGE = "royAPP_LANGUAGE"
     }
 
     private val preferences = PreferenceManager.getDefaultSharedPreferences(context)
@@ -48,6 +50,12 @@ class MyPreferences(context: Context) {
         set(value) = preferences.edit().putString(KEY_HISTORY_SIZE, value).apply()
     var numberPrecision = preferences.getString(KEY_NUMBER_PRECISION, "10")
         set(value) = preferences.edit().putString(KEY_NUMBER_PRECISION, value).apply()
+
+    var appLanguage = preferences.getString(KEY_APP_LANGUAGE, "")
+        set(value) {
+            val success = preferences.edit().putString(KEY_APP_LANGUAGE, value).commit()
+            Log.d("roy93~", "MyPreferences.appLanguage setter: value=$value, commit success=$success")
+        }
 
     fun getHistory(): MutableList<History> {
         val gson = Gson()
