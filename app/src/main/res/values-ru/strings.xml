@@ -3,6 +3,8 @@
     <string name="app_name_display">Калькулятор</string>
     <string name="infinity">Бесконечность</string>
     <!-- Меню приложения -->
+    <string name="app_menu_show_history">Показать историю</string>
+    <string name="app_menu_hide_history">Скрыть историю</string>
     <string name="app_menu_theme">Тема</string>
     <string name="app_menu_clear_history">Очистить Историю</string>
     <string name="app_menu_about">О приложении (Ads may appear)</string>
@@ -10,6 +12,12 @@
     <string name="value_copied">Скопировано</string>
     <string name="theme_light">Светлая</string>
     <string name="theme_dark">Тёмная</string>
+    <string name="theme_sunset">Закат</string>
+    <string name="theme_ocean">Океан</string>
+    <string name="theme_forest">Лес</string>
+    <string name="theme_nord">Nord</string>
+    <string name="theme_highcontrast">Высокий контраст</string>
+    <string name="theme_lavender">Лаванда</string>
     <string name="division_by_0">Нельзя разделить на 0</string>
     <string name="math_error">Математическая ошибка</string>
     <string name="syntax_error">Синтаксическая ошибка</string>
@@ -40,4 +48,5 @@
     <string name="preferences_number_precision">Количество десятичных разрядов</string>
     <string name="preferences_history_category">ИСТОРИЯ</string>
     <string name="preferences_prevent_phone_from_sleeping_summary">Предотвратить телефон от спящего режима, пока открыто приложение</string>
+    <string name="send_feedback">Отправить отзыв</string>
 </resources>

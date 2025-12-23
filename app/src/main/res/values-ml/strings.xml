@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="math_error">ഗണിത പിശക്</string>
+    <string name="app_menu_show_history">ചരിത്രം കാണിക്കുക</string>
+    <string name="app_menu_hide_history">ചരിത്രം മറയ്ക്കുക</string>
     <string name="app_menu_clear_history">ചരിത്രം മായ്ക്കുക</string>
     <string name="theme_light">വെളിച്ചം</string>
+    <string name="theme_sunset">സൂര്യാസ്തമയം</string>
+    <string name="theme_ocean">സമുദ്രം</string>
+    <string name="theme_forest">വനം</string>
+    <string name="theme_nord">Nord</string>
+    <string name="theme_highcontrast">ഉയർന്ന കോൺട്രാസ്റ്റ്</string>
+    <string name="theme_lavender">ലാവെൻഡർ</string>
     <string name="value_copied">പകർത്തി</string>
     <string name="infinity">അനന്തത</string>
     <string name="division_by_0">0 കൊണ്ട് ഹരിക്കാനാവില്ല</string>
@@ -38,4 +46,5 @@
     <string name="preferences_history_size">ഫലങ്ങൾ ചരിത്രത്തിൽ സംരക്ഷിച്ചു</string>
     <string name="preferences_radians_instead_of_degrees_by_default_summary">സ്ഥിരസ്ഥിതിയായി ഡിഗ്രിക്ക് പകരം റേഡിയൻസ് ഉപയോഗിക്കുക</string>
     <string name="preferences_prevent_phone_from_sleeping_summary">പ്രയോഗം മുൻവശത്തായിരിക്കുമ്പോൾ ഫോൺ ഉറങ്ങുന്നത് തടയുക</string>
+    <string name="send_feedback">പ്രതികരണം അയയ്ക്കുക</string>
 </resources>

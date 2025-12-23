@@ -287,11 +287,14 @@ object AdMobManager {
 
             override fun onAdDismissedFullScreenContent() {
                 Log.d(TAG, "#1 Interstitial Ad Dismissed")
-                interstitialAd = null
-                currentActivity?.get()?.let {
-                    loadInterstitial(it, BuildConfig.ADMOB_INTERSTITIAL_ID)
-                }
                 interstitialListener?.onAdDismissed()
+                interstitialAd = null
+                // Post delayed để tránh block UI, nhưng vẫn trên Main thread (AdMob requirement)
+                currentActivity?.get()?.let { activity ->
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        loadInterstitial(activity, BuildConfig.ADMOB_INTERSTITIAL_ID)
+                    }, 100) // Delay nhỏ để UI mượt hơn
+                }
             }
 
             override fun onAdFailedToShowFullScreenContent(adError: AdError) {

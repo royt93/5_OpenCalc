@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_menu_about">عن التطبيق (Ads may appear)</string>
+    <string name="app_menu_show_history">إظهار السجل</string>
+    <string name="app_menu_hide_history">إخفاء السجل</string>
     <string name="app_menu_theme">السمة</string>
     <string name="app_name_display">الحاسبة</string>
     <string name="infinity">Infinity</string>
     <string name="app_menu_clear_history">مسح التاريخ</string>
+    <string name="theme_sunset">غروب الشمس</string>
+    <string name="theme_ocean">المحيط</string>
+    <string name="theme_forest">الغابة</string>
+    <string name="theme_nord">Nord</string>
+    <string name="theme_highcontrast">تباين عالي</string>
+    <string name="theme_lavender">اللافندر</string>
+    <string name="send_feedback">إرسال ملاحظات</string>
 </resources>

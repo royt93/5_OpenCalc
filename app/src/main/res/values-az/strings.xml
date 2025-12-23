@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name_display">Kalkulyator</string>
+    <string name="app_menu_show_history">Tarixçəni göstər</string>
+    <string name="app_menu_hide_history">Tarixçəni gizlət</string>
     <string name="app_menu_theme">Tema</string>
     <string name="app_menu_about">Haqqında (Ads may appear)</string>
     <string name="infinity">Infinity</string>
+    <string name="theme_sunset">Gün batımı</string>
+    <string name="theme_ocean">Okean</string>
+    <string name="theme_forest">Meşə</string>
+    <string name="theme_nord">Nord</string>
+    <string name="theme_highcontrast">Yüksək kontrast</string>
+    <string name="theme_lavender">Lavanda</string>
+    <string name="send_feedback">Rəy göndər</string>
 </resources>

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="preferences_vibration_title">Vibrace</string>
+    <string name="app_menu_show_history">Zobrazit historii</string>
+    <string name="app_menu_hide_history">Skrýt historii</string>
     <string name="app_menu_theme">Motiv</string>
     <string name="app_name_display">Kalkulačka</string>
     <string name="app_menu_clear_history">Vymazat historii</string>
@@ -8,6 +10,12 @@
     <string name="theme_amoled">Amoled</string>
     <string name="theme_light">Světlý</string>
     <string name="theme_dark">Tmavý</string>
+    <string name="theme_sunset">Západ slunce</string>
+    <string name="theme_ocean">Oceán</string>
+    <string name="theme_forest">Les</string>
+    <string name="theme_nord">Nord</string>
+    <string name="theme_highcontrast">Vysoký kontrast</string>
+    <string name="theme_lavender">Levandule</string>
     <string name="value_copied">Zkopírováno</string>
     <string name="infinity">Nekonečno</string>
     <string name="division_by_0">Nelze dělit nulou</string>
@@ -38,4 +46,5 @@
     <string name="preferences_scientif_mode_enabled_by_default_title">Vědecký režim</string>
     <string name="app_version_title">Verze</string>
     <string name="preferences_prevent_phone_from_sleeping_summary">Zabrání uspání telefonu, když je aplikace v popředí</string>
+    <string name="send_feedback">Odeslat zpětnou vazbu</string>
 </resources>

@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_menu_show_history">Pokaż historię</string>
+    <string name="app_menu_hide_history">Ukryj historię</string>
     <string name="app_menu_clear_history">Wyczyść Historię</string>
     <string name="theme_system">System</string>
     <string name="theme_amoled">Amoled</string>
     <string name="theme_light">Jasny</string>
     <string name="theme_dark">Ciemny</string>
+    <string name="theme_sunset">Zachód słońca</string>
+    <string name="theme_ocean">Ocean</string>
+    <string name="theme_forest">Las</string>
+    <string name="theme_nord">Nord</string>
+    <string name="theme_highcontrast">Wysoki kontrast</string>
+    <string name="theme_lavender">Lawenda</string>
     <string name="value_copied">Skopiowano</string>
     <string name="infinity">Nieskończoność</string>
     <string name="division_by_0">Nie można dzielić przez 0</string>
@@ -38,4 +46,5 @@
     <string name="preferences_scientif_mode_enabled_by_default_title">Tryb naukowy</string>
     <string name="preferences_radians_instead_of_degrees_by_default_title">Radiany</string>
     <string name="about_help_us_category">WSPOMÓŻ NAS</string>
+    <string name="send_feedback">Wyślij opinię</string>
 </resources>

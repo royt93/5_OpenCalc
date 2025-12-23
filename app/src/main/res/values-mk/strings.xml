@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name_display">Калкулатор</string>
+    <string name="app_menu_show_history">Прикажи историја</string>
+    <string name="app_menu_hide_history">Сокриј историја</string>
     <string name="theme_amoled">Црна</string>
     <string name="app_menu_about">За апликацијата (Ads may appear)</string>
     <string name="app_menu_theme">Тема</string>
     <string name="app_menu_clear_history">Избриши историја</string>
     <string name="theme_system">Системска</string>
+    <string name="theme_sunset">Залез на сонцето</string>
+    <string name="theme_ocean">Океан</string>
+    <string name="theme_forest">Шума</string>
+    <string name="theme_nord">Nord</string>
+    <string name="theme_highcontrast">Висок контраст</string>
+    <string name="theme_lavender">Лаванда</string>
     <string name="value_copied">Копирано</string>
     <string name="theme_light">Светла</string>
     <string name="theme_dark">Темна</string>
@@ -15,4 +23,5 @@
     <string name="domain_error">Грешка во доменот</string>
     <string name="syntax_error">Синтаксна грешка</string>
     <string name="value_too_large">Преголема вредност</string>
+    <string name="send_feedback">Испрати повратни информации</string>
 </resources>

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name_display">Calculatrice</string>
+    <string name="app_menu_show_history">Afficher l\'historique</string>
+    <string name="app_menu_hide_history">Masquer l\'historique</string>
     <string name="app_menu_theme">Thème</string>
     <string name="app_menu_about">À propos (Ads may appear)</string>
     <string name="infinity">Infini</string>
@@ -10,6 +12,12 @@
     <string name="theme_light">Clair</string>
     <string name="theme_dark">Sombre</string>
     <string name="theme_amoled">Amoled</string>
+    <string name="theme_sunset">Coucher de soleil</string>
+    <string name="theme_ocean">Océan</string>
+    <string name="theme_forest">Forêt</string>
+    <string name="theme_nord">Nord</string>
+    <string name="theme_highcontrast">Contraste élevé</string>
+    <string name="theme_lavender">Lavande</string>
     <string name="math_error">Erreur mathématique</string>
     <string name="division_by_0">Division par 0 impossible</string>
     <string name="domain_error">Erreur de domaine</string>
@@ -38,4 +46,5 @@
     <string name="preferences_number_precision">Nombre de chiffres après la virgule</string>
     <string name="about_title">À propos</string>
     <string name="preferences_language_title">Langue</string>
+    <string name="send_feedback">Envoyer des commentaires</string>
 </resources>

@@ -2,6 +2,8 @@
 <resources>
     <string name="app_name_display">計算機</string>
     <!-- App Menu -->
+    <string name="app_menu_show_history">顯示歷史記錄</string>
+    <string name="app_menu_hide_history">隱藏歷史記錄</string>
     <string name="app_menu_theme">主題</string>
     <string name="app_menu_clear_history">清除計算記錄</string>
     <string name="app_menu_about">關於 (Ads may appear)</string>
@@ -10,6 +12,12 @@
     <string name="theme_amoled">Amoled黑</string>
     <string name="theme_light">燈光</string>
     <string name="theme_dark">黑暗</string>
+    <string name="theme_sunset">日落</string>
+    <string name="theme_ocean">海洋</string>
+    <string name="theme_forest">森林</string>
+    <string name="theme_nord">Nord</string>
+    <string name="theme_highcontrast">高對比度</string>
+    <string name="theme_lavender">薰衣草</string>
     <!-- Others -->
     <string name="value_copied">已複製</string>
     <string name="infinity">無限</string>
@@ -45,4 +53,5 @@
     <string name="privacy_policy">隱私政策</string>
     <string name="about_title">關於</string>
     <string name="preferences_language_title">語言</string>
+    <string name="send_feedback">發送反饋</string>
 </resources>

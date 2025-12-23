@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name_display">Kalkulator</string>
+    <string name="app_menu_show_history">Vis historikk</string>
+    <string name="app_menu_hide_history">Skjul historikk</string>
     <string name="theme_light">Lys</string>
     <string name="theme_dark">Mørk</string>
     <string name="value_copied">Kopiert</string>
@@ -8,6 +10,12 @@
     <string name="app_menu_clear_history">Tøm historikk</string>
     <string name="app_menu_about">Om (Ads may appear)</string>
     <string name="theme_system">System</string>
+    <string name="theme_sunset">Solnedgang</string>
+    <string name="theme_ocean">Hav</string>
+    <string name="theme_forest">Skog</string>
+    <string name="theme_nord">Nord</string>
+    <string name="theme_highcontrast">Høy kontrast</string>
+    <string name="theme_lavender">Lavendel</string>
     <string name="infinity">Uendelig</string>
     <string name="division_by_0">Kan ikke dele på 0</string>
     <string name="domain_error">Domenefeil</string>
@@ -38,4 +46,5 @@
     <string name="preferences_prevent_phone_from_sleeping_summary">Forhindre enheten i søvn når programmet er i forgrunnen</string>
     <string name="preferences_language_title">Språk</string>
     <string name="value_too_large">Verdien er for stor</string>
+    <string name="send_feedback">Send tilbakemelding</string>
 </resources>

@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_menu_show_history">Prikaži historiju</string>
+    <string name="app_menu_hide_history">Sakrij historiju</string>
     <string name="app_menu_theme">Tema</string>
     <string name="app_name_display">Kalkulator</string>
     <string name="theme_dark">Tamna</string>
     <string name="app_menu_clear_history">Obriši historiju</string>
     <string name="app_menu_about">O aplikaciji (Ads may appear)</string>
     <string name="theme_amoled">Crna</string>
+    <string name="theme_sunset">Zalazak sunca</string>
+    <string name="theme_ocean">Okean</string>
+    <string name="theme_forest">Šuma</string>
+    <string name="theme_nord">Nord</string>
+    <string name="theme_highcontrast">Visoki kontrast</string>
+    <string name="theme_lavender">Lavanda</string>
     <string name="value_copied">Kopirano</string>
     <string name="theme_system">Sistem</string>
     <string name="theme_light">Svjetla</string>
@@ -15,4 +23,5 @@
     <string name="syntax_error">Sintaksna greška</string>
     <string name="domain_error">Greška domene</string>
     <string name="value_too_large">Prevelika vrijednost</string>
+    <string name="send_feedback">Pošalji povratnu informaciju</string>
 </resources>

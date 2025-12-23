@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_menu_show_history">Показати історію</string>
+    <string name="app_menu_hide_history">Сховати історію</string>
     <string name="app_menu_theme">Тема</string>
     <string name="app_menu_clear_history">Очистити історію</string>
     <string name="app_menu_about">Про застосунок (Ads may appear)</string>
     <string name="theme_system">Система</string>
     <string name="theme_amoled">Амолед</string>
+    <string name="theme_sunset">Захід сонця</string>
+    <string name="theme_ocean">Океан</string>
+    <string name="theme_forest">Ліс</string>
+    <string name="theme_nord">Nord</string>
+    <string name="theme_highcontrast">Високий контраст</string>
+    <string name="theme_lavender">Лаванда</string>
     <string name="app_name_display">Калькулятор</string>
     <string name="infinity">Нескінченність</string>
     <string name="math_error">Математична помилка</string>
@@ -38,4 +46,5 @@
     <string name="about_help_us_category">ДОПОМОЖІТЬ НАМ</string>
     <string name="preferences_number_precision">Кількість знаків після коми</string>
     <string name="about_title">Про застосунок</string>
+    <string name="send_feedback">Надіслати відгук</string>
 </resources>

@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="syntax_error">Синтаксна грешка</string>
+    <string name="app_menu_show_history">Прикажи историју</string>
+    <string name="app_menu_hide_history">Сакриј историју</string>
     <string name="app_menu_clear_history">Обриши историју</string>
     <string name="app_menu_about">О апликацији (Ads may appear)</string>
     <string name="app_menu_theme">Тема</string>
     <string name="theme_light">Светла</string>
     <string name="theme_dark">Тамна</string>
+    <string name="theme_sunset">Залазак сунца</string>
+    <string name="theme_ocean">Океан</string>
+    <string name="theme_forest">Шума</string>
+    <string name="theme_nord">Nord</string>
+    <string name="theme_highcontrast">Висок контраст</string>
+    <string name="theme_lavender">Лаванда</string>
     <string name="infinity">Безброј</string>
     <string name="division_by_0">Не може се поделити са 0</string>
     <string name="domain_error">Грешка домена</string>
@@ -15,4 +23,5 @@
     <string name="theme_amoled">Црна</string>
     <string name="value_copied">Копирано</string>
     <string name="value_too_large">Превелика вредност</string>
+    <string name="send_feedback">Пошаљи повратне информације</string>
 </resources>

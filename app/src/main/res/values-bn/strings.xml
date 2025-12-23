@@ -5,6 +5,8 @@
     <string name="infinity">অসীম</string>
 
     <!-- App Menu -->
+    <string name="app_menu_show_history">ইতিহাস দেখান</string>
+    <string name="app_menu_hide_history">ইতিহাস লুকান</string>
     <string name="app_menu_theme">থিম</string>
     <string name="app_menu_clear_history">ইতিহাস মুছুন</string>
     <string name="app_menu_about">সম্পর্কে (Ads may appear)</string>
@@ -13,7 +15,14 @@
     <string name="theme_system">সিস্টেম</string>
     <string name="theme_light">লাইট</string>
     <string name="theme_dark">ডার্ক</string>
+    <string name="theme_sunset">সূর্যাস্ত</string>
+    <string name="theme_ocean">মহাসাগর</string>
+    <string name="theme_forest">বন</string>
+    <string name="theme_nord">Nord</string>
+    <string name="theme_highcontrast">উচ্চ বৈসাদৃশ্য</string>
+    <string name="theme_lavender">ল্যাভেন্ডার</string>
 
     <!-- Others -->
-    <string name="value_copied">অনুলিপি করা হয়েছে</string>
+    <string name="value_copied">অনুলিপি করা হয়েছে</string>
+    <string name="send_feedback">মতামত পাঠান</string>
 </resources>

@@ -1,2 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="app_menu_show_history">ଇତିହାସ ଦେଖାନ୍ତୁ</string>
+    <string name="app_menu_hide_history">ଇତିହାସ ଲୁଚାନ୍ତୁ</string>
+    <string name="theme_sunset">ସୂର୍ଯ୍ୟାସ୍ତ</string>
+    <string name="theme_ocean">ମହାସାଗର</string>
+    <string name="theme_forest">ଜଙ୍ଗଲ</string>
+    <string name="theme_nord">Nord</string>
+    <string name="theme_highcontrast">ଉଚ୍ଚ ବିପରୀତ</string>
+    <string name="theme_lavender">ଲାଭେଣ୍ଡର</string>
+    <string name="send_feedback">ମତାମତ ପଠାନ୍ତୁ</string>
+</resources>

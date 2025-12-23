@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name_display">कैलकुलेटर</string>
+    <string name="app_menu_show_history">इतिहास दिखाएं</string>
+    <string name="app_menu_hide_history">इतिहास छिपाएं</string>
     <string name="app_menu_theme">थीम</string>
     <string name="app_menu_about">ऐप के बारे में (Ads may appear)</string>
     <string name="infinity">अनंत</string>
@@ -11,6 +13,12 @@
     <string name="syntax_error">वाक्य विन्यास त्रुटि</string>
     <string name="theme_amoled">एमोलेड</string>
     <string name="theme_dark">अँधेरा</string>
+    <string name="theme_sunset">सूर्यास्त</string>
+    <string name="theme_ocean">महासागर</string>
+    <string name="theme_forest">जंगल</string>
+    <string name="theme_nord">Nord</string>
+    <string name="theme_highcontrast">उच्च कंट्रास्ट</string>
+    <string name="theme_lavender">लैवेंडर</string>
     <string name="division_by_0">0 से विभाजित नहीं किया जा सकता</string>
     <string name="preferences_advanced_category">विकसित</string>
     <string name="preferences_radians_instead_of_degrees_by_default_title">रेडियन</string>
@@ -25,4 +33,5 @@
     <string name="preferences_language_title">भाषा</string>
     <string name="preferences_scientif_mode_enabled_by_default_title">वैज्ञानिक विधि</string>
     <string name="theme_light">प्रकाश</string>
+    <string name="send_feedback">प्रतिक्रिया भेजें</string>
 </resources>

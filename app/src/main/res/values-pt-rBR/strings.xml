@@ -2,7 +2,16 @@
 <resources>
     <string name="app_name_display">Calculadora</string>
     <string name="infinity">Infinidade</string>
+    <string name="app_menu_show_history">Mostrar histórico</string>
+    <string name="app_menu_hide_history">Ocultar histórico</string>
     <string name="app_menu_theme">Tema</string>
     <string name="app_menu_clear_history">Limpar Histórico</string>
     <string name="app_menu_about">Sobre (Ads may appear)</string>
+    <string name="theme_sunset">Pôr do sol</string>
+    <string name="theme_ocean">Oceano</string>
+    <string name="theme_forest">Floresta</string>
+    <string name="theme_nord">Nord</string>
+    <string name="theme_highcontrast">Alto contraste</string>
+    <string name="theme_lavender">Lavanda</string>
+    <string name="send_feedback">Enviar feedback</string>
 </resources>

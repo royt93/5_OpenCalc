@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name_display">Máy tính</string>
+    <string name="app_menu_show_history">Hiện lịch sử</string>
+    <string name="app_menu_hide_history">Ẩn lịch sử</string>
     <string name="app_menu_clear_history">Xóa lịch sử</string>
     <string name="theme_system">Hệ thống</string>
     <string name="theme_dark">Tối</string>
+    <string name="theme_sunset">Hoàng hôn</string>
+    <string name="theme_ocean">Đại dương</string>
+    <string name="theme_forest">Rừng xanh</string>
+    <string name="theme_nord">Nord</string>
+    <string name="theme_highcontrast">Tương phản cao</string>
+    <string name="theme_lavender">Hoa oải hương</string>
     <string name="division_by_0">Không thể chia cho 0</string>
     <string name="domain_error">Lỗi tên miền</string>
     <string name="math_error">Lỗi toán học</string>
@@ -18,4 +26,5 @@
     <string name="app_menu_settings">Cài đặt (Ads may appear)</string>
     <string name="preferences_title">Cài đặt</string>
     <string name="app_version_title">Phiên bản</string>
+    <string name="send_feedback">Gửi phản hồi</string>
 </resources>

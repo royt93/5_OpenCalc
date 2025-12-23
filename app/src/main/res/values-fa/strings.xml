@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name_display">ماشین حساب</string>
+    <string name="app_menu_show_history">نمایش تاریخچه</string>
+    <string name="app_menu_hide_history">مخفی کردن تاریخچه</string>
     <string name="app_menu_theme">تم</string>
     <string name="app_menu_about"> (Ads may appear)درباره</string>
+    <string name="theme_sunset">غروب آفتاب</string>
+    <string name="theme_ocean">اقیانوس</string>
+    <string name="theme_forest">جنگل</string>
+    <string name="theme_nord">Nord</string>
+    <string name="theme_highcontrast">کنتراست بالا</string>
+    <string name="theme_lavender">اسطوخودوس</string>
+    <string name="send_feedback">ارسال بازخورد</string>
 </resources>
