@@ -33,6 +33,7 @@
     <string name="squareInv" translatable="false">x²</string>
 
     <!-- App Menu -->
+    <string name="app_menu_show_history">Show History</string>
     <string name="app_menu_theme">Theme</string>
     <string name="app_menu_clear_history">Clear History</string>
     <string name="app_menu_about">About (Ads may appear)</string>

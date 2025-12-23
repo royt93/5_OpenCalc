@@ -311,6 +311,15 @@ class MainActivity : BaseActivity(), AdMobManager.InterstitialAdListener {
         showDialogTesterCommunity()
     }
 
+    fun showHistory(menuItem: MenuItem) {
+        // Expand the history panel
+        if (binding.slidingLayout.panelState == PanelState.COLLAPSED) {
+            binding.slidingLayout.panelState = PanelState.EXPANDED
+        } else {
+            binding.slidingLayout.panelState = PanelState.COLLAPSED
+        }
+    }
+
     fun clearHistory(menuItem: MenuItem) {
         // Clear preferences
         MyPreferences(this@MainActivity).saveHistory(this@MainActivity, mutableListOf())
