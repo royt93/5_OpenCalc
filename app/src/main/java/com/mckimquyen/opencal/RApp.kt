@@ -37,7 +37,6 @@ class RApp : Application() {
     override fun onCreate() {
         super.onCreate()
 
-//        this.setupApplovinAd()
         setupAdmob()
 
         // if the theme is overriding the system, the first creation doesn't work properly
@@ -58,32 +57,5 @@ class RApp : Application() {
                 Log.d("roy93~", "AdMobManager init success $success, gaidCurrent $gaidCurrent")
             }
         }
-//        registerActivityLifecycleCallbacks(
-//            AppLifecycleListener(
-//                { isForeground, activity ->
-////                    if (isForeground) {
-////                        Log.d("roy93~", "App moved to Foreground")
-////                        if (activity.localClassName == SplashActivity::class.java.simpleName) {
-////                            //do nothing
-////                        } else {
-////                            AdMobManager.showAppOpenAd(activity)
-////                        }
-////                    } else {
-////                        Log.d("roy93~", "App moved to Background")
-////                    }
-//                }, { activity ->
-////                    Log.d("roy93~", "callbackActivityCreated ${activity.localClassName}")
-////                    if (activity.localClassName == SplashActivity::class.java.simpleName) {
-////                        //do nothing
-////                    } else {
-////                        AdMobManager.loadAppOpenAd(
-////                            context = this,
-////                            adUnitId = BuildConfig.ADMOB_APP_OPEN_ID,
-////                            onAdLoaded = {},
-////                        )
-////                    }
-//                }
-//            )
-//        )
     }
 }

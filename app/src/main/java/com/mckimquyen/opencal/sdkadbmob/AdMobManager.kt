@@ -288,9 +288,9 @@ object AdMobManager {
             override fun onAdDismissedFullScreenContent() {
                 Log.d(TAG, "#1 Interstitial Ad Dismissed")
                 interstitialAd = null
-//                currentActivity?.get()?.let {
-//                    loadInterstitial(it, BuildConfig.ADMOB_INTERSTITIAL_ID)
-//                }
+                currentActivity?.get()?.let {
+                    loadInterstitial(it, BuildConfig.ADMOB_INTERSTITIAL_ID)
+                }
                 interstitialListener?.onAdDismissed()
             }
 
