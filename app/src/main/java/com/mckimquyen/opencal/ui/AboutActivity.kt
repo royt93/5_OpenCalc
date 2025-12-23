@@ -13,6 +13,7 @@ import com.mckimquyen.opencal.db.MyPreferences
 import com.mckimquyen.opencal.ext.moreApp
 import com.mckimquyen.opencal.ext.openBrowserPolicy
 import com.mckimquyen.opencal.ext.rateApp
+import com.mckimquyen.opencal.ext.sendEmail
 import com.mckimquyen.opencal.ext.shareApp
 import com.mckimquyen.opencal.model.Themes
 import com.mckimquyen.opencal.rateAppInApp
@@ -84,6 +85,10 @@ class AboutActivity : BaseActivity() {
         }
         binding.tvAboutShareApp.setOnClickListener {
             shareApp()
+        }
+
+        binding.tvAboutSendFeedback.setOnClickListener {
+            sendEmail()
         }
 
         binding.tvAboutPrivacyPolicy.setOnClickListener {

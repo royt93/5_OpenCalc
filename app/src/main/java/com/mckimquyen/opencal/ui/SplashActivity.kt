@@ -34,12 +34,12 @@ class SplashActivity : AppCompatActivity() {
     private fun goToMain() {
         val intent = Intent(this@SplashActivity, MainActivity::class.java)
         startActivity(intent)
-//        overridePendingTransition(0, 0)
-//        finishAffinity()
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
-        // Trì hoãn finish để đợi animation hoàn tất
+
+        // Sync finish timing with system animation duration for smoother transition
+        val animationDuration = resources.getInteger(android.R.integer.config_mediumAnimTime)
         window.decorView.postDelayed({
-            finish() // Finish sau animation
-        }, 300) // delay khoảng 300ms (hoặc đúng thời gian của animation)
+            finish()
+        }, animationDuration.toLong())
     }
 }

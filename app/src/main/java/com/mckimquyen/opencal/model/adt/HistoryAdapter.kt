@@ -163,6 +163,23 @@ class HistoryAdapter(
                         .show()
                 true // Or false if not consumed
             }
+
+            // Long-press on entire card to copy both calculation and result
+            itemView.setOnLongClickListener {
+                val clipboardManager =
+                    itemView.context.getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
+                val combinedText = "${historyElement.calculation} = ${historyElement.result}"
+                clipboardManager.setPrimaryClip(
+                    ClipData.newPlainText(
+                        "Copied calculation and result",
+                        combinedText
+                    )
+                )
+                if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.S_V2)
+                    Toast.makeText(itemView.context, R.string.value_copied, Toast.LENGTH_SHORT)
+                        .show()
+                true
+            }
         }
     }
 }

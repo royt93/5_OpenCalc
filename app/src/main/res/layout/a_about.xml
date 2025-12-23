@@ -102,13 +102,28 @@
                     app:drawableTint="@color/text_color"
                     app:layout_constraintTop_toBottomOf="@+id/tvAboutMoreApp" />
 
+                <TextView
+                    android:id="@+id/tvAboutSendFeedback"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="15dp"
+                    android:drawablePadding="20dp"
+                    android:gravity="center_vertical"
+                    android:paddingVertical="12dp"
+                    android:text="@string/send_feedback"
+                    android:textSize="@dimen/about_text"
+                    app:color="?attr/text_color"
+                    app:drawableLeftCompat="@drawable/ic_baseline_share_24"
+                    app:drawableTint="@color/text_color"
+                    app:layout_constraintTop_toBottomOf="@+id/tvAboutShareApp" />
+
                 <View
                     android:id="@+id/tvCategoryHelpUsSeparator"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginVertical="15dp"
                     android:background="?attr/foreground_color"
-                    app:layout_constraintTop_toBottomOf="@+id/tvAboutShareApp" />
+                    app:layout_constraintTop_toBottomOf="@+id/tvAboutSendFeedback" />
 
                 <TextView
                     android:id="@+id/tvAboutOtherCategory"
