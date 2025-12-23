@@ -12,4 +12,82 @@
     <string name="theme_highcontrast">کنتراست بالا</string>
     <string name="theme_lavender">اسطوخودوس</string>
     <string name="send_feedback">ارسال بازخورد</string>
+
+    <!-- Clipboard labels -->
+    <string name="clipboard_label_copied_result">نتیجه کپی شد</string>
+    <string name="clipboard_label_copied_calculation">محاسبه تاریخچه کپی شد</string>
+    <string name="clipboard_label_copied_history_result">نتیجه تاریخچه کپی شد</string>
+    <string name="clipboard_label_copied_calc_and_result">محاسبه و نتیجه کپی شد</string>
+
+    <!-- Toast messages -->
+    <string name="toast_double_back_to_exit">لطفاً دوباره برگشت را فشار دهید برای خروج</string>
+
+    <!-- Dialog text -->
+    <string name="dialog_tester_community_title">تأیید</string>
+    <string name="dialog_tester_community_message">اگر شما هم یک برنامه نویس هستید و به دنبال آزمایش کنندگان برای آزمایش برنامه خود می گردید. همین الان به جامعه آزمایش کنندگان ما بپیوندید</string>
+    <string name="dialog_select_language_title">انتخاب زبان</string>
+    <string name="button_ok">تأیید</string>
+    <string name="button_cancel">لغو</string>
+
+    <!-- Calculator mode indicators -->
+    <string name="degree_mode_deg">DEG</string>
+    <string name="degree_mode_rad">RAD</string>
+
+    <!-- Chooser titles -->
+    <string name="chooser_title_send_feedback">ارسال بازخورد</string>
+    <string name="chooser_title_share">لطفاً انتخاب کنید</string>
+    <string name="chooser_title_share_via">اشتراک گذاری از طریق</string>
+
+    <!-- Share/Marketing text -->
+    <string name="share_app_message_prefix">\nاین برنامه بسیار مفید است، لطفاً دانلود و نصب کنید تا تجربه کنید\n\n</string>
+    <string name="developer_name">SAIGON PHANTOM LABS</string>
+
+    <!-- Language settings -->
+    <string name="language_system_default">پیش فرض سیستم</string>
+    <string name="preferences_language_summary">انتخاب زبان برنامه</string>
+
+    <!-- Missing strings -->
+    <string name="app_menu_clear_history">پاک کردن تاریخچه</string>
+    <string name="theme_system">سیستم</string>
+    <string name="theme_amoled">آمولد</string>
+    <string name="theme_light">روشن</string>
+    <string name="theme_dark">تاریک</string>
+    <string name="value_copied">کپی شد</string>
+    <string name="infinity">بی‌نهایت</string>
+    <string name="division_by_0">نمی‌توان بر 0 تقسیم کرد</string>
+    <string name="domain_error">خطای دامنه</string>
+    <string name="math_error">خطای ریاضی</string>
+    <string name="syntax_error">خطای نحوی</string>
+    <string name="app_menu_settings">تنظیمات (Ads may appear)</string>
+    <string name="value_too_large">مقدار بسیار بزرگ است</string>
+    <string name="preferences_title">تنظیمات</string>
+    <string name="preferences_general_category">عمومی</string>
+    <string name="preferences_history_category">تاریخچه</string>
+    <string name="preferences_prevent_phone_from_sleeping_summary">جلوگیری از خواب رفتن تلفن وقتی برنامه در پیش‌زمینه است</string>
+    <string name="preferences_vibration_summary">لرزش هنگام فشردن دکمه</string>
+    <string name="preferences_history_size">نتایج ذخیره شده در تاریخچه</string>
+    <string name="preferences_vibration_title">لرزش‌ها</string>
+    <string name="preferences_prevent_phone_from_sleeping_title">جلوگیری از خواب رفتن تلفن</string>
+    <string name="preferences_advanced_category">پیشرفته</string>
+    <string name="preferences_scientif_mode_enabled_by_default_summary">فعال کردن حالت علمی به طور پیش‌فرض</string>
+    <string name="preferences_scientif_mode_enabled_by_default_title">حالت علمی</string>
+    <string name="preferences_radians_instead_of_degrees_by_default_title">رادیان</string>
+    <string name="preferences_radians_instead_of_degrees_by_default_summary">استفاده از رادیان به جای درجه به طور پیش‌فرض</string>
+    <string name="about_help_us_category">به ما کمک کنید</string>
+    <string name="about_other_category">سایر</string>
+    <string name="about_rate">امتیاز دادن به این برنامه</string>
+    <string name="app_version_title">نسخه</string>
+    <string name="thanks_for_using_app">از استفاده‌تان از Calculator متشکریم ❤️</string>
+    <string name="preferences_number_precision">تعداد اعداد اعشاری</string>
+    <string name="privacy_policy">سیاست حریم خصوصی</string>
+    <string name="about_title">درباره</string>
+    <string name="preferences_language_title">زبان</string>
+    <string name="deg">DEG</string>
+    <string name="_45">45</string>
+    <string name="get_more_apps">دریافت برنامه‌های بیشتر</string>
+    <string name="share_this_app">اشتراک‌گذاری این برنامه</string>
+    <string name="github">کد منبع (Forked)</string>
+    <string name="source_code">کد منبع (Original)</string>
+    <string name="license">مجوز</string>
+    <string name="join_tester_community">به جامعه آزمایش‌کنندگان بپیوندید</string>
 </resources>

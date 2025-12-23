@@ -47,4 +47,47 @@
     <string name="preferences_radians_instead_of_degrees_by_default_summary">സ്ഥിരസ്ഥിതിയായി ഡിഗ്രിക്ക് പകരം റേഡിയൻസ് ഉപയോഗിക്കുക</string>
     <string name="preferences_prevent_phone_from_sleeping_summary">പ്രയോഗം മുൻവശത്തായിരിക്കുമ്പോൾ ഫോൺ ഉറങ്ങുന്നത് തടയുക</string>
     <string name="send_feedback">പ്രതികരണം അയയ്ക്കുക</string>
+
+    <!-- Clipboard labels -->
+    <string name="clipboard_label_copied_result">ഫലം പകർത്തി</string>
+    <string name="clipboard_label_copied_calculation">ചരിത്ര കണക്കുകൂട്ടൽ പകർത്തി</string>
+    <string name="clipboard_label_copied_history_result">ചരിത്ര ഫലം പകർത്തി</string>
+    <string name="clipboard_label_copied_calc_and_result">കണക്കുകൂട്ടലും ഫലവും പകർത്തി</string>
+
+    <!-- Toast messages -->
+    <string name="toast_double_back_to_exit">പുറത്തുകടക്കാൻ ദയവായി വീണ്ടും ബാക്ക് ക്ലിക്കുചെയ്യുക</string>
+
+    <!-- Dialog text -->
+    <string name="dialog_tester_community_title">സ്ഥിരീകരിക്കുക</string>
+    <string name="dialog_tester_community_message">നിങ്ങളും ഒരു പ്രോഗ്രാമറാണെങ്കിൽ നിങ്ങളുടെ ആപ്ലിക്കേഷൻ പരീക്ഷിക്കാൻ ടെസ്റ്ററുകളെ തിരയുകയാണെങ്കിൽ. ഇപ്പോൾ ഞങ്ങളുടെ ടെസ്റ്റർ കമ്മ്യൂണിറ്റിയിൽ ചേരുക</string>
+    <string name="dialog_select_language_title">ഭാഷ തിരഞ്ഞെടുക്കുക</string>
+    <string name="button_ok">ശരി</string>
+    <string name="button_cancel">റദ്ദാക്കുക</string>
+
+    <!-- Calculator mode indicators -->
+    <string name="degree_mode_deg">DEG</string>
+    <string name="degree_mode_rad">RAD</string>
+
+    <!-- Chooser titles -->
+    <string name="chooser_title_send_feedback">പ്രതികരണം അയയ്ക്കുക</string>
+    <string name="chooser_title_share">ദയവായി തിരഞ്ഞെടുക്കുക</string>
+    <string name="chooser_title_share_via">വഴി പങ്കിടുക</string>
+
+    <!-- Share/Marketing text -->
+    <string name="share_app_message_prefix">\nഈ ആപ്ലിക്കേഷൻ വളരെ ഉപയോഗപ്രദമാണ്, അനുഭവിക്കാൻ ദയവായി ഡൗൺലോഡ് ചെയ്ത് ഇൻസ്റ്റാൾ ചെയ്യുക\n\n</string>
+    <string name="developer_name">SAIGON PHANTOM LABS</string>
+
+    <!-- Language settings -->
+    <string name="language_system_default">സിസ്റ്റം സ്ഥിരസ്ഥിതി</string>
+    <string name="preferences_language_summary">ആപ്പ് ഭാഷ തിരഞ്ഞെടുക്കുക</string>
+
+    <!-- Missing strings -->
+    <string name="deg">DEG</string>
+    <string name="_45">45</string>
+    <string name="get_more_apps">കൂടുതൽ ആപ്പുകൾ നേടുക</string>
+    <string name="share_this_app">ഈ ആപ്പ് പങ്കിടുക</string>
+    <string name="github">സോഴ്സ് കോഡ് (Forked)</string>
+    <string name="source_code">സോഴ്സ് കോഡ് (Original)</string>
+    <string name="license">ലൈസൻസ്</string>
+    <string name="join_tester_community">ടെസ്റ്റർ കമ്മ്യൂണിറ്റിയിൽ ചേരുക</string>
 </resources>

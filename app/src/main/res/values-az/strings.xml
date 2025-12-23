@@ -13,4 +13,81 @@
     <string name="theme_highcontrast">Yüksək kontrast</string>
     <string name="theme_lavender">Lavanda</string>
     <string name="send_feedback">Rəy göndər</string>
+
+    <!-- Clipboard labels -->
+    <string name="clipboard_label_copied_result">Nəticə kopyalandı</string>
+    <string name="clipboard_label_copied_calculation">Tarixçə hesablaması kopyalandı</string>
+    <string name="clipboard_label_copied_history_result">Tarixçə nəticəsi kopyalandı</string>
+    <string name="clipboard_label_copied_calc_and_result">Hesablama və nəticə kopyalandı</string>
+
+    <!-- Toast messages -->
+    <string name="toast_double_back_to_exit">Çıxmaq üçün lütfən GERİ düyməsini yenidən basın</string>
+
+    <!-- Dialog text -->
+    <string name="dialog_tester_community_title">Təsdiq et</string>
+    <string name="dialog_tester_community_message">Əgər siz də proqramçısınızsa və tətbiqinizi sınaqdan keçirmək üçün sınaqçılar axtarırsınızsa. İndi sınaqçı icmamıza qoşulun</string>
+    <string name="dialog_select_language_title">Dil seçin</string>
+    <string name="button_ok">OK</string>
+    <string name="button_cancel">Ləğv et</string>
+
+    <!-- Calculator mode indicators -->
+    <string name="degree_mode_deg">DEG</string>
+    <string name="degree_mode_rad">RAD</string>
+
+    <!-- Chooser titles -->
+    <string name="chooser_title_send_feedback">Rəy göndər</string>
+    <string name="chooser_title_share">Lütfən seçin</string>
+    <string name="chooser_title_share_via">Vasitəsilə paylaş</string>
+
+    <!-- Share/Marketing text -->
+    <string name="share_app_message_prefix">\nBu tətbiq çox faydalıdır, lütfən yükləyin və təcrübə edin\n\n</string>
+    <string name="developer_name">SAIGON PHANTOM LABS</string>
+
+    <!-- Language settings -->
+    <string name="language_system_default">Sistemin əsası</string>
+    <string name="preferences_language_summary">Tətbiq dilini seçin</string>
+
+    <!-- Missing strings -->
+    <string name="app_menu_clear_history">Tarixçəni təmizlə</string>
+    <string name="theme_system">Sistem</string>
+    <string name="theme_amoled">Amoled</string>
+    <string name="theme_light">İşıqlı</string>
+    <string name="theme_dark">Qaranlıq</string>
+    <string name="value_copied">Kopyalandı</string>
+    <string name="division_by_0">0-a bölmək olmaz</string>
+    <string name="domain_error">Domen xətası</string>
+    <string name="math_error">Riyazi xəta</string>
+    <string name="syntax_error">Sintaksis xətası</string>
+    <string name="app_menu_settings">Parametrlər (Ads may appear)</string>
+    <string name="value_too_large">Dəyər çox böyükdür</string>
+    <string name="preferences_title">Parametrlər</string>
+    <string name="preferences_general_category">ÜMUMI</string>
+    <string name="preferences_history_category">TARİXÇƏ</string>
+    <string name="preferences_prevent_phone_from_sleeping_summary">Tətbiq ön planda olduqda telefonun yuxuya getməsinin qarşısını al</string>
+    <string name="preferences_vibration_summary">Düymə basıldıqda titrəmə</string>
+    <string name="preferences_history_size">Tarixçədə saxlanılan nəticələr</string>
+    <string name="preferences_vibration_title">Titrəmələr</string>
+    <string name="preferences_prevent_phone_from_sleeping_title">Telefonun yuxuya getməsinin qarşısını al</string>
+    <string name="preferences_advanced_category">QABAQCIL</string>
+    <string name="preferences_scientif_mode_enabled_by_default_summary">İlkin olaraq elmi rejimi aktivləşdir</string>
+    <string name="preferences_scientif_mode_enabled_by_default_title">Elmi rejim</string>
+    <string name="preferences_radians_instead_of_degrees_by_default_title">Radianlar</string>
+    <string name="preferences_radians_instead_of_degrees_by_default_summary">İlkin olaraq dərəcə əvəzinə radian istifadə et</string>
+    <string name="about_help_us_category">BİZƏ KÖMƏK EDİN</string>
+    <string name="about_other_category">DİGƏR</string>
+    <string name="about_rate">Bu tətbiqi qiymətləndir</string>
+    <string name="app_version_title">Versiya</string>
+    <string name="thanks_for_using_app">Calculator istifadə etdiyiniz üçün təşəkkürlər ❤️</string>
+    <string name="preferences_number_precision">Onluq yerlərin sayı</string>
+    <string name="privacy_policy">Məxfilik siyasəti</string>
+    <string name="about_title">Haqqında</string>
+    <string name="preferences_language_title">Dil</string>
+    <string name="deg">DEG</string>
+    <string name="_45">45</string>
+    <string name="get_more_apps">Daha çox tətbiq əldə et</string>
+    <string name="share_this_app">Bu tətbiqi paylaş</string>
+    <string name="github">Mənbə kodu (Forked)</string>
+    <string name="source_code">Mənbə kodu (Original)</string>
+    <string name="license">Lisenziya</string>
+    <string name="join_tester_community">Sınaqçı icmasına qoşul</string>
 </resources>

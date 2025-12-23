@@ -48,4 +48,47 @@
     <string name="about_title">Hakkında</string>
     <string name="preferences_language_title">Dil</string>
     <string name="send_feedback">Geri bildirim gönder</string>
+
+    <!-- Clipboard labels -->
+    <string name="clipboard_label_copied_result">Sonuç kopyalandı</string>
+    <string name="clipboard_label_copied_calculation">Geçmiş hesaplaması kopyalandı</string>
+    <string name="clipboard_label_copied_history_result">Geçmiş sonucu kopyalandı</string>
+    <string name="clipboard_label_copied_calc_and_result">Hesaplama ve sonuç kopyalandı</string>
+
+    <!-- Toast messages -->
+    <string name="toast_double_back_to_exit">Çıkmak için lütfen GERİ\'ye tekrar basın</string>
+
+    <!-- Dialog text -->
+    <string name="dialog_tester_community_title">Onayla</string>
+    <string name="dialog_tester_community_message">Eğer siz de bir programcıysanız ve uygulamanızı test edecek test ediciler arıyorsanız. Test edici topluluğumuza şimdi katılın</string>
+    <string name="dialog_select_language_title">Dil seç</string>
+    <string name="button_ok">Tamam</string>
+    <string name="button_cancel">İptal</string>
+
+    <!-- Calculator mode indicators -->
+    <string name="degree_mode_deg">DEG</string>
+    <string name="degree_mode_rad">RAD</string>
+
+    <!-- Chooser titles -->
+    <string name="chooser_title_send_feedback">Geri bildirim gönder</string>
+    <string name="chooser_title_share">Lütfen seçin</string>
+    <string name="chooser_title_share_via">Şununla paylaş</string>
+
+    <!-- Share/Marketing text -->
+    <string name="share_app_message_prefix">\nBu uygulama çok faydalı, lütfen deneyimlemek için indirin ve yükleyin\n\n</string>
+    <string name="developer_name">SAIGON PHANTOM LABS</string>
+
+    <!-- Language settings -->
+    <string name="language_system_default">Sistem Varsayılanı</string>
+    <string name="preferences_language_summary">Uygulama dilini seç</string>
+
+    <!-- Missing strings -->
+    <string name="deg">DEG</string>
+    <string name="_45">45</string>
+    <string name="get_more_apps">Daha fazla uygulama edin</string>
+    <string name="share_this_app">Bu uygulamayı paylaş</string>
+    <string name="github">Kaynak kodu (Forked)</string>
+    <string name="source_code">Kaynak kodu (Original)</string>
+    <string name="license">Lisans</string>
+    <string name="join_tester_community">Test edici topluluğuna katıl</string>
 </resources>

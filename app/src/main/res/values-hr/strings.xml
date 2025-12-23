@@ -4,7 +4,6 @@
     <string name="app_menu_show_history">Prikaži povijest</string>
     <string name="app_menu_hide_history">Sakrij povijest</string>
     <string name="app_menu_theme">Tema</string>
-    <string name="app_menu_clear_history">Obriši povijest</string>
     <string name="app_menu_about">O aplikaciji (Ads may appear)</string>
     <string name="theme_system">Sustav</string>
     <string name="theme_amoled">Crna</string>
@@ -24,4 +23,71 @@
     <string name="syntax_error">Sintaksna pogreška</string>
     <string name="value_too_large">Prevelika vrijednost</string>
     <string name="send_feedback">Pošaljite povratne informacije</string>
+
+    <!-- Clipboard labels -->
+    <string name="clipboard_label_copied_result">Kopirani rezultat</string>
+    <string name="clipboard_label_copied_calculation">Kopirani izračun iz povijesti</string>
+    <string name="clipboard_label_copied_history_result">Kopirani rezultat iz povijesti</string>
+    <string name="clipboard_label_copied_calc_and_result">Kopirani izračun i rezultat</string>
+
+    <!-- Toast messages -->
+    <string name="toast_double_back_to_exit">Molimo kliknite NATRAG ponovno za izlaz</string>
+
+    <!-- Dialog text -->
+    <string name="dialog_tester_community_title">Potvrdi</string>
+    <string name="dialog_tester_community_message">Ako ste također programer i tražite testere koji će testirati vašu aplikaciju. Pridružite se našoj zajednici testera sada</string>
+    <string name="dialog_select_language_title">Odaberite jezik</string>
+    <string name="button_ok">U redu</string>
+    <string name="button_cancel">Otkaži</string>
+
+    <!-- Calculator mode indicators -->
+    <string name="degree_mode_deg">DEG</string>
+    <string name="degree_mode_rad">RAD</string>
+
+    <!-- Chooser titles -->
+    <string name="chooser_title_send_feedback">Pošaljite povratne informacije</string>
+    <string name="chooser_title_share">Molimo odaberite</string>
+    <string name="chooser_title_share_via">Podijelite putem</string>
+
+    <!-- Share/Marketing text -->
+    <string name="share_app_message_prefix">\nOva aplikacija je vrlo korisna, molimo preuzmite i instalirajte kako biste je iskusili\n\n</string>
+    <string name="developer_name">SAIGON PHANTOM LABS</string>
+
+    <!-- Language settings -->
+    <string name="language_system_default">Zadano sustava</string>
+    <string name="preferences_language_summary">Odaberite jezik aplikacije</string>
+
+    <!-- Missing strings -->
+    <string name="app_menu_clear_history">Obriši povijest</string>
+    <string name="app_menu_settings">Postavke (Ads may appear)</string>
+    <string name="preferences_title">Postavke</string>
+    <string name="preferences_general_category">OPĆE</string>
+    <string name="preferences_history_category">POVIJEST</string>
+    <string name="preferences_prevent_phone_from_sleeping_summary">Spriječi telefon da zaspi dok je aplikacija u prvom planu</string>
+    <string name="preferences_vibration_summary">Vibriraj kada se pritisne gumb</string>
+    <string name="preferences_history_size">Rezultati spremljeni u povijesti</string>
+    <string name="preferences_vibration_title">Vibracije</string>
+    <string name="preferences_prevent_phone_from_sleeping_title">Spriječi spavanje telefona</string>
+    <string name="preferences_advanced_category">NAPREDNO</string>
+    <string name="preferences_scientif_mode_enabled_by_default_summary">Aktiviraj znanstveni način po zadanim postavkama</string>
+    <string name="preferences_scientif_mode_enabled_by_default_title">Znanstveni način</string>
+    <string name="preferences_radians_instead_of_degrees_by_default_title">Radijani</string>
+    <string name="preferences_radians_instead_of_degrees_by_default_summary">Koristi radijane umjesto stupnjeva po zadanim postavkama</string>
+    <string name="about_help_us_category">POMOZITE NAM</string>
+    <string name="about_other_category">OSTALO</string>
+    <string name="about_rate">Ocijenite ovu aplikaciju</string>
+    <string name="app_version_title">Verzija</string>
+    <string name="thanks_for_using_app">Hvala što koristite Calculator ❤️</string>
+    <string name="preferences_number_precision">Broj decimalnih mjesta</string>
+    <string name="privacy_policy">Politika privatnosti</string>
+    <string name="about_title">O aplikaciji</string>
+    <string name="preferences_language_title">Jezik</string>
+    <string name="deg">DEG</string>
+    <string name="_45">45</string>
+    <string name="get_more_apps">Preuzmite još aplikacija</string>
+    <string name="share_this_app">Podijeli ovu aplikaciju</string>
+    <string name="github">Izvorni kod (Forked)</string>
+    <string name="source_code">Izvorni kod (Original)</string>
+    <string name="license">Licenca</string>
+    <string name="join_tester_community">Pridružite se zajednici testera</string>
 </resources>

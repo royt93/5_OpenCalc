@@ -59,7 +59,7 @@ object LanguageHelper {
 
         val languageNames = SUPPORTED_LANGUAGES.map {
             if (it.code.isEmpty()) {
-                it.displayName
+                activity.getString(R.string.language_system_default)
             } else {
                 "${it.nativeName} (${it.displayName})"
             }
@@ -70,7 +70,7 @@ object LanguageHelper {
 
         val builder = MaterialAlertDialogBuilder(activity)
         builder.background = ContextCompat.getDrawable(activity, R.drawable.ic_rounded)
-        builder.setTitle("Select Language")
+        builder.setTitle(activity.getString(R.string.dialog_select_language_title))
         builder.setSingleChoiceItems(languageNames, currentIndex) { dialog, which ->
             val selectedLanguage = SUPPORTED_LANGUAGES[which]
             Log.d("roy93~", "User selected language: ${selectedLanguage.code}")
@@ -137,11 +137,11 @@ object LanguageHelper {
 
         return SUPPORTED_LANGUAGES.find { it.code == currentCode }?.let {
             if (it.code.isEmpty()) {
-                "System Default"
+                context.getString(R.string.language_system_default)
             } else {
                 it.nativeName
             }
-        } ?: "System Default"
+        } ?: context.getString(R.string.language_system_default)
     }
 
     private fun restartApp(activity: Activity) {

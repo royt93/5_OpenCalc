@@ -9,4 +9,85 @@
     <string name="theme_highcontrast">ଉଚ୍ଚ ବିପରୀତ</string>
     <string name="theme_lavender">ଲାଭେଣ୍ଡର</string>
     <string name="send_feedback">ମତାମତ ପଠାନ୍ତୁ</string>
+
+    <!-- Clipboard labels -->
+    <string name="clipboard_label_copied_result">ଫଳାଫଳ କପି କରାଯାଇଛି</string>
+    <string name="clipboard_label_copied_calculation">ଇତିହାସ ଗଣନା କପି କରାଯାଇଛି</string>
+    <string name="clipboard_label_copied_history_result">ଇତିହାସ ଫଳାଫଳ କପି କରାଯାଇଛି</string>
+    <string name="clipboard_label_copied_calc_and_result">ଗଣନା ଏବଂ ଫଳାଫଳ କପି କରାଯାଇଛି</string>
+
+    <!-- Toast messages -->
+    <string name="toast_double_back_to_exit">ବାହାରିବାକୁ ଦୟାକରି ପୁନର୍ବାର ବ୍ୟାକ୍ କ୍ଲିକ୍ କରନ୍ତୁ</string>
+
+    <!-- Dialog text -->
+    <string name="dialog_tester_community_title">ନିଶ୍ଚିତ କରନ୍ତୁ</string>
+    <string name="dialog_tester_community_message">ଯଦି ଆପଣ ମଧ୍ୟ ଜଣେ ପ୍ରୋଗ୍ରାମର୍ ଏବଂ ଆପଣଙ୍କ ଆପ୍ଲିକେସନ୍ ପରୀକ୍ଷା କରିବାକୁ ପରୀକ୍ଷକ ଖୋଜୁଛନ୍ତି। ବର୍ତ୍ତମାନ ଆମର ପରୀକ୍ଷକ ସମ୍ପ୍ରଦାୟରେ ଯୋଗ ଦିଅନ୍ତୁ</string>
+    <string name="dialog_select_language_title">ଭାଷା ଚୟନ କରନ୍ତୁ</string>
+    <string name="button_ok">ଠିକ୍ ଅଛି</string>
+    <string name="button_cancel">ବାତିଲ୍ କରନ୍ତୁ</string>
+
+    <!-- Calculator mode indicators -->
+    <string name="degree_mode_deg">DEG</string>
+    <string name="degree_mode_rad">RAD</string>
+
+    <!-- Chooser titles -->
+    <string name="chooser_title_send_feedback">ମତାମତ ପଠାନ୍ତୁ</string>
+    <string name="chooser_title_share">ଦୟାକରି ଚୟନ କରନ୍ତୁ</string>
+    <string name="chooser_title_share_via">ଏହା ମାଧ୍ୟମରେ ଶେୟାର କରନ୍ତୁ</string>
+
+    <!-- Share/Marketing text -->
+    <string name="share_app_message_prefix">\nଏହି ଆପ୍ଲିକେସନ୍ ଅତ୍ୟନ୍ତ ଉପଯୋଗୀ, ଅନୁଭବ କରିବାକୁ ଦୟାକରି ଡାଉନଲୋଡ୍ ଏବଂ ଇନଷ୍ଟଲ୍ କରନ୍ତୁ\n\n</string>
+    <string name="developer_name">SAIGON PHANTOM LABS</string>
+
+    <!-- Language settings -->
+    <string name="language_system_default">ସିଷ୍ଟମ୍ ଡିଫଲ୍ଟ</string>
+    <string name="preferences_language_summary">ଆପ୍ ଭାଷା ଚୟନ କରନ୍ତୁ</string>
+
+    <!-- Missing strings -->
+    <string name="app_name_display">କ୍ୟାଲକୁଲେଟର</string>
+    <string name="app_menu_clear_history">ଇତିହାସ ଖାଲି କରନ୍ତୁ</string>
+    <string name="app_menu_about">ବିଷୟରେ (Ads may appear)</string>
+    <string name="app_menu_theme">ଥିମ୍</string>
+    <string name="theme_system">ସିଷ୍ଟମ୍</string>
+    <string name="theme_amoled">ଆମୋଲେଡ୍</string>
+    <string name="theme_light">ହାଲୁକା</string>
+    <string name="theme_dark">ଗାଢ଼</string>
+    <string name="value_copied">କପି କରାଯାଇଛି</string>
+    <string name="infinity">ଅନନ୍ତ</string>
+    <string name="division_by_0">0 ଦ୍ୱାରା ଭାଗ କରାଯାଇପାରିବ ନାହିଁ</string>
+    <string name="domain_error">ଡୋମେନ୍ ତ୍ରୁଟି</string>
+    <string name="math_error">ଗଣିତ ତ୍ରୁଟି</string>
+    <string name="syntax_error">ସିଣ୍ଟାକ୍ସ ତ୍ରୁଟି</string>
+    <string name="app_menu_settings">ସେଟିଂସ୍ (Ads may appear)</string>
+    <string name="value_too_large">ମୂଲ୍ୟ ଅତ୍ୟଧିକ ବଡ଼</string>
+    <string name="preferences_title">ସେଟିଂସ୍</string>
+    <string name="preferences_general_category">ସାଧାରଣ</string>
+    <string name="preferences_history_category">ଇତିହାସ</string>
+    <string name="preferences_prevent_phone_from_sleeping_summary">ଆପ୍ ଅଗ୍ରଭାଗରେ ଥିବାବେଳେ ଫୋନକୁ ଶୋଇବାକୁ ବାରଣ କରନ୍ତୁ</string>
+    <string name="preferences_vibration_summary">ବଟନ୍ ଦବାଇବା ସମୟରେ କମ୍ପନ କରନ୍ତୁ</string>
+    <string name="preferences_history_size">ଇତିହାସରେ ସଞ୍ଚିତ ଫଳାଫଳ</string>
+    <string name="preferences_vibration_title">କମ୍ପନ</string>
+    <string name="preferences_prevent_phone_from_sleeping_title">ଫୋନକୁ ଶୋଇବାକୁ ବାରଣ କରନ୍ତୁ</string>
+    <string name="preferences_advanced_category">ଉନ୍ନତ</string>
+    <string name="preferences_scientif_mode_enabled_by_default_summary">ଡିଫଲ୍ଟ ଭାବରେ ବୈଜ୍ଞାନିକ ମୋଡ୍ ସକ୍ରିୟ କରନ୍ତୁ</string>
+    <string name="preferences_scientif_mode_enabled_by_default_title">ବୈଜ୍ଞାନିକ ମୋଡ୍</string>
+    <string name="preferences_radians_instead_of_degrees_by_default_title">ରେଡିୟାନ୍</string>
+    <string name="preferences_radians_instead_of_degrees_by_default_summary">ଡିଫଲ୍ଟ ଭାବରେ ଡିଗ୍ରୀ ବଦଳରେ ରେଡିୟାନ୍ ବ୍ୟବହାର କରନ୍ତୁ</string>
+    <string name="about_help_us_category">ଆମକୁ ସାହାଯ୍ୟ କରନ୍ତୁ</string>
+    <string name="about_other_category">ଅନ୍ୟାନ୍ୟ</string>
+    <string name="about_rate">ଏହି ଆପ୍କୁ ମୂଲ୍ୟାଙ୍କନ କରନ୍ତୁ</string>
+    <string name="app_version_title">ସଂସ୍କରଣ</string>
+    <string name="thanks_for_using_app">Calculator ବ୍ୟବହାର କରିବା ପାଇଁ ଧନ୍ୟବାଦ ❤️</string>
+    <string name="preferences_number_precision">ଦଶମିକ ସ୍ଥାନ ସଂଖ୍ୟା</string>
+    <string name="privacy_policy">ଗୋପନୀୟତା ନୀତି</string>
+    <string name="about_title">ବିଷୟରେ</string>
+    <string name="preferences_language_title">ଭାଷା</string>
+    <string name="deg">DEG</string>
+    <string name="_45">45</string>
+    <string name="get_more_apps">ଅଧିକ ଆପ୍ ପାଆନ୍ତୁ</string>
+    <string name="share_this_app">ଏହି ଆପ୍କୁ ସେୟାର କରନ୍ତୁ</string>
+    <string name="github">ସୋର୍ସ କୋଡ୍ (Forked)</string>
+    <string name="source_code">ସୋର୍ସ କୋଡ୍ (Original)</string>
+    <string name="license">ଲାଇସେନ୍ସ</string>
+    <string name="join_tester_community">ପରୀକ୍ଷକ ସମ୍ପ୍ରଦାୟରେ ଯୋଗ ଦିଅନ୍ତୁ</string>
 </resources>

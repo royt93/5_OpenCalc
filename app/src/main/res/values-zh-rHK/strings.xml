@@ -54,4 +54,47 @@
     <string name="about_title">關於</string>
     <string name="preferences_language_title">語言</string>
     <string name="send_feedback">發送反饋</string>
+
+    <!-- Clipboard labels -->
+    <string name="clipboard_label_copied_result">已複製結果</string>
+    <string name="clipboard_label_copied_calculation">已複製歷史計算</string>
+    <string name="clipboard_label_copied_history_result">已複製歷史結果</string>
+    <string name="clipboard_label_copied_calc_and_result">已複製計算和結果</string>
+
+    <!-- Toast messages -->
+    <string name="toast_double_back_to_exit">請再次點擊返回以退出</string>
+
+    <!-- Dialog text -->
+    <string name="dialog_tester_community_title">確認</string>
+    <string name="dialog_tester_community_message">如果您也是程式員並正在尋找測試人員來測試您的程式。立即加入我們的測試人員社群</string>
+    <string name="dialog_select_language_title">選擇語言</string>
+    <string name="button_ok">確定</string>
+    <string name="button_cancel">取消</string>
+
+    <!-- Calculator mode indicators -->
+    <string name="degree_mode_deg">DEG</string>
+    <string name="degree_mode_rad">RAD</string>
+
+    <!-- Chooser titles -->
+    <string name="chooser_title_send_feedback">發送反饋</string>
+    <string name="chooser_title_share">請選擇</string>
+    <string name="chooser_title_share_via">分享方式</string>
+
+    <!-- Share/Marketing text -->
+    <string name="share_app_message_prefix">\n這個程式非常有用，請下載並安裝以體驗\n\n</string>
+    <string name="developer_name">SAIGON PHANTOM LABS</string>
+
+    <!-- Language settings -->
+    <string name="language_system_default">系統預設</string>
+    <string name="preferences_language_summary">選擇程式語言</string>
+
+    <!-- Missing strings -->
+    <string name="deg">DEG</string>
+    <string name="_45">45</string>
+    <string name="get_more_apps">取得更多程式</string>
+    <string name="share_this_app">分享此程式</string>
+    <string name="github">原始碼 (Forked)</string>
+    <string name="source_code">原始碼 (Original)</string>
+    <string name="license">授權條款</string>
+    <string name="join_tester_community">加入測試人員社群</string>
 </resources>

@@ -34,4 +34,60 @@
     <string name="preferences_scientif_mode_enabled_by_default_title">वैज्ञानिक विधि</string>
     <string name="theme_light">प्रकाश</string>
     <string name="send_feedback">प्रतिक्रिया भेजें</string>
+
+    <!-- Clipboard labels -->
+    <string name="clipboard_label_copied_result">परिणाम कॉपी किया गया</string>
+    <string name="clipboard_label_copied_calculation">इतिहास गणना कॉपी की गई</string>
+    <string name="clipboard_label_copied_history_result">इतिहास परिणाम कॉपी किया गया</string>
+    <string name="clipboard_label_copied_calc_and_result">गणना और परिणाम कॉपी किए गए</string>
+
+    <!-- Toast messages -->
+    <string name="toast_double_back_to_exit">बाहर निकलने के लिए कृपया फिर से बैक दबाएं</string>
+
+    <!-- Dialog text -->
+    <string name="dialog_tester_community_title">पुष्टि करें</string>
+    <string name="dialog_tester_community_message">यदि आप भी एक प्रोग्रामर हैं और अपने एप्लिकेशन का परीक्षण करने के लिए परीक्षकों की तलाश में हैं। अभी हमारे परीक्षक समुदाय में शामिल हों</string>
+    <string name="dialog_select_language_title">भाषा चुनें</string>
+    <string name="button_ok">ठीक है</string>
+    <string name="button_cancel">रद्द करें</string>
+
+    <!-- Calculator mode indicators -->
+    <string name="degree_mode_deg">DEG</string>
+    <string name="degree_mode_rad">RAD</string>
+
+    <!-- Chooser titles -->
+    <string name="chooser_title_send_feedback">प्रतिक्रिया भेजें</string>
+    <string name="chooser_title_share">कृपया चुनें</string>
+    <string name="chooser_title_share_via">इसके माध्यम से साझा करें</string>
+
+    <!-- Share/Marketing text -->
+    <string name="share_app_message_prefix">\nयह एप्लिकेशन बहुत उपयोगी है, कृपया अनुभव करने के लिए डाउनलोड और इंस्टॉल करें\n\n</string>
+    <string name="developer_name">SAIGON PHANTOM LABS</string>
+
+    <!-- Language settings -->
+    <string name="language_system_default">सिस्टम डिफ़ॉल्ट</string>
+    <string name="preferences_language_summary">ऐप की भाषा चुनें</string>
+
+    <!-- Missing strings -->
+    <string name="theme_system">सिस्टम</string>
+    <string name="value_copied">कॉपी किया गया</string>
+    <string name="app_menu_settings">सेटिंग्स (Ads may appear)</string>
+    <string name="value_too_large">मान बहुत बड़ा है</string>
+    <string name="preferences_title">सेटिंग्स</string>
+    <string name="preferences_prevent_phone_from_sleeping_summary">जब ऐप अग्रभूमि में हो तो फ़ोन को सोने से रोकें</string>
+    <string name="preferences_vibration_summary">बटन दबाने पर कंपन करें</string>
+    <string name="preferences_history_size">इतिहास में सहेजे गए परिणाम</string>
+    <string name="preferences_vibration_title">कंपन</string>
+    <string name="preferences_prevent_phone_from_sleeping_title">फ़ोन को सोने से रोकें</string>
+    <string name="preferences_scientif_mode_enabled_by_default_summary">डिफ़ॉल्ट रूप से वैज्ञानिक मोड सक्रिय करें</string>
+    <string name="about_rate">इस ऐप को रेट करें</string>
+    <string name="domain_error">डोमेन त्रुटि</string>
+    <string name="deg">DEG</string>
+    <string name="_45">45</string>
+    <string name="get_more_apps">अधिक ऐप्स प्राप्त करें</string>
+    <string name="share_this_app">इस ऐप को साझा करें</string>
+    <string name="github">सोर्स कोड (Forked)</string>
+    <string name="source_code">सोर्स कोड (Original)</string>
+    <string name="license">लाइसेंस</string>
+    <string name="join_tester_community">परीक्षक समुदाय में शामिल हों</string>
 </resources>

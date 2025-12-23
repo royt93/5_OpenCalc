@@ -11,7 +11,7 @@
             app:icon="@drawable/ic_language"
             app:key="mckimquyen.opencal.APP_LANGUAGE"
             app:selectable="true"
-            app:summary="APP LANGUAGE"
+            app:summary="@string/preferences_language_summary"
             app:title="@string/preferences_language_title" />
 
         <SwitchPreferenceCompat

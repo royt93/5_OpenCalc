@@ -27,4 +27,66 @@
     <string name="preferences_title">Cài đặt</string>
     <string name="app_version_title">Phiên bản</string>
     <string name="send_feedback">Gửi phản hồi</string>
+
+    <!-- New strings for multi-language support -->
+    <!-- Clipboard labels -->
+    <string name="clipboard_label_copied_result">Đã sao chép kết quả</string>
+    <string name="clipboard_label_copied_calculation">Đã sao chép phép tính</string>
+    <string name="clipboard_label_copied_history_result">Đã sao chép kết quả lịch sử</string>
+    <string name="clipboard_label_copied_calc_and_result">Đã sao chép phép tính và kết quả</string>
+
+    <!-- Toast messages -->
+    <string name="toast_double_back_to_exit">Vui lòng nhấn BACK lần nữa để thoát</string>
+
+    <!-- Dialog text -->
+    <string name="dialog_tester_community_title">Xác nhận</string>
+    <string name="dialog_tester_community_message">Nếu bạn cũng là lập trình viên và đang tìm kiếm người kiểm thử cho ứng dụng của mình. Hãy tham gia cộng đồng kiểm thử của chúng tôi ngay bây giờ</string>
+    <string name="dialog_select_language_title">Chọn ngôn ngữ</string>
+    <string name="button_ok">Đồng ý</string>
+    <string name="button_cancel">Hủy</string>
+
+    <!-- Calculator mode indicators -->
+    <string name="degree_mode_deg">DEG</string>
+    <string name="degree_mode_rad">RAD</string>
+
+    <!-- Chooser titles -->
+    <string name="chooser_title_send_feedback">Gửi phản hồi</string>
+    <string name="chooser_title_share">Vui lòng chọn</string>
+    <string name="chooser_title_share_via">Chia sẻ qua</string>
+
+    <!-- Share/Marketing text -->
+    <string name="share_app_message_prefix">\nỨng dụng này rất hữu ích, hãy tải xuống và cài đặt để trải nghiệm\n\n</string>
+    <string name="developer_name">SAIGON PHANTOM LABS</string>
+
+    <!-- Language settings -->
+    <string name="language_system_default">Mặc định hệ thống</string>
+    <string name="preferences_language_summary">Chọn ngôn ngữ ứng dụng</string>
+    <string name="preferences_general_category">CHUNG</string>
+    <string name="preferences_history_category">LỊCH SỬ</string>
+    <string name="preferences_advanced_category">NÂNG CAO</string>
+    <string name="preferences_vibration_title">Rung</string>
+    <string name="preferences_vibration_summary">Rung khi nhấn nút</string>
+    <string name="preferences_radians_instead_of_degrees_by_default_title">Radian</string>
+    <string name="preferences_radians_instead_of_degrees_by_default_summary">Sử dụng radian thay vì độ theo mặc định</string>
+    <string name="preferences_scientif_mode_enabled_by_default_title">Chế độ khoa học</string>
+    <string name="preferences_scientif_mode_enabled_by_default_summary">Kích hoạt chế độ khoa học theo mặc định</string>
+    <string name="preferences_number_precision">Số chữ số thập phân</string>
+    <string name="preferences_history_size">Kết quả được lưu trong lịch sử</string>
+    <string name="preferences_prevent_phone_from_sleeping_title">Ngăn điện thoại ngủ</string>
+    <string name="preferences_prevent_phone_from_sleeping_summary">Ngăn điện thoại ngủ khi ứng dụng đang chạy</string>
+    <string name="about_help_us_category">HỖ TRỢ CHÚNG TÔI</string>
+    <string name="about_other_category">KHÁC</string>
+    <string name="about_rate">Đánh giá ứng dụng này</string>
+    <string name="about_title">Về ứng dụng</string>
+    <string name="preferences_language_title">Ngôn ngữ</string>
+    <string name="get_more_apps">Xem thêm ứng dụng</string>
+    <string name="share_this_app">Chia sẻ ứng dụng này</string>
+    <string name="privacy_policy">Chính sách bảo mật</string>
+    <string name="github">Mã nguồn (Forked)</string>
+    <string name="source_code">Mã nguồn (Original)</string>
+    <string name="license">Giấy phép</string>
+    <string name="join_tester_community">Tham gia cộng đồng kiểm thử</string>
+    <string name="thanks_for_using_app">Cảm ơn bạn đã sử dụng Máy tính ❤️</string>
+    <string name="deg">DEG</string>
+    <string name="_45">45</string>
 </resources>

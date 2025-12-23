@@ -100,4 +100,38 @@
     <string name="license">License</string>
     <string name="join_tester_community">Join tester community</string>
     <string name="send_feedback">Send feedback</string>
+
+    <!-- New strings for multi-language support -->
+    <!-- Clipboard labels -->
+    <string name="clipboard_label_copied_result">Copied result</string>
+    <string name="clipboard_label_copied_calculation">Copied history calculation</string>
+    <string name="clipboard_label_copied_history_result">Copied history result</string>
+    <string name="clipboard_label_copied_calc_and_result">Copied calculation and result</string>
+
+    <!-- Toast messages -->
+    <string name="toast_double_back_to_exit">Please click BACK again to exit</string>
+
+    <!-- Dialog text -->
+    <string name="dialog_tester_community_title">Confirm</string>
+    <string name="dialog_tester_community_message">If you are also a programmer and looking for testers to test your application. Join our tester community now</string>
+    <string name="dialog_select_language_title">Select Language</string>
+    <string name="button_ok">OK</string>
+    <string name="button_cancel">Cancel</string>
+
+    <!-- Calculator mode indicators -->
+    <string name="degree_mode_deg">DEG</string>
+    <string name="degree_mode_rad">RAD</string>
+
+    <!-- Chooser titles -->
+    <string name="chooser_title_send_feedback">Send feedback</string>
+    <string name="chooser_title_share">Please choose</string>
+    <string name="chooser_title_share_via">Share via</string>
+
+    <!-- Share/Marketing text -->
+    <string name="share_app_message_prefix">\nThis application is very useful, please download and install to experience\n\n</string>
+    <string name="developer_name">SAIGON PHANTOM LABS</string>
+
+    <!-- Language settings -->
+    <string name="language_system_default">System Default</string>
+    <string name="preferences_language_summary">Select app language</string>
 </resources>

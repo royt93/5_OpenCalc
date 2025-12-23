@@ -138,7 +138,7 @@ class HistoryAdapter(
                     itemView.context.getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
                 clipboardManager.setPrimaryClip(
                     ClipData.newPlainText(
-                        "Copied history calculation",
+                        itemView.context.getString(R.string.clipboard_label_copied_calculation),
                         historyElement.calculation
                     )
                 )
@@ -154,7 +154,7 @@ class HistoryAdapter(
                     itemView.context.getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
                 clipboardManager.setPrimaryClip(
                     ClipData.newPlainText(
-                        "Copied history result",
+                        itemView.context.getString(R.string.clipboard_label_copied_history_result),
                         historyElement.result
                     )
                 )
@@ -171,7 +171,7 @@ class HistoryAdapter(
                 val combinedText = "${historyElement.calculation} = ${historyElement.result}"
                 clipboardManager.setPrimaryClip(
                     ClipData.newPlainText(
-                        "Copied calculation and result",
+                        itemView.context.getString(R.string.clipboard_label_copied_calc_and_result),
                         combinedText
                     )
                 )

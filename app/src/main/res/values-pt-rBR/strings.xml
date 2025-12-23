@@ -14,4 +14,80 @@
     <string name="theme_highcontrast">Alto contraste</string>
     <string name="theme_lavender">Lavanda</string>
     <string name="send_feedback">Enviar feedback</string>
+
+    <!-- Clipboard labels -->
+    <string name="clipboard_label_copied_result">Resultado copiado</string>
+    <string name="clipboard_label_copied_calculation">Cálculo do histórico copiado</string>
+    <string name="clipboard_label_copied_history_result">Resultado do histórico copiado</string>
+    <string name="clipboard_label_copied_calc_and_result">Cálculo e resultado copiados</string>
+
+    <!-- Toast messages -->
+    <string name="toast_double_back_to_exit">Por favor, clique em VOLTAR novamente para sair</string>
+
+    <!-- Dialog text -->
+    <string name="dialog_tester_community_title">Confirmar</string>
+    <string name="dialog_tester_community_message">Se você também é um programador e está procurando testadores para testar seu aplicativo. Junte-se à nossa comunidade de testadores agora</string>
+    <string name="dialog_select_language_title">Selecionar idioma</string>
+    <string name="button_ok">OK</string>
+    <string name="button_cancel">Cancelar</string>
+
+    <!-- Calculator mode indicators -->
+    <string name="degree_mode_deg">DEG</string>
+    <string name="degree_mode_rad">RAD</string>
+
+    <!-- Chooser titles -->
+    <string name="chooser_title_send_feedback">Enviar feedback</string>
+    <string name="chooser_title_share">Por favor, escolha</string>
+    <string name="chooser_title_share_via">Compartilhar via</string>
+
+    <!-- Share/Marketing text -->
+    <string name="share_app_message_prefix">\nEste aplicativo é muito útil, por favor baixe e instale para experimentar\n\n</string>
+    <string name="developer_name">SAIGON PHANTOM LABS</string>
+
+    <!-- Language settings -->
+    <string name="language_system_default">Padrão do sistema</string>
+    <string name="preferences_language_summary">Selecionar idioma do aplicativo</string>
+
+    <!-- Missing strings -->
+    <string name="theme_system">Sistema</string>
+    <string name="theme_amoled">Amoled</string>
+    <string name="theme_light">Claro</string>
+    <string name="theme_dark">Escuro</string>
+    <string name="value_copied">Copiado</string>
+    <string name="division_by_0">Não é possível dividir por 0</string>
+    <string name="domain_error">Erro de domínio</string>
+    <string name="math_error">Erro matemático</string>
+    <string name="syntax_error">Erro de sintaxe</string>
+    <string name="app_menu_settings">Configurações (Ads may appear)</string>
+    <string name="value_too_large">Valor muito grande</string>
+    <string name="preferences_title">Configurações</string>
+    <string name="preferences_general_category">GERAL</string>
+    <string name="preferences_history_category">HISTÓRICO</string>
+    <string name="preferences_prevent_phone_from_sleeping_summary">Impedir que o telefone entre em modo de espera enquanto o aplicativo estiver em primeiro plano</string>
+    <string name="preferences_vibration_summary">Emitir vibrações quando um botão for pressionado</string>
+    <string name="preferences_history_size">Resultados salvos no histórico</string>
+    <string name="preferences_vibration_title">Vibrações</string>
+    <string name="preferences_prevent_phone_from_sleeping_title">Impedir modo de espera do telefone</string>
+    <string name="preferences_advanced_category">AVANÇADO</string>
+    <string name="preferences_scientif_mode_enabled_by_default_summary">Ativar modo científico por padrão</string>
+    <string name="preferences_scientif_mode_enabled_by_default_title">Modo científico</string>
+    <string name="preferences_radians_instead_of_degrees_by_default_title">Radianos</string>
+    <string name="preferences_radians_instead_of_degrees_by_default_summary">Usar radianos em vez de graus por padrão</string>
+    <string name="about_help_us_category">AJUDE-NOS</string>
+    <string name="about_other_category">OUTROS</string>
+    <string name="about_rate">Avalie este aplicativo</string>
+    <string name="app_version_title">Versão</string>
+    <string name="thanks_for_using_app">Obrigado por usar o Calculator ❤️</string>
+    <string name="preferences_number_precision">Número de casas decimais</string>
+    <string name="privacy_policy">Política de privacidade</string>
+    <string name="about_title">Sobre</string>
+    <string name="preferences_language_title">Idioma</string>
+    <string name="deg">DEG</string>
+    <string name="_45">45</string>
+    <string name="get_more_apps">Obter mais aplicativos</string>
+    <string name="share_this_app">Compartilhar este aplicativo</string>
+    <string name="github">Código fonte (Forked)</string>
+    <string name="source_code">Código fonte (Original)</string>
+    <string name="license">Licença</string>
+    <string name="join_tester_community">Junte-se à comunidade de testadores</string>
 </resources>

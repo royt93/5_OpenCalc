@@ -47,4 +47,47 @@
     <string name="app_version_title">Verze</string>
     <string name="preferences_prevent_phone_from_sleeping_summary">Zabrání uspání telefonu, když je aplikace v popředí</string>
     <string name="send_feedback">Odeslat zpětnou vazbu</string>
+
+    <!-- Clipboard labels -->
+    <string name="clipboard_label_copied_result">Zkopírovaný výsledek</string>
+    <string name="clipboard_label_copied_calculation">Zkopírovaný výpočet z historie</string>
+    <string name="clipboard_label_copied_history_result">Zkopírovaný výsledek z historie</string>
+    <string name="clipboard_label_copied_calc_and_result">Zkopírovaný výpočet a výsledek</string>
+
+    <!-- Toast messages -->
+    <string name="toast_double_back_to_exit">Pro ukončení klikněte znovu na ZPĚT</string>
+
+    <!-- Dialog text -->
+    <string name="dialog_tester_community_title">Potvrdit</string>
+    <string name="dialog_tester_community_message">Pokud jste také programátor a hledáte testery pro testování vaší aplikace. Připojte se k naší komunitě testerů nyní</string>
+    <string name="dialog_select_language_title">Vyberte jazyk</string>
+    <string name="button_ok">OK</string>
+    <string name="button_cancel">Zrušit</string>
+
+    <!-- Calculator mode indicators -->
+    <string name="degree_mode_deg">DEG</string>
+    <string name="degree_mode_rad">RAD</string>
+
+    <!-- Chooser titles -->
+    <string name="chooser_title_send_feedback">Odeslat zpětnou vazbu</string>
+    <string name="chooser_title_share">Vyberte prosím</string>
+    <string name="chooser_title_share_via">Sdílet přes</string>
+
+    <!-- Share/Marketing text -->
+    <string name="share_app_message_prefix">\nTato aplikace je velmi užitečná, stáhněte si ji a nainstalujte pro vyzkoušení\n\n</string>
+    <string name="developer_name">SAIGON PHANTOM LABS</string>
+
+    <!-- Language settings -->
+    <string name="language_system_default">Výchozí systém</string>
+    <string name="preferences_language_summary">Vyberte jazyk aplikace</string>
+
+    <!-- Missing strings -->
+    <string name="deg">DEG</string>
+    <string name="_45">45</string>
+    <string name="get_more_apps">Získat další aplikace</string>
+    <string name="share_this_app">Sdílet tuto aplikaci</string>
+    <string name="github">Zdrojový kód (Forked)</string>
+    <string name="source_code">Zdrojový kód (Original)</string>
+    <string name="license">Licence</string>
+    <string name="join_tester_community">Připojte se ke komunitě testerů</string>
 </resources>

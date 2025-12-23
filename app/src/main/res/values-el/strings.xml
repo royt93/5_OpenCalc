@@ -26,4 +26,70 @@
     <string name="syntax_error">Συντακτικό λάθος</string>
     <string name="value_too_large">Πολύ μεγάλη τιμή</string>
     <string name="send_feedback">Αποστολή σχολίων</string>
+
+    <!-- Clipboard labels -->
+    <string name="clipboard_label_copied_result">Αντιγράφηκε το αποτέλεσμα</string>
+    <string name="clipboard_label_copied_calculation">Αντιγράφηκε ο υπολογισμός ιστορικού</string>
+    <string name="clipboard_label_copied_history_result">Αντιγράφηκε το αποτέλεσμα ιστορικού</string>
+    <string name="clipboard_label_copied_calc_and_result">Αντιγράφηκαν υπολογισμός και αποτέλεσμα</string>
+
+    <!-- Toast messages -->
+    <string name="toast_double_back_to_exit">Παρακαλώ πατήστε ΠΙΣΩ ξανά για έξοδο</string>
+
+    <!-- Dialog text -->
+    <string name="dialog_tester_community_title">Επιβεβαίωση</string>
+    <string name="dialog_tester_community_message">Εάν είστε επίσης προγραμματιστής και αναζητάτε δοκιμαστές για να δοκιμάσουν την εφαρμογή σας. Εγγραφείτε στην κοινότητα δοκιμαστών μας τώρα</string>
+    <string name="dialog_select_language_title">Επιλογή γλώσσας</string>
+    <string name="button_ok">OK</string>
+    <string name="button_cancel">Ακύρωση</string>
+
+    <!-- Calculator mode indicators -->
+    <string name="degree_mode_deg">DEG</string>
+    <string name="degree_mode_rad">RAD</string>
+
+    <!-- Chooser titles -->
+    <string name="chooser_title_send_feedback">Αποστολή σχολίων</string>
+    <string name="chooser_title_share">Παρακαλώ επιλέξτε</string>
+    <string name="chooser_title_share_via">Κοινοποίηση μέσω</string>
+
+    <!-- Share/Marketing text -->
+    <string name="share_app_message_prefix">\nΑυτή η εφαρμογή είναι πολύ χρήσιμη, παρακαλώ κατεβάστε και εγκαταστήστε για να τη δοκιμάσετε\n\n</string>
+    <string name="developer_name">SAIGON PHANTOM LABS</string>
+
+    <!-- Language settings -->
+    <string name="language_system_default">Προεπιλογή συστήματος</string>
+    <string name="preferences_language_summary">Επιλέξτε γλώσσα εφαρμογής</string>
+
+    <!-- Missing strings -->
+    <string name="app_menu_settings">Ρυθμίσεις (Ads may appear)</string>
+    <string name="preferences_title">Ρυθμίσεις</string>
+    <string name="preferences_general_category">ΓΕΝΙΚΑ</string>
+    <string name="preferences_history_category">ΙΣΤΟΡΙΚΟ</string>
+    <string name="preferences_prevent_phone_from_sleeping_summary">Αποτροπή της αναστολής λειτουργίας του τηλεφώνου όταν η εφαρμογή είναι ενεργή</string>
+    <string name="preferences_vibration_summary">Δόνηση όταν πατιέται ένα κουμπί</string>
+    <string name="preferences_history_size">Αποτελέσματα αποθηκευμένα στο ιστορικό</string>
+    <string name="preferences_vibration_title">Δονήσεις</string>
+    <string name="preferences_prevent_phone_from_sleeping_title">Αποτροπή αναστολής λειτουργίας τηλεφώνου</string>
+    <string name="preferences_advanced_category">ΠΡΟΗΓΜΕΝΑ</string>
+    <string name="preferences_scientif_mode_enabled_by_default_summary">Ενεργοποίηση επιστημονικής λειτουργίας από προεπιλογή</string>
+    <string name="preferences_scientif_mode_enabled_by_default_title">Επιστημονική λειτουργία</string>
+    <string name="preferences_radians_instead_of_degrees_by_default_title">Ακτίνια</string>
+    <string name="preferences_radians_instead_of_degrees_by_default_summary">Χρήση ακτινίων αντί για μοίρες από προεπιλογή</string>
+    <string name="about_help_us_category">ΒΟΗΘΗΣΤΕ ΜΑΣ</string>
+    <string name="about_other_category">ΑΛΛΑ</string>
+    <string name="about_rate">Αξιολογήστε αυτήν την εφαρμογή</string>
+    <string name="app_version_title">Έκδοση</string>
+    <string name="thanks_for_using_app">Ευχαριστούμε που χρησιμοποιείτε το Calculator ❤️</string>
+    <string name="preferences_number_precision">Αριθμός δεκαδικών ψηφίων</string>
+    <string name="privacy_policy">Πολιτική απορρήτου</string>
+    <string name="about_title">Σχετικά</string>
+    <string name="preferences_language_title">Γλώσσα</string>
+    <string name="deg">DEG</string>
+    <string name="_45">45</string>
+    <string name="get_more_apps">Λάβετε περισσότερες εφαρμογές</string>
+    <string name="share_this_app">Μοιραστείτε αυτήν την εφαρμογή</string>
+    <string name="github">Πηγαίος κώδικας (Forked)</string>
+    <string name="source_code">Πηγαίος κώδικας (Original)</string>
+    <string name="license">Άδεια</string>
+    <string name="join_tester_community">Εγγραφείτε στην κοινότητα δοκιμαστών</string>
 </resources>

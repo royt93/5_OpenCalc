@@ -47,4 +47,47 @@
     <string name="preferences_number_precision">Кількість знаків після коми</string>
     <string name="about_title">Про застосунок</string>
     <string name="send_feedback">Надіслати відгук</string>
+
+    <!-- Clipboard labels -->
+    <string name="clipboard_label_copied_result">Результат скопійовано</string>
+    <string name="clipboard_label_copied_calculation">Обчислення з історії скопійовано</string>
+    <string name="clipboard_label_copied_history_result">Результат з історії скопійовано</string>
+    <string name="clipboard_label_copied_calc_and_result">Обчислення та результат скопійовано</string>
+
+    <!-- Toast messages -->
+    <string name="toast_double_back_to_exit">Будь ласка, натисніть НАЗАД ще раз для виходу</string>
+
+    <!-- Dialog text -->
+    <string name="dialog_tester_community_title">Підтвердити</string>
+    <string name="dialog_tester_community_message">Якщо ви також програміст і шукаєте тестувальників для тестування вашого застосунку. Приєднуйтесь до нашої спільноти тестувальників зараз</string>
+    <string name="dialog_select_language_title">Виберіть мову</string>
+    <string name="button_ok">ОК</string>
+    <string name="button_cancel">Скасувати</string>
+
+    <!-- Calculator mode indicators -->
+    <string name="degree_mode_deg">DEG</string>
+    <string name="degree_mode_rad">RAD</string>
+
+    <!-- Chooser titles -->
+    <string name="chooser_title_send_feedback">Надіслати відгук</string>
+    <string name="chooser_title_share">Будь ласка, оберіть</string>
+    <string name="chooser_title_share_via">Поділитися через</string>
+
+    <!-- Share/Marketing text -->
+    <string name="share_app_message_prefix">\nЦей застосунок дуже корисний, будь ласка, завантажте та встановіть, щоб спробувати\n\n</string>
+    <string name="developer_name">SAIGON PHANTOM LABS</string>
+
+    <!-- Language settings -->
+    <string name="language_system_default">Системний за замовчуванням</string>
+    <string name="preferences_language_summary">Вибрати мову застосунку</string>
+
+    <!-- Missing strings -->
+    <string name="deg">DEG</string>
+    <string name="_45">45</string>
+    <string name="get_more_apps">Отримати більше застосунків</string>
+    <string name="share_this_app">Поділитися цим застосунком</string>
+    <string name="github">Вихідний код (Forked)</string>
+    <string name="source_code">Вихідний код (Original)</string>
+    <string name="license">Ліцензія</string>
+    <string name="join_tester_community">Приєднатися до спільноти тестувальників</string>
 </resources>

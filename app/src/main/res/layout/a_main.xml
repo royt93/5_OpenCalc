@@ -178,7 +178,7 @@
                             android:layout_margin="0dp"
                             android:layout_weight="1"
                             android:onClick="degreeButton"
-                            android:text="@string/degree"
+                            android:text="@string/degree_mode_deg"
                             android:textSize="22sp"
                             tools:ignore="UsingOnClickInXml" />
 

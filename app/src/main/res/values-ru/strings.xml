@@ -49,4 +49,47 @@
     <string name="preferences_history_category">ИСТОРИЯ</string>
     <string name="preferences_prevent_phone_from_sleeping_summary">Предотвратить телефон от спящего режима, пока открыто приложение</string>
     <string name="send_feedback">Отправить отзыв</string>
+
+    <!-- Clipboard labels -->
+    <string name="clipboard_label_copied_result">Результат скопирован</string>
+    <string name="clipboard_label_copied_calculation">Вычисление из истории скопировано</string>
+    <string name="clipboard_label_copied_history_result">Результат из истории скопирован</string>
+    <string name="clipboard_label_copied_calc_and_result">Вычисление и результат скопированы</string>
+
+    <!-- Toast messages -->
+    <string name="toast_double_back_to_exit">Пожалуйста, нажмите НАЗАД снова, чтобы выйти</string>
+
+    <!-- Dialog text -->
+    <string name="dialog_tester_community_title">Подтвердить</string>
+    <string name="dialog_tester_community_message">Если вы также программист и ищете тестировщиков для тестирования вашего приложения. Присоединяйтесь к нашему сообществу тестировщиков прямо сейчас</string>
+    <string name="dialog_select_language_title">Выберите язык</string>
+    <string name="button_ok">ОК</string>
+    <string name="button_cancel">Отмена</string>
+
+    <!-- Calculator mode indicators -->
+    <string name="degree_mode_deg">DEG</string>
+    <string name="degree_mode_rad">RAD</string>
+
+    <!-- Chooser titles -->
+    <string name="chooser_title_send_feedback">Отправить отзыв</string>
+    <string name="chooser_title_share">Пожалуйста, выберите</string>
+    <string name="chooser_title_share_via">Поделиться через</string>
+
+    <!-- Share/Marketing text -->
+    <string name="share_app_message_prefix">\nЭто приложение очень полезно, пожалуйста, загрузите и установите, чтобы попробовать\n\n</string>
+    <string name="developer_name">SAIGON PHANTOM LABS</string>
+
+    <!-- Language settings -->
+    <string name="language_system_default">Системный по умолчанию</string>
+    <string name="preferences_language_summary">Выберите язык приложения</string>
+
+    <!-- Missing strings -->
+    <string name="deg">DEG</string>
+    <string name="_45">45</string>
+    <string name="get_more_apps">Получить больше приложений</string>
+    <string name="share_this_app">Поделиться этим приложением</string>
+    <string name="github">Исходный код (Forked)</string>
+    <string name="source_code">Исходный код (Original)</string>
+    <string name="license">Лицензия</string>
+    <string name="join_tester_community">Присоединиться к сообществу тестировщиков</string>
 </resources>

@@ -14,4 +14,80 @@
     <string name="theme_highcontrast">تباين عالي</string>
     <string name="theme_lavender">اللافندر</string>
     <string name="send_feedback">إرسال ملاحظات</string>
+
+    <!-- Clipboard labels -->
+    <string name="clipboard_label_copied_result">نسخ النتيجة</string>
+    <string name="clipboard_label_copied_calculation">نسخ حساب السجل</string>
+    <string name="clipboard_label_copied_history_result">نسخ نتيجة السجل</string>
+    <string name="clipboard_label_copied_calc_and_result">نسخ الحساب والنتيجة</string>
+
+    <!-- Toast messages -->
+    <string name="toast_double_back_to_exit">الرجاء الضغط على زر الرجوع مرة أخرى للخروج</string>
+
+    <!-- Dialog text -->
+    <string name="dialog_tester_community_title">تأكيد</string>
+    <string name="dialog_tester_community_message">إذا كنت أيضًا مبرمجًا وتبحث عن مختبرين لاختبار تطبيقك. انضم إلى مجتمع المختبرين الآن</string>
+    <string name="dialog_select_language_title">اختر اللغة</string>
+    <string name="button_ok">موافق</string>
+    <string name="button_cancel">إلغاء</string>
+
+    <!-- Calculator mode indicators -->
+    <string name="degree_mode_deg">DEG</string>
+    <string name="degree_mode_rad">RAD</string>
+
+    <!-- Chooser titles -->
+    <string name="chooser_title_send_feedback">إرسال ملاحظات</string>
+    <string name="chooser_title_share">الرجاء الاختيار</string>
+    <string name="chooser_title_share_via">مشاركة عبر</string>
+
+    <!-- Share/Marketing text -->
+    <string name="share_app_message_prefix">\nهذا التطبيق مفيد جدًا، يرجى تنزيله وتثبيته لتجربته\n\n</string>
+    <string name="developer_name">SAIGON PHANTOM LABS</string>
+
+    <!-- Language settings -->
+    <string name="language_system_default">الافتراضي للنظام</string>
+    <string name="preferences_language_summary">اختر لغة التطبيق</string>
+
+    <!-- Missing strings -->
+    <string name="theme_system">النظام</string>
+    <string name="theme_amoled">أموليد</string>
+    <string name="theme_light">فاتح</string>
+    <string name="theme_dark">داكن</string>
+    <string name="value_copied">تم النسخ</string>
+    <string name="division_by_0">لا يمكن القسمة على 0</string>
+    <string name="domain_error">خطأ في المجال</string>
+    <string name="math_error">خطأ رياضي</string>
+    <string name="syntax_error">خطأ في بناء الجملة</string>
+    <string name="app_menu_settings">الإعدادات (Ads may appear)</string>
+    <string name="value_too_large">القيمة كبيرة جدًا</string>
+    <string name="preferences_title">الإعدادات</string>
+    <string name="preferences_general_category">عام</string>
+    <string name="preferences_history_category">السجل</string>
+    <string name="preferences_prevent_phone_from_sleeping_summary">منع الهاتف من النوم أثناء تشغيل التطبيق في المقدمة</string>
+    <string name="preferences_vibration_summary">إصدار اهتزازات عند الضغط على زر</string>
+    <string name="preferences_history_size">النتائج المحفوظة في السجل</string>
+    <string name="preferences_vibration_title">الاهتزازات</string>
+    <string name="preferences_prevent_phone_from_sleeping_title">منع الهاتف من النوم</string>
+    <string name="preferences_advanced_category">متقدم</string>
+    <string name="preferences_scientif_mode_enabled_by_default_summary">تفعيل الوضع العلمي افتراضيًا</string>
+    <string name="preferences_scientif_mode_enabled_by_default_title">الوضع العلمي</string>
+    <string name="preferences_radians_instead_of_degrees_by_default_title">راديان</string>
+    <string name="preferences_radians_instead_of_degrees_by_default_summary">استخدام الراديان بدلاً من الدرجات افتراضيًا</string>
+    <string name="about_help_us_category">ساعدنا</string>
+    <string name="about_other_category">أخرى</string>
+    <string name="about_rate">قيّم هذا التطبيق</string>
+    <string name="app_version_title">الإصدار</string>
+    <string name="thanks_for_using_app">شكرًا لاستخدام Calculator ❤️</string>
+    <string name="preferences_number_precision">عدد المنازل العشرية</string>
+    <string name="privacy_policy">سياسة الخصوصية</string>
+    <string name="about_title">حول</string>
+    <string name="preferences_language_title">اللغة</string>
+    <string name="deg">DEG</string>
+    <string name="_45">45</string>
+    <string name="get_more_apps">احصل على المزيد من التطبيقات</string>
+    <string name="share_this_app">شارك هذا التطبيق</string>
+    <string name="github">الكود المصدري (Forked)</string>
+    <string name="source_code">الكود المصدري (Original)</string>
+    <string name="license">الترخيص</string>
+    <string name="join_tester_community">انضم إلى مجتمع المختبرين</string>
 </resources>

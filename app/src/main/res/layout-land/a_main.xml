@@ -134,7 +134,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:onClick="degreeButton"
-                            android:text="@string/degree"
+                            android:text="@string/degree_mode_deg"
                             tools:ignore="UsingOnClickInXml" />
 
                         <Button

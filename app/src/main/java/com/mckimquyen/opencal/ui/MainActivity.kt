@@ -199,7 +199,7 @@ class MainActivity : BaseActivity(), AdMobManager.InterstitialAdListener {
                     val clipboardManager = getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
                     clipboardManager.setPrimaryClip(
                         ClipData.newPlainText(
-                            "Copied result",
+                            getString(R.string.clipboard_label_copied_result),
                             binding.resultDisplay.text
                         )
                     )
@@ -535,11 +535,11 @@ class MainActivity : BaseActivity(), AdMobManager.InterstitialAdListener {
 
     @SuppressLint("SetTextI18n")
     private fun enableOrDisableDegreeMode() {
-        if (binding.degreeButton.text.toString() == "DEG") {
-            binding.degreeButton.text = "RAD"
+        if (binding.degreeButton.text.toString() == getString(R.string.degree_mode_deg)) {
+            binding.degreeButton.text = getString(R.string.degree_mode_rad)
             isDegreeModeActivated = false
         } else {
-            binding.degreeButton.text = "DEG"
+            binding.degreeButton.text = getString(R.string.degree_mode_deg)
             isDegreeModeActivated = true
         }
 
@@ -1091,19 +1091,19 @@ class MainActivity : BaseActivity(), AdMobManager.InterstitialAdListener {
             return
         }
         this.doubleBackToExitPressedOnce = true
-        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_LONG).show()
+        Toast.makeText(this, getString(R.string.toast_double_back_to_exit), Toast.LENGTH_LONG).show()
         Handler(Looper.getMainLooper()).postDelayed({ doubleBackToExitPressedOnce = false }, 2000)
     }
 
     private fun showDialogTesterCommunity() {
         MaterialAlertDialogBuilder(this)
-            .setTitle("Confirm")
-            .setMessage("If you are also a programmer and looking for testers to test your application. Join our tester community now")
-            .setPositiveButton("OK") { dialog, _ ->
+            .setTitle(getString(R.string.dialog_tester_community_title))
+            .setMessage(getString(R.string.dialog_tester_community_message))
+            .setPositiveButton(getString(R.string.button_ok)) { dialog, _ ->
                 dialog.dismiss()
                 rateApp("com.mckimquyen.bemytester")
             }
-            .setNegativeButton("Cancel") { dialog, _ ->
+            .setNegativeButton(getString(R.string.button_cancel)) { dialog, _ ->
                 dialog.dismiss()
             }
             .show()

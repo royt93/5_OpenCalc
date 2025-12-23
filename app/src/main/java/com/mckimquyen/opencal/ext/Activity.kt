@@ -160,7 +160,7 @@ fun Activity.rateApp(
 }
 
 fun Activity.moreApp(
-    nameOfDeveloper: String = "SAIGON PHANTOM LABS"
+    nameOfDeveloper: String = this.getString(R.string.developer_name)
 ) {
     val uri = "https://play.google.com/store/apps/developer?id=$nameOfDeveloper"
     val intent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
@@ -173,10 +173,10 @@ fun Activity.shareApp(
         val intent = Intent(Intent.ACTION_SEND)
         intent.type = "text/plain"
         intent.putExtra(Intent.EXTRA_SUBJECT, this.getString(R.string.app_name))
-        var sAux = "\nThis application is very useful, please download and install to experience\n\n"
+        var sAux = this.getString(R.string.share_app_message_prefix)
         sAux = sAux + "https://play.google.com/store/apps/details?id=" + this.packageName
         intent.putExtra(Intent.EXTRA_TEXT, sAux)
-        this.startActivity(Intent.createChooser(intent, "Please choose"))
+        this.startActivity(Intent.createChooser(intent, this.getString(R.string.chooser_title_share)))
     } catch (e: Exception) {
         e.printStackTrace()
     }
@@ -192,7 +192,7 @@ fun Activity.share(
         // String sAux = "\nỨng dụng này rất bổ ích, thân mời bạn tải về cài đặt để trải nghiệm\n\n";
         // sAux = sAux + "https://play.google.com/store/apps/details?id=" + activity.getPackageName();
         intent.putExtra(Intent.EXTRA_TEXT, msg)
-        this.startActivity(Intent.createChooser(intent, "Share via"))
+        this.startActivity(Intent.createChooser(intent, this.getString(R.string.chooser_title_share_via)))
     } catch (e: Exception) {
         e.printStackTrace()
     }

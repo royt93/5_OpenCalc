@@ -48,4 +48,47 @@
     <string name="preferences_language_title">Sprache</string>
     <string name="domain_error">Falscher Definitionsbereich</string>
     <string name="send_feedback">Feedback senden</string>
+
+    <!-- Clipboard labels -->
+    <string name="clipboard_label_copied_result">Ergebnis kopiert</string>
+    <string name="clipboard_label_copied_calculation">Verlaufsberechnung kopiert</string>
+    <string name="clipboard_label_copied_history_result">Verlaufsergebnis kopiert</string>
+    <string name="clipboard_label_copied_calc_and_result">Berechnung und Ergebnis kopiert</string>
+
+    <!-- Toast messages -->
+    <string name="toast_double_back_to_exit">Bitte drücken Sie erneut ZURÜCK zum Beenden</string>
+
+    <!-- Dialog text -->
+    <string name="dialog_tester_community_title">Bestätigen</string>
+    <string name="dialog_tester_community_message">Wenn Sie auch Programmierer sind und Tester suchen, um Ihre Anwendung zu testen. Treten Sie jetzt unserer Tester-Community bei</string>
+    <string name="dialog_select_language_title">Sprache auswählen</string>
+    <string name="button_ok">OK</string>
+    <string name="button_cancel">Abbrechen</string>
+
+    <!-- Calculator mode indicators -->
+    <string name="degree_mode_deg">DEG</string>
+    <string name="degree_mode_rad">RAD</string>
+
+    <!-- Chooser titles -->
+    <string name="chooser_title_send_feedback">Feedback senden</string>
+    <string name="chooser_title_share">Bitte wählen</string>
+    <string name="chooser_title_share_via">Teilen über</string>
+
+    <!-- Share/Marketing text -->
+    <string name="share_app_message_prefix">\nDiese Anwendung ist sehr nützlich, bitte herunterladen und installieren, um sie zu erleben\n\n</string>
+    <string name="developer_name">SAIGON PHANTOM LABS</string>
+
+    <!-- Language settings -->
+    <string name="language_system_default">Systemstandard</string>
+    <string name="preferences_language_summary">App-Sprache auswählen</string>
+
+    <!-- Missing strings -->
+    <string name="deg">DEG</string>
+    <string name="_45">45</string>
+    <string name="get_more_apps">Weitere Apps erhalten</string>
+    <string name="share_this_app">Diese App teilen</string>
+    <string name="github">Quellcode (Forked)</string>
+    <string name="source_code">Quellcode (Original)</string>
+    <string name="license">Lizenz</string>
+    <string name="join_tester_community">Der Tester-Community beitreten</string>
 </resources>
