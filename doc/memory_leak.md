@@ -1,102 +1,70 @@
 # Memory Leak Analysis — OpenCalc
 
-> Ngày phân tích: 2026-03-24
-> Phân tích toàn bộ 19 file Kotlin trong project
-> ✅ **Đã fix toàn bộ — 2026-03-24**
+> Phân tích lần 1: 2026-03-24 (trước migrate)
+> Phân tích lần 2: 2026-03-24 (sau migrate sang AdmobWrapper SDK)
 
 ---
 
-## Tổng kết nhanh
+## Trạng thái hiện tại: ✅ CLEAN
 
-| Mức độ | Số lượng | Trạng thái |
-|--------|----------|------------|
-| 🔴 HIGH | 3 | ✅ Fixed |
-| 🟡 MEDIUM | 4 | ✅ Fixed |
-| 🟢 LOW | 2 | ✅ Fixed / Accepted |
+Sau khi migrate sang **AdmobWrapper SDK v1.1.1**, toàn bộ memory leak từ custom `AdMobManager` đã được loại bỏ. SDK quản lý ad lifecycle nội bộ.
 
 ---
 
-## 🔴 HIGH — ✅ FIXED
+## Phân tích sau migrate
 
-### 1. `AdMobManager.interstitialListener` giữ Activity reference
+### ✅ RApp.kt — No leak
+- `this` là Application context, tồn tại suốt lifecycle app
+- AppLovin `initializeSdk` callback không giữ Activity reference
+- `AdManager.init()` dùng `WeakReference<Activity>` nội bộ
 
-**File:** `AdMobManager.kt` + `MainActivity.kt`
+### ✅ SplashActivity.kt — No leak
+- `AdManager.initSplashScreen()` quản lý splash coroutine + timeout nội bộ
+- `onDestroy()` remove `finishRunnable` khỏi `window.decorView`
 
-**Vấn đề:** `AdMobManager` là singleton, `interstitialListener = this` giữ Activity vĩnh viễn.
+### ✅ MainActivity.kt — No leak
+- Không còn `interstitialListener = this` (SDK dùng callback, không cần clear)
+- `backPressHandler.removeCallbacks(resetBackPressRunnable)` trong `onDestroy()`
+- Named `Runnable` field, không dùng anonymous lambda
 
-**✅ Fix:** Thêm `onDestroy()` vào `MainActivity` để clear `interstitialListener = null`.
+### ✅ AboutActivity.kt — No leak
+- `AdManager.bannerResume(adView)` / `bannerPause` / `bannerDestroy` trong lifecycle
+- `bannerDestroy()` xóa listener TRƯỚC destroy để ngăn orphaned impressions
 
----
-
-### 2. `AdMobManager.initSplashScreen()` — Coroutine không cancel + giữ Activity
-
-**File:** `AdMobManager.kt`
-
-**Vấn đề:** `CoroutineScope(Dispatchers.Default)` không có `SupervisorJob`, `collectLatest` trên `SharedFlow` suspend mãi mãi, capture trực tiếp Activity.
-
-**✅ Fix:**
-- Thêm `splashJob: Job?` để track & cancel coroutine
-- Dùng `SupervisorJob()` trong scope
-- Dùng `withContext(Dispatchers.Main)` thay vì nested `CoroutineScope`
-- Dùng `activity.applicationContext` thay vì Activity trực tiếp
-- Cancel `splashJob` sau khi ad loaded/dismissed
+### ✅ SettingsActivity.kt — No leak
+- Tương tự AboutActivity — đầy đủ 3 lifecycle methods
 
 ---
 
-### 3. `RApp.setupAdmob()` — Unscoped CoroutineScope
+## Các file KHÔNG có memory leak (không đổi từ lần 1)
 
-**File:** `RApp.kt`
-
-**✅ Fix:** Thay `CoroutineScope(Dispatchers.IO)` bằng `CoroutineScope(Dispatchers.IO + SupervisorJob())`.
-
----
-
-## 🟡 MEDIUM — ✅ FIXED
-
-### 4. `SplashActivity.goToMain()` — postDelayed giữ Activity sau finish
-
-**File:** `SplashActivity.kt`
-
-**✅ Fix:** Dùng named `finishRunnable`, thêm `onDestroy()` với `removeCallbacks(finishRunnable)`.
-
----
-
-### 5. `MainActivity.onBackPressed()` — Handler postDelayed
-
-**File:** `MainActivity.kt`
-
-**✅ Fix:** Dùng named `resetBackPressRunnable` + `backPressHandler` field, remove callbacks trong `onDestroy()`.
+| File | Lý do |
+|------|-------|
+| `BaseActivity.kt` | Standard lifecycle |
+| `MyPreferences.kt` | Stateless |
+| `Expression.kt` | Pure logic |
+| `Calculator.kt` | Pure logic |
+| `NumberFormatter.kt` | Stateless object |
+| `History.kt` | Data class |
+| `Themes.kt` | Static methods |
+| `HistoryAdapter.kt` | RecyclerView managed |
+| `MyTileService.kt` | System-managed Service |
+| `Context.kt` | Extension functions |
+| `Applovin.kt` | All commented out |
+| `LanguageHelper.kt` | Stateless object |
+| `Activity.kt` | Extension functions |
 
 ---
 
-### 6. `AdMobManager` — Nhiều Handler.postDelayed rải rác
+## Lịch sử
 
-**File:** `AdMobManager.kt`
+### Lần 1: Trước migrate (2026-03-24)
+- 🔴 3 HIGH: `interstitialListener` giữ Activity, coroutine không cancel, unscoped CoroutineScope
+- 🟡 4 MEDIUM: Handler postDelayed leaks, thiếu onDestroy
+- 🟢 2 LOW: deprecated listener, Application reference
+- **Đã fix toàn bộ** trước khi migrate
 
-**✅ Fix:** Thay tất cả `Handler(Looper.getMainLooper())` bằng 1 `handler` field duy nhất trong object.
-
----
-
-### 7. `MainActivity` thiếu `onDestroy()`
-
-**File:** `MainActivity.kt`
-
-**✅ Fix:** Thêm `onDestroy()` để clear `interstitialListener` và remove Handler callbacks.
-
----
-
-## 🟢 LOW — Accepted
-
-### 8. `Activity.hideNavigationBar()` / `showNavigationBar()` listener
-
-**File:** `Activity.kt` — API deprecated từ API 30, các function này hiện không được gọi trong app. **Risk thấp, chấp nhận.**
-
-### 9. `AdMobManager.application` — Application reference
-
-**File:** `AdMobManager.kt` — Application context an toàn để giữ lâu dài. **Chấp nhận.**
-
----
-
-## Các file KHÔNG có memory leak
-
-`MyPreferences.kt`, `Expression.kt`, `Calculator.kt`, `NumberFormatter.kt`, `History.kt`, `Themes.kt`, `HistoryAdapter.kt`, `MyTileService.kt`, `Context.kt`, `Applovin.kt` (commented out), `LanguageHelper.kt`, `AboutActivity.kt` ✅, `SettingsActivity.kt` ✅
+### Lần 2: Sau migrate (2026-03-24)
+- **Toàn bộ code ad cũ đã xóa** (`sdkadbmob/AdMobManager.kt`)
+- **SDK mới** quản lý lifecycle tự động
+- **Kết quả:** ✅ CLEAN — không còn memory leak

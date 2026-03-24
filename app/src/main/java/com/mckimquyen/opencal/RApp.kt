@@ -7,16 +7,11 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_UNSPECIFIED
 import androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode
+import com.applovin.sdk.AppLovinSdk
 import com.google.android.gms.ads.MobileAds
 import com.mckimquyen.opencal.db.MyPreferences
-import com.mckimquyen.opencal.sdkadbmob.AdMobManager
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.launch
-
-//TODO firebase
-//TODO splash screen
+import com.roy.sdkadbmob.AdManager
+import com.roy.sdkadbmob.AdSdkConfig
 
 //review in app
 //applovin done ad id
@@ -45,7 +40,7 @@ class RApp : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        setupAdmob()
+        setupAd()
 
         // if the theme is overriding the system, the first creation doesn't work properly
         val forceDayNight = MyPreferences(this).forceDayNight
@@ -58,11 +53,35 @@ class RApp : Application() {
         }
     }
 
-    private fun setupAdmob() {
-        CoroutineScope(Dispatchers.IO + SupervisorJob()).launch {
-            MobileAds.initialize(this@RApp) {}
-            AdMobManager.init(this@RApp) { success, gaidCurrent ->
-                Log.d("roy93~", "AdMobManager init success $success, gaidCurrent $gaidCurrent")
+    private fun setupAd() {
+        val adConfig = AdSdkConfig(
+            isEnableAdmob = BuildConfig.IS_ENABLE_ADMOB,
+            isDebug = BuildConfig.DEBUG,
+            admobBannerId = BuildConfig.ADMOB_BANNER_ID,
+            admobInterstitialId = BuildConfig.ADMOB_INTERSTITIAL_ID,
+            admobAppOpenId = BuildConfig.ADMOB_APP_OPEN_ID,
+            applovinBannerId = BuildConfig.APPLOVIN_BANNER_ID,
+            applovinInterstitialId = BuildConfig.APPLOVIN_INTERSTITIAL_ID,
+            applovinAppOpenId = BuildConfig.APPLOVIN_APP_OPEN_ID,
+        )
+        AdManager.setConfig(adConfig)
+        AdManager.earlyInit(this)
+
+        if (BuildConfig.IS_ENABLE_ADMOB) {
+            // AdMob: init trực tiếp trên Main Thread (yêu cầu của Google)
+            MobileAds.initialize(this) { status ->
+                AdManager.init(this, adConfig) { success, gaid ->
+                    Log.d("roy93~", "AdManager init success=$success, gaid=$gaid")
+                }
+            }
+        } else {
+            // AppLovin: init SDK trước, sau đó mới gọi AdManager.init
+            val sdk = AppLovinSdk.getInstance(this)
+            sdk.mediationProvider = "max"
+            sdk.initializeSdk {
+                AdManager.init(this, adConfig) { success, gaid ->
+                    Log.d("roy93~", "AdManager init success=$success, gaid=$gaid")
+                }
             }
         }
     }

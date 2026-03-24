@@ -1,10 +1,9 @@
 package com.mckimquyen.opencal.ui
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import com.google.android.gms.ads.AdSize
-import com.google.android.gms.ads.AdView
 import com.mckimquyen.opencal.BaseActivity
 import com.mckimquyen.opencal.BuildConfig
 import com.mckimquyen.opencal.R
@@ -17,14 +16,13 @@ import com.mckimquyen.opencal.ext.sendEmail
 import com.mckimquyen.opencal.ext.shareApp
 import com.mckimquyen.opencal.model.Themes
 import com.mckimquyen.opencal.rateAppInApp
-import com.mckimquyen.opencal.sdkadbmob.AdMobManager
-import com.mckimquyen.opencal.sdkadbmob.UIUtils
+import com.roy.sdkadbmob.AdManager
+import com.roy.sdkadbmob.UIUtils
 
 class AboutActivity : BaseActivity() {
     private lateinit var binding: AAboutBinding
 
-    //    private var adView: MaxAdView? = null
-    private var adView: AdView? = null
+    private var adView: View? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,11 +33,11 @@ class AboutActivity : BaseActivity() {
     override fun onResume() {
         super.onResume()
         rateAppInApp(BuildConfig.DEBUG)
-        adView?.resume()
+        AdManager.bannerResume(adView)
     }
 
     override fun onPause() {
-        adView?.pause()
+        AdManager.bannerPause(adView)
         super.onPause()
     }
 
@@ -113,18 +111,16 @@ class AboutActivity : BaseActivity() {
 //            viewGroup = binding.flAd,
 //            isAdaptiveBanner = true,
 //        )
-        adView = AdMobManager.loadBanner(
+        adView = AdManager.loadBanner(
             context = this,
-            adUnitId = BuildConfig.ADMOB_BANNER_ID,
             container = binding.layoutAdBanner.bannerContainer,
             tvLabelAd = binding.layoutAdBanner.tvLabelAd,
-            adSize = AdSize.LARGE_BANNER,
         )
     }
 
     override fun onDestroy() {
 //        binding.flAd.destroyAdBanner(adView)
-        adView?.destroy()
+        AdManager.bannerDestroy(adView)
         super.onDestroy()
     }
 }

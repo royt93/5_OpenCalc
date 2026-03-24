@@ -23,8 +23,6 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.gms.ads.AdError
-import com.google.android.gms.ads.LoadAdError
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.mckimquyen.opencal.BaseActivity
 import com.mckimquyen.opencal.BuildConfig
@@ -42,8 +40,8 @@ import com.mckimquyen.opencal.helper.NumberFormatter
 import com.mckimquyen.opencal.model.History
 import com.mckimquyen.opencal.model.Themes
 import com.mckimquyen.opencal.model.adt.HistoryAdapter
-import com.mckimquyen.opencal.sdkadbmob.AdMobManager
-import com.mckimquyen.opencal.sdkadbmob.UIUtils
+import com.roy.sdkadbmob.AdManager
+import com.roy.sdkadbmob.UIUtils
 import com.sothree.slidinguppanel.PanelSlideListener
 import com.sothree.slidinguppanel.PanelState
 import kotlinx.coroutines.Dispatchers
@@ -57,7 +55,7 @@ import kotlin.jvm.java
 
 var appLanguage: Locale = Locale.getDefault()
 
-class MainActivity : BaseActivity(), AdMobManager.InterstitialAdListener {
+class MainActivity : BaseActivity() {
     private lateinit var view: View
 
     private val decimalSeparatorSymbol =
@@ -93,9 +91,8 @@ class MainActivity : BaseActivity(), AdMobManager.InterstitialAdListener {
             paddingBottom = true
         )
 
-        AdMobManager.setCurrentActivity(this)
-        AdMobManager.interstitialListener = this
-        AdMobManager.loadInterstitial(this, BuildConfig.ADMOB_INTERSTITIAL_ID)
+        AdManager.setCurrentActivity(this)
+        AdManager.loadInterstitial(this)
 
         // Disable the keyboard on display EditText
         binding.input.showSoftInputOnFocus = false
@@ -281,7 +278,7 @@ class MainActivity : BaseActivity(), AdMobManager.InterstitialAdListener {
     }
 
     fun openAbout(menuItem: MenuItem) {
-        AdMobManager.showInterstitial(this) { success ->
+        AdManager.showInterstitial(this) { success ->
             if (success) {
                 Log.d("roy93~", "Ad đã hiển thị và đóng thành công")
             } else {
@@ -293,7 +290,7 @@ class MainActivity : BaseActivity(), AdMobManager.InterstitialAdListener {
     }
 
     fun openSettings(menuItem: MenuItem) {
-        AdMobManager.showInterstitial(this) { success ->
+        AdManager.showInterstitial(this) { success ->
             if (success) {
                 Log.d("roy93~", "Ad đã hiển thị và đóng thành công")
             } else {
@@ -1098,10 +1095,6 @@ class MainActivity : BaseActivity(), AdMobManager.InterstitialAdListener {
     }
 
     override fun onDestroy() {
-        // Fix memory leak: clear singleton reference to this Activity
-        if (AdMobManager.interstitialListener === this) {
-            AdMobManager.interstitialListener = null
-        }
         // Fix memory leak: remove pending Handler callbacks
         backPressHandler.removeCallbacks(resetBackPressRunnable)
         super.onDestroy()
@@ -1119,26 +1112,5 @@ class MainActivity : BaseActivity(), AdMobManager.InterstitialAdListener {
                 dialog.dismiss()
             }
             .show()
-    }
-
-    override fun onAdLoaded() {
-    }
-
-    override fun onAdFailedToLoad(error: LoadAdError) {
-    }
-
-    override fun onAdShowed() {
-    }
-
-    override fun onAdDismissed() {
-    }
-
-    override fun onAdClicked() {
-    }
-
-    override fun onAdFailedToShow(error: AdError) {
-    }
-
-    override fun onAdNotAvailable() {
     }
 }

@@ -38,6 +38,11 @@ android {
             buildConfigField "String", "ADMOB_BANNER_ID", "\"ca-app-pub-3612191981543807/4627557404\""
             buildConfigField "String", "ADMOB_INTERSTITIAL_ID", "\"ca-app-pub-3612191981543807/4059747044\""
             buildConfigField "String", "ADMOB_APP_OPEN_ID", "\"ca-app-pub-3612191981543807/7338622864\""
+            buildConfigField "String", "APPLOVIN_SDK_KEY", "\"e75FnQfS9XTTqM1Kne69U7PW_MBgAnGQTFvtwVVui6kRPKs5L7ws9twr5IQWwVfzPKZ5pF2IfDa7lguMgGlCyt\""
+            buildConfigField "String", "APPLOVIN_BANNER_ID", "\"86cdc9050561f316\""
+            buildConfigField "String", "APPLOVIN_INTERSTITIAL_ID", "\"4e8de0b36750ea6c\""
+            buildConfigField "String", "APPLOVIN_APP_OPEN_ID", "\"e9b4e3a8e16b96d4\""
+            buildConfigField "Boolean", "IS_ENABLE_ADMOB", "false"
         }
         debug {
             minifyEnabled false
@@ -47,6 +52,11 @@ android {
             buildConfigField "String", "ADMOB_BANNER_ID", "\"ca-app-pub-3940256099942544/6300978111\""
             buildConfigField "String", "ADMOB_INTERSTITIAL_ID", "\"ca-app-pub-3940256099942544/1033173712\""
             buildConfigField "String", "ADMOB_APP_OPEN_ID", "\"ca-app-pub-3940256099942544/9257395921\""
+            buildConfigField "String", "APPLOVIN_SDK_KEY", "\"e75FnQfS9XTTqM1Kne69U7PW_MBgAnGQTFvtwVVui6kRPKs5L7ws9twr5IQWwVfzPKZ5pF2IfDa7lguMgGlCyt\""
+            buildConfigField "String", "APPLOVIN_BANNER_ID", "\"86cdc9050561f316\""
+            buildConfigField "String", "APPLOVIN_INTERSTITIAL_ID", "\"4e8de0b36750ea6c\""
+            buildConfigField "String", "APPLOVIN_APP_OPEN_ID", "\"e9b4e3a8e16b96d4\""
+            buildConfigField "Boolean", "IS_ENABLE_ADMOB", "false"
         }
     }
 
@@ -115,8 +125,8 @@ dependencies {
     api 'androidx.preference:preference-ktx:1.2.1'
     api 'com.google.code.gson:gson:2.13.1'
 //    api 'com.applovin:applovin-sdk:13.0.1'
-    implementation("com.google.android.gms:play-services-ads:24.3.0")
-    implementation("com.google.ads.mediation:applovin:13.2.0.1")
+    // AdmobWrapper SDK — AdMob + AppLovin + AdSafety
+    implementation("com.github.royt93:AdmobWrapper:1.1.1")
     implementation("com.google.android.play:review:2.0.2")
     implementation("com.google.android.play:review-ktx:2.0.2")
 //    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.14'

@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
+import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.ImageView
@@ -13,22 +14,19 @@ import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
-import com.google.android.gms.ads.AdSize
-import com.google.android.gms.ads.AdView
 import com.mckimquyen.opencal.BaseActivity
 import com.mckimquyen.opencal.BuildConfig
 import com.mckimquyen.opencal.R
 import com.mckimquyen.opencal.db.MyPreferences
 import com.mckimquyen.opencal.model.Themes
 import com.mckimquyen.opencal.rateAppInApp
-import com.mckimquyen.opencal.sdkadbmob.AdMobManager
-import com.mckimquyen.opencal.sdkadbmob.UIUtils
+import com.roy.sdkadbmob.AdManager
+import com.roy.sdkadbmob.UIUtils
 import java.util.Locale
 
 class SettingsActivity : BaseActivity() {
 
-    //    private var adView: MaxAdView? = null
-    private var adView: AdView? = null
+    private var adView: View? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +37,7 @@ class SettingsActivity : BaseActivity() {
     override fun onResume() {
         super.onResume()
         rateAppInApp(BuildConfig.DEBUG)
-        adView?.resume()
+        AdManager.bannerResume(adView)
     }
 
     private fun setupViews(savedInstanceState: Bundle?) {
@@ -84,22 +82,20 @@ class SettingsActivity : BaseActivity() {
         val layoutAdBanner = findViewById<ViewGroup>(R.id.layoutAdBanner)
         val bannerContainer = layoutAdBanner.findViewById<FrameLayout>(R.id.bannerContainer)
         val tvLabelAd = layoutAdBanner.findViewById<TextView>(R.id.tvLabelAd)
-        adView = AdMobManager.loadBanner(
+        adView = AdManager.loadBanner(
             context = this,
-            adUnitId = BuildConfig.ADMOB_BANNER_ID,
             container = bannerContainer,
             tvLabelAd = tvLabelAd,
-            adSize = AdSize.LARGE_BANNER,
         )
     }
 
     override fun onPause() {
-        adView?.pause()
+        AdManager.bannerPause(adView)
         super.onPause()
     }
 
     override fun onDestroy() {
-        adView?.destroy()
+        AdManager.bannerDestroy(adView)
 //        findViewById<FrameLayout>(R.id.flAd).destroyAdBanner(adView)
         super.onDestroy()
     }
