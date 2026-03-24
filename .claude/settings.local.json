@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(for dir in ar az bn bs cs de el es fa fr hi hr in it ja mk ml nb-rNO or pl pt-rBR ru sr tr uk zh-rTW zh-rHK)",
+      "Bash(do echo \"=== values-$dir ===\")",
+      "Bash(done)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
