@@ -2,6 +2,8 @@ package com.mckimquyen.opencal
 
 import android.app.Application
 import android.content.Context
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
@@ -72,6 +74,10 @@ class RApp : Application() {
             MobileAds.initialize(this) { status ->
                 AdManager.init(this, adConfig) { success, gaid ->
                     Log.d("roy93~", "AdManager init success=$success, gaid=$gaid")
+                    // registerAppOpenAdLifecycle phải gọi trên Main Thread
+                    Handler(Looper.getMainLooper()).post {
+                        AdManager.registerAppOpenAdLifecycle(this@RApp)
+                    }
                 }
             }
         } else {
@@ -81,6 +87,10 @@ class RApp : Application() {
             sdk.initializeSdk {
                 AdManager.init(this, adConfig) { success, gaid ->
                     Log.d("roy93~", "AdManager init success=$success, gaid=$gaid")
+                    // registerAppOpenAdLifecycle phải gọi trên Main Thread
+                    Handler(Looper.getMainLooper()).post {
+                        AdManager.registerAppOpenAdLifecycle(this@RApp)
+                    }
                 }
             }
         }
