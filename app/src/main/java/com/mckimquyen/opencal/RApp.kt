@@ -12,6 +12,7 @@ import com.mckimquyen.opencal.db.MyPreferences
 import com.mckimquyen.opencal.sdkadbmob.AdMobManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 
 //TODO firebase
@@ -58,7 +59,7 @@ class RApp : Application() {
     }
 
     private fun setupAdmob() {
-        CoroutineScope(Dispatchers.IO).launch {
+        CoroutineScope(Dispatchers.IO + SupervisorJob()).launch {
             MobileAds.initialize(this@RApp) {}
             AdMobManager.init(this@RApp) { success, gaidCurrent ->
                 Log.d("roy93~", "AdMobManager init success $success, gaidCurrent $gaidCurrent")

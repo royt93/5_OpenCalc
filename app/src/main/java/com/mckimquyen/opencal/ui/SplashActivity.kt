@@ -31,6 +31,8 @@ class SplashActivity : AppCompatActivity() {
         })
     }
 
+    private val finishRunnable = Runnable { finish() }
+
     private fun goToMain() {
         val intent = Intent(this@SplashActivity, MainActivity::class.java)
         startActivity(intent)
@@ -38,8 +40,12 @@ class SplashActivity : AppCompatActivity() {
 
         // Sync finish timing with system animation duration for smoother transition
         val animationDuration = resources.getInteger(android.R.integer.config_mediumAnimTime)
-        window.decorView.postDelayed({
-            finish()
-        }, animationDuration.toLong())
+        window.decorView.postDelayed(finishRunnable, animationDuration.toLong())
+    }
+
+    override fun onDestroy() {
+        // Fix memory leak: remove pending postDelayed callbacks
+        window.decorView.removeCallbacks(finishRunnable)
+        super.onDestroy()
     }
 }

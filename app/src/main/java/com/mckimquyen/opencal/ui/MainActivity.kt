@@ -1083,6 +1083,8 @@ class MainActivity : BaseActivity(), AdMobManager.InterstitialAdListener {
     }
 
     private var doubleBackToExitPressedOnce: Boolean = false
+    private val backPressHandler = Handler(Looper.getMainLooper())
+    private val resetBackPressRunnable = Runnable { doubleBackToExitPressedOnce = false }
 
     @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
@@ -1092,7 +1094,17 @@ class MainActivity : BaseActivity(), AdMobManager.InterstitialAdListener {
         }
         this.doubleBackToExitPressedOnce = true
         Toast.makeText(this, getString(R.string.toast_double_back_to_exit), Toast.LENGTH_LONG).show()
-        Handler(Looper.getMainLooper()).postDelayed({ doubleBackToExitPressedOnce = false }, 2000)
+        backPressHandler.postDelayed(resetBackPressRunnable, 2000)
+    }
+
+    override fun onDestroy() {
+        // Fix memory leak: clear singleton reference to this Activity
+        if (AdMobManager.interstitialListener === this) {
+            AdMobManager.interstitialListener = null
+        }
+        // Fix memory leak: remove pending Handler callbacks
+        backPressHandler.removeCallbacks(resetBackPressRunnable)
+        super.onDestroy()
     }
 
     private fun showDialogTesterCommunity() {
