@@ -96,4 +96,38 @@
     <string name="source_code">Kode sumber (Original)</string>
     <string name="license">Lisensi</string>
     <string name="join_tester_community">Bergabung dengan komunitas penguji</string>
+
+    <!-- VIP -->
+    <string name="vip_screen_title">VIP</string>
+    <string name="vip_badge">VIP</string>
+    <string name="vip_active">VIP aktif</string>
+    <string name="vip_free_user">Pengguna gratis</string>
+    <string name="vip_subtitle_free">Buka pengalaman tanpa iklan</string>
+    <string name="vip_until">Sampai %1$s</string>
+    <string name="vip_activated_at">Diaktifkan: %1$s</string>
+    <string name="vip_expires_at">Kedaluwarsa: %1$s</string>
+    <string name="vip_remaining">%1$dd %2$02dh %3$02dm %4$02ds</string>
+    <string name="vip_active_remaining">Tersisa: %1$dd %2$dh</string>
+    <string name="vip_redeem_label">Masukkan kode VIP</string>
+    <string name="vip_redeem_button">Aktifkan</string>
+    <string name="vip_redeem_invalid">Kode VIP tidak valid</string>
+    <string name="vip_watch_ad_3d">Tonton iklan → 3 hari VIP</string>
+    <string name="vip_buy_30d_locked">Beli VIP 30 hari — segera hadir</string>
+    <string name="vip_buy_90d_locked">Beli VIP 90 hari — segera hadir</string>
+    <string name="vip_buy_1y_locked">Beli VIP 1 tahun — segera hadir</string>
+    <string name="vip_buy_lifetime_locked">Beli VIP seumur hidup — segera hadir</string>
+    <string name="vip_restore_locked">Pulihkan pembelian — segera hadir</string>
+    <string name="vip_revoke_all_button">Cabut VIP</string>
+    <string name="vip_revoke_all_confirm_title">Konfirmasi pencabutan</string>
+    <string name="vip_revoke_all_confirm_message">Yakin ingin mencabut VIP dan kembali ke akun gratis?</string>
+    <string name="vip_entry_first_install">🎁 Hadiah instalasi baru</string>
+    <string name="vip_entry_redeemed">VIP %1$d hari</string>
+    <string name="vip_success_title">Berhasil</string>
+    <string name="vip_failed_title">Gagal</string>
+    <string name="back">Kembali</string>
+    <string name="cancel">Batal</string>
+    <string name="confirm">Konfirmasi</string>
+    <string name="ok">OK</string>
+    <string name="vip_reward_not_earned">Hadiah tidak diperoleh. Coba lagi nanti.</string>
+    <string name="vip_success_message">Selamat! VIP aktif selama %1$d hari. Nikmati pengalaman tanpa iklan.</string>
 </resources>

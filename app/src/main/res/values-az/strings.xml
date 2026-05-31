@@ -90,4 +90,38 @@
     <string name="source_code">Mənbə kodu (Original)</string>
     <string name="license">Lisenziya</string>
     <string name="join_tester_community">Sınaqçı icmasına qoşul</string>
+
+    <!-- VIP -->
+    <string name="vip_screen_title">VIP</string>
+    <string name="vip_badge">VIP</string>
+    <string name="vip_active">VIP aktiv</string>
+    <string name="vip_free_user">Pulsuz istifadəçi</string>
+    <string name="vip_subtitle_free">Reklamsız təcrübəni açın</string>
+    <string name="vip_until">%1$s tarixinədək</string>
+    <string name="vip_activated_at">Aktivləşdirildi: %1$s</string>
+    <string name="vip_expires_at">Bitir: %1$s</string>
+    <string name="vip_remaining">%1$dd %2$02dh %3$02dm %4$02ds</string>
+    <string name="vip_active_remaining">Qalıb: %1$dd %2$dh</string>
+    <string name="vip_redeem_label">VIP kodunu daxil edin</string>
+    <string name="vip_redeem_button">Aktivləşdir</string>
+    <string name="vip_redeem_invalid">Yanlış VIP kodu</string>
+    <string name="vip_watch_ad_3d">Reklama bax → 3 gün VIP</string>
+    <string name="vip_buy_30d_locked">30 günlük VIP al — tezliklə</string>
+    <string name="vip_buy_90d_locked">90 günlük VIP al — tezliklə</string>
+    <string name="vip_buy_1y_locked">1 illik VIP al — tezliklə</string>
+    <string name="vip_buy_lifetime_locked">Ömürlük VIP al — tezliklə</string>
+    <string name="vip_restore_locked">Alışı bərpa et — tezliklə</string>
+    <string name="vip_revoke_all_button">VIP-i ləğv et</string>
+    <string name="vip_revoke_all_confirm_title">Ləğvi təsdiqlə</string>
+    <string name="vip_revoke_all_confirm_message">VIP-i ləğv edib pulsuz hesaba qayıtmaq istədiyinizə əminsiniz?</string>
+    <string name="vip_entry_first_install">🎁 Yeni quraşdırma hədiyyəsi</string>
+    <string name="vip_entry_redeemed">VIP %1$d gün</string>
+    <string name="vip_success_title">Uğurlu</string>
+    <string name="vip_failed_title">Uğursuz</string>
+    <string name="back">Geri</string>
+    <string name="cancel">Ləğv et</string>
+    <string name="confirm">Təsdiqlə</string>
+    <string name="ok">OK</string>
+    <string name="vip_reward_not_earned">Mükafat qazanılmadı. Sonra yenidən cəhd edin.</string>
+    <string name="vip_success_message">Təbriklər! VIP %1$d gün üçün aktivləşdirildi. Reklamsız təcrübədən həzz alın.</string>
 </resources>

@@ -10,9 +10,11 @@ import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_UNSPECIFIED
 import androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode
 import com.applovin.sdk.AppLovinSdk
 import com.google.android.gms.ads.MobileAds
+import com.mckimquyen.opencal.common.const.AdKeys
 import com.mckimquyen.opencal.db.MyPreferences
 import com.mckimquyen.opencal.util.Logger
 import com.roy.sdkadbmob.AdManager
+import com.roy.sdkadbmob.AdSafetyLimits
 import com.roy.sdkadbmob.AdSdkConfig
 
 //review in app
@@ -62,9 +64,15 @@ class RApp : Application() {
             admobBannerId = BuildConfig.ADMOB_BANNER_ID,
             admobInterstitialId = BuildConfig.ADMOB_INTERSTITIAL_ID,
             admobAppOpenId = BuildConfig.ADMOB_APP_OPEN_ID,
+            admobRewardedId = BuildConfig.ADMOB_REWARDED_ID,
             applovinBannerId = BuildConfig.APPLOVIN_BANNER_ID,
             applovinInterstitialId = BuildConfig.APPLOVIN_INTERSTITIAL_ID,
             applovinAppOpenId = BuildConfig.APPLOVIN_APP_OPEN_ID,
+            applovinRewardedId = BuildConfig.APPLOVIN_REWARDED_ID,
+            applovinSdkKey = BuildConfig.APPLOVIN_SDK_KEY,
+            vipKeySecret = AdKeys.VIP_SECRET,
+            // Debug: nới throttle để QC test ad nhanh. Release: preset UTILITY (UX-first cho app công cụ).
+            safety = if (BuildConfig.DEBUG) AdSafetyLimits.TEST else AdSafetyLimits.UTILITY,
         )
         AdManager.setConfig(adConfig)
         AdManager.earlyInit(this)

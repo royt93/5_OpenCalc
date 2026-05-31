@@ -90,4 +90,38 @@
     <string name="source_code">सोर्स कोड (Original)</string>
     <string name="license">लाइसेंस</string>
     <string name="join_tester_community">परीक्षक समुदाय में शामिल हों</string>
+
+    <!-- VIP -->
+    <string name="vip_screen_title">VIP</string>
+    <string name="vip_badge">VIP</string>
+    <string name="vip_active">VIP सक्रिय</string>
+    <string name="vip_free_user">निःशुल्क उपयोगकर्ता</string>
+    <string name="vip_subtitle_free">विज्ञापन-मुक्त अनुभव अनलॉक करें</string>
+    <string name="vip_until">%1$s तक</string>
+    <string name="vip_activated_at">सक्रिय: %1$s</string>
+    <string name="vip_expires_at">समाप्ति: %1$s</string>
+    <string name="vip_remaining">%1$dd %2$02dh %3$02dm %4$02ds</string>
+    <string name="vip_active_remaining">शेष: %1$dd %2$dh</string>
+    <string name="vip_redeem_label">VIP कोड दर्ज करें</string>
+    <string name="vip_redeem_button">सक्रिय करें</string>
+    <string name="vip_redeem_invalid">अमान्य VIP कोड</string>
+    <string name="vip_watch_ad_3d">विज्ञापन देखें → 3 दिन VIP</string>
+    <string name="vip_buy_30d_locked">30 दिन VIP खरीदें — जल्द आ रहा है</string>
+    <string name="vip_buy_90d_locked">90 दिन VIP खरीदें — जल्द आ रहा है</string>
+    <string name="vip_buy_1y_locked">1 वर्ष VIP खरीदें — जल्द आ रहा है</string>
+    <string name="vip_buy_lifetime_locked">आजीवन VIP खरीदें — जल्द आ रहा है</string>
+    <string name="vip_restore_locked">खरीद पुनर्स्थापित करें — जल्द आ रहा है</string>
+    <string name="vip_revoke_all_button">VIP रद्द करें</string>
+    <string name="vip_revoke_all_confirm_title">रद्द करने की पुष्टि करें</string>
+    <string name="vip_revoke_all_confirm_message">क्या आप वाकई VIP रद्द करके निःशुल्क खाते पर लौटना चाहते हैं?</string>
+    <string name="vip_entry_first_install">🎁 नई इंस्टॉल उपहार</string>
+    <string name="vip_entry_redeemed">VIP %1$d दिन</string>
+    <string name="vip_success_title">सफल</string>
+    <string name="vip_failed_title">विफल</string>
+    <string name="back">वापस</string>
+    <string name="cancel">रद्द करें</string>
+    <string name="confirm">पुष्टि करें</string>
+    <string name="ok">OK</string>
+    <string name="vip_reward_not_earned">इनाम नहीं मिला। बाद में पुनः प्रयास करें।</string>
+    <string name="vip_success_message">बधाई हो! VIP %1$d दिनों के लिए सक्रिय हो गया। विज्ञापन-मुक्त अनुभव का आनंद लें।</string>
 </resources>

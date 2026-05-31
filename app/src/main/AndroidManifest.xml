@@ -38,6 +38,10 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
+            android:name="com.mckimquyen.opencal.feature.vip.VipActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".ui.SplashActivity"
             android:exported="true"
             android:theme="@style/SplashTheme">

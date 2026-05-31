@@ -134,4 +134,40 @@
     <!-- Language settings -->
     <string name="language_system_default">System Default</string>
     <string name="preferences_language_summary">Select app language</string>
+
+    <!-- VIP -->
+    <string name="vip_screen_title">VIP</string>
+    <string name="vip_badge">VIP</string>
+    <string name="vip_active">VIP active</string>
+    <string name="vip_free_user">Free user</string>
+    <string name="vip_subtitle_free">Unlock an ad-free experience</string>
+    <string name="vip_until">Until %1$s</string>
+    <string name="vip_activated_at">Activated: %1$s</string>
+    <string name="vip_expires_at">Expires: %1$s</string>
+    <string name="vip_remaining">%1$dd %2$02dh %3$02dm %4$02ds</string>
+    <string name="vip_active_remaining">Remaining: %1$dd %2$dh</string>
+    <string name="vip_redeem_label">Enter VIP code</string>
+    <string name="vip_redeem_button">Activate</string>
+    <string name="vip_redeem_invalid">Invalid VIP code</string>
+    <string name="vip_watch_ad_3d">Watch ad → 3 days VIP</string>
+    <string name="vip_buy_30d_locked">Buy 30-day VIP — coming soon</string>
+    <string name="vip_buy_90d_locked">Buy 90-day VIP — coming soon</string>
+    <string name="vip_buy_1y_locked">Buy 1-year VIP — coming soon</string>
+    <string name="vip_buy_lifetime_locked">Buy lifetime VIP — coming soon</string>
+    <string name="vip_restore_locked">Restore purchase — coming soon</string>
+    <string name="vip_revoke_all_button">Revoke VIP</string>
+    <string name="vip_revoke_all_confirm_title">Confirm revoke</string>
+    <string name="vip_revoke_all_confirm_message">Are you sure you want to revoke VIP and return to a Free account?</string>
+    <string name="vip_entry_first_install">🎁 New install gift</string>
+    <string name="vip_entry_redeemed">VIP %1$d days</string>
+    <string name="vip_success_title">Success</string>
+    <string name="vip_failed_title">Failed</string>
+
+    <!-- Common -->
+    <string name="back">Back</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm">Confirm</string>
+    <string name="ok">OK</string>
+    <string name="vip_reward_not_earned">Reward not earned. Please try again later.</string>
+    <string name="vip_success_message">Congratulations! VIP activated for %1$d days. Enjoy your ad-free experience.</string>
 </resources>

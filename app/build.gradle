@@ -42,6 +42,13 @@ android {
             buildConfigField "String", "APPLOVIN_BANNER_ID", "\"86cdc9050561f316\""
             buildConfigField "String", "APPLOVIN_INTERSTITIAL_ID", "\"4e8de0b36750ea6c\""
             buildConfigField "String", "APPLOVIN_APP_OPEN_ID", "\"e9b4e3a8e16b96d4\""
+            // Rewarded: AdMob dùng test ID Google tạm thời (thay ID thật trước khi phát hành);
+            // AppLovin dùng ID có sẵn trong source (doc/AD.MD).
+            buildConfigField "String", "ADMOB_REWARDED_ID", "\"ca-app-pub-3940256099942544/5224354917\""
+            buildConfigField "String", "APPLOVIN_REWARDED_ID", "\"5423b3cd5889dcae\""
+            // VIP secret (Base64 của plain key 30 ngày) — đi qua BuildConfig, không hardcode plain trong .kt.
+            buildConfigField "String", "VIP_SECRET_B64", "\"OWZBMHE3ZU4hMjdjTHgwNEAyMTk5M1kydTBJNyNRMA==\""
+            buildConfigField "String", "PRIVACY_POLICY_URL", "\"https://loitp.notion.site/loitp/Privacy-Policy-319b1cd8783942fa8923d2a3c9bce60f/\""
             buildConfigField "Boolean", "IS_ENABLE_ADMOB", "false"
         }
         debug {
@@ -56,6 +63,11 @@ android {
             buildConfigField "String", "APPLOVIN_BANNER_ID", "\"86cdc9050561f316\""
             buildConfigField "String", "APPLOVIN_INTERSTITIAL_ID", "\"4e8de0b36750ea6c\""
             buildConfigField "String", "APPLOVIN_APP_OPEN_ID", "\"e9b4e3a8e16b96d4\""
+            // Rewarded test ID Google cho debug.
+            buildConfigField "String", "ADMOB_REWARDED_ID", "\"ca-app-pub-3940256099942544/5224354917\""
+            buildConfigField "String", "APPLOVIN_REWARDED_ID", "\"5423b3cd5889dcae\""
+            buildConfigField "String", "VIP_SECRET_B64", "\"OWZBMHE3ZU4hMjdjTHgwNEAyMTk5M1kydTBJNyNRMA==\""
+            buildConfigField "String", "PRIVACY_POLICY_URL", "\"https://loitp.notion.site/loitp/Privacy-Policy-319b1cd8783942fa8923d2a3c9bce60f/\""
             buildConfigField "Boolean", "IS_ENABLE_ADMOB", "false"
         }
     }
@@ -132,10 +144,12 @@ dependencies {
     api 'androidx.preference:preference-ktx:1.2.1'
     api 'com.google.code.gson:gson:2.13.1'
 //    api 'com.applovin:applovin-sdk:13.0.1'
-    // AdmobWrapper SDK — AdMob + AppLovin + AdSafety
-    implementation("com.github.royt93:AdmobWrapper:1.1.1")
+    // AdmobApplovinWrapper SDK — AdMob + AppLovin + AdSafety + UMP consent + VIP-by-key + auto-trial
+    implementation("com.github.royt93:AdmobApplovinWrapper:1.1.5")
     implementation("com.google.android.play:review:2.0.2")
     implementation("com.google.android.play:review-ktx:2.0.2")
+    // Confetti khi activate VIP thành công (VIP screen animation #5)
+    implementation("nl.dionsegijn:konfetti-xml:2.0.5")
 //    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.14'
 
     // ===== Unit test (JVM) =====

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Gradient xám cho user Free -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <gradient
+        android:angle="45"
+        android:startColor="#9E9E9E"
+        android:centerColor="#BDBDBD"
+        android:endColor="#757575"
+        android:type="linear" />
+    <corners android:radius="20dp" />
+</shape>

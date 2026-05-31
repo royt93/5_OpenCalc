@@ -581,6 +581,7 @@
             tools:ignore="MissingConstraints" />-->
 
         <ImageButton
+            android:id="@+id/btnAppMenu"
             style="@style/RobotoFontCondensedLight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -592,6 +593,22 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_baseline_more_vert_24"
             tools:ignore="UsingOnClickInXml" />
+
+        <!-- Touch point VIP: LUÔN hiện ở action bar; màu sắc đổi theo trạng thái VIP
+             (vàng đặc = đang VIP, viền = free) — set trong MainActivity.bindVipBadge(). -->
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipVipBadge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:text="@string/vip_badge"
+            android:textColor="@color/vip_on_gold"
+            app:chipBackgroundColor="@color/vip_gold"
+            app:chipIcon="@drawable/ic_workspace_premium"
+            app:chipIconTint="@color/vip_on_gold"
+            app:layout_constraintBottom_toBottomOf="@+id/btnAppMenu"
+            app:layout_constraintEnd_toStartOf="@+id/btnAppMenu"
+            app:layout_constraintTop_toTopOf="@+id/btnAppMenu" />
 
         <TextView
             android:id="@+id/degreeTextView"

@@ -92,4 +92,38 @@
     <string name="source_code">Исходный код (Original)</string>
     <string name="license">Лицензия</string>
     <string name="join_tester_community">Присоединиться к сообществу тестировщиков</string>
+
+    <!-- VIP -->
+    <string name="vip_screen_title">VIP</string>
+    <string name="vip_badge">VIP</string>
+    <string name="vip_active">VIP активен</string>
+    <string name="vip_free_user">Бесплатный пользователь</string>
+    <string name="vip_subtitle_free">Откройте доступ без рекламы</string>
+    <string name="vip_until">До %1$s</string>
+    <string name="vip_activated_at">Активировано: %1$s</string>
+    <string name="vip_expires_at">Истекает: %1$s</string>
+    <string name="vip_remaining">%1$dd %2$02dh %3$02dm %4$02ds</string>
+    <string name="vip_active_remaining">Осталось: %1$dd %2$dh</string>
+    <string name="vip_redeem_label">Введите VIP-код</string>
+    <string name="vip_redeem_button">Активировать</string>
+    <string name="vip_redeem_invalid">Неверный VIP-код</string>
+    <string name="vip_watch_ad_3d">Смотреть рекламу → 3 дня VIP</string>
+    <string name="vip_buy_30d_locked">Купить VIP 30 дней — скоро</string>
+    <string name="vip_buy_90d_locked">Купить VIP 90 дней — скоро</string>
+    <string name="vip_buy_1y_locked">Купить VIP 1 год — скоро</string>
+    <string name="vip_buy_lifetime_locked">Купить VIP навсегда — скоро</string>
+    <string name="vip_restore_locked">Восстановить покупку — скоро</string>
+    <string name="vip_revoke_all_button">Отозвать VIP</string>
+    <string name="vip_revoke_all_confirm_title">Подтвердите отзыв</string>
+    <string name="vip_revoke_all_confirm_message">Вы уверены, что хотите отозвать VIP и вернуться к бесплатному аккаунту?</string>
+    <string name="vip_entry_first_install">🎁 Подарок за установку</string>
+    <string name="vip_entry_redeemed">VIP %1$d дн.</string>
+    <string name="vip_success_title">Успешно</string>
+    <string name="vip_failed_title">Ошибка</string>
+    <string name="back">Назад</string>
+    <string name="cancel">Отмена</string>
+    <string name="confirm">Подтвердить</string>
+    <string name="ok">OK</string>
+    <string name="vip_reward_not_earned">Награда не получена. Повторите попытку позже.</string>
+    <string name="vip_success_message">Поздравляем! VIP активирован на %1$d дн. Наслаждайтесь использованием без рекламы.</string>
 </resources>

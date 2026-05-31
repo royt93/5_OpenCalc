@@ -90,4 +90,38 @@
     <string name="source_code">ソースコード (Original)</string>
     <string name="license">ライセンス</string>
     <string name="join_tester_community">テスターコミュニティに参加</string>
+
+    <!-- VIP -->
+    <string name="vip_screen_title">VIP</string>
+    <string name="vip_badge">VIP</string>
+    <string name="vip_active">VIP 有効</string>
+    <string name="vip_free_user">無料ユーザー</string>
+    <string name="vip_subtitle_free">広告なしの体験を解放</string>
+    <string name="vip_until">%1$s まで</string>
+    <string name="vip_activated_at">有効化: %1$s</string>
+    <string name="vip_expires_at">期限: %1$s</string>
+    <string name="vip_remaining">%1$dd %2$02dh %3$02dm %4$02ds</string>
+    <string name="vip_active_remaining">残り: %1$dd %2$dh</string>
+    <string name="vip_redeem_label">VIPコードを入力</string>
+    <string name="vip_redeem_button">有効化</string>
+    <string name="vip_redeem_invalid">無効なVIPコード</string>
+    <string name="vip_watch_ad_3d">広告を見る → VIP 3日間</string>
+    <string name="vip_buy_30d_locked">VIP 30日を購入 — 近日公開</string>
+    <string name="vip_buy_90d_locked">VIP 90日を購入 — 近日公開</string>
+    <string name="vip_buy_1y_locked">VIP 1年を購入 — 近日公開</string>
+    <string name="vip_buy_lifetime_locked">VIP 無期限を購入 — 近日公開</string>
+    <string name="vip_restore_locked">購入を復元 — 近日公開</string>
+    <string name="vip_revoke_all_button">VIPを取り消す</string>
+    <string name="vip_revoke_all_confirm_title">取り消しの確認</string>
+    <string name="vip_revoke_all_confirm_message">VIPを取り消して無料アカウントに戻しますか？</string>
+    <string name="vip_entry_first_install">🎁 新規インストール特典</string>
+    <string name="vip_entry_redeemed">VIP %1$d日</string>
+    <string name="vip_success_title">成功</string>
+    <string name="vip_failed_title">失敗</string>
+    <string name="back">戻る</string>
+    <string name="cancel">キャンセル</string>
+    <string name="confirm">確認</string>
+    <string name="ok">OK</string>
+    <string name="vip_reward_not_earned">報酬を獲得できませんでした。後でもう一度お試しください。</string>
+    <string name="vip_success_message">おめでとうございます！VIPを%1$d日間有効化しました。広告なしでお楽しみください。</string>
 </resources>

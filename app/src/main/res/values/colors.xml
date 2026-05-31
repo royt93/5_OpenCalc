@@ -138,4 +138,9 @@
     <color name="lavender_button_ripple_color">#C39BD3</color>
     <color name="lavender_switch_primary_color">#AB47BC</color>
     <color name="lavender_switch_on_primary_color">#FFFFFF</color>
+
+    <!-- VIP -->
+    <color name="vip_gold">#FFD60A</color>
+    <color name="vip_on_gold">#1A1A1A</color>
+    <color name="vip_gray">#9E9E9E</color>
 </resources>

@@ -1,6 +1,8 @@
 package com.mckimquyen.opencal.ui
 
 import android.animation.LayoutTransition
+import android.animation.ObjectAnimator
+import android.animation.PropertyValuesHolder
 import android.annotation.SuppressLint
 import android.content.ClipData
 import android.content.ClipboardManager
@@ -15,11 +17,14 @@ import android.view.HapticFeedbackConstants
 import android.view.MenuItem
 import android.view.View
 import android.view.accessibility.AccessibilityEvent
+import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.Button
 import android.widget.HorizontalScrollView
 import android.widget.Toast
 import androidx.appcompat.widget.PopupMenu
+import android.content.res.ColorStateList
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -28,6 +33,7 @@ import com.mckimquyen.opencal.BuildConfig
 import com.mckimquyen.opencal.R
 import com.mckimquyen.opencal.databinding.AMainBinding
 import com.mckimquyen.opencal.db.MyPreferences
+import com.mckimquyen.opencal.feature.vip.VipActivity
 import com.mckimquyen.opencal.ext.Calculator
 import com.mckimquyen.opencal.ext.division_by_0
 import com.mckimquyen.opencal.ext.domain_error
@@ -100,6 +106,12 @@ class MainActivity : BaseActivity() {
 
         AdManager.setCurrentActivity(this)
         AdManager.loadInterstitial(this)
+
+        // Chip VIP badge: bấm vào mở VIP screen (không show interstitial khi đã là VIP).
+        // Nullable vì chỉ có ở layout portrait (MainActivity khoá portrait).
+        binding.chipVipBadge?.setOnClickListener {
+            startActivity(Intent(this, VipActivity::class.java), null)
+        }
 
         // Disable the keyboard on display EditText
         binding.input.showSoftInputOnFocus = false
@@ -306,6 +318,66 @@ class MainActivity : BaseActivity() {
             val intent = Intent(this, SettingsActivity::class.java)
             startActivity(intent, null)
         }
+    }
+
+    /**
+     * Chip badge "VIP" ở action bar — LUÔN hiển thị, đổi giao diện theo trạng thái:
+     * - Đang VIP: chip vàng đặc (premium rõ ràng).
+     * - Free: chip viền theo màu chữ theme (gợi ý "chạm để lên VIP").
+     * Refresh trong onResume (bắt thay đổi khi back từ VipActivity).
+     */
+    private var chipPulseAnimator: ObjectAnimator? = null
+
+    private fun bindVipBadge() {
+        val chip = binding.chipVipBadge ?: return
+        chip.isVisible = true
+        chip.text = getString(R.string.vip_badge)
+        chip.chipIconSize = resources.displayMetrics.density * 16f // icon nhỏ gọn (16dp)
+        if (AdManager.isVipByKeyActive()) {
+            chip.setChipBackgroundColorResource(R.color.vip_gold)
+            chip.chipStrokeWidth = 0f
+            val onGold = ContextCompat.getColor(this, R.color.vip_on_gold)
+            chip.setTextColor(onGold)
+            chip.chipIconTint = ColorStateList.valueOf(onGold)
+        } else {
+            val fg = themedColor(R.attr.text_color, 0xFF888888.toInt())
+            chip.setChipBackgroundColorResource(android.R.color.transparent)
+            chip.chipStrokeWidth = resources.displayMetrics.density // 1dp
+            chip.chipStrokeColor = ColorStateList.valueOf(fg)
+            chip.setTextColor(fg)
+            chip.chipIconTint = ColorStateList.valueOf(fg)
+        }
+    }
+
+    /** Resolve màu từ themed attr (vd R.attr.text_color), fallback nếu không có. */
+    private fun themedColor(attr: Int, fallback: Int): Int {
+        val tv = android.util.TypedValue()
+        return if (theme.resolveAttribute(attr, tv, true)) {
+            if (tv.resourceId != 0) ContextCompat.getColor(this, tv.resourceId) else tv.data
+        } else fallback
+    }
+
+    /** #4: animation "thở" nhẹ + lung linh cho chip VIP (premium, vẫn tinh tế). */
+    private fun startChipPulse() {
+        val chip = binding.chipVipBadge ?: return
+        chipPulseAnimator?.cancel()
+        chipPulseAnimator = ObjectAnimator.ofPropertyValuesHolder(
+            chip,
+            PropertyValuesHolder.ofFloat(View.SCALE_X, 1.0f, 1.06f),
+            PropertyValuesHolder.ofFloat(View.SCALE_Y, 1.0f, 1.06f),
+        ).apply {
+            duration = 1300L
+            interpolator = AccelerateDecelerateInterpolator()
+            repeatMode = ObjectAnimator.REVERSE
+            repeatCount = ObjectAnimator.INFINITE
+            start()
+        }
+    }
+
+    private fun stopChipPulse() {
+        chipPulseAnimator?.cancel()
+        chipPulseAnimator = null
+        binding.chipVipBadge?.apply { scaleX = 1f; scaleY = 1f }
     }
 
     fun openGithub(menuItem: MenuItem) {
@@ -1087,6 +1159,15 @@ class MainActivity : BaseActivity() {
 
         // Disable the keyboard on display EditText
         binding.input.showSoftInputOnFocus = false
+
+        // Refresh VIP badge khi back từ VIP/Settings + chạy animation
+        bindVipBadge()
+        startChipPulse()
+    }
+
+    override fun onPause() {
+        stopChipPulse()
+        super.onPause()
     }
 
     private var doubleBackToExitPressedOnce: Boolean = false
@@ -1105,8 +1186,9 @@ class MainActivity : BaseActivity() {
     }
 
     override fun onDestroy() {
-        // Fix memory leak: remove pending Handler callbacks
+        // Fix memory leak: remove pending Handler callbacks + cancel animator
         backPressHandler.removeCallbacks(resetBackPressRunnable)
+        stopChipPulse()
         super.onDestroy()
     }
 

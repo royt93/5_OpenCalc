@@ -97,4 +97,38 @@
     <string name="source_code">原始碼 (Original)</string>
     <string name="license">授權條款</string>
     <string name="join_tester_community">加入測試人員社區</string>
+
+    <!-- VIP -->
+    <string name="vip_screen_title">VIP</string>
+    <string name="vip_badge">VIP</string>
+    <string name="vip_active">VIP 已啟用</string>
+    <string name="vip_free_user">免費使用者</string>
+    <string name="vip_subtitle_free">解鎖無廣告體驗</string>
+    <string name="vip_until">至 %1$s</string>
+    <string name="vip_activated_at">啟用：%1$s</string>
+    <string name="vip_expires_at">到期：%1$s</string>
+    <string name="vip_remaining">%1$dd %2$02dh %3$02dm %4$02ds</string>
+    <string name="vip_active_remaining">剩餘：%1$dd %2$dh</string>
+    <string name="vip_redeem_label">輸入 VIP 碼</string>
+    <string name="vip_redeem_button">啟用</string>
+    <string name="vip_redeem_invalid">VIP 碼無效</string>
+    <string name="vip_watch_ad_3d">觀看廣告 → 3 天 VIP</string>
+    <string name="vip_buy_30d_locked">購買 30 天 VIP — 即將推出</string>
+    <string name="vip_buy_90d_locked">購買 90 天 VIP — 即將推出</string>
+    <string name="vip_buy_1y_locked">購買 1 年 VIP — 即將推出</string>
+    <string name="vip_buy_lifetime_locked">購買終身 VIP — 即將推出</string>
+    <string name="vip_restore_locked">還原購買 — 即將推出</string>
+    <string name="vip_revoke_all_button">撤銷 VIP</string>
+    <string name="vip_revoke_all_confirm_title">確認撤銷</string>
+    <string name="vip_revoke_all_confirm_message">確定要撤銷 VIP 並返回免費帳戶嗎？</string>
+    <string name="vip_entry_first_install">🎁 新安裝禮物</string>
+    <string name="vip_entry_redeemed">VIP %1$d 天</string>
+    <string name="vip_success_title">成功</string>
+    <string name="vip_failed_title">失敗</string>
+    <string name="back">返回</string>
+    <string name="cancel">取消</string>
+    <string name="confirm">確認</string>
+    <string name="ok">OK</string>
+    <string name="vip_reward_not_earned">未獲得獎勵，請稍後再試。</string>
+    <string name="vip_success_message">恭喜！已啟用 %1$d 天 VIP。盡情享受無廣告體驗。</string>
 </resources>

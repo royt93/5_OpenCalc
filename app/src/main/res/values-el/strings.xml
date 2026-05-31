@@ -92,4 +92,38 @@
     <string name="source_code">Πηγαίος κώδικας (Original)</string>
     <string name="license">Άδεια</string>
     <string name="join_tester_community">Εγγραφείτε στην κοινότητα δοκιμαστών</string>
+
+    <!-- VIP -->
+    <string name="vip_screen_title">VIP</string>
+    <string name="vip_badge">VIP</string>
+    <string name="vip_active">VIP ενεργό</string>
+    <string name="vip_free_user">Δωρεάν χρήστης</string>
+    <string name="vip_subtitle_free">Ξεκλειδώστε εμπειρία χωρίς διαφημίσεις</string>
+    <string name="vip_until">Έως %1$s</string>
+    <string name="vip_activated_at">Ενεργοποιήθηκε: %1$s</string>
+    <string name="vip_expires_at">Λήγει: %1$s</string>
+    <string name="vip_remaining">%1$dd %2$02dh %3$02dm %4$02ds</string>
+    <string name="vip_active_remaining">Απομένουν: %1$dd %2$dh</string>
+    <string name="vip_redeem_label">Εισαγάγετε κωδικό VIP</string>
+    <string name="vip_redeem_button">Ενεργοποίηση</string>
+    <string name="vip_redeem_invalid">Μη έγκυρος κωδικός VIP</string>
+    <string name="vip_watch_ad_3d">Δείτε διαφήμιση → 3 ημέρες VIP</string>
+    <string name="vip_buy_30d_locked">Αγορά VIP 30 ημερών — σύντομα</string>
+    <string name="vip_buy_90d_locked">Αγορά VIP 90 ημερών — σύντομα</string>
+    <string name="vip_buy_1y_locked">Αγορά VIP 1 έτους — σύντομα</string>
+    <string name="vip_buy_lifetime_locked">Αγορά VIP εφ\' όρου ζωής — σύντομα</string>
+    <string name="vip_restore_locked">Επαναφορά αγοράς — σύντομα</string>
+    <string name="vip_revoke_all_button">Ανάκληση VIP</string>
+    <string name="vip_revoke_all_confirm_title">Επιβεβαίωση ανάκλησης</string>
+    <string name="vip_revoke_all_confirm_message">Σίγουρα θέλετε να ανακαλέσετε το VIP και να επιστρέψετε σε δωρεάν λογαριασμό;</string>
+    <string name="vip_entry_first_install">🎁 Δώρο νέας εγκατάστασης</string>
+    <string name="vip_entry_redeemed">VIP %1$d ημέρες</string>
+    <string name="vip_success_title">Επιτυχία</string>
+    <string name="vip_failed_title">Αποτυχία</string>
+    <string name="back">Πίσω</string>
+    <string name="cancel">Άκυρο</string>
+    <string name="confirm">Επιβεβαίωση</string>
+    <string name="ok">OK</string>
+    <string name="vip_reward_not_earned">Δεν κερδίσατε ανταμοιβή. Δοκιμάστε ξανά αργότερα.</string>
+    <string name="vip_success_message">Συγχαρητήρια! Το VIP ενεργοποιήθηκε για %1$d ημέρες. Απολαύστε την εμπειρία χωρίς διαφημίσεις.</string>
 </resources>

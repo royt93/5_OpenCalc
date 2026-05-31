@@ -90,4 +90,38 @@
     <string name="source_code">Izvorni kod (Original)</string>
     <string name="license">Licenca</string>
     <string name="join_tester_community">Pridružite se zajednici testera</string>
+
+    <!-- VIP -->
+    <string name="vip_screen_title">VIP</string>
+    <string name="vip_badge">VIP</string>
+    <string name="vip_active">VIP aktivan</string>
+    <string name="vip_free_user">Besplatni korisnik</string>
+    <string name="vip_subtitle_free">Otključajte iskustvo bez reklama</string>
+    <string name="vip_until">Do %1$s</string>
+    <string name="vip_activated_at">Aktivirano: %1$s</string>
+    <string name="vip_expires_at">Ističe: %1$s</string>
+    <string name="vip_remaining">%1$dd %2$02dh %3$02dm %4$02ds</string>
+    <string name="vip_active_remaining">Preostalo: %1$dd %2$dh</string>
+    <string name="vip_redeem_label">Unesite VIP kod</string>
+    <string name="vip_redeem_button">Aktiviraj</string>
+    <string name="vip_redeem_invalid">Nevažeći VIP kod</string>
+    <string name="vip_watch_ad_3d">Gledaj reklamu → 3 dana VIP</string>
+    <string name="vip_buy_30d_locked">Kupi VIP 30 dana — uskoro</string>
+    <string name="vip_buy_90d_locked">Kupi VIP 90 dana — uskoro</string>
+    <string name="vip_buy_1y_locked">Kupi VIP 1 godinu — uskoro</string>
+    <string name="vip_buy_lifetime_locked">Kupi doživotni VIP — uskoro</string>
+    <string name="vip_restore_locked">Vrati kupovinu — uskoro</string>
+    <string name="vip_revoke_all_button">Opozovi VIP</string>
+    <string name="vip_revoke_all_confirm_title">Potvrdi opoziv</string>
+    <string name="vip_revoke_all_confirm_message">Jeste li sigurni da želite opozvati VIP i vratiti se na besplatni račun?</string>
+    <string name="vip_entry_first_install">🎁 Poklon za novu instalaciju</string>
+    <string name="vip_entry_redeemed">VIP %1$d dana</string>
+    <string name="vip_success_title">Uspjeh</string>
+    <string name="vip_failed_title">Neuspjeh</string>
+    <string name="back">Nazad</string>
+    <string name="cancel">Otkaži</string>
+    <string name="confirm">Potvrdi</string>
+    <string name="ok">OK</string>
+    <string name="vip_reward_not_earned">Nagrada nije osvojena. Pokušajte ponovo kasnije.</string>
+    <string name="vip_success_message">Čestitamo! VIP aktiviran na %1$d dana. Uživajte u iskustvu bez reklama.</string>
 </resources>

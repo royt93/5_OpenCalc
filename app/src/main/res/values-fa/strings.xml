@@ -90,4 +90,38 @@
     <string name="source_code">کد منبع (Original)</string>
     <string name="license">مجوز</string>
     <string name="join_tester_community">به جامعه آزمایش‌کنندگان بپیوندید</string>
+
+    <!-- VIP -->
+    <string name="vip_screen_title">VIP</string>
+    <string name="vip_badge">VIP</string>
+    <string name="vip_active">VIP فعال</string>
+    <string name="vip_free_user">کاربر رایگان</string>
+    <string name="vip_subtitle_free">تجربه بدون تبلیغات را باز کنید</string>
+    <string name="vip_until">تا %1$s</string>
+    <string name="vip_activated_at">فعال شد: %1$s</string>
+    <string name="vip_expires_at">انقضا: %1$s</string>
+    <string name="vip_remaining">%1$dd %2$02dh %3$02dm %4$02ds</string>
+    <string name="vip_active_remaining">باقی‌مانده: %1$dd %2$dh</string>
+    <string name="vip_redeem_label">کد VIP را وارد کنید</string>
+    <string name="vip_redeem_button">فعال‌سازی</string>
+    <string name="vip_redeem_invalid">کد VIP نامعتبر است</string>
+    <string name="vip_watch_ad_3d">تماشای تبلیغ → 3 روز VIP</string>
+    <string name="vip_buy_30d_locked">خرید VIP 30 روزه — به‌زودی</string>
+    <string name="vip_buy_90d_locked">خرید VIP 90 روزه — به‌زودی</string>
+    <string name="vip_buy_1y_locked">خرید VIP 1 ساله — به‌زودی</string>
+    <string name="vip_buy_lifetime_locked">خرید VIP مادام‌العمر — به‌زودی</string>
+    <string name="vip_restore_locked">بازیابی خرید — به‌زودی</string>
+    <string name="vip_revoke_all_button">لغو VIP</string>
+    <string name="vip_revoke_all_confirm_title">تأیید لغو</string>
+    <string name="vip_revoke_all_confirm_message">آیا مطمئنید می‌خواهید VIP را لغو کنید و به حساب رایگان بازگردید؟</string>
+    <string name="vip_entry_first_install">🎁 هدیه نصب جدید</string>
+    <string name="vip_entry_redeemed">VIP %1$d روز</string>
+    <string name="vip_success_title">موفق</string>
+    <string name="vip_failed_title">ناموفق</string>
+    <string name="back">بازگشت</string>
+    <string name="cancel">لغو</string>
+    <string name="confirm">تأیید</string>
+    <string name="ok">OK</string>
+    <string name="vip_reward_not_earned">پاداش دریافت نشد. بعداً دوباره تلاش کنید.</string>
+    <string name="vip_success_message">تبریک! VIP برای %1$d روز فعال شد. از تجربه بدون تبلیغات لذت ببرید.</string>
 </resources>

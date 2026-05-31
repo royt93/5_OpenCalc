@@ -90,4 +90,38 @@
     <string name="source_code">الكود المصدري (Original)</string>
     <string name="license">الترخيص</string>
     <string name="join_tester_community">انضم إلى مجتمع المختبرين</string>
+
+    <!-- VIP -->
+    <string name="vip_screen_title">VIP</string>
+    <string name="vip_badge">VIP</string>
+    <string name="vip_active">VIP مفعّل</string>
+    <string name="vip_free_user">مستخدم مجاني</string>
+    <string name="vip_subtitle_free">افتح تجربة بدون إعلانات</string>
+    <string name="vip_until">حتى %1$s</string>
+    <string name="vip_activated_at">مُفعّل: %1$s</string>
+    <string name="vip_expires_at">ينتهي: %1$s</string>
+    <string name="vip_remaining">%1$dd %2$02dh %3$02dm %4$02ds</string>
+    <string name="vip_active_remaining">المتبقي: %1$dd %2$dh</string>
+    <string name="vip_redeem_label">أدخل رمز VIP</string>
+    <string name="vip_redeem_button">تفعيل</string>
+    <string name="vip_redeem_invalid">رمز VIP غير صالح</string>
+    <string name="vip_watch_ad_3d">مشاهدة إعلان → 3 أيام VIP</string>
+    <string name="vip_buy_30d_locked">شراء VIP 30 يومًا — قريبًا</string>
+    <string name="vip_buy_90d_locked">شراء VIP 90 يومًا — قريبًا</string>
+    <string name="vip_buy_1y_locked">شراء VIP سنة — قريبًا</string>
+    <string name="vip_buy_lifetime_locked">شراء VIP مدى الحياة — قريبًا</string>
+    <string name="vip_restore_locked">استعادة الشراء — قريبًا</string>
+    <string name="vip_revoke_all_button">إلغاء VIP</string>
+    <string name="vip_revoke_all_confirm_title">تأكيد الإلغاء</string>
+    <string name="vip_revoke_all_confirm_message">هل أنت متأكد أنك تريد إلغاء VIP والعودة إلى حساب مجاني؟</string>
+    <string name="vip_entry_first_install">🎁 هدية التثبيت الجديد</string>
+    <string name="vip_entry_redeemed">VIP %1$d أيام</string>
+    <string name="vip_success_title">نجح</string>
+    <string name="vip_failed_title">فشل</string>
+    <string name="back">رجوع</string>
+    <string name="cancel">إلغاء</string>
+    <string name="confirm">تأكيد</string>
+    <string name="ok">OK</string>
+    <string name="vip_reward_not_earned">لم تحصل على المكافأة. حاول مرة أخرى لاحقًا.</string>
+    <string name="vip_success_message">تهانينا! تم تفعيل VIP لمدة %1$d أيام. استمتع بتجربة بدون إعلانات.</string>
 </resources>
