@@ -77,6 +77,13 @@ android {
         jvmTarget = 17
     }
 
+    testOptions {
+        // Cho phép gọi android.util.Log (qua Logger) trong unit test JVM mà không ném
+        // "Method not mocked" — trả về giá trị mặc định thay vì throw.
+        unitTests.returnDefaultValues = true
+        unitTests.includeAndroidResources = true
+    }
+
     android.applicationVariants.configureEach { variant ->
         variant.outputs.configureEach {
             outputFileName = defaultConfig.applicationId + buildType.name + "_" + defaultConfig.versionName + "_" + defaultConfig.versionCode + ".apk"
@@ -130,4 +137,16 @@ dependencies {
     implementation("com.google.android.play:review:2.0.2")
     implementation("com.google.android.play:review-ktx:2.0.2")
 //    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.14'
+
+    // ===== Unit test (JVM) =====
+    testImplementation 'junit:junit:4.13.2'
+
+    // ===== Instrumented / integration test (on-device) =====
+    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
+    androidTestImplementation 'androidx.test:core:1.6.1'
+    androidTestImplementation 'androidx.test:core-ktx:1.6.1'
+    androidTestImplementation 'androidx.test:runner:1.6.2'
+    androidTestImplementation 'androidx.test:rules:1.6.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.6.1'
 }

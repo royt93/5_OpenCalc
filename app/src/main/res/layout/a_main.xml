@@ -292,6 +292,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:backgroundTint="?attr/button_clear_color"
+                            android:id="@+id/clearButton"
                             android:onClick="clearButton"
                             android:text="@string/clear"
                             android:textSize="24sp"
@@ -304,6 +305,7 @@
                             android:layout_weight="1"
                             android:backgroundTint="?attr/button_symbol_color"
                             android:contentDescription="@string/app_name"
+                            android:id="@+id/parenthesesButton"
                             android:onClick="parenthesesButton"
                             app:srcCompat="@drawable/ic_parentheses"
                             tools:ignore="UsingOnClickInXml" />
@@ -315,6 +317,7 @@
                             android:layout_weight="1"
                             android:backgroundTint="?attr/button_symbol_color"
                             android:contentDescription="@string/app_name"
+                            android:id="@+id/exponentButton"
                             android:onClick="exponentButton"
                             app:srcCompat="@drawable/ic_exponent"
                             tools:ignore="UsingOnClickInXml" />
@@ -326,6 +329,7 @@
                             android:layout_weight="1"
                             android:backgroundTint="?attr/button_symbol_color"
                             android:contentDescription="@string/app_name"
+                            android:id="@+id/divideButton"
                             android:onClick="divideButton"
                             app:srcCompat="@drawable/ic_divide"
                             tools:ignore="UsingOnClickInXml" />
@@ -370,6 +374,7 @@
                             android:layout_weight="1"
                             android:backgroundTint="?attr/button_symbol_color"
                             android:contentDescription="@string/app_name"
+                            android:id="@+id/multiplyButton"
                             android:onClick="multiplyButton"
                             app:srcCompat="@drawable/ic_multiply"
                             tools:ignore="UsingOnClickInXml" />
@@ -414,6 +419,7 @@
                             android:layout_weight="1"
                             android:backgroundTint="?attr/button_symbol_color"
                             android:contentDescription="@string/app_name"
+                            android:id="@+id/subtractButton"
                             android:onClick="subtractButton"
                             app:srcCompat="@drawable/ic_subtract"
                             tools:ignore="UsingOnClickInXml" />
@@ -458,6 +464,7 @@
                             android:layout_weight="1"
                             android:backgroundTint="?attr/button_symbol_color"
                             android:contentDescription="@string/app_name"
+                            android:id="@+id/addButton"
                             android:onClick="addButton"
                             app:srcCompat="@drawable/ic_add"
                             tools:ignore="UsingOnClickInXml" />
@@ -507,6 +514,7 @@
                             android:layout_weight="1"
                             android:backgroundTint="?attr/button_equals_color"
                             android:contentDescription="@string/app_name"
+                            android:id="@+id/equalsButton"
                             android:onClick="equalsButton"
                             app:srcCompat="@drawable/ic_equals"
                             tools:ignore="UsingOnClickInXml" />

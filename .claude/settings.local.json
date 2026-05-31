@@ -26,7 +26,21 @@
       "Bash(adb -s 2B051FDH3006MU shell uiautomator dump /sdcard/m.xml)",
       "Bash(adb -s 2B051FDH3006MU shell cat /sdcard/m.xml)",
       "Bash(python3 -c ' *)",
-      "Bash(adb -s 2B051FDH3006MU shell input swipe 720 970 720 2600 500)"
+      "Bash(adb -s 2B051FDH3006MU shell input swipe 720 970 720 2600 500)",
+      "Bash(sed -n '500,520p' app/src/main/res/layout/a_main.xml)",
+      "Bash(sed -n '338,356p' app/src/main/res/layout/a_main.xml)",
+      "Bash(sed -n '455,465p' app/src/main/res/layout/a_main.xml)",
+      "Bash(./gradlew :app:testDevDebugUnitTest --console=plain)",
+      "Bash(adb -s 2B051FDH3006MU shell settings put global window_animation_scale 0)",
+      "Bash(adb -s 2B051FDH3006MU shell settings put global transition_animation_scale 0)",
+      "Bash(adb -s 2B051FDH3006MU shell settings put global animator_duration_scale 0)",
+      "Bash(ANDROID_SERIAL=2B051FDH3006MU ./gradlew :app:connectedDevDebugAndroidTest --console=plain)",
+      "Bash(ANDROID_SERIAL=2B051FDH3006MU ./gradlew :app:connectedDevDebugAndroidTest -Pandroid.testInstrumentationRunnerArguments.class=com.mckimquyen.opencal.ui.MainActivityTest --console=plain)",
+      "Bash(adb -s 2B051FDH3006MU shell settings put global window_animation_scale 1)",
+      "Bash(adb -s 2B051FDH3006MU shell settings put global transition_animation_scale 1)",
+      "Bash(adb -s 2B051FDH3006MU shell settings put global animator_duration_scale 1)",
+      "Bash(adb -s 2B051FDH3006MU shell rm -f /sdcard/ui.xml /sdcard/m.xml)",
+      "Bash(rm -rf /tmp/opencal_test)"
     ],
     "deny": [],
     "ask": []
