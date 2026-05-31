@@ -2,14 +2,14 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdk 36
+    compileSdk 37
 
     namespace 'com.mckimquyen.opencal'
     defaultConfig {
         applicationId "com.mckimquyen.opencal"
         resourceConfigurations += ['ar', 'az', 'bn', 'bs', 'de', 'el', 'es', 'fa', 'fr', 'hi', 'hr', 'in', 'it', 'ja', 'mk', 'nb-rNO', 'pt-rBR', 'ru', 'tr', 'uk', 'vi', 'zh-rHK', 'zh-rTW']
         minSdkVersion 24
-        targetSdkVersion 36
+        targetSdkVersion 37
         versionCode 20260601
         versionName "2026.06.01"
 
