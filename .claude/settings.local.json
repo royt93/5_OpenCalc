@@ -61,7 +61,10 @@
       "Bash(python3 scripts_tmp_msg.py)",
       "Bash(./gradlew installProductionRelease --console=plain)",
       "Bash(adb uninstall *)",
-      "mcp__android__execute_adb_shell_command"
+      "mcp__android__execute_adb_shell_command",
+      "Bash(python3 -c \"import sys,re; d=sys.stdin.read\\(\\); [print\\(m\\) for m in re.findall\\(r'<node[^>]*[Vv]ip[^>]*>', d\\)][:5]\")",
+      "Bash(adb exec-out *)",
+      "Bash(python3 -c \"import sys; d=sys.stdin.read\\(\\); print\\('VIP' in d and 'chip text present' or 'no VIP text'\\); import re; print\\('nodes:', len\\(re.findall\\(r'<node', d\\)\\)\\)\")"
     ],
     "deny": [],
     "ask": []
