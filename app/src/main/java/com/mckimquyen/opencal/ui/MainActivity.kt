@@ -11,7 +11,6 @@ import android.os.Handler
 import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.HapticFeedbackConstants
 import android.view.MenuItem
 import android.view.View
@@ -40,6 +39,7 @@ import com.mckimquyen.opencal.helper.NumberFormatter
 import com.mckimquyen.opencal.model.History
 import com.mckimquyen.opencal.model.Themes
 import com.mckimquyen.opencal.model.adt.HistoryAdapter
+import com.mckimquyen.opencal.util.Logger
 import com.roy.sdkadbmob.AdManager
 import com.roy.sdkadbmob.UIUtils
 import com.sothree.slidinguppanel.PanelSlideListener
@@ -71,9 +71,16 @@ class MainActivity : BaseActivity() {
     private lateinit var historyAdapter: HistoryAdapter
     private lateinit var historyLayoutMgr: LinearLayoutManager
 
+    // Cache preferences thay vì tạo mới mỗi lần dùng (vd keyVibration chạy mỗi phím bấm).
+    // MyPreferences đọc giá trị lúc khởi tạo nên được làm mới trong onResume để bắt
+    // thay đổi từ SettingsActivity khi quay lại.
+    private lateinit var prefs: MyPreferences
+
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        prefs = MyPreferences(this)
 
         // Themes
         val themes = Themes(this)
@@ -128,7 +135,7 @@ class MainActivity : BaseActivity() {
         }
         binding.rvHistory.adapter = historyAdapter
         // Set values
-        val historyList = MyPreferences(this).getHistory()
+        val historyList = prefs.getHistory()
         historyAdapter.appendHistory(historyList)
         // Scroll to the bottom of the recycle view
         if (historyAdapter.itemCount > 0) {
@@ -154,17 +161,17 @@ class MainActivity : BaseActivity() {
         })
 
         // Prevent the phone from sleeping (if option enabled)
-        if (MyPreferences(this).preventPhoneFromSleepingMode) {
+        if (prefs.preventPhoneFromSleepingMode) {
             view.keepScreenOn = true
         }
 
         // scientific mode enabled by default (if option enabled)
-        if (MyPreferences(this).scientificMode) {
+        if (prefs.scientificMode) {
             enableOrDisableScientistMode()
         }
 
         // use radians instead of degrees by default (if option enabled)
-        if (MyPreferences(this).useRadiansByDefault) {
+        if (prefs.useRadiansByDefault) {
             enableOrDisableDegreeMode()
         }
 
@@ -280,9 +287,9 @@ class MainActivity : BaseActivity() {
     fun openAbout(menuItem: MenuItem) {
         AdManager.showInterstitial(this) { success ->
             if (success) {
-                Log.d("roy93~", "Ad đã hiển thị và đóng thành công")
+                Logger.d("Ad đã hiển thị và đóng thành công")
             } else {
-                Log.d("roy93~", "Ad không hiển thị được hoặc có lỗi")
+                Logger.d("Ad không hiển thị được hoặc có lỗi")
             }
             val intent = Intent(this, AboutActivity::class.java)
             startActivity(intent, null)
@@ -292,9 +299,9 @@ class MainActivity : BaseActivity() {
     fun openSettings(menuItem: MenuItem) {
         AdManager.showInterstitial(this) { success ->
             if (success) {
-                Log.d("roy93~", "Ad đã hiển thị và đóng thành công")
+                Logger.d("Ad đã hiển thị và đóng thành công")
             } else {
-                Log.d("roy93~", "Ad không hiển thị được hoặc có lỗi")
+                Logger.d("Ad không hiển thị được hoặc có lỗi")
             }
             val intent = Intent(this, SettingsActivity::class.java)
             startActivity(intent, null)
@@ -328,13 +335,13 @@ class MainActivity : BaseActivity() {
 
     fun clearHistory(menuItem: MenuItem) {
         // Clear preferences
-        MyPreferences(this@MainActivity).saveHistory(this@MainActivity, mutableListOf())
+        prefs.saveHistory(this@MainActivity, mutableListOf())
         // Clear drawer
         historyAdapter.clearHistory()
     }
 
     private fun keyVibration(view: View) {
-        if (MyPreferences(this).vibrationMode) {
+        if (prefs.vibrationMode) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
                 view.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP)
             }
@@ -509,7 +516,7 @@ class MainActivity : BaseActivity() {
             return result
         }
         return BigDecimal(result).setScale(
-            MyPreferences(this).numberPrecision!!.toInt(),
+            prefs.numberPrecision!!.toInt(),
             RoundingMode.HALF_EVEN
         ).toDouble()
     }
@@ -887,7 +894,7 @@ class MainActivity : BaseActivity() {
                     }
 
                     if (calculation != formattedResult) {
-                        val history = MyPreferences(this@MainActivity).getHistory()
+                        val history = prefs.getHistory()
 
                         // Do not save to history if the previous entry is the same as the current one
                         if (history.isEmpty() || history[history.size - 1].calculation != calculation) {
@@ -903,7 +910,7 @@ class MainActivity : BaseActivity() {
                                 )
                             )
 
-                            MyPreferences(this@MainActivity).saveHistory(this@MainActivity, history)
+                            prefs.saveHistory(this@MainActivity, history)
 
                             // Update history variables
                             withContext(Dispatchers.Main) {
@@ -917,7 +924,7 @@ class MainActivity : BaseActivity() {
 
                                 // Remove former results if > historySize preference
                                 val historySize =
-                                    MyPreferences(this@MainActivity).historySize!!.toInt()
+                                    prefs.historySize!!.toInt()
                                 while (historySize > 0 && historyAdapter.itemCount >= historySize) {
                                     historyAdapter.removeFirstHistoryElement()
                                 }
@@ -1051,6 +1058,9 @@ class MainActivity : BaseActivity() {
     override fun onResume() {
         super.onResume()
 
+        // Làm mới snapshot preferences để bắt thay đổi từ SettingsActivity
+        prefs = MyPreferences(this)
+
         if (appLanguage != Locale.getDefault()) {
             appLanguage = Locale.getDefault()
             // Clear inputs to avoid conflicts with decimal & grouping separators
@@ -1060,20 +1070,20 @@ class MainActivity : BaseActivity() {
 
         // Update settings
         // Prevent phone from sleeping while the app is in foreground
-        view.keepScreenOn = MyPreferences(this).preventPhoneFromSleepingMode
+        view.keepScreenOn = prefs.preventPhoneFromSleepingMode
 
         // Remove former results if > historySize preference
         // Remove from the RecycleView
-        val historySize = MyPreferences(this@MainActivity).historySize!!.toInt()
+        val historySize = prefs.historySize!!.toInt()
         while (historySize > 0 && historyAdapter.itemCount >= historySize) {
             historyAdapter.removeFirstHistoryElement()
         }
         // Remove from the preference store data
-        val history = MyPreferences(this@MainActivity).getHistory()
+        val history = prefs.getHistory()
         while (historySize > 0 && history.size > historySize) {
             history.removeAt(0)
         }
-        MyPreferences(this@MainActivity).saveHistory(this@MainActivity, history)
+        prefs.saveHistory(this@MainActivity, history)
 
         // Disable the keyboard on display EditText
         binding.input.showSoftInputOnFocus = false

@@ -1,5 +1,6 @@
 package com.mckimquyen.opencal.ext
 
+import com.mckimquyen.opencal.util.Logger
 import java.math.BigInteger
 import kotlin.math.acos
 import kotlin.math.asin
@@ -63,7 +64,7 @@ class Calculator {
         equation: String,
         isDegreeModeActivated: Boolean
     ): Double {
-        println("\n\n$equation")
+        Logger.d("\n\n$equation")
         // https://stackoverflow.com/questions/3422673/how-to-evaluate-a-math-expression-given-in-string-form
         return object : Any() {
             var pos = -1
@@ -84,7 +85,7 @@ class Calculator {
             fun parse(): Double {
                 nextChar()
                 val x = parseExpression()
-                if (pos < equation.length) println("Unexpected: " + ch.toChar() + "Expression: " + equation)
+                if (pos < equation.length) Logger.d("Unexpected: " + ch.toChar() + "Expression: " + equation)
                 return x
             }
 
@@ -120,7 +121,7 @@ class Calculator {
                 if (eat('('.code)) { // parentheses
                     x = parseExpression()
                     if (!eat(')'.code)) {
-                        println("Missing ')'")
+                        Logger.d("Missing ')'")
                         x = Double.NaN
                     }
                 } else if (ch >= '0'.code && ch <= '9'.code || ch == '.'.code) { // numbers

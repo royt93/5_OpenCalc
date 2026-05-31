@@ -1,11 +1,11 @@
 package com.mckimquyen.opencal.db
 
 import android.content.Context
-import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate.*
 import androidx.preference.PreferenceManager
 import com.google.gson.Gson
 import com.mckimquyen.opencal.model.History
+import com.mckimquyen.opencal.util.Logger
 
 class MyPreferences(context: Context) {
 
@@ -54,13 +54,17 @@ class MyPreferences(context: Context) {
     var appLanguage = preferences.getString(KEY_APP_LANGUAGE, "")
         set(value) {
             val success = preferences.edit().putString(KEY_APP_LANGUAGE, value).commit()
-            Log.d("roy93~", "MyPreferences.appLanguage setter: value=$value, commit success=$success")
+            Logger.d("MyPreferences.appLanguage setter: value=$value, commit success=$success")
         }
 
     fun getHistory(): MutableList<History> {
         val gson = Gson()
-        return if (preferences.getString(KEY_HISTORY, null) != null) {
-            gson.fromJson(history, Array<History>::class.java).asList().toMutableList()
+        // Đọc tươi từ SharedPreferences (không dùng field snapshot `history` đã đọc lúc
+        // khởi tạo) để an toàn khi instance được cache & tái sử dụng nhiều lần trong một
+        // session — tránh trả về dữ liệu cũ sau saveHistory.
+        val json = preferences.getString(KEY_HISTORY, null)
+        return if (json != null) {
+            gson.fromJson(json, Array<History>::class.java).asList().toMutableList()
         } else {
             mutableListOf()
         }

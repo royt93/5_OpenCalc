@@ -3,10 +3,10 @@ package com.mckimquyen.opencal.ui
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.mckimquyen.opencal.R
 import com.mckimquyen.opencal.databinding.ActivitySplashBinding
+import com.mckimquyen.opencal.util.Logger
 import com.roy.sdkadbmob.AdManager
 import com.roy.sdkadbmob.UIUtils
 
@@ -17,7 +17,7 @@ class SplashActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d("roy93~", "onCreate")
+        Logger.d("onCreate")
         UIUtils.setupEdgeToEdge1(window)
         binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)

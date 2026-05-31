@@ -34,11 +34,9 @@ class HistoryAdapter(
     }
 
     fun appendHistory(historyList: List<History>) {
+        val startPosition = this.history.size
         this.history.addAll(historyList)
-        notifyItemRangeInserted(
-            this.history.size,
-            historyList.size - 1
-        )
+        notifyItemRangeInserted(startPosition, historyList.size)
     }
 
     @SuppressLint("NotifyDataSetChanged")

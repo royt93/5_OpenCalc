@@ -4,7 +4,6 @@ import android.app.Application
 import android.content.Context
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_UNSPECIFIED
@@ -12,6 +11,7 @@ import androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode
 import com.applovin.sdk.AppLovinSdk
 import com.google.android.gms.ads.MobileAds
 import com.mckimquyen.opencal.db.MyPreferences
+import com.mckimquyen.opencal.util.Logger
 import com.roy.sdkadbmob.AdManager
 import com.roy.sdkadbmob.AdSdkConfig
 
@@ -73,7 +73,7 @@ class RApp : Application() {
             // AdMob: init trực tiếp trên Main Thread (yêu cầu của Google)
             MobileAds.initialize(this) { status ->
                 AdManager.init(this, adConfig) { success, gaid ->
-                    Log.d("roy93~", "AdManager init success=$success, gaid=$gaid")
+                    Logger.d("AdManager init success=$success, gaid=$gaid")
                     // registerAppOpenAdLifecycle phải gọi trên Main Thread
                     Handler(Looper.getMainLooper()).post {
                         AdManager.registerAppOpenAdLifecycle(this@RApp)
@@ -86,7 +86,7 @@ class RApp : Application() {
             sdk.mediationProvider = "max"
             sdk.initializeSdk {
                 AdManager.init(this, adConfig) { success, gaid ->
-                    Log.d("roy93~", "AdManager init success=$success, gaid=$gaid")
+                    Logger.d("AdManager init success=$success, gaid=$gaid")
                     // registerAppOpenAdLifecycle phải gọi trên Main Thread
                     Handler(Looper.getMainLooper()).post {
                         AdManager.registerAppOpenAdLifecycle(this@RApp)

@@ -21,7 +21,7 @@
         <!-- Khai báo AdMob App ID -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3612191981543807~9558426247" /> <!-- Sample AdMob App ID -->
+            android:value="ca-app-pub-3612191981543807~9558426247" /> <!-- Real AdMob App ID -->
 
         <!-- AppLovin SDK Key -->
         <meta-data

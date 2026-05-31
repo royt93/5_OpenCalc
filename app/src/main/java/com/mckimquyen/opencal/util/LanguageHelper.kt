@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Build
-import android.util.Log
 import androidx.core.content.ContextCompat
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.mckimquyen.opencal.R
@@ -73,14 +72,14 @@ object LanguageHelper {
         builder.setTitle(activity.getString(R.string.dialog_select_language_title))
         builder.setSingleChoiceItems(languageNames, currentIndex) { dialog, which ->
             val selectedLanguage = SUPPORTED_LANGUAGES[which]
-            Log.d("roy93~", "User selected language: ${selectedLanguage.code}")
+            Logger.d("User selected language: ${selectedLanguage.code}")
 
             // Lưu ngôn ngữ và đảm bảo được commit ngay lập tức
             preferences.appLanguage = selectedLanguage.code
 
             // Verify lại bằng cách tạo MyPreferences instance mới để đọc giá trị vừa lưu
             val verifyPrefs = MyPreferences(activity)
-            Log.d("roy93~", "Language saved to preferences: ${verifyPrefs.appLanguage}")
+            Logger.d("Language saved to preferences: ${verifyPrefs.appLanguage}")
 
             dialog.dismiss()
 
@@ -94,11 +93,11 @@ object LanguageHelper {
         val preferences = MyPreferences(context)
         val languageCode = preferences.appLanguage
 
-        Log.d("roy93~", "applyLanguage called with code: $languageCode")
+        Logger.d("applyLanguage called with code: $languageCode")
 
         if (languageCode.isNullOrEmpty()) {
             // Use system default
-            Log.d("roy93~", "Using system default language")
+            Logger.d("Using system default language")
             return context
         }
 
@@ -111,7 +110,7 @@ object LanguageHelper {
         }
 
         Locale.setDefault(locale)
-        Log.d("roy93~", "Locale set to: ${locale.language}_${locale.country}")
+        Logger.d("Locale set to: ${locale.language}_${locale.country}")
 
         val config = Configuration(context.resources.configuration)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {

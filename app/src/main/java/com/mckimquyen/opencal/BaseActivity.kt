@@ -9,6 +9,7 @@ import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.play.core.review.ReviewInfo
 import com.google.android.play.core.review.ReviewManagerFactory
+import com.mckimquyen.opencal.util.Logger
 import java.util.Calendar
 
 open class BaseActivity : AppCompatActivity() {
@@ -47,7 +48,7 @@ open class BaseActivity : AppCompatActivity() {
                     window.attributes = window.attributes.apply {
                         preferredDisplayModeId = highestRefreshRateMode.modeId
                     }
-                    println("Adaptive refresh rate applied: ${highestRefreshRateMode.refreshRate} Hz")
+                    Logger.d("Adaptive refresh rate applied: ${highestRefreshRateMode.refreshRate} Hz")
                 }
             }
         }
