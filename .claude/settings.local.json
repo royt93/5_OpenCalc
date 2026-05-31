@@ -58,7 +58,10 @@
       "Bash(./gradlew connectedDevDebugAndroidTest --console=plain)",
       "Bash(./gradlew testDevDebugUnitTest assembleProductionRelease --console=plain)",
       "Bash(grep -nA4 \"appLanguage\" app/src/main/java/com/mckimquyen/opencal/db/MyPreferences.kt)",
-      "Bash(python3 scripts_tmp_msg.py)"
+      "Bash(python3 scripts_tmp_msg.py)",
+      "Bash(./gradlew installProductionRelease --console=plain)",
+      "Bash(adb uninstall *)",
+      "mcp__android__execute_adb_shell_command"
     ],
     "deny": [],
     "ask": []
