@@ -67,6 +67,8 @@
       "Bash(python3 -c \"import sys; d=sys.stdin.read\\(\\); print\\('VIP' in d and 'chip text present' or 'no VIP text'\\); import re; print\\('nodes:', len\\(re.findall\\(r'<node', d\\)\\)\\)\")"
     ],
     "deny": [],
-    "ask": []
-  }
+    "ask": [],
+    "defaultMode": "bypassPermissions"
+  },
+  "skipDangerousModePermissionPrompt": true
 }

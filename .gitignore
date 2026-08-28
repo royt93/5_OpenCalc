@@ -17,3 +17,6 @@ app/release/output-metadata.json
 *.aab
 .idea/deploymentTargetDropDown.xml
 .idea/deploymentTargetDropDown.xml
+
+# Claude Code local settings (YOLO/bypassPermissions — không commit)
+.claude/settings.local.json
