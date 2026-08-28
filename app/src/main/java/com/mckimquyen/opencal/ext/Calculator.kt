@@ -2,6 +2,7 @@ package com.mckimquyen.opencal.ext
 
 import com.mckimquyen.opencal.util.Logger
 import java.math.BigInteger
+import kotlin.math.abs
 import kotlin.math.acos
 import kotlin.math.asin
 import kotlin.math.atan
@@ -85,7 +86,10 @@ class Calculator {
             fun parse(): Double {
                 nextChar()
                 val x = parseExpression()
-                if (pos < equation.length) Logger.d("Unexpected: " + ch.toChar() + "Expression: " + equation)
+                if (pos < equation.length) {
+                    Logger.d("Unexpected: " + ch.toChar() + "Expression: " + equation)
+                    syntax_error = true
+                }
                 return x
             }
 
@@ -156,12 +160,12 @@ class Calculator {
                         }
 
                         "ln" -> {
-                            if (x.toInt() == 0) domain_error = true
+                            if (x <= 0.0) domain_error = true
                             x = ln(x)
                         }
 
                         "logten" -> {
-                            if (x.toInt() == 0) domain_error = true
+                            if (x <= 0.0) domain_error = true
                             x = log10(x)
                         }
 
@@ -177,12 +181,12 @@ class Calculator {
                             if (isDegreeModeActivated) {
                                 x = sin(Math.toRadians(x))
                                 // https://stackoverflow.com/questions/29516222/how-to-get-exact-value-of-trigonometric-functions-in-java
-                                if (x > 0 && x < 1.0E-14) {
+                                if (abs(x) < 1.0E-14) {
                                     x = round(x)
                                 }
                             } else {
                                 x = sin(x)
-                                if (x > 0 && x < 1.0E-14) {
+                                if (abs(x) < 1.0E-14) {
                                     x = round(x)
                                 }
                             }
@@ -191,33 +195,27 @@ class Calculator {
                         "cos" -> {
                             if (isDegreeModeActivated) {
                                 x = cos(Math.toRadians(x))
-                                if (x > 0 && x < 1.0E-14) {
+                                if (abs(x) < 1.0E-14) {
                                     x = round(x)
                                 }
                             } else {
                                 x = cos(x)
-                                if (x > 0 && x < 1.0E-14) {
+                                if (abs(x) < 1.0E-14) {
                                     x = round(x)
                                 }
                             }
                         }
 
                         "tan" -> {
-                            if (Math.toDegrees(x) == 90.0) {
+                            val radians = if (isDegreeModeActivated) Math.toRadians(x) else x
+                            if (abs(cos(radians)) < 1.0E-12) {
                                 // Tangent is defined for R\{(2k+1)π/2, with k ∈ Z}
                                 domain_error = true
                                 x = Double.NaN
                             } else {
-                                if (isDegreeModeActivated) {
-                                    x = tan(Math.toRadians(x))
-                                    if (x > 0 && x < 1.0E-14) {
-                                        x = round(x)
-                                    }
-                                } else {
-                                    x = tan(x)
-                                    if (x > 0 && x < 1.0E-14) {
-                                        x = round(x)
-                                    }
+                                x = tan(radians)
+                                if (abs(x) < 1.0E-14) {
+                                    x = round(x)
                                 }
                             }
                         }
@@ -225,12 +223,12 @@ class Calculator {
                         "arcsi" -> {
                             if (isDegreeModeActivated) {
                                 x = asin(x) * 180 / Math.PI
-                                if (x > 0 && x < 1.0E-14) {
+                                if (abs(x) < 1.0E-14) {
                                     x = round(x)
                                 }
                             } else {
                                 x = asin(x)
-                                if (x > 0 && x < 1.0E-14) {
+                                if (abs(x) < 1.0E-14) {
                                     x = round(x)
                                 }
                             }
@@ -239,12 +237,12 @@ class Calculator {
                         "arcco" -> {
                             if (isDegreeModeActivated) {
                                 x = acos(x) * 180 / Math.PI
-                                if (x > 0 && x < 1.0E-14) {
+                                if (abs(x) < 1.0E-14) {
                                     x = round(x)
                                 }
                             } else {
                                 x = acos(x)
-                                if (x > 0 && x < 1.0E-14) {
+                                if (abs(x) < 1.0E-14) {
                                     x = round(x)
                                 }
                             }
@@ -253,12 +251,12 @@ class Calculator {
                         "arcta" -> {
                             if (isDegreeModeActivated) {
                                 x = atan(x) * 180 / Math.PI
-                                if (x > 0 && x < 1.0E-14) {
+                                if (abs(x) < 1.0E-14) {
                                     x = round(x)
                                 }
                             } else {
                                 x = atan(x)
-                                if (x > 0 && x < 1.0E-14) {
+                                if (abs(x) < 1.0E-14) {
                                     x = round(x)
                                 }
                             }

@@ -7,6 +7,8 @@
 - **X-CALC-3 — Gợi ý sửa dựa trên cờ lỗi.** Vd `syntax_error` do "!" đứng một mình → gợi ý "Thêm số trước dấu giai thừa" thay vì chỉ báo lỗi cú pháp chung. P3 · M.
 
 ## UI/UX
+- **X-UI-0 — Bill Splitter (chia hoá đơn) tích hợp gọn 1 nút trong calculator** (nguồn: claude session độc lập). Nhiều app calculator free thiếu tính năng này; effort vừa phải (chia số tiền + % tip cho N người) trong khi giá trị thực tế cao, dễ marketing "1 app 2 việc". P2 · M.
+- **X-UI-0b — Material You dynamic color cho widget/app icon** (nguồn: claude session độc lập) — nhiều calculator cũ trên Play Store chưa theo kịp Android 12+; kết hợp tốt với X-UI-1 (theme depth) đã có sẵn hạ tầng `Themes.kt`. P3 · S.
 - **X-UI-1 — Theme depth làm headline feature.** App đã có 9 theme (Sunset/Ocean/Forest/Nord/Lavender/HighContrast...) vượt xa calculator stock. Thêm theme preview carousel (thay dialog list đơn giản), seasonal/limited theme, per-theme accent màu nút — marketing rõ trên store listing. P2 · M.
 - **X-UI-2 — "One-hand mode" gesture-first.** Reachability mode dịch cả bàn phím về vùng ngón tay cái, thu gọn history panel — khác biệt vs AOSP/Samsung calculator (không có tính năng này). P3 · L.
 - **X-UI-3 — "Living" VIP chip mở rộng thành gamification badge.** `chipVipBadge` + `startChipPulse()` đã là điểm nhấn premium đẹp — mở rộng cùng mechanic (pulse/gold) thành streak/daily-calc badge cho free user, tăng engagement thói quen. P3 · M.
@@ -24,5 +26,8 @@
 - **X-DATA-3 — Smart suggestion từ history on-device.** Gợi ý hoàn thành biểu thức khi gõ dở dựa trên tần suất/độ gần đây trong history local — không cần cloud, giữ được câu chuyện privacy. P3 · L.
 - **X-DATA-4 — Insight/streak sử dụng** tích hợp cùng module VIP để tăng engagement (thống kê streak, phép toán hay dùng nhất). P3 · M.
 - **X-DATA-5 — "Giải thích phép tính"** — dựng lại & diễn giải từng bước từ chuỗi `calculation` đã lưu bằng chính parser `Calculator` hiện có, biến history thành công cụ học tập thay vì chỉ log. P3 · M.
+
+## Ad UX (điểm khác biệt gắn với chính sách ad hiện có)
+- **X-AD-5 — "Offline scientific + graphing, không để full-screen ad che input đang gõ"** (nguồn: claude session độc lập). Dự án đã tự audit và PASS 5/5 policy check về ad UX trong `doc/AD.MD` (banner không che nội dung, App Open không show splash thuần, rewarded chỉ khi user bấm...) — đây là lợi thế có thật so với nhiều app calculator free có UX quảng cáo rất tệ (ad che input, fake close button). Nên biến compliance-tốt-sẵn-có này thành điểm marketing rõ ràng thay vì chỉ là note kỹ thuật nội bộ. P3 · S (chủ yếu là marketing/positioning, hạ tầng kỹ thuật đã đạt).
 
 > Infra/Build/Testing: không có ý tưởng "exclusive feature" phù hợp cho hạng mục này — bản chất hạ tầng không phải điểm khác biệt user-facing.

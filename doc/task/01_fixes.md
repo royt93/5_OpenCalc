@@ -1,5 +1,22 @@
 # FIXES — bug & rủi ro thật
 
+## 🔴 P0-CRITICAL — bảo mật (đã tự verify bằng git/gh, không phải suy đoán từ agent)
+
+### F-SEC-1 — Keystore ký release + mật khẩu đang lộ công khai trên GitHub
+Phát hiện ban đầu từ session `claude -p` độc lập ("cần check .gitignore"), tôi đã tự verify lại trực tiếp:
+- `git ls-files` xác nhận **`app/keystore.jks`** (file keystore ký release thật) VÀ **`gradle.properties`** (chứa `KS_ALIAS=mckimquyen`, `KS_PW=27072000` plaintext — dòng 24-25) đều **đang được git track**, KHÔNG có trong `.gitignore` (file `.gitignore` không hề nhắc tới 2 file này).
+- `git log -- app/keystore.jks` cho thấy file được commit từ **2023-05-01**.
+- `git remote -v` → `origin = https://github.com/tplloi/OpenCalc.git`. `gh repo view tplloi/OpenCalc --json isPrivate,visibility,pushedAt` trả về **`"visibility":"PUBLIC"`, push gần nhất hôm nay**.
+→ Kết luận: keystore ký app thật + mật khẩu của nó đang công khai trên Internet, ai cũng tải về dùng để tự ký APK mạo danh app này (cùng signature), hoặc nếu keystore này dùng chung cho app khác của publisher thì rủi ro lan sang app đó luôn.
+**Priority: P0 · Size: S (đổi visibility/rotate) → M/L (nếu chọn purge lịch sử git đầy đủ).**
+
+**Phương án đã trình bày cho user (2026-08-28), user chọn: "chưa xử lý ngay, chỉ ghi vào backlog để tự quyết định sau".** 3 phương án còn lại nếu quyết định xử lý:
+1. Đổi repo `tplloi/OpenCalc` sang Private + rotate `KS_PW`/tạo keystore mới — nhanh, chặn truy cập mới ngay, nhưng **PHẢI xác nhận Play App Signing đang bật trước khi đổi keystore** (nếu app đã publish bằng cert cũ và không dùng Play App Signing, đổi keystore = mất khả năng update app hiện tại trên Play Store).
+2. Chỉ thêm `app/keystore.jks` + `gradle.properties` vào `.gitignore`, giữ repo public — nhẹ nhất nhưng lịch sử cũ (từ 2023, đã public nhiều năm) coi như đã lộ vĩnh viễn, chỉ chặn rò rỉ thêm về sau.
+3. Purge toàn bộ lịch sử git (BFG/`git filter-repo`) + force-push — triệt để nhất nhưng cực rủi ro: phá vỡ mọi clone/fork/PR đang mở của người khác (kể cả liên kết với upstream `Darkempire78/OpenCalc` nếu có), và cache của GitHub/Google có thể vẫn giữ bản cũ dù đã force-push.
+
+Không tự ý thực hiện bất kỳ phương án nào ở trên (đổi visibility, rotate key, purge history, force-push) nếu chưa được yêu cầu rõ ràng trong 1 lần trao đổi riêng — đây là hành động có blast-radius lớn trên repo public thật.
+
 Ghi chú: mọi finding dưới đây đã được agent audit đọc trực tiếp source + (với core tính toán) verify bằng cách chạy thử `Calculator().evaluate(...)`. Không có finding nào là suy đoán thuần lý thuyết.
 
 ## Core tính toán (`helper/Expression.kt`, `ext/Calculator.kt`)
@@ -27,6 +44,10 @@ P2 · S — check `division_by_0` trước cả nhánh NaN.
 ### F-CALC-6 — `ln(-5)` không set `domain_error`
 `Calculator.kt:158-166` domain check chỉ xét `x==0` (qua bug F-CALC-1), bỏ sót `x<0`. Verify: `ln(-5)=NaN, domain_error=false` → hiện "Math error" thay vì "Domain error".
 P3 · S — gộp chung fix với F-CALC-1: `if (x <= 0.0) domain_error = true`.
+
+### F-CALC-9 — Percent trong ngoặc có toán tử tính sai (nguồn: claude session độc lập, chưa tự verify lại bằng cách chạy thử)
+`Expression.kt:62-64` — `getPercentString` quét ngược tìm operator để quyết định cách diễn giải `%` nhưng không đếm độ sâu ngoặc. Vd `(10+5)%` bị tính ra `10.5` thay vì `0.15` đúng (15% dạng thập phân). Input hợp lý trong tình huống tính chiết khấu trên tổng đã có trong ngoặc.
+P2 · M.
 
 ### F-CALC-8 — Parser chấp nhận ký tự thừa cuối biểu thức (nguồn: codex, độc lập)
 `Calculator.kt:85` — `parse()` chỉ log khi chưa đọc hết chuỗi (`pos < equation.length`) nhưng vẫn trả kết quả đã tính được thay vì báo lỗi. Vd `"2abc"` có thể bị tính thành `2` thay vì báo syntax error.
@@ -66,6 +87,18 @@ P3 · S.
 `MainActivity.kt:1177-1186` override API cũ thay vì `OnBackPressedCallback`/`onBackPressedDispatcher`.
 P2 · S.
 
+### F-UI-9 — Không giới hạn độ dài input → `StackOverflowError` crash toàn app (nguồn: claude session độc lập)
+`Calculator.kt` (parser đệ quy xuống, dòng 92-282) và `Expression.getPercentString` không giới hạn độ sâu/độ dài; layout không có `InputFilter`/`maxLength` trên `binding.input`; `evaluate()` không được gọi trong try/catch. Paste (xem F-UI-4) một chuỗi rất dài (vd nhiều dấu ngoặc lồng nhau lặp lại) có thể làm parser đệ quy vượt stack → crash toàn app, không chỉ lỗi phép tính.
+P2 · S — thêm `maxLength` trên input + try/catch quanh `evaluate()` (fallback hiện lỗi thay vì crash).
+
+### F-UI-10 — Backspace có thể `StringIndexOutOfBoundsException` (nguồn: claude session độc lập, chưa tự verify lại)
+`MainActivity.kt:1108-1109` — guard hiện tại không đảm bảo `leftPartWithoutSpaces` non-empty sau khi bỏ dấu grouping separator.
+P2 · S.
+
+### F-UI-11 — Xoay màn hình mất trạng thái toggle không lưu `onSaveInstanceState`
+Các state như `isInvButtonClicked`, `errorStatusOld`, trạng thái scientific mode do user bật tay không được lưu qua config change (xoay màn hình) — UX bug thật (không crash): user bật "Inv" hoặc scientific mode rồi xoay máy sẽ bị reset về mặc định.
+P2 · S.
+
 ### F-UI-8 — History UI off-by-one, lệch với tầng lưu trữ (nguồn: codex, độc lập)
 `MainActivity.kt:1000,1150` — điều kiện `itemCount >= historySize` chạy SAU khi append, nên giới hạn 100 thực tế chỉ giữ 99 item hiển thị; `onResume()` lặp lại lỗi tương tự. Tầng SharedPreferences (`MyPreferences.kt`) lại dùng đúng điều kiện `size > limit`, khiến UI và dữ liệu lưu không đồng nhất (list hiển thị và list lưu lệch nhau 1 phần tử).
 P2 · S — đồng bộ điều kiện trim giữa UI (`MainActivity`) và storage (`MyPreferences`).
@@ -95,6 +128,10 @@ P2 · S — so sánh gián tiếp (decode lại từ `BuildConfig.VIP_SECRET_B64
 ### F-AD-6 — Không có timeout/fallback khi `loadRewarded` không callback (mạng chết)
 `VipActivity.kt:81` gọi `loadRewarded` khi mở màn, nút "Xem QC" vẫn `visible/enabled` vô điều kiện (`bindFreeUi()` dòng 149-157) dù ad chưa sẵn sàng — user bấm thấy app "đứng" khi mạng yếu.
 P2 · M.
+
+### F-AD-10 — SDK auto-trial có thể ghi đè VIP vừa redeem trong ~2s đầu sau cài đặt (nguồn: claude session độc lập, phụ thuộc hành vi SDK ngoài — cần verify thêm với vendor `AdmobApplovinWrapper` trước khi kết luận chắc chắn)
+SDK dùng chung 1 field lưu trữ (`keyVipByKeyUntil`) cho cả auto-trial (callback `InstallReferrer` chạy async) và user-redeem-key. Nếu callback ghi đè vô điều kiện không so sánh giá trị hiện có, kịch bản: user mở app lần đầu, redeem ngay key 30 ngày trong vài giây đầu → callback auto-trial đến sau ghi đè xuống còn ~1 ngày → mất VIP đã redeem trong im lặng. Chỉ xảy ra ở release build, lần chạy đầu tiên.
+P2 · M/L (phụ thuộc hành vi thật của SDK bên thứ 3, khó fix hoàn toàn ở app-side — cần báo vendor hoặc thêm guard app-side so sánh timestamp trước khi ghi đè nếu SDK có API cho phép).
 
 ### F-AD-9 — VIP key có thể bị giả mạo/reverse từ APK (nguồn: codex, độc lập — mức độ nghiêm trọng hơn đánh giá nội bộ ban đầu)
 Key 3/30 ngày và `VIP_SECRET` đều nằm client-side, chỉ che bằng Base64 (không phải mã hoá thật, xem `VipKeys.kt:20`, `app/build.gradle:49`). Sau khi decompile APK release, ai cũng đọc được `VIP_SECRET`/`VIP_3D_KEY` plaintext và tự kích hoạt VIP vô hạn cho mình, hoặc chia sẻ key public — đây là rủi ro doanh thu thật nếu VIP có giá trị thương mại, KHÔNG chỉ là vấn đề "code style" như đánh giá ban đầu ở `E-INFRA-5`.
@@ -168,3 +205,16 @@ P2 · S — thu hẹp rule, để lib tự quản consumer rules.
 ### F-INFRA-6 — Dependency khai báo trùng lặp
 `androidx.preference:preference-ktx:1.2.1` khai 2 lần (`app/build.gradle:139,144`).
 P3 · S.
+
+### F-INFRA-7 — `allowBackup="true"` không có `dataExtractionRules`/`fullBackupContent` loại trừ (nguồn: claude session độc lập, đã verify: `AndroidManifest.xml:13` chỉ có `android:allowBackup="true"`, không có 2 attribute kia)
+Android Auto Backup mặc định sẽ backup TOÀN BỘ SharedPreferences (bao gồm VIP prefs `grantedAtMs`/`userRedeemedOnce` và history) lên Google Drive của user, không loại trừ gì. Kết hợp với F-AD-9 (VIP secret dễ lộ), tăng thêm 1 vector khôi phục trạng thái VIP trái phép qua backup/restore giữa các thiết bị/tài khoản.
+P2 · S — thêm `android:dataExtractionRules`/`android:fullBackupContent` loại trừ file SharedPreferences chứa VIP state, hoặc chấp nhận rủi ro nếu tác động thấp.
+
+## P3 khác — ghi nhận, không khẩn (nguồn: claude session độc lập, chưa tự verify lại từng dòng)
+
+- `ln`/`logten` domain check dùng `x.toInt()==0` thay vì `x==0.0` — trùng gốc với F-CALC-1, đã gộp.
+- NaN lồng nhau gắn nhãn sai `syntax_error` thay vì `domain_error` (`Calculator.kt:152`).
+- `sqrt(3)^2` không được làm sạch số thập phân như `sqrt(2)^2` do hack rounding trên `^` chỉ đối xứng một chiều (`Calculator.kt:272-280`).
+- `History.time.toLong()` không try/catch (`HistoryAdapter.kt:77,87,104`) — crash risk nếu dữ liệu cũ/migrate lỗi format.
+- `HistoryAdapter` dùng `notifyDataSetChanged()` toàn bộ list thay vì `notifyItem*` cho append/remove/clear (`HistoryAdapter.kt:43-58`) — performance, không phải correctness bug.
+- Double-tap mở About/Settings có thể mở 2 lần chồng Activity (`MainActivity.kt:299-321`) — thiếu debounce.

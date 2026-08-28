@@ -39,6 +39,29 @@ Lưu ý an toàn: đã chủ động dùng `--sandbox read-only` (codex) và `--
 - Biến/bộ nhớ M+/M−/MR/MC (codex) — `03_new_features.md#N-CALC-8`.
 - Template công thức cá nhân, share biểu thức qua QR/deep-link, undo/redo thao tác phím (codex) — `04_ideas.md`.
 
----
+## Session `claude -p --dangerously-skip-permissions` — kết quả (đã chạy xong)
 
-*(Phần ý kiến từ session `claude -p --dangerously-skip-permissions` sẽ được bổ sung ngay khi chạy xong — đang chạy nền tại thời điểm viết file này.)*
+Đây là finding giá trị nhất trong toàn bộ quá trình đối chiếu: session này gợi ý "cần check `.gitignore`" cho `gradle.properties`/keystore — tôi (session chính) đã **tự verify lại bằng `git ls-files`, `git log`, `git remote -v`, `gh repo view`** (không chỉ tin lời agent ngoài) và xác nhận: **`app/keystore.jks` + mật khẩu keystore đang lộ công khai trên GitHub public repo `tplloi/OpenCalc` từ 2023 tới nay**. Đây là finding nghiêm trọng nhất toàn bộ audit — nghiêm trọng hơn cả bug lộ VIP secret (F-AD-9) mà cả 3 agent ngoài đều nêu, vì phạm vi ảnh hưởng là toàn bộ khả năng ký giả mạo app, không chỉ bypass 1 tính năng. Xem `01_fixes.md#F-SEC-1` để đầy đủ (đã hỏi user qua AskUserQuestion, user chọn hoãn xử lý git/GitHub, chỉ ghi nhận backlog).
+
+Các finding mới khác từ session này (đã merge vào backlog, đánh dấu "chưa tự verify lại bằng cách chạy thử" nếu chỉ dựa lời agent):
+- Percent trong ngoặc tính sai `(10+5)%` → `01_fixes.md#F-CALC-9`.
+- Historysize/numberPrecision `!!`/`toInt()` có thể crash thật (không chỉ "fragile" như đánh giá nội bộ ban đầu) → nâng mức ưu tiên các finding liên quan ở `F-UI-6`.
+- Không giới hạn độ dài input → `StackOverflowError` từ parser đệ quy → `01_fixes.md#F-UI-9`.
+- Backspace `StringIndexOutOfBoundsException` tiềm ẩn → `01_fixes.md#F-UI-10`.
+- Rotation mất trạng thái toggle (Inv, scientific mode) không lưu `onSaveInstanceState` → `01_fixes.md#F-UI-11`.
+- SDK auto-trial có thể ghi đè VIP vừa redeem trong vài giây đầu sau cài đặt → `01_fixes.md#F-AD-10` (cần verify thêm với vendor SDK).
+- `allowBackup=true` không loại trừ VIP state trong Auto Backup → `01_fixes.md#F-INFRA-7`.
+- Ý tưởng Bill Splitter, Material You dynamic color, "ad UX tốt sẵn có nên biến thành điểm marketing" → `05_exclusive_features.md`.
+
+## Tổng kết mức độ đồng thuận qua 4 nguồn (3 agent nội bộ chuyên trách + audit tổng + 3 agent ngoài)
+
+| Finding | Nội bộ | codex | agy | claude session | Đồng thuận |
+|---|---|---|---|---|---|
+| AdMob Rewarded test ID chưa thay cho release | ✅ | ✅ | ✅ | (không nhắc lại nhưng không phủ nhận) | 3-4/4 — chắc chắn nhất |
+| Race condition 3 cờ lỗi toàn cục | ✅ | ✅ | ✅ (qua debounce) | ✅ | 4/4 |
+| VIP secret chỉ Base64, dễ lộ | ✅ (mức nhẹ) | ✅ (mức nặng, P1/L) | — | ✅ | 3/4, bất đồng mức độ |
+| Keystore + password lộ trên git public | — | — | — | ✅ (gợi ý), tôi tự verify xác nhận | 1/4 phát hiện, nhưng mức độ nghiêm trọng cao nhất khi verify xong |
+| Migrate history → Room | ✅ | ✅ | ✅ | ✅ | 4/4 |
+| `tan(90°)` domain check sai | ✅ | ✅ | — | ✅ | 3/4 |
+
+Kết luận phương pháp: chạy nhiều agent độc lập (kể cả khác vendor — Codex/OpenAI, Gemini, Claude) trên cùng codebase bắt được **7 finding mới** mà 5 agent nội bộ chuyên trách từng subsystem đều bỏ sót, trong đó có 1 finding mức critical thật (keystore leak). Đáng để lặp lại pattern này định kỳ, không chỉ 1 lần.

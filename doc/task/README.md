@@ -19,6 +19,19 @@ Backlog rã theo kiểu scrum từ audit toàn bộ source code (5 agent nội b
 
 Tất cả item trong backlog này hiện ở trạng thái **💭 Ideas / chưa triển khai** — chờ quyết định sprint kế tiếp.
 
+## 📋 Sprint 1 — đã chọn (2026-08-28)
+
+User chọn kết hợp **Stabilize (P0/P1 bug)** + **Differentiation (exclusive feature)**, bỏ qua Monetization/Play Billing (N-AD-1/N-AD-2) cho sprint này.
+
+**Stabilize (P0/P1):**
+- F-UI-1 (Settings 6/7 preference chết), F-INFRA-1 (5 locale bị cắt), F-AD-1 (rewarded test ID release), F-CALC-1/2/3/7/8 (bug core tính toán + race condition), F-UI-2/3/5/9 (race condition input, scientific mode ẩn landscape, accessibility, StackOverflow input dài), F-DATA-1/2/3/4 (crash JSON, I/O main thread, unbounded history), N-INFRA-1 (CI pipeline build+lint+test).
+- F-SEC-1 (keystore leak): **giữ nguyên quyết định hoãn xử lý git/GitHub** — không nằm trong sprint code, chỉ theo dõi.
+
+**Differentiation (exclusive feature, effort thấp-vừa):**
+- X-CALC-1 (Explain my error — tận dụng hạ tầng cờ lỗi sau khi fix F-CALC-1/2/5), X-UI-0 (Bill Splitter), X-UI-1 (theme preview carousel marketing), X-UI-0b (Material You dynamic color), X-AD-5 (marketing hoá ad-UX-tốt-sẵn-có).
+
+Trạng thái các item trên: **📋 Picked**. Còn lại trong backlog (Monetization Play Billing, phần lớn Enhancements/New Features/Ideas khác) giữ nguyên **💭 Ideas** chờ sprint sau.
+
 ## Priority & Size convention
 
 - **P0** = critical, nên làm ngay/trước khi phát hành release tiếp theo (mất doanh thu, crash, data loss).
