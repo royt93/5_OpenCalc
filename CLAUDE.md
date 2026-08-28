@@ -17,11 +17,15 @@ OpenCalc — máy tính Android (fork của `Darkempire78/OpenCalc`), được r
 ./gradlew clean
 ./gradlew lint                          # Android Lint
 
+./gradlew testDevDebugUnitTest          # unit test (JVM, app/src/test)
+./gradlew testDevDebugUnitTest --tests "com.mckimquyen.opencal.feature.vip.VipMathTest"  # 1 class
+./gradlew connectedDevDebugAndroidTest  # instrumented test (cần device/emulator, app/src/androidTest)
+
 # APK output: app/build/outputs/apk/... đặt tên theo
 # {applicationId}{buildType}_{versionName}_{versionCode}.apk
 ```
 
-- Không có unit test / instrumented test nào (`app/src/test` và `app/src/androidTest` rỗng) dù `build.gradle` có khai báo `testInstrumentationRunner`. Đừng giả định có test để chạy.
+- Unit test nằm ở `app/src/test` (JVM thuần, không cần device — vd `VipMathTest`, `CalculatorTest`, `ExpressionTest`); instrumented test ở `app/src/androidTest` (cần device/emulator — vd `MainActivityTest`, `VipActivityInstrumentedTest`). Logic thuần (không đụng Android framework) nên tách ra object riêng như `VipMath` để test được bằng unit test JVM thay vì instrumented test.
 - Keystore release: `app/keystore.jks`; mật khẩu/alias nằm trong `gradle.properties` (`KS_PW`, `KS_ALIAS`).
 - Nâng version: sửa `versionCode` (dạng `yyyyMMdd`) và `versionName` (dạng `yyyy.MM.dd`) trong `app/build.gradle`.
 
@@ -35,6 +39,9 @@ Toàn bộ code ở `app/src/main/java/com/mckimquyen/opencal/`. Package chính:
 - **`model/`** — `History`, `Themes` (chọn theme + day/night), `adt/HistoryAdapter` (RecyclerView).
 - **`ext/`** — extension functions: `Activity`, `Context`, `Applovin`; biến lỗi toàn cục `division_by_0`, `domain_error`, `syntax_error` nằm ở `Calculator.kt`.
 - **`util/LanguageHelper.kt`** — đổi locale ứng dụng trong `attachBaseContext`.
+- **`common/const/AdKeys.kt`** — hằng số nhạy cảm (VIP secret, Privacy Policy URL), đọc từ `BuildConfig` (Base64), không hardcode plain string.
+- **`sv/MyTileService.kt`** — Quick Settings Tile (Android N+), tap mở `MainActivity`.
+- **`feature/vip/`** — màn hình VIP (xem mục riêng bên dưới).
 - **`RApp.kt`** (Application), **`BaseActivity.kt`** (base cho mọi Activity).
 
 ### Luồng tính toán (quan trọng nhất)
@@ -56,6 +63,16 @@ Tích hợp qua thư viện ngoài `com.github.royt93:AdmobWrapper` (package `co
 - Mọi ad ID và SDK key được khai báo dưới dạng `buildConfigField` trong `app/build.gradle` (test ID của Google cho debug, ID thật cho release).
 - `registerAppOpenAdLifecycle` **bắt buộc gọi trên Main Thread** (đã có `Handler(Looper.getMainLooper()).post {...}` — đừng bỏ).
 - Touchpoint: App Open ở `SplashActivity`; Banner ở `About`/`Settings` (kèm `bannerResume/Pause/Destroy` theo lifecycle); Interstitial ở `MainActivity` (preload trong `onCreate`, show trước khi mở About/Settings).
+
+### Hệ thống VIP (`feature/vip/`)
+
+VIP do chính `AdmobWrapper` SDK quản lý (auto-trial 1 ngày khi cài mới, expiry, `AdManager.activateVipByKey`); app chỉ render UI + validate key + rewarded grant, không tự chấm VIP.
+
+- SDK dùng thiết kế **single-secret**: `activateVipByKey` chỉ so khớp với `AdSdkConfig.vipKeySecret` (= `AdKeys.VIP_SECRET`). Vì vậy key user gõ **không** đưa thẳng vào SDK — `VipKeys.lookupDays(input)` validate app-side trước, map ra số ngày, rồi luôn gọi SDK với `AdKeys.VIP_SECRET` kèm số ngày đó.
+- Cả `VIP_SECRET` (trong `AdKeys`) lẫn key phụ (`VipKeys.VIP_3D_B64`) chỉ lưu dạng Base64 trong source — mức che giấu đã thống nhất là "khó đọc trực tiếp, không chống decompile hoàn toàn".
+- `VipPrefs` lưu thêm `grantedAtMs` (SDK không expose) để vẽ progress bar kiểu "elapsed" (0% lúc kích hoạt → 100% lúc hết hạn), và cờ `userRedeemedOnce` để phân biệt trial cài đặt vs key do user tự nhập.
+- Logic số học thuần (progress %, đếm ngược, gia hạn không rút ngắn) tách riêng vào `VipMath` (object, không phụ thuộc Android) để unit-test trên JVM — theo pattern này khi thêm logic VIP mới, ưu tiên viết vào `VipMath` thay vì trực tiếp trong `VipActivity`.
+- `VipActivity` có `CountDownTimer`/`ObjectAnimator`/`ValueAnimator` — nhớ null-out + cancel ở `onDestroy` (theo rule memory-leak chung của project).
 
 ## Quy ước & lưu ý
 
