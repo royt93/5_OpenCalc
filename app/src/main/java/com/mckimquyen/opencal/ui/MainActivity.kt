@@ -361,7 +361,8 @@ class MainActivity : BaseActivity() {
         val chip = binding.chipVipBadge ?: return
         chip.isVisible = true
         chip.text = getString(R.string.vip_badge)
-        chip.chipIconSize = resources.displayMetrics.density * 16f // icon nhỏ gọn (16dp)
+        // Revamp: chip cân đối với nút menu 3 chấm (24dp) bên cạnh — icon co lại còn 14dp.
+        chip.chipIconSize = resources.displayMetrics.density * 14f
         if (AdManager.isVipByKeyActive()) {
             chip.setChipBackgroundColorResource(R.color.vip_gold)
             chip.chipStrokeWidth = 0f
