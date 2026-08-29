@@ -48,6 +48,7 @@
     <string name="cd_decimal_point">Decimal point</string>
     <string name="cd_equals">Equals</string>
     <string name="cd_more_options">More options</string>
+    <string name="cd_pin_history">Pin this calculation so it is kept when history is trimmed or cleared</string>
 
     <!-- X-UI-0: Bill Splitter -->
     <string name="bill_splitter_title">Bill Splitter</string>

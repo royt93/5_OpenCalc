@@ -169,12 +169,23 @@ class MainActivity : BaseActivity() {
             false
         )
         binding.rvHistory.layoutManager = historyLayoutMgr
-        historyAdapter = HistoryAdapter(mutableListOf()) { value ->
-            run {
+        historyAdapter = HistoryAdapter(
+            history = mutableListOf(),
+            onElementClick = { value ->
                 //val valueUpdated = value.replace(".", NumberFormatter.decimalSeparatorSymbol)
                 updateDisplay(window.decorView, value)
-            }
-        }
+            },
+            // N-DATA-4: adapter đã tự cập nhật state ghim trong RAM, ở đây chỉ cần persist
+            // snapshot mới nhất xuống SharedPreferences (đồng bộ qua historyMutex như mọi chỗ
+            // khác đọc/ghi cùng blob history).
+            onPinToggle = { updatedHistory ->
+                lifecycleScope.launch(Dispatchers.IO) {
+                    historyMutex.withLock {
+                        prefs.saveHistory(this@MainActivity, updatedHistory.toMutableList())
+                    }
+                }
+            },
+        )
         binding.rvHistory.adapter = historyAdapter
         // F-DATA-2: đọc + parse JSON toàn bộ history không được block Main thread lúc mở app
         lifecycleScope.launch(Dispatchers.IO) {
@@ -446,10 +457,19 @@ class MainActivity : BaseActivity() {
     }
 
     fun clearHistory(menuItem: MenuItem) {
-        // Clear preferences
-        prefs.saveHistory(this@MainActivity, mutableListOf())
-        // Clear drawer
-        historyAdapter.clearHistory()
+        // N-DATA-4: entry đã ghim phải sống sót qua "Clear History" — đó là mục đích của ghim.
+        lifecycleScope.launch(Dispatchers.IO) {
+            historyMutex.withLock {
+                val remaining = prefs.getHistory().filter { it.isPinned }.toMutableList()
+                prefs.saveHistory(this@MainActivity, remaining)
+                withContext(Dispatchers.Main) {
+                    historyAdapter.clearHistory()
+                    if (remaining.isNotEmpty()) {
+                        historyAdapter.appendHistory(remaining)
+                    }
+                }
+            }
+        }
     }
 
     private fun keyVibration(view: View) {
@@ -1139,10 +1159,12 @@ class MainActivity : BaseActivity() {
                                             )
 
                                             // Remove former results if > historySize preference
+                                            // N-DATA-4: xoá entry cũ nhất CHƯA GHIM — break nếu
+                                            // toàn bộ còn lại đã ghim để tránh lặp vô hạn.
                                             val historySize =
                                                 prefs.historySize!!.toInt()
                                             while (historySize > 0 && historyAdapter.itemCount >= historySize) {
-                                                historyAdapter.removeFirstHistoryElement()
+                                                if (!historyAdapter.removeOldestUnpinnedHistoryElement()) break
                                             }
 
                                             // Scroll to the bottom of the recycle view
@@ -1303,9 +1325,10 @@ class MainActivity : BaseActivity() {
 
         // Remove former results if > historySize preference
         // Remove from the RecycleView
+        // N-DATA-4: xoá entry cũ nhất CHƯA GHIM — break nếu toàn bộ còn lại đã ghim.
         val historySize = prefs.historySize!!.toInt()
         while (historySize > 0 && historyAdapter.itemCount >= historySize) {
-            historyAdapter.removeFirstHistoryElement()
+            if (!historyAdapter.removeOldestUnpinnedHistoryElement()) break
         }
         // F-DATA-3: đọc/ghi lại toàn bộ blob history mỗi lần resume — chạy nền, không block Main.
         // Review fix: historyMutex đồng bộ với equalsButton() để tránh 2 coroutine đọc-sửa-ghi
@@ -1314,7 +1337,9 @@ class MainActivity : BaseActivity() {
             historyMutex.withLock {
                 val history = prefs.getHistory()
                 while (historySize > 0 && history.size > historySize) {
-                    history.removeAt(0)
+                    val index = history.indexOfFirst { !it.isPinned }
+                    if (index == -1) break
+                    history.removeAt(index)
                 }
                 prefs.saveHistory(this@MainActivity, history)
             }

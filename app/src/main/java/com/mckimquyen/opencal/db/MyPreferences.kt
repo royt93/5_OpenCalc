@@ -91,8 +91,12 @@ class MyPreferences(context: Context) {
         val history2 = history.toMutableList()
         val userLimit = historySize?.toIntOrNull()?.takeIf { it > 0 }
         val effectiveLimit = userLimit ?: HISTORY_HARD_CAP
+        // N-DATA-4: xoá entry cũ nhất CHƯA GHIM trước — break nếu toàn bộ còn lại đã ghim (thà
+        // vượt effectiveLimit một chút còn hơn xoá nhầm data user chủ ý giữ lại).
         while (history2.size > effectiveLimit) {
-            history2.removeAt(0)
+            val index = history2.indexOfFirst { !it.isPinned }
+            if (index == -1) break
+            history2.removeAt(index)
         }
         MyPreferences(context).history = gson.toJson(history2) // Convert to json
     }

@@ -6,11 +6,14 @@ import android.content.ClipboardManager
 import android.content.Context.CLIPBOARD_SERVICE
 import android.os.Build
 import android.text.format.DateUtils
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.mckimquyen.opencal.R
 import com.mckimquyen.opencal.model.History
@@ -18,6 +21,9 @@ import com.mckimquyen.opencal.model.History
 class HistoryAdapter(
     private var history: MutableList<History>,
     private val onElementClick: (value: String) -> Unit,
+    // N-DATA-4: báo cho MainActivity snapshot mới nhất của toàn bộ list sau khi user ghim/bỏ ghim,
+    // để persist vào SharedPreferences — adapter chỉ giữ state UI, không tự đụng prefs.
+    private val onPinToggle: (updatedHistory: List<History>) -> Unit = {},
 ) : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
@@ -45,10 +51,18 @@ class HistoryAdapter(
         notifyDataSetChanged()
     }
 
+    /**
+     * N-DATA-4: xoá entry CŨ NHẤT CHƯA GHIM để nhường chỗ cho entry mới theo `historySize`.
+     * Trả về false nếu mọi entry còn lại đều đã ghim (không xoá được gì) — caller phải break
+     * vòng lặp trim, nếu không sẽ lặp vô hạn vì itemCount không bao giờ giảm nữa.
+     */
     @SuppressLint("NotifyDataSetChanged")
-    fun removeFirstHistoryElement() {
-        this.history.removeAt(0)
+    fun removeOldestUnpinnedHistoryElement(): Boolean {
+        val index = history.indexOfFirst { !it.isPinned }
+        if (index == -1) return false
+        this.history.removeAt(index)
         notifyDataSetChanged()
+        return true
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -64,6 +78,13 @@ class HistoryAdapter(
         private val separator: View = itemView.findViewById(R.id.historySeparator)
         private val sameDateSeparator: View =
             itemView.findViewById(R.id.historySameDateSeparator)
+        private val pin: ImageView = itemView.findViewById(R.id.ivHistoryPin)
+
+        private fun resolveThemeAttrColor(attrResId: Int): Int {
+            val typedValue = TypedValue()
+            itemView.context.theme.resolveAttribute(attrResId, typedValue, true)
+            return typedValue.data
+        }
 
         fun bind(historyElement: History, position: Int) {
             // Set calculation, result and time
@@ -177,6 +198,24 @@ class HistoryAdapter(
                     Toast.makeText(itemView.context, R.string.value_copied, Toast.LENGTH_SHORT)
                         .show()
                 true
+            }
+
+            // Pin state
+            if (historyElement.isPinned) {
+                pin.setImageResource(R.drawable.ic_baseline_favorite_24)
+                pin.setColorFilter(ContextCompat.getColor(itemView.context, R.color.history_pin_active))
+            } else {
+                pin.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+                pin.setColorFilter(resolveThemeAttrColor(R.attr.text_second_color))
+            }
+            pin.setOnClickListener {
+                val currentPosition = bindingAdapterPosition
+                if (currentPosition == RecyclerView.NO_POSITION) return@setOnClickListener
+                history[currentPosition] = history[currentPosition].copy(
+                    isPinned = !history[currentPosition].isPinned
+                )
+                notifyItemChanged(currentPosition)
+                onPinToggle(history.toList())
             }
         }
     }

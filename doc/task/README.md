@@ -54,6 +54,8 @@ Theo feedback UI trực tiếp từ user (icon VIP crown quá to) + chọn tiế
 
 - ✅ **N-CALC-6 ("ans" reference)** — xem chi tiết ở [`03_new_features.md`](03_new_features.md). Thay token bằng string substitution trước `addMultiply`, không đụng parser lõi. Verify `5+3=8` → `ans+1=9` trên emulator.
 
+- ✅ **N-DATA-4 (Pin/favorite history)** — xem chi tiết ở [`03_new_features.md`](03_new_features.md). Icon tim thêm vào cả 6 biến thể `i_history.xml`, mọi logic trim history đổi sang pin-aware. Verify: ghim → Clear History → chỉ entry ghim sống sót.
+
 Tính năng tiếp theo cho vòng loop kế tiếp chưa chọn — chờ user quyết định qua `AskUserQuestion` khi bắt đầu.
 
 ## Priority & Size convention

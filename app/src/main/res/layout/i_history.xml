@@ -22,6 +22,21 @@
             app:layout_constraintTop_toBottomOf="@+id/historyTime"
             tools:ignore="MissingConstraints" />
 
+        <!-- N-DATA-4: ghim entry để không bị trim theo historySize / xoá bởi "Clear History" -->
+        <ImageView
+            android:id="@+id/ivHistoryPin"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="6dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/cd_pin_history"
+            android:padding="2dp"
+            android:src="@drawable/ic_baseline_favorite_border_24"
+            app:layout_constraintBottom_toBottomOf="@+id/historyItemResult"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/historyItemCalculation"
+            app:tint="?attr/text_second_color" />
+
         <TextView
             android:id="@+id/historyItemResult"
             android:layout_width="match_parent"

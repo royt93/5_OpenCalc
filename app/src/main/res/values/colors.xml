@@ -150,4 +150,7 @@
     <color name="vip_gold">#FFD60A</color>
     <color name="vip_on_gold">#1A1A1A</color>
     <color name="vip_gray">#9E9E9E</color>
+
+    <!-- N-DATA-4: màu tim ghim history — cố định, không đổi theo theme (giống vip_gold) -->
+    <color name="history_pin_active">#E53935</color>
 </resources>
