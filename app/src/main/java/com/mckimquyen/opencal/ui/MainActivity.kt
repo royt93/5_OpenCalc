@@ -21,6 +21,7 @@ import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.Button
 import android.widget.HorizontalScrollView
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.widget.PopupMenu
 import android.content.res.ColorStateList
 import androidx.core.content.ContextCompat
@@ -63,6 +64,8 @@ import kotlinx.coroutines.withContext
 import java.math.BigDecimal
 import java.math.RoundingMode
 import java.text.DecimalFormatSymbols
+import java.text.SimpleDateFormat
+import java.util.Date
 import java.util.Locale
 import kotlin.jvm.java
 
@@ -98,6 +101,30 @@ class MainActivity : BaseActivity() {
 
     // N-CALC-6: kết quả "=" gần nhất, dùng cho token "ans" trong biểu thức tiếp theo.
     private var lastAnswer: Double? = null
+
+    // N-DATA-1: SAF launcher phải đăng ký ở property (trước khi Activity STARTED) — đăng ký trong
+    // hàm onClick lúc user bấm nút sẽ crash (IllegalStateException từ ActivityResultRegistry).
+    private val exportHistoryLauncher = registerForActivityResult(
+        ActivityResultContracts.CreateDocument("text/csv")
+    ) { uri ->
+        if (uri == null) return@registerForActivityResult
+        lifecycleScope.launch(Dispatchers.IO) {
+            val exported = try {
+                val csv = buildHistoryCsv(prefs.getHistory())
+                contentResolver.openOutputStream(uri)?.use { it.write(csv.toByteArray()) }
+                true
+            } catch (e: Exception) {
+                false
+            }
+            withContext(Dispatchers.Main) {
+                Toast.makeText(
+                    this@MainActivity,
+                    if (exported) R.string.export_history_success else R.string.export_history_failed,
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+    }
     private var isDegreeModeActivated = true // Set degree by default
     private var errorStatusOld = false
 
@@ -482,6 +509,40 @@ class MainActivity : BaseActivity() {
             }
         }
     }
+
+    fun exportHistory(menuItem: MenuItem) {
+        lifecycleScope.launch(Dispatchers.IO) {
+            val isEmpty = prefs.getHistory().isEmpty()
+            withContext(Dispatchers.Main) {
+                if (isEmpty) {
+                    Toast.makeText(this@MainActivity, R.string.export_history_empty, Toast.LENGTH_SHORT).show()
+                } else {
+                    val fileName = "opencalc_history_" +
+                            SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date()) +
+                            ".csv"
+                    exportHistoryLauncher.launch(fileName)
+                }
+            }
+        }
+    }
+
+    private fun buildHistoryCsv(history: List<History>): String {
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+        val sb = StringBuilder("Calculation,Result,Time,Pinned\n")
+        for (entry in history) {
+            val timeText = entry.time?.toLongOrNull()?.let { dateFormat.format(Date(it)) } ?: ""
+            sb.append(csvEscape(entry.calculation ?: "")).append(',')
+            sb.append(csvEscape(entry.result ?: "")).append(',')
+            sb.append(csvEscape(timeText)).append(',')
+            sb.append(entry.isPinned).append('\n')
+        }
+        return sb.toString()
+    }
+
+    // RFC 4180: bọc field trong dấu ngoặc kép, escape dấu ngoặc kép bên trong bằng cách nhân đôi —
+    // calculation/result có thể chứa dấu phẩy (groupingSeparatorSymbol của locale), nếu không quote
+    // sẽ vỡ cấu trúc CSV.
+    private fun csvEscape(field: String): String = "\"" + field.replace("\"", "\"\"") + "\""
 
     private fun keyVibration(view: View) {
         if (prefs.vibrationMode) {

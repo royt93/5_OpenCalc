@@ -70,6 +70,10 @@
     <string name="app_menu_hide_history">Hide History</string>
     <string name="app_menu_theme">Theme</string>
     <string name="app_menu_clear_history">Clear History</string>
+    <string name="app_menu_export_history">Export History</string>
+    <string name="export_history_empty">History is empty, nothing to export</string>
+    <string name="export_history_success">History exported</string>
+    <string name="export_history_failed">Failed to export history</string>
     <string name="app_menu_about">About (Ads may appear)</string>
 
     <!-- Theme choices -->

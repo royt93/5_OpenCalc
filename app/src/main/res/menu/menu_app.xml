@@ -16,6 +16,11 @@
         app:showAsAction="always" />
 
     <item
+        android:onClick="exportHistory"
+        android:title="@string/app_menu_export_history"
+        app:showAsAction="ifRoom" />
+
+    <item
         android:onClick="openSettings"
         android:title="@string/app_menu_settings"
         app:showAsAction="always" />

@@ -62,7 +62,9 @@ Theo feedback UI trực tiếp từ user (icon VIP crown quá to) + chọn tiế
 
 - ✅ **N-CALC-4 (Hằng số vật lý)** — xem chi tiết ở [`03_new_features.md`](03_new_features.md). Cùng pattern string-substitution với "ans"; tránh trước 2 bug tiềm ẩn (token trùng substring hàm có sẵn, và định dạng số khoa học "E-34" mà parser không hiểu). Verify: `10^23×k=` ra đúng `1.380649`.
 
-User chọn tự động chạy tiếp N-DATA-1 (Export history) rồi N-CALC-2 (Base conversion) nếu mỗi bước đều pass — bỏ N-INFRA-2 (Crash reporting).
+- 🟡 **N-DATA-1 (Export History CSV)** — xem chi tiết ở [`03_new_features.md`](03_new_features.md). Menu "Export History" → SAF `CreateDocument` → CSV escape chuẩn RFC 4180. Verify: export → SAVE → đọc file thật, nội dung đúng cả 4 dòng kể cả entry ghim.
+
+User chọn tự động chạy tiếp N-CALC-2 (Base conversion) sau khi N-DATA-1 pass — bỏ N-INFRA-2 (Crash reporting).
 
 Tính năng tiếp theo cho vòng loop kế tiếp chưa chọn — chờ user quyết định qua `AskUserQuestion` khi bắt đầu.
 
