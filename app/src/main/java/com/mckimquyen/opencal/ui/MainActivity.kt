@@ -54,6 +54,7 @@ import com.sothree.slidinguppanel.PanelSlideListener
 import com.sothree.slidinguppanel.PanelState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
@@ -1071,46 +1072,41 @@ class MainActivity : BaseActivity() {
                             binding.input.isCursorVisible = false
                         }
 
-                        // Display result
-                        withContext(Dispatchers.Main) { binding.input.setText(formattedResult) }
+                        // Bug: setText(formattedResult) bên dưới kích hoạt TextWatcher ->
+                        // updateResultDisplay() -> calculationJob?.cancel() tự huỷ CHÍNH coroutine
+                        // đang chạy (equalsButton dùng chung field calculationJob). Việc huỷ này có
+                        // hiệu lực NGAY khi resume sau withContext(Main) chứa setText — tức là
+                        // NonCancellable phải bọc từ trước lệnh setText, bọc từ sau mới đã muộn
+                        // (exception ném ra trước khi vào được block NonCancellable).
+                        withContext(NonCancellable) {
+                            // Display result
+                            withContext(Dispatchers.Main) { binding.input.setText(formattedResult) }
 
-                        // Set cursor
-                        withContext(Dispatchers.Main) {
-                            // Scroll to the end
-                            binding.input.setSelection(binding.input.length())
+                            // Set cursor
+                            withContext(Dispatchers.Main) {
+                                // Scroll to the end
+                                binding.input.setSelection(binding.input.length())
 
-                            // Hide the cursor (do not remove this, it's not a duplicate)
-                            binding.input.isCursorVisible = false
+                                // Hide the cursor (do not remove this, it's not a duplicate)
+                                binding.input.isCursorVisible = false
 
-                            // Clear resultDisplay
-                            binding.resultDisplay.setText("")
-                        }
+                                // Clear resultDisplay
+                                binding.resultDisplay.setText("")
+                            }
 
-                        if (calculation != formattedResult) {
-                            // Review fix: đồng bộ với job trim history ở onResume() (đọc/sửa/ghi
-                            // cùng 1 blob SharedPreferences) để tránh mất entry vừa lưu.
-                            historyMutex.withLock {
-                                val history = prefs.getHistory()
+                            if (calculation != formattedResult) {
+                                // Review fix: đồng bộ với job trim history ở onResume() (đọc/sửa/ghi
+                                // cùng 1 blob SharedPreferences) để tránh mất entry vừa lưu.
+                                historyMutex.withLock {
+                                    val history = prefs.getHistory()
 
-                                // Do not save to history if the previous entry is the same as the current one
-                                if (history.isEmpty() || history[history.size - 1].calculation != calculation) {
-                                    // Store time
-                                    val currentTime = System.currentTimeMillis().toString()
+                                    // Do not save to history if the previous entry is the same as the current one
+                                    if (history.isEmpty() || history[history.size - 1].calculation != calculation) {
+                                        // Store time
+                                        val currentTime = System.currentTimeMillis().toString()
 
-                                    // Save to history
-                                    history.add(
-                                        History(
-                                            calculation = calculation,
-                                            result = formattedResult,
-                                            time = currentTime,
-                                        )
-                                    )
-
-                                    prefs.saveHistory(this@MainActivity, history)
-
-                                    // Update history variables
-                                    withContext(Dispatchers.Main) {
-                                        historyAdapter.appendOneHistoryElement(
+                                        // Save to history
+                                        history.add(
                                             History(
                                                 calculation = calculation,
                                                 result = formattedResult,
@@ -1118,20 +1114,33 @@ class MainActivity : BaseActivity() {
                                             )
                                         )
 
-                                        // Remove former results if > historySize preference
-                                        val historySize =
-                                            prefs.historySize!!.toInt()
-                                        while (historySize > 0 && historyAdapter.itemCount >= historySize) {
-                                            historyAdapter.removeFirstHistoryElement()
-                                        }
+                                        prefs.saveHistory(this@MainActivity, history)
 
-                                        // Scroll to the bottom of the recycle view
-                                        binding.rvHistory.scrollToPosition(historyAdapter.itemCount - 1)
+                                        // Update history variables
+                                        withContext(Dispatchers.Main) {
+                                            historyAdapter.appendOneHistoryElement(
+                                                History(
+                                                    calculation = calculation,
+                                                    result = formattedResult,
+                                                    time = currentTime,
+                                                )
+                                            )
+
+                                            // Remove former results if > historySize preference
+                                            val historySize =
+                                                prefs.historySize!!.toInt()
+                                            while (historySize > 0 && historyAdapter.itemCount >= historySize) {
+                                                historyAdapter.removeFirstHistoryElement()
+                                            }
+
+                                            // Scroll to the bottom of the recycle view
+                                            binding.rvHistory.scrollToPosition(historyAdapter.itemCount - 1)
+                                        }
                                     }
                                 }
                             }
+                            isEqualLastAction = true
                         }
-                        isEqualLastAction = true
                     } else {
                         withContext(Dispatchers.Main) {
                             if (syntax_error) {

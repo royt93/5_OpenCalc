@@ -181,6 +181,10 @@ P2 · S.
 `model/History.kt` không có version field, migration hiện dựa pattern thủ công `time.isNullOrEmpty()` (`HistoryAdapter.kt:73`).
 P3 · S.
 
+### ✅ F-DATA-9 — `equalsButton` tự huỷ chính coroutine của nó → history không bao giờ được lưu — **P0, đã fix**
+`MainActivity.kt` (`equalsButton`): `binding.input.setText(formattedResult)` kích hoạt `TextWatcher.onTextChanged` → `updateResultDisplay()` → `calculationJob?.cancel()`. Vì `equalsButton` và `updateResultDisplay` dùng chung field `calculationJob`, lệnh này tự huỷ CHÍNH coroutine đang chạy của `equalsButton`. Việc huỷ có hiệu lực ngay khi coroutine resume ở `withContext` kế tiếp — tức là toàn bộ phần sau `setText` (set cursor, và quan trọng nhất là lưu history vào `historyMutex`/`prefs.saveHistory`) bị `CancellationException` nuốt mất mà không có dấu hiệu gì, 100% các lần bấm "=". Đây là regression từ chính fix Sprint 1 (thêm field `calculationJob` dùng chung để chống race condition) — trước đó bug không tồn tại vì chưa có cơ chế tự-huỷ này. Phát hiện khi verify tính năng N-CALC-5 (tap-to-recall từ history) trên emulator: tính "=" xong nhưng `royHISTORY` trong SharedPreferences luôn là `[]`.
+Fix: bọc toàn bộ phần sau `setText` (kể cả chính lệnh `setText`) trong `withContext(NonCancellable) { ... }` — bọc từ *trước* `setText` là bắt buộc, bọc từ sau vẫn muộn vì exception ném ra ngay lúc resume sau khối `withContext(Main)` chứa `setText`, trước khi vào được block `NonCancellable`. Verify bằng log tạm (`Logger.d`) + đọc trực tiếp `shared_prefs/*.xml` qua `adb run-as`: history lưu đúng sau fix.
+
 ## Infra / Build / i18n / Testing
 
 ### F-INFRA-1 — 5 locale bị build script cắt khỏi APK dù UI cho phép chọn — **P0**
