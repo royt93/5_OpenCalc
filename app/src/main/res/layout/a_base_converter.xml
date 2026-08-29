@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/background_color">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".ui.BaseConverterActivity">
+
+            <ImageView
+                android:id="@+id/ivBaseConverterBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="18dp"
+                android:background="@drawable/ic_baseline_arrow_back_24"
+                android:backgroundTint="?attr/text_color"
+                android:contentDescription="@string/back"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvBaseConverterTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:paddingVertical="18dp"
+                android:text="@string/base_converter_title"
+                android:textColor="?attr/text_color"
+                android:textSize="22sp"
+                app:layout_constraintBottom_toBottomOf="@+id/ivBaseConverterBack"
+                app:layout_constraintStart_toEndOf="@+id/ivBaseConverterBack"
+                app:layout_constraintTop_toTopOf="@+id/ivBaseConverterBack" />
+
+            <TextView
+                android:id="@+id/tvBaseConverterHint"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="4dp"
+                android:text="@string/base_converter_hint"
+                android:textColor="?attr/text_second_color"
+                android:textSize="13sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivBaseConverterBack" />
+
+            <!-- DEC -->
+            <TextView
+                android:id="@+id/tvDecLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/base_converter_dec"
+                android:textColor="?attr/text_color"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvBaseConverterHint" />
+
+            <EditText
+                android:id="@+id/etDec"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="8dp"
+                android:autofillHints="false"
+                android:background="?attr/foreground_color"
+                android:fontFamily="monospace"
+                android:hint="@string/zero"
+                android:inputType="number"
+                android:maxLines="1"
+                android:padding="12dp"
+                android:textColor="?attr/text_color"
+                android:textSize="22sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvDecLabel"
+                tools:ignore="LabelFor" />
+
+            <!-- HEX -->
+            <TextView
+                android:id="@+id/tvHexLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/base_converter_hex"
+                android:textColor="?attr/text_color"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etDec" />
+
+            <EditText
+                android:id="@+id/etHex"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="8dp"
+                android:autofillHints="false"
+                android:background="?attr/foreground_color"
+                android:digits="0123456789abcdefABCDEF"
+                android:fontFamily="monospace"
+                android:hint="@string/zero"
+                android:inputType="textNoSuggestions"
+                android:maxLines="1"
+                android:padding="12dp"
+                android:textColor="?attr/text_color"
+                android:textSize="22sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvHexLabel"
+                tools:ignore="LabelFor" />
+
+            <!-- OCT -->
+            <TextView
+                android:id="@+id/tvOctLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/base_converter_oct"
+                android:textColor="?attr/text_color"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etHex" />
+
+            <EditText
+                android:id="@+id/etOct"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="8dp"
+                android:autofillHints="false"
+                android:background="?attr/foreground_color"
+                android:digits="01234567"
+                android:fontFamily="monospace"
+                android:hint="@string/zero"
+                android:inputType="number"
+                android:maxLines="1"
+                android:padding="12dp"
+                android:textColor="?attr/text_color"
+                android:textSize="22sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvOctLabel"
+                tools:ignore="LabelFor" />
+
+            <!-- BIN -->
+            <TextView
+                android:id="@+id/tvBinLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/base_converter_bin"
+                android:textColor="?attr/text_color"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etOct" />
+
+            <EditText
+                android:id="@+id/etBin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="32dp"
+                android:autofillHints="false"
+                android:background="?attr/foreground_color"
+                android:digits="01"
+                android:fontFamily="monospace"
+                android:hint="@string/zero"
+                android:inputType="number"
+                android:maxLines="1"
+                android:padding="12dp"
+                android:textColor="?attr/text_color"
+                android:textSize="22sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvBinLabel"
+                tools:ignore="LabelFor" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</FrameLayout>

@@ -43,6 +43,11 @@
             android:label="@string/bill_splitter_title"
             android:screenOrientation="portrait" />
         <activity
+            android:name="com.mckimquyen.opencal.ui.BaseConverterActivity"
+            android:exported="false"
+            android:label="@string/base_converter_title"
+            android:screenOrientation="portrait" />
+        <activity
             android:name="com.mckimquyen.opencal.feature.vip.VipActivity"
             android:exported="false"
             android:screenOrientation="portrait" />

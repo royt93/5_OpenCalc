@@ -64,7 +64,9 @@ Theo feedback UI trực tiếp từ user (icon VIP crown quá to) + chọn tiế
 
 - 🟡 **N-DATA-1 (Export History CSV)** — xem chi tiết ở [`03_new_features.md`](03_new_features.md). Menu "Export History" → SAF `CreateDocument` → CSV escape chuẩn RFC 4180. Verify: export → SAVE → đọc file thật, nội dung đúng cả 4 dòng kể cả entry ghim.
 
-User chọn tự động chạy tiếp N-CALC-2 (Base conversion) sau khi N-DATA-1 pass — bỏ N-INFRA-2 (Crash reporting).
+- ✅ **N-CALC-2 (Base Converter)** — xem chi tiết ở [`03_new_features.md`](03_new_features.md). Màn hình riêng thay vì tích hợp Calculator.kt (parser chỉ hiểu Double, không có khái niệm hệ số). 4 ô DEC/HEX/OCT/BIN đồng bộ 2 chiều, giới hạn ký tự hợp lệ ngay ở bàn phím. Verify: `255 → FF/377/11111111` đúng cả 2 chiều.
+
+Chuỗi 3 tính năng tự động (N-CALC-4 → N-DATA-1 → N-CALC-2) đã hoàn tất, đều pass gate + verify device.
 
 Tính năng tiếp theo cho vòng loop kế tiếp chưa chọn — chờ user quyết định qua `AskUserQuestion` khi bắt đầu.
 

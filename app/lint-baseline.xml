@@ -8,7 +8,7 @@
         errorLine2="                 ~~~~~~~~~~~~~">
         <location
             file="src/main/java/com/mckimquyen/opencal/ui/MainActivity.kt"
-            line="1249"
+            line="1463"
             column="18"/>
     </issue>
 
@@ -217,7 +217,7 @@
         errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="189"
+            line="209"
             column="5"/>
     </issue>
 
@@ -228,7 +228,7 @@
         errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="199"
+            line="221"
             column="5"/>
     </issue>
 
@@ -351,6 +351,17 @@
             file="src/main/res/layout/a_settings.xml"
             line="1"
             column="1"/>
+    </issue>
+
+    <issue
+        id="Overdraw"
+        message="Possible overdraw: Root element paints background `?attr/background_color` with a theme that also paints a background (inferred theme is `@style/AppTheme`)"
+        errorLine1="    android:background=&quot;?attr/background_color&quot;>"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/a_base_converter.xml"
+            line="8"
+            column="5"/>
     </issue>
 
     <issue
@@ -530,7 +541,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/layout-small-land/i_history.xml"
-            line="34"
+            line="49"
             column="13"/>
     </issue>
 

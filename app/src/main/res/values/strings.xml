@@ -53,6 +53,15 @@
     <string name="cd_pin_history">Pin this calculation so it is kept when history is trimmed or cleared</string>
     <string name="hint_search_history">Search history</string>
 
+    <!-- N-CALC-2: Base Converter -->
+    <string name="base_converter_title">Base Converter</string>
+    <string name="app_menu_base_converter">Base Converter</string>
+    <string name="base_converter_hint">Type a number in any base — the others update automatically</string>
+    <string name="base_converter_dec">DEC (base 10)</string>
+    <string name="base_converter_hex">HEX (base 16)</string>
+    <string name="base_converter_oct">OCT (base 8)</string>
+    <string name="base_converter_bin">BIN (base 2)</string>
+
     <!-- X-UI-0: Bill Splitter -->
     <string name="bill_splitter_title">Bill Splitter</string>
     <string name="app_menu_bill_splitter">Bill Splitter</string>

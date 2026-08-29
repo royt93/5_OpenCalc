@@ -408,6 +408,11 @@ class MainActivity : BaseActivity() {
         startActivity(intent, null)
     }
 
+    fun openBaseConverter(menuItem: MenuItem) {
+        val intent = Intent(this, BaseConverterActivity::class.java)
+        startActivity(intent, null)
+    }
+
     /**
      * Chip badge "VIP" ở action bar — LUÔN hiển thị, đổi giao diện theo trạng thái:
      * - Đang VIP: chip vàng đặc (premium rõ ràng).

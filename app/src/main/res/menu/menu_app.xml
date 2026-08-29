@@ -30,6 +30,10 @@
         android:title="@string/app_menu_bill_splitter"
         app:showAsAction="ifRoom" />
     <item
+        android:onClick="openBaseConverter"
+        android:title="@string/app_menu_base_converter"
+        app:showAsAction="ifRoom" />
+    <item
         android:onClick="selectThemeDialog"
         android:title="@string/app_menu_theme"
         app:showAsAction="ifRoom" />
