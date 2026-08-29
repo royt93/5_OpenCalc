@@ -218,11 +218,17 @@
                             android:textSize="@dimen/button_text_size"
                             tools:ignore="UsingOnClickInXml" />
 
-                        <Space
+                        <Button
+                            android:id="@+id/physicalConstantButton"
+                            style="@style/CalculatorButton.Function"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_margin="0dp"
-                            android:layout_weight="0.6" />
+                            android:layout_weight="0.6"
+                            android:onClick="physicalConstantButton"
+                            android:text="@string/physical_constant_button"
+                            android:textSize="@dimen/button_text_size"
+                            tools:ignore="UsingOnClickInXml" />
 
                     </TableRow>
 

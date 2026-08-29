@@ -1,6 +1,7 @@
 package com.mckimquyen.opencal.helper
 
 import com.mckimquyen.opencal.ext.syntax_error
+import java.math.BigDecimal
 
 class Expression {
 
@@ -20,6 +21,17 @@ class Expression {
         // addMultiply/addParenthesis đã xử lý sẵn số bọc trong ngoặc, không cần đụng tokenizer lõi.
         if (cleanCalculation.contains("ans")) {
             cleanCalculation = cleanCalculation.replace("ans", "(${lastAnswer ?: 0.0})")
+        }
+        // N-CALC-4: hằng số vật lý — cùng cơ chế string-substitution như "ans". Dùng
+        // BigDecimal.toPlainString() (không phải "$value" trực tiếp) vì Double.toString() của số
+        // rất nhỏ/lớn (vd Planck 6.6E-34) ra dạng khoa học "E-34" mà Calculator.kt không hiểu —
+        // "E" còn bị dòng replaceSymbolsFromCalculation ở trên đổi thành "*10^" MẤT vì nó chạy
+        // trước, không áp dụng lại cho số mới chèn vào sau.
+        for (constant in PhysicalConstants.ALL) {
+            if (cleanCalculation.contains(constant.token)) {
+                val plainValue = BigDecimal.valueOf(constant.value).toPlainString()
+                cleanCalculation = cleanCalculation.replace(constant.token, "($plainValue)")
+            }
         }
         cleanCalculation = addMultiply(cleanCalculation)
         if (cleanCalculation.contains('√')) {

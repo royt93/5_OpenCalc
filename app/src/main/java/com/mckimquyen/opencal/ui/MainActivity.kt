@@ -44,6 +44,7 @@ import com.mckimquyen.opencal.ext.rateApp
 import com.mckimquyen.opencal.ext.syntax_error
 import com.mckimquyen.opencal.helper.Expression
 import com.mckimquyen.opencal.helper.NumberFormatter
+import com.mckimquyen.opencal.helper.PhysicalConstants
 import com.mckimquyen.opencal.model.History
 import com.mckimquyen.opencal.model.Themes
 import com.mckimquyen.opencal.model.adt.HistoryAdapter
@@ -999,6 +1000,17 @@ class MainActivity : BaseActivity() {
 
     fun ansButton(view: View) {
         updateDisplay(view, getString(R.string.ans))
+    }
+
+    fun physicalConstantButton(view: View) {
+        keyVibration(view)
+        val labels = PhysicalConstants.ALL.map { it.label }.toTypedArray()
+        MaterialAlertDialogBuilder(this)
+            .setTitle(R.string.dialog_physical_constant_title)
+            .setItems(labels) { _, which ->
+                updateDisplay(view, PhysicalConstants.ALL[which].token)
+            }
+            .show()
     }
 
     fun factorialButton(view: View) {

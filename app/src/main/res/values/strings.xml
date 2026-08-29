@@ -36,6 +36,8 @@
     <string name="memory_recall" translatable="false">MR</string>
     <string name="memory_clear" translatable="false">MC</string>
     <string name="ans" translatable="false">ans</string>
+    <string name="physical_constant_button" translatable="false">const</string>
+    <string name="dialog_physical_constant_title">Insert physical constant</string>
 
     <!-- F-UI-5: content description cho các icon button chỉ có ký hiệu, không có text -->
     <string name="cd_toggle_scientific_mode">Toggle scientific functions</string>
