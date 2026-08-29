@@ -32,6 +32,7 @@
                 android:autofillHints="false"
                 android:background="?attr/foreground_color"
                 android:inputType="textNoSuggestions"
+                android:maxLength="200"
                 android:paddingHorizontal="40dp"
                 android:singleLine="true"
                 android:textAlignment="textEnd"

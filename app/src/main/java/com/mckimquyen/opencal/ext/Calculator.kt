@@ -20,6 +20,16 @@ var division_by_0 = false
 var domain_error = false
 var syntax_error = false
 
+// X-CALC-1: lý do cụ thể của domain_error, để UI hiện giải thích thay vì "Domain error" chung
+// chung. Chỉ 2 nguồn domain_error trong parser hiện tại (ln/logten, tan) nên đủ dùng enum nhỏ
+// thay vì refactor toàn bộ error signaling sang sealed class (effort lớn hơn nhiều).
+enum class DomainErrorReason {
+    LOG_NON_POSITIVE,
+    TAN_SINGULARITY,
+}
+
+var domain_error_reason: DomainErrorReason? = null
+
 class Calculator {
     fun factorial(number: Double): Double {
         return if (number >= 171) {
@@ -160,12 +170,18 @@ class Calculator {
                         }
 
                         "ln" -> {
-                            if (x <= 0.0) domain_error = true
+                            if (x <= 0.0) {
+                                domain_error = true
+                                domain_error_reason = DomainErrorReason.LOG_NON_POSITIVE
+                            }
                             x = ln(x)
                         }
 
                         "logten" -> {
-                            if (x <= 0.0) domain_error = true
+                            if (x <= 0.0) {
+                                domain_error = true
+                                domain_error_reason = DomainErrorReason.LOG_NON_POSITIVE
+                            }
                             x = log10(x)
                         }
 
@@ -211,6 +227,7 @@ class Calculator {
                             if (abs(cos(radians)) < 1.0E-12) {
                                 // Tangent is defined for R\{(2k+1)π/2, with k ∈ Z}
                                 domain_error = true
+                                domain_error_reason = DomainErrorReason.TAN_SINGULARITY
                                 x = Double.NaN
                             } else {
                                 x = tan(radians)

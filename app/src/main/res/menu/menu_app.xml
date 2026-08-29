@@ -19,6 +19,11 @@
         android:onClick="openSettings"
         android:title="@string/app_menu_settings"
         app:showAsAction="always" />
+
+    <item
+        android:onClick="openBillSplitter"
+        android:title="@string/app_menu_bill_splitter"
+        app:showAsAction="ifRoom" />
     <item
         android:onClick="selectThemeDialog"
         android:title="@string/app_menu_theme"

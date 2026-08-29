@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingVertical="12dp">
+
+    <FrameLayout
+        android:layout_width="64dp"
+        android:layout_height="64dp">
+
+        <View
+            android:id="@+id/vSwatchRing"
+            android:layout_width="64dp"
+            android:layout_height="64dp" />
+
+        <View
+            android:id="@+id/vSwatchBg"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center" />
+
+        <View
+            android:id="@+id/vSwatchAccent"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="2dp"
+            android:layout_marginBottom="2dp" />
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tvSwatchLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:gravity="center"
+        android:maxLines="2"
+        android:textColor="?attr/text_color"
+        android:textSize="12sp"
+        tools:ignore="SpUsage"
+        tools:text="Theme name" />
+
+</LinearLayout>

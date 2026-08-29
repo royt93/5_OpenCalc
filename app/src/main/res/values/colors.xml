@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="calculation_error_color">#F44B3F</color>
+    <!-- X-UI-1: giá trị cố định cho swatch preview "Dark" trong dialog chọn theme — không dùng
+         values-night/colors.xml (background_color/button_equals_color) vì swatch phải luôn hiện
+         đúng màu Dark bất kể app đang chạy ở light hay dark mode. -->
+    <color name="theme_preview_dark_background">#121212</color>
+    <color name="theme_preview_dark_accent">#B3004D</color>
+    <color name="theme_preview_light_background">#FFFFFF</color>
+    <color name="theme_preview_light_accent">#DCB5C5</color>
     <!-- Normal Theme -->
     <color name="foreground_color">#EFEFEF</color>
     <color name="background_color">#fff</color>

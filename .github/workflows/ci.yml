@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+    branches: [main, dev]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      # gradle.properties trong repo hardcode org.gradle.java.home cho máy dev cục bộ
+      # (xem doc/task/01_fixes.md) — override bằng -D để CI dùng đúng JDK 17 vừa setup ở trên,
+      # không đụng tới file gradle.properties (máy dev vẫn cần giữ nguyên override của họ).
+      - name: Lint
+        run: ./gradlew lint -Dorg.gradle.java.home="$JAVA_HOME" --no-daemon
+
+      - name: Unit tests
+        run: ./gradlew testDevDebugUnitTest -Dorg.gradle.java.home="$JAVA_HOME" --no-daemon
+
+      - name: Assemble devDebug
+        run: ./gradlew assembleDevDebug -Dorg.gradle.java.home="$JAVA_HOME" --no-daemon
+
+      - name: Upload lint report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lint-report
+          path: app/build/reports/lint-results-*.html
+          if-no-files-found: ignore

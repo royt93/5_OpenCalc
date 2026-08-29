@@ -2,12 +2,15 @@ package com.mckimquyen.opencal.model
 
 import android.app.Activity
 import android.content.Context
+import android.util.TypedValue
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startActivity
+import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.color.DynamicColors
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.mckimquyen.opencal.R
+import com.mckimquyen.opencal.databinding.DThemeSelectorBinding
 import com.mckimquyen.opencal.db.MyPreferences
 
 class Themes(private val context: Context) {
@@ -50,12 +53,74 @@ class Themes(private val context: Context) {
         private const val HIGHCONTRAST_STYLE_INDEX = 8
         private const val LAVENDER_STYLE_INDEX = 9
 
+        private fun resolveThemeAttrColor(context: Context, attrResId: Int): Int {
+            val typedValue = TypedValue()
+            context.theme.resolveAttribute(attrResId, typedValue, true)
+            return typedValue.data
+        }
+
+        /**
+         * X-UI-1: áp dụng cấu hình theme+day/night tương ứng 1 style index — logic tách riêng
+         * khỏi UI dialog để adapter chỉ cần biết styleIndex, không cần biết chi tiết mapping.
+         */
+        private fun applyStyleSelection(preferences: MyPreferences, styleIndex: Int) {
+            when (styleIndex) {
+                SYSTEM_STYLE_INDEX -> {
+                    preferences.theme =
+                        if (DynamicColors.isDynamicColorAvailable()) MATERIAL_YOU_THEME_INDEX else DEFAULT_THEME_INDEX
+                    preferences.forceDayNight = AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
+                }
+
+                LIGHT_STYLE_INDEX -> {
+                    preferences.theme = DEFAULT_THEME_INDEX
+                    preferences.forceDayNight = AppCompatDelegate.MODE_NIGHT_NO
+                }
+
+                DARK_STYLE_INDEX -> {
+                    preferences.theme = DEFAULT_THEME_INDEX
+                    preferences.forceDayNight = AppCompatDelegate.MODE_NIGHT_YES
+                }
+
+                AMOLED_STYLE_INDEX -> {
+                    preferences.theme = AMOLED_THEME_INDEX
+                    preferences.forceDayNight = AppCompatDelegate.MODE_NIGHT_YES
+                }
+
+                SUNSET_STYLE_INDEX -> {
+                    preferences.theme = SUNSET_THEME_INDEX
+                    preferences.forceDayNight = AppCompatDelegate.MODE_NIGHT_NO
+                }
+
+                OCEAN_STYLE_INDEX -> {
+                    preferences.theme = OCEAN_THEME_INDEX
+                    preferences.forceDayNight = AppCompatDelegate.MODE_NIGHT_NO
+                }
+
+                FOREST_STYLE_INDEX -> {
+                    preferences.theme = FOREST_THEME_INDEX
+                    preferences.forceDayNight = AppCompatDelegate.MODE_NIGHT_NO
+                }
+
+                NORD_STYLE_INDEX -> {
+                    preferences.theme = NORD_THEME_INDEX
+                    preferences.forceDayNight = AppCompatDelegate.MODE_NIGHT_NO
+                }
+
+                HIGHCONTRAST_STYLE_INDEX -> {
+                    preferences.theme = HIGHCONTRAST_THEME_INDEX
+                    preferences.forceDayNight = AppCompatDelegate.MODE_NIGHT_NO
+                }
+
+                LAVENDER_STYLE_INDEX -> {
+                    preferences.theme = LAVENDER_THEME_INDEX
+                    preferences.forceDayNight = AppCompatDelegate.MODE_NIGHT_NO
+                }
+            }
+        }
+
         fun openDialogThemeSelector(context: Context) {
 
             val preferences = MyPreferences(context)
-
-            val builder = MaterialAlertDialogBuilder(context)
-            builder.background = ContextCompat.getDrawable(context, R.drawable.ic_rounded)
 
             val systemName =
                 if (DynamicColors.isDynamicColorAvailable())
@@ -63,20 +128,62 @@ class Themes(private val context: Context) {
                 else
                     context.getString(R.string.theme_system)
 
-            val styles = hashMapOf(
-                SYSTEM_STYLE_INDEX to systemName,
-                LIGHT_STYLE_INDEX to context.getString(R.string.theme_light),
-                DARK_STYLE_INDEX to context.getString(R.string.theme_dark),
-                AMOLED_STYLE_INDEX to context.getString(R.string.theme_amoled),
-                SUNSET_STYLE_INDEX to context.getString(R.string.theme_sunset),
-                OCEAN_STYLE_INDEX to context.getString(R.string.theme_ocean),
-                FOREST_STYLE_INDEX to context.getString(R.string.theme_forest),
-                NORD_STYLE_INDEX to context.getString(R.string.theme_nord),
-                HIGHCONTRAST_STYLE_INDEX to context.getString(R.string.theme_highcontrast),
-                LAVENDER_STYLE_INDEX to context.getString(R.string.theme_lavender)
+            // X-UI-1: preview carousel — mỗi theme hiện swatch màu thật (background + accent)
+            // thay vì chỉ tên chữ, giúp thấy trước theme trông ra sao trước khi áp dụng.
+            val swatches = listOf(
+                ThemeSwatch(
+                    SYSTEM_STYLE_INDEX, systemName,
+                    backgroundColor = resolveThemeAttrColor(context, R.attr.background_color),
+                    accentColor = resolveThemeAttrColor(context, R.attr.button_equals_color),
+                ),
+                ThemeSwatch(
+                    LIGHT_STYLE_INDEX, context.getString(R.string.theme_light),
+                    backgroundColor = ContextCompat.getColor(context, R.color.theme_preview_light_background),
+                    accentColor = ContextCompat.getColor(context, R.color.theme_preview_light_accent),
+                ),
+                ThemeSwatch(
+                    DARK_STYLE_INDEX, context.getString(R.string.theme_dark),
+                    backgroundColor = ContextCompat.getColor(context, R.color.theme_preview_dark_background),
+                    accentColor = ContextCompat.getColor(context, R.color.theme_preview_dark_accent),
+                ),
+                ThemeSwatch(
+                    AMOLED_STYLE_INDEX, context.getString(R.string.theme_amoled),
+                    backgroundColor = ContextCompat.getColor(context, R.color.amoled_background_color),
+                    accentColor = null,
+                ),
+                ThemeSwatch(
+                    SUNSET_STYLE_INDEX, context.getString(R.string.theme_sunset),
+                    backgroundColor = ContextCompat.getColor(context, R.color.sunset_background_color),
+                    accentColor = ContextCompat.getColor(context, R.color.sunset_button_equals_color),
+                ),
+                ThemeSwatch(
+                    OCEAN_STYLE_INDEX, context.getString(R.string.theme_ocean),
+                    backgroundColor = ContextCompat.getColor(context, R.color.ocean_background_color),
+                    accentColor = ContextCompat.getColor(context, R.color.ocean_button_equals_color),
+                ),
+                ThemeSwatch(
+                    FOREST_STYLE_INDEX, context.getString(R.string.theme_forest),
+                    backgroundColor = ContextCompat.getColor(context, R.color.forest_background_color),
+                    accentColor = ContextCompat.getColor(context, R.color.forest_button_equals_color),
+                ),
+                ThemeSwatch(
+                    NORD_STYLE_INDEX, context.getString(R.string.theme_nord),
+                    backgroundColor = ContextCompat.getColor(context, R.color.nord_background_color),
+                    accentColor = ContextCompat.getColor(context, R.color.nord_button_equals_color),
+                ),
+                ThemeSwatch(
+                    HIGHCONTRAST_STYLE_INDEX, context.getString(R.string.theme_highcontrast),
+                    backgroundColor = ContextCompat.getColor(context, R.color.highcontrast_background_color),
+                    accentColor = ContextCompat.getColor(context, R.color.highcontrast_button_equals_color),
+                ),
+                ThemeSwatch(
+                    LAVENDER_STYLE_INDEX, context.getString(R.string.theme_lavender),
+                    backgroundColor = ContextCompat.getColor(context, R.color.lavender_background_color),
+                    accentColor = ContextCompat.getColor(context, R.color.lavender_button_equals_color),
+                ),
             )
 
-            val checkedItem = when (preferences.theme) {
+            val checkedStyleIndex = when (preferences.theme) {
                 AMOLED_THEME_INDEX -> AMOLED_STYLE_INDEX
                 MATERIAL_YOU_THEME_INDEX -> SYSTEM_STYLE_INDEX
                 SUNSET_THEME_INDEX -> SUNSET_STYLE_INDEX
@@ -93,68 +200,27 @@ class Themes(private val context: Context) {
                     }
                 }
             }
+            val checkedPosition = swatches.indexOfFirst { it.styleIndex == checkedStyleIndex }
+                .takeIf { it >= 0 } ?: SYSTEM_STYLE_INDEX
 
-            builder.setSingleChoiceItems(
-                styles.values.toTypedArray(),
-                checkedItem
-            ) { dialog, which ->
-                when (which) {
-                    SYSTEM_STYLE_INDEX -> {
-                        // system style uses the Material You theme if supported
-                        preferences.theme =
-                            if (DynamicColors.isDynamicColorAvailable()) MATERIAL_YOU_THEME_INDEX else DEFAULT_THEME_INDEX
-                        preferences.forceDayNight = AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
-                    }
+            val dialogBinding = DThemeSelectorBinding.inflate(
+                android.view.LayoutInflater.from(context)
+            )
+            val builder = MaterialAlertDialogBuilder(context)
+            builder.background = ContextCompat.getDrawable(context, R.drawable.ic_rounded)
+            builder.setView(dialogBinding.root)
+            val dialog = builder.create()
 
-                    LIGHT_STYLE_INDEX -> {
-                        preferences.theme = DEFAULT_THEME_INDEX
-                        preferences.forceDayNight = AppCompatDelegate.MODE_NIGHT_NO
-                    }
-
-                    DARK_STYLE_INDEX -> {
-                        preferences.theme = DEFAULT_THEME_INDEX
-                        preferences.forceDayNight = AppCompatDelegate.MODE_NIGHT_YES
-                    }
-
-                    AMOLED_STYLE_INDEX -> {
-                        preferences.theme = AMOLED_THEME_INDEX
-                        preferences.forceDayNight = AppCompatDelegate.MODE_NIGHT_YES
-                    }
-
-                    SUNSET_STYLE_INDEX -> {
-                        preferences.theme = SUNSET_THEME_INDEX
-                        preferences.forceDayNight = AppCompatDelegate.MODE_NIGHT_NO
-                    }
-
-                    OCEAN_STYLE_INDEX -> {
-                        preferences.theme = OCEAN_THEME_INDEX
-                        preferences.forceDayNight = AppCompatDelegate.MODE_NIGHT_NO
-                    }
-
-                    FOREST_STYLE_INDEX -> {
-                        preferences.theme = FOREST_THEME_INDEX
-                        preferences.forceDayNight = AppCompatDelegate.MODE_NIGHT_NO
-                    }
-
-                    NORD_STYLE_INDEX -> {
-                        preferences.theme = NORD_THEME_INDEX
-                        preferences.forceDayNight = AppCompatDelegate.MODE_NIGHT_NO
-                    }
-
-                    HIGHCONTRAST_STYLE_INDEX -> {
-                        preferences.theme = HIGHCONTRAST_THEME_INDEX
-                        preferences.forceDayNight = AppCompatDelegate.MODE_NIGHT_NO
-                    }
-
-                    LAVENDER_STYLE_INDEX -> {
-                        preferences.theme = LAVENDER_THEME_INDEX
-                        preferences.forceDayNight = AppCompatDelegate.MODE_NIGHT_NO
-                    }
-                }
+            dialogBinding.rvThemeSwatches.layoutManager = GridLayoutManager(context, 3)
+            dialogBinding.rvThemeSwatches.adapter = ThemeSwatchAdapter(
+                items = swatches,
+                selectedIndex = checkedPosition,
+            ) { selected ->
+                applyStyleSelection(preferences, selected.styleIndex)
                 dialog.dismiss()
                 reloadActivity(context)
             }
-            val dialog = builder.create()
+
             dialog.show()
         }
 

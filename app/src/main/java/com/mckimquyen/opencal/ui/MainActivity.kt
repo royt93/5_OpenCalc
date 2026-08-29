@@ -35,8 +35,10 @@ import com.mckimquyen.opencal.databinding.AMainBinding
 import com.mckimquyen.opencal.db.MyPreferences
 import com.mckimquyen.opencal.feature.vip.VipActivity
 import com.mckimquyen.opencal.ext.Calculator
+import com.mckimquyen.opencal.ext.DomainErrorReason
 import com.mckimquyen.opencal.ext.division_by_0
 import com.mckimquyen.opencal.ext.domain_error
+import com.mckimquyen.opencal.ext.domain_error_reason
 import com.mckimquyen.opencal.ext.openUrlInBrowser
 import com.mckimquyen.opencal.ext.rateApp
 import com.mckimquyen.opencal.ext.syntax_error
@@ -51,7 +53,10 @@ import com.roy.sdkadbmob.UIUtils
 import com.sothree.slidinguppanel.PanelSlideListener
 import com.sothree.slidinguppanel.PanelState
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
 import java.math.BigDecimal
 import java.math.RoundingMode
@@ -70,6 +75,21 @@ class MainActivity : BaseActivity() {
         DecimalFormatSymbols.getInstance().groupingSeparator.toString()
     private var isInvButtonClicked = false
     private var isEqualLastAction = false
+
+    // F-CALC-7: division_by_0/domain_error/syntax_error là global var dùng chung giữa
+    // updateResultDisplay() (mỗi keystroke) và equalsButton(). Cancel job cũ trước khi launch
+    // job mới để đảm bảo chỉ 1 evaluate()+đọc-cờ-lỗi chạy tại 1 thời điểm, tránh interleave.
+    private var calculationJob: Job? = null
+
+    // Review fix: calculationJob.cancel() chỉ hợp tác tại điểm suspend, nên 1 job cũ đang chạy
+    // giữa evaluate() (không có suspend point) vẫn có thể ghi đè cờ lỗi của job mới sau khi đã
+    // bị "cancel". Mutex đảm bảo tại 1 thời điểm chỉ 1 chuỗi reset-evaluate-đọc-cờ chạy trọn vẹn.
+    private val calculationMutex = Mutex()
+
+    // Review fix: history đọc-sửa-ghi ở equalsButton() và job trim ở onResume() là 2 coroutine
+    // độc lập cùng đụng vào prefs.history — không có mutex thì job chạy sau có thể ghi đè bằng
+    // snapshot cũ, làm mất entry vừa lưu.
+    private val historyMutex = Mutex()
     private var isDegreeModeActivated = true // Set degree by default
     private var errorStatusOld = false
 
@@ -146,12 +166,16 @@ class MainActivity : BaseActivity() {
             }
         }
         binding.rvHistory.adapter = historyAdapter
-        // Set values
-        val historyList = prefs.getHistory()
-        historyAdapter.appendHistory(historyList)
-        // Scroll to the bottom of the recycle view
-        if (historyAdapter.itemCount > 0) {
-            binding.rvHistory.scrollToPosition(historyAdapter.itemCount - 1)
+        // F-DATA-2: đọc + parse JSON toàn bộ history không được block Main thread lúc mở app
+        lifecycleScope.launch(Dispatchers.IO) {
+            val historyList = prefs.getHistory()
+            withContext(Dispatchers.Main) {
+                historyAdapter.appendHistory(historyList)
+                // Scroll to the bottom of the recycle view
+                if (historyAdapter.itemCount > 0) {
+                    binding.rvHistory.scrollToPosition(historyAdapter.itemCount - 1)
+                }
+            }
         }
 
         binding.slidingLayout.addPanelSlideListener(object : PanelSlideListener {
@@ -320,6 +344,11 @@ class MainActivity : BaseActivity() {
         }
     }
 
+    fun openBillSplitter(menuItem: MenuItem) {
+        val intent = Intent(this, BillSplitterActivity::class.java)
+        startActivity(intent, null)
+    }
+
     /**
      * Chip badge "VIP" ở action bar — LUÔN hiển thị, đổi giao diện theo trạng thái:
      * - Đang VIP: chip vàng đặc (premium rõ ràng).
@@ -477,110 +506,108 @@ class MainActivity : BaseActivity() {
             binding.input.isCursorVisible = true
         }
 
-        lifecycleScope.launch(Dispatchers.Default) {
-            withContext(Dispatchers.Main) {
-                // Vibrate when key pressed
-                keyVibration(view)
-            }
+        // Vibrate when key pressed
+        keyVibration(view)
 
-            val formerValue = binding.input.text.toString()
-            val cursorPosition = binding.input.selectionStart
-            val leftValue = formerValue.subSequence(0, cursorPosition).toString()
-            val rightValue = formerValue.subSequence(cursorPosition, formerValue.length).toString()
+        // F-UI-2: toàn bộ hàm này chỉ format string ngắn (không gọi Calculator().evaluate()),
+        // chi phí không đáng kể — chạy thẳng trên Main để tránh đọc/ghi binding.input từ
+        // background thread và tránh race condition khi tap nhanh (nhiều coroutine chồng chéo
+        // từng snapshot state cũ trước khi ai đó kịp ghi state mới).
+        val formerValue = binding.input.text.toString()
+        val cursorPosition = binding.input.selectionStart
+        val leftValue = formerValue.subSequence(0, cursorPosition).toString()
+        val rightValue = formerValue.subSequence(cursorPosition, formerValue.length).toString()
 
-            val newValue = leftValue + value + rightValue
+        val newValue = leftValue + value + rightValue
 
-            var newValueFormatted =
-                NumberFormatter.format(newValue, decimalSeparatorSymbol, groupingSeparatorSymbol)
+        var newValueFormatted =
+            NumberFormatter.format(newValue, decimalSeparatorSymbol, groupingSeparatorSymbol)
 
-            withContext(Dispatchers.Main) {
-                // Avoid two decimalSeparator in the same number
-                // 1. When you click on the decimalSeparator button
-                if (value == decimalSeparatorSymbol && decimalSeparatorSymbol in binding.input.text.toString()) {
-                    if (binding.input.text.toString().isNotEmpty()) {
-                        var lastNumberBefore = ""
-                        if (cursorPosition > 0 && binding.input.text.toString()
-                                .substring(0, cursorPosition)
-                                .last() in "0123456789\\$decimalSeparatorSymbol"
-                        ) {
-                            lastNumberBefore = NumberFormatter.extractNumbers(
-                                binding.input.text.toString().substring(0, cursorPosition),
-                                decimalSeparatorSymbol
-                            ).last()
-                        }
-                        var firstNumberAfter = ""
-                        if (cursorPosition < binding.input.text.length - 1) {
-                            firstNumberAfter = NumberFormatter.extractNumbers(
-                                binding.input.text.toString()
-                                    .substring(cursorPosition, binding.input.text.length),
-                                decimalSeparatorSymbol
-                            ).first()
-                        }
-                        if (decimalSeparatorSymbol in lastNumberBefore || decimalSeparatorSymbol in firstNumberAfter) {
-                            return@withContext
-                        }
-                    }
-                }
-                // 2. When you click on a former calculation from the history
-                if (binding.input.text.isNotEmpty()
-                    && cursorPosition > 0
-                    && decimalSeparatorSymbol in value
-                    && value != decimalSeparatorSymbol // The value should not be *only* the decimal separator
+        // Avoid two decimalSeparator in the same number
+        // 1. When you click on the decimalSeparator button
+        if (value == decimalSeparatorSymbol && decimalSeparatorSymbol in binding.input.text.toString()) {
+            if (binding.input.text.toString().isNotEmpty()) {
+                var lastNumberBefore = ""
+                if (cursorPosition > 0 && binding.input.text.toString()
+                        .substring(0, cursorPosition)
+                        .last() in "0123456789\\$decimalSeparatorSymbol"
                 ) {
-                    if (NumberFormatter.extractNumbers(value, decimalSeparatorSymbol)
-                            .isNotEmpty()
-                    ) {
-                        val firstValueNumber =
-                            NumberFormatter.extractNumbers(value, decimalSeparatorSymbol).first()
-                        val lastValueNumber =
-                            NumberFormatter.extractNumbers(value, decimalSeparatorSymbol).last()
-                        if (decimalSeparatorSymbol in firstValueNumber || decimalSeparatorSymbol in lastValueNumber) {
-                            var numberBefore =
-                                binding.input.text.toString().substring(0, cursorPosition)
-                            if (numberBefore.last() !in "()*-/+^!√πe") {
-                                numberBefore = NumberFormatter.extractNumbers(
-                                    numberBefore,
-                                    decimalSeparatorSymbol
-                                ).last()
-                            }
-                            var numberAfter = ""
-                            if (cursorPosition < binding.input.text.length - 1) {
-                                numberAfter = NumberFormatter.extractNumbers(
-                                    binding.input.text.toString()
-                                        .substring(cursorPosition, binding.input.text.length),
-                                    decimalSeparatorSymbol
-                                ).first()
-                            }
-                            var tmpValue = value
-                            var numberBeforeParenthesisLength = 0
-                            if (decimalSeparatorSymbol in numberBefore) {
-                                numberBefore = "($numberBefore)"
-                                numberBeforeParenthesisLength += 2
-                            }
-                            if (decimalSeparatorSymbol in numberAfter) {
-                                tmpValue = "($value)"
-                            }
-                            val tmpNewValue = binding.input.text.toString().substring(
-                                0,
-                                (cursorPosition + numberBeforeParenthesisLength - numberBefore.length)
-                            ) + numberBefore + tmpValue + rightValue
-                            newValueFormatted = NumberFormatter.format(
-                                tmpNewValue,
-                                decimalSeparatorSymbol,
-                                groupingSeparatorSymbol
-                            )
-                        }
-                    }
+                    lastNumberBefore = NumberFormatter.extractNumbers(
+                        binding.input.text.toString().substring(0, cursorPosition),
+                        decimalSeparatorSymbol
+                    ).last()
                 }
-
-                // Update Display
-                binding.input.setText(newValueFormatted)
-
-                // Increase cursor position
-                val cursorOffset = newValueFormatted.length - newValue.length
-                binding.input.setSelection(cursorPosition + value.length + cursorOffset)
+                var firstNumberAfter = ""
+                if (cursorPosition < binding.input.text.length - 1) {
+                    firstNumberAfter = NumberFormatter.extractNumbers(
+                        binding.input.text.toString()
+                            .substring(cursorPosition, binding.input.text.length),
+                        decimalSeparatorSymbol
+                    ).first()
+                }
+                if (decimalSeparatorSymbol in lastNumberBefore || decimalSeparatorSymbol in firstNumberAfter) {
+                    return
+                }
             }
         }
+        // 2. When you click on a former calculation from the history
+        if (binding.input.text.isNotEmpty()
+            && cursorPosition > 0
+            && decimalSeparatorSymbol in value
+            && value != decimalSeparatorSymbol // The value should not be *only* the decimal separator
+        ) {
+            if (NumberFormatter.extractNumbers(value, decimalSeparatorSymbol)
+                    .isNotEmpty()
+            ) {
+                val firstValueNumber =
+                    NumberFormatter.extractNumbers(value, decimalSeparatorSymbol).first()
+                val lastValueNumber =
+                    NumberFormatter.extractNumbers(value, decimalSeparatorSymbol).last()
+                if (decimalSeparatorSymbol in firstValueNumber || decimalSeparatorSymbol in lastValueNumber) {
+                    var numberBefore =
+                        binding.input.text.toString().substring(0, cursorPosition)
+                    if (numberBefore.last() !in "()*-/+^!√πe") {
+                        numberBefore = NumberFormatter.extractNumbers(
+                            numberBefore,
+                            decimalSeparatorSymbol
+                        ).last()
+                    }
+                    var numberAfter = ""
+                    if (cursorPosition < binding.input.text.length - 1) {
+                        numberAfter = NumberFormatter.extractNumbers(
+                            binding.input.text.toString()
+                                .substring(cursorPosition, binding.input.text.length),
+                            decimalSeparatorSymbol
+                        ).first()
+                    }
+                    var tmpValue = value
+                    var numberBeforeParenthesisLength = 0
+                    if (decimalSeparatorSymbol in numberBefore) {
+                        numberBefore = "($numberBefore)"
+                        numberBeforeParenthesisLength += 2
+                    }
+                    if (decimalSeparatorSymbol in numberAfter) {
+                        tmpValue = "($value)"
+                    }
+                    val tmpNewValue = binding.input.text.toString().substring(
+                        0,
+                        (cursorPosition + numberBeforeParenthesisLength - numberBefore.length)
+                    ) + numberBefore + tmpValue + rightValue
+                    newValueFormatted = NumberFormatter.format(
+                        tmpNewValue,
+                        decimalSeparatorSymbol,
+                        groupingSeparatorSymbol
+                    )
+                }
+            }
+        }
+
+        // Update Display
+        binding.input.setText(newValueFormatted)
+
+        // Increase cursor position
+        val cursorOffset = newValueFormatted.length - newValue.length
+        binding.input.setSelection(cursorPosition + value.length + cursorOffset)
     }
 
     private fun roundResult(result: Double): Double {
@@ -624,70 +651,82 @@ class MainActivity : BaseActivity() {
 
     @SuppressLint("DefaultLocale", "SetTextI18n")
     private fun updateResultDisplay() {
-        lifecycleScope.launch(Dispatchers.Default) {
-            // Reset text color
-            setErrorColor(false)
-
-            val calculation = binding.input.text.toString()
+        calculationJob?.cancel()
+        calculationJob = lifecycleScope.launch(Dispatchers.Default) {
+            // F-UI-2: đọc binding.input phải trên Main thread (Editable không thread-safe)
+            val calculation = withContext(Dispatchers.Main) {
+                setErrorColor(false)
+                binding.input.text.toString()
+            }
 
             if (calculation != "") {
-                division_by_0 = false
-                domain_error = false
-                syntax_error = false
+                calculationMutex.withLock {
+                    division_by_0 = false
+                    domain_error = false
+                    domain_error_reason = null
+                    syntax_error = false
 
-                val calculationTmp = Expression().getCleanExpression(
-                    binding.input.text.toString(),
-                    decimalSeparatorSymbol,
-                    groupingSeparatorSymbol
-                )
-                var result = Calculator().evaluate(calculationTmp, isDegreeModeActivated)
-
-                // If result is a number and it is finite
-                if (!result.isNaN() && result.isFinite()) {
-                    // Round at 10^-12
-                    result = roundResult(result)
-                    var formattedResult = NumberFormatter.format(
-                        result.toString().replace(".", decimalSeparatorSymbol),
+                    val calculationTmp = Expression().getCleanExpression(
+                        calculation,
                         decimalSeparatorSymbol,
                         groupingSeparatorSymbol
                     )
-
-                    // If result = -0, change it to 0
-                    if (result == -0.0) {
-                        result = 0.0
+                    // F-UI-9: parser đệ quy xuống, biểu thức bất thường (nhiều ngoặc lồng nhau)
+                    // có thể vượt stack — không để crash cả app.
+                    var result = try {
+                        Calculator().evaluate(calculationTmp, isDegreeModeActivated)
+                    } catch (e: StackOverflowError) {
+                        syntax_error = true
+                        Double.NaN
                     }
-                    // If the double ends with .0 we remove the .0
-                    if ((result * 10) % 10 == 0.0) {
-                        val resultString = String.format("%.0f", result)
-                        formattedResult = NumberFormatter.format(
-                            resultString,
+
+                    // If result is a number and it is finite
+                    if (!result.isNaN() && result.isFinite()) {
+                        // Round at 10^-12
+                        result = roundResult(result)
+                        var formattedResult = NumberFormatter.format(
+                            result.toString().replace(".", decimalSeparatorSymbol),
                             decimalSeparatorSymbol,
                             groupingSeparatorSymbol
                         )
 
-                        withContext(Dispatchers.Main) {
-                            if (formattedResult != calculation) {
-                                binding.resultDisplay.setText(formattedResult)
-                            } else {
-                                binding.resultDisplay.setText("")
+                        // If result = -0, change it to 0
+                        if (result == -0.0) {
+                            result = 0.0
+                        }
+                        // If the double ends with .0 we remove the .0
+                        if ((result * 10) % 10 == 0.0) {
+                            val resultString = String.format("%.0f", result)
+                            formattedResult = NumberFormatter.format(
+                                resultString,
+                                decimalSeparatorSymbol,
+                                groupingSeparatorSymbol
+                            )
+
+                            withContext(Dispatchers.Main) {
+                                if (formattedResult != calculation) {
+                                    binding.resultDisplay.setText(formattedResult)
+                                } else {
+                                    binding.resultDisplay.setText("")
+                                }
+                            }
+                        } else {
+                            withContext(Dispatchers.Main) {
+                                if (formattedResult != calculation) {
+                                    binding.resultDisplay.setText(formattedResult)
+                                } else {
+                                    binding.resultDisplay.setText("")
+                                }
                             }
                         }
-                    } else {
-                        withContext(Dispatchers.Main) {
-                            if (formattedResult != calculation) {
-                                binding.resultDisplay.setText(formattedResult)
-                            } else {
+                    } else withContext(Dispatchers.Main) {
+                        if (result.isInfinite() && !division_by_0 && !domain_error) {
+                            if (result < 0) binding.resultDisplay.setText("-" + getString(R.string.infinity))
+                            else binding.resultDisplay.setText(getString(R.string.value_too_large))
+                        } else {
+                            withContext(Dispatchers.Main) {
                                 binding.resultDisplay.setText("")
                             }
-                        }
-                    }
-                } else withContext(Dispatchers.Main) {
-                    if (result.isInfinite() && !division_by_0 && !domain_error) {
-                        if (result < 0) binding.resultDisplay.setText("-" + getString(R.string.infinity))
-                        else binding.resultDisplay.setText(getString(R.string.value_too_large))
-                    } else {
-                        withContext(Dispatchers.Main) {
-                            binding.resultDisplay.setText("")
                         }
                     }
                 }
@@ -909,129 +948,155 @@ class MainActivity : BaseActivity() {
 
     @SuppressLint("SetTextI18n", "DefaultLocale")
     fun equalsButton(view: View) {
-        lifecycleScope.launch(Dispatchers.Default) {
-            keyVibration(view)
-
-            val calculation = binding.input.text.toString()
+        calculationJob?.cancel()
+        calculationJob = lifecycleScope.launch(Dispatchers.Default) {
+            // F-UI-2: đọc binding.input phải trên Main thread (Editable không thread-safe)
+            val calculation = withContext(Dispatchers.Main) {
+                keyVibration(view)
+                binding.input.text.toString()
+            }
 
             if (calculation != "") {
-                division_by_0 = false
-                domain_error = false
-                syntax_error = false
+                calculationMutex.withLock {
+                    division_by_0 = false
+                    domain_error = false
+                    domain_error_reason = null
+                    syntax_error = false
 
-                val calculationTmp = Expression().getCleanExpression(
-                    binding.input.text.toString(),
-                    decimalSeparatorSymbol,
-                    groupingSeparatorSymbol
-                )
-                val result =
-                    roundResult((Calculator().evaluate(calculationTmp, isDegreeModeActivated)))
-                var resultString = result.toString()
-                var formattedResult = NumberFormatter.format(
-                    resultString.replace(".", decimalSeparatorSymbol),
-                    decimalSeparatorSymbol,
-                    groupingSeparatorSymbol
-                )
-
-                // If result is a number and it is finite
-                if (!result.isNaN() && result.isFinite()) {
-                    // If there is an unused 0 at the end, remove it : 2.0 -> 2
-                    if ((result * 10) % 10 == 0.0) {
-                        resultString = String.format("%.0f", result)
-                        formattedResult = NumberFormatter.format(
-                            resultString,
-                            decimalSeparatorSymbol,
-                            groupingSeparatorSymbol
-                        )
+                    val calculationTmp = Expression().getCleanExpression(
+                        calculation,
+                        decimalSeparatorSymbol,
+                        groupingSeparatorSymbol
+                    )
+                    // F-UI-9: parser đệ quy xuống, biểu thức bất thường (nhiều ngoặc lồng nhau)
+                    // có thể vượt stack — không để crash cả app.
+                    val result = try {
+                        roundResult(Calculator().evaluate(calculationTmp, isDegreeModeActivated))
+                    } catch (e: StackOverflowError) {
+                        syntax_error = true
+                        Double.NaN
                     }
+                    var resultString = result.toString()
+                    var formattedResult = NumberFormatter.format(
+                        resultString.replace(".", decimalSeparatorSymbol),
+                        decimalSeparatorSymbol,
+                        groupingSeparatorSymbol
+                    )
 
-                    // Hide the cursor before updating binding.input to avoid weird cursor movement
-                    withContext(Dispatchers.Main) {
-                        binding.input.isCursorVisible = false
-                    }
-
-                    // Display result
-                    withContext(Dispatchers.Main) { binding.input.setText(formattedResult) }
-
-                    // Set cursor
-                    withContext(Dispatchers.Main) {
-                        // Scroll to the end
-                        binding.input.setSelection(binding.input.length())
-
-                        // Hide the cursor (do not remove this, it's not a duplicate)
-                        binding.input.isCursorVisible = false
-
-                        // Clear resultDisplay
-                        binding.resultDisplay.setText("")
-                    }
-
-                    if (calculation != formattedResult) {
-                        val history = prefs.getHistory()
-
-                        // Do not save to history if the previous entry is the same as the current one
-                        if (history.isEmpty() || history[history.size - 1].calculation != calculation) {
-                            // Store time
-                            val currentTime = System.currentTimeMillis().toString()
-
-                            // Save to history
-                            history.add(
-                                History(
-                                    calculation = calculation,
-                                    result = formattedResult,
-                                    time = currentTime,
-                                )
+                    // If result is a number and it is finite
+                    if (!result.isNaN() && result.isFinite()) {
+                        // If there is an unused 0 at the end, remove it : 2.0 -> 2
+                        if ((result * 10) % 10 == 0.0) {
+                            resultString = String.format("%.0f", result)
+                            formattedResult = NumberFormatter.format(
+                                resultString,
+                                decimalSeparatorSymbol,
+                                groupingSeparatorSymbol
                             )
+                        }
 
-                            prefs.saveHistory(this@MainActivity, history)
+                        // Hide the cursor before updating binding.input to avoid weird cursor movement
+                        withContext(Dispatchers.Main) {
+                            binding.input.isCursorVisible = false
+                        }
 
-                            // Update history variables
-                            withContext(Dispatchers.Main) {
-                                historyAdapter.appendOneHistoryElement(
-                                    History(
-                                        calculation = calculation,
-                                        result = formattedResult,
-                                        time = currentTime,
+                        // Display result
+                        withContext(Dispatchers.Main) { binding.input.setText(formattedResult) }
+
+                        // Set cursor
+                        withContext(Dispatchers.Main) {
+                            // Scroll to the end
+                            binding.input.setSelection(binding.input.length())
+
+                            // Hide the cursor (do not remove this, it's not a duplicate)
+                            binding.input.isCursorVisible = false
+
+                            // Clear resultDisplay
+                            binding.resultDisplay.setText("")
+                        }
+
+                        if (calculation != formattedResult) {
+                            // Review fix: đồng bộ với job trim history ở onResume() (đọc/sửa/ghi
+                            // cùng 1 blob SharedPreferences) để tránh mất entry vừa lưu.
+                            historyMutex.withLock {
+                                val history = prefs.getHistory()
+
+                                // Do not save to history if the previous entry is the same as the current one
+                                if (history.isEmpty() || history[history.size - 1].calculation != calculation) {
+                                    // Store time
+                                    val currentTime = System.currentTimeMillis().toString()
+
+                                    // Save to history
+                                    history.add(
+                                        History(
+                                            calculation = calculation,
+                                            result = formattedResult,
+                                            time = currentTime,
+                                        )
                                     )
-                                )
 
-                                // Remove former results if > historySize preference
-                                val historySize =
-                                    prefs.historySize!!.toInt()
-                                while (historySize > 0 && historyAdapter.itemCount >= historySize) {
-                                    historyAdapter.removeFirstHistoryElement()
+                                    prefs.saveHistory(this@MainActivity, history)
+
+                                    // Update history variables
+                                    withContext(Dispatchers.Main) {
+                                        historyAdapter.appendOneHistoryElement(
+                                            History(
+                                                calculation = calculation,
+                                                result = formattedResult,
+                                                time = currentTime,
+                                            )
+                                        )
+
+                                        // Remove former results if > historySize preference
+                                        val historySize =
+                                            prefs.historySize!!.toInt()
+                                        while (historySize > 0 && historyAdapter.itemCount >= historySize) {
+                                            historyAdapter.removeFirstHistoryElement()
+                                        }
+
+                                        // Scroll to the bottom of the recycle view
+                                        binding.rvHistory.scrollToPosition(historyAdapter.itemCount - 1)
+                                    }
                                 }
+                            }
+                        }
+                        isEqualLastAction = true
+                    } else {
+                        withContext(Dispatchers.Main) {
+                            if (syntax_error) {
+                                setErrorColor(true)
+                                binding.resultDisplay.setText(getString(R.string.syntax_error))
+                            } else if (domain_error) {
+                                setErrorColor(true)
+                                // X-CALC-1: giải thích cụ thể thay vì "Domain error" chung chung
+                                binding.resultDisplay.setText(
+                                    when (domain_error_reason) {
+                                        DomainErrorReason.LOG_NON_POSITIVE ->
+                                            getString(R.string.error_explain_log_nonpositive)
 
-                                // Scroll to the bottom of the recycle view
-                                binding.rvHistory.scrollToPosition(historyAdapter.itemCount - 1)
+                                        DomainErrorReason.TAN_SINGULARITY ->
+                                            getString(R.string.error_explain_tan_singularity)
+
+                                        null -> getString(R.string.domain_error)
+                                    }
+                                )
+                            } else if (result.isInfinite()) {
+                                if (division_by_0) {
+                                    setErrorColor(true)
+                                    binding.resultDisplay.setText(getString(R.string.division_by_0))
+                                } else if (result < 0) binding.resultDisplay.setText("-" + getString(R.string.infinity))
+                                else binding.resultDisplay.setText(getString(R.string.value_too_large))
+                            } else if (result.isNaN()) {
+                                setErrorColor(true)
+                                binding.resultDisplay.setText(getString(R.string.math_error))
+                            } else {
+                                binding.resultDisplay.setText(formattedResult)
+                                isEqualLastAction =
+                                    true // Do not clear the calculation (if you click into a number) if there is an error
                             }
                         }
                     }
-                    isEqualLastAction = true
-                } else {
-                    withContext(Dispatchers.Main) {
-                        if (syntax_error) {
-                            setErrorColor(true)
-                            binding.resultDisplay.setText(getString(R.string.syntax_error))
-                        } else if (domain_error) {
-                            setErrorColor(true)
-                            binding.resultDisplay.setText(getString(R.string.domain_error))
-                        } else if (result.isInfinite()) {
-                            if (division_by_0) {
-                                setErrorColor(true)
-                                binding.resultDisplay.setText(getString(R.string.division_by_0))
-                            } else if (result < 0) binding.resultDisplay.setText("-" + getString(R.string.infinity))
-                            else binding.resultDisplay.setText(getString(R.string.value_too_large))
-                        } else if (result.isNaN()) {
-                            setErrorColor(true)
-                            binding.resultDisplay.setText(getString(R.string.math_error))
-                        } else {
-                            binding.resultDisplay.setText(formattedResult)
-                            isEqualLastAction =
-                                true // Do not clear the calculation (if you click into a number) if there is an error
-                        }
-                    }
                 }
-
             } else {
                 withContext(Dispatchers.Main) { binding.resultDisplay.setText("") }
             }
@@ -1150,12 +1215,18 @@ class MainActivity : BaseActivity() {
         while (historySize > 0 && historyAdapter.itemCount >= historySize) {
             historyAdapter.removeFirstHistoryElement()
         }
-        // Remove from the preference store data
-        val history = prefs.getHistory()
-        while (historySize > 0 && history.size > historySize) {
-            history.removeAt(0)
+        // F-DATA-3: đọc/ghi lại toàn bộ blob history mỗi lần resume — chạy nền, không block Main.
+        // Review fix: historyMutex đồng bộ với equalsButton() để tránh 2 coroutine đọc-sửa-ghi
+        // chồng chéo lên cùng 1 blob SharedPreferences làm mất entry vừa lưu.
+        lifecycleScope.launch(Dispatchers.IO) {
+            historyMutex.withLock {
+                val history = prefs.getHistory()
+                while (historySize > 0 && history.size > historySize) {
+                    history.removeAt(0)
+                }
+                prefs.saveHistory(this@MainActivity, history)
+            }
         }
-        prefs.saveHistory(this@MainActivity, history)
 
         // Disable the keyboard on display EditText
         binding.input.showSoftInputOnFocus = false

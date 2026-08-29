@@ -12,7 +12,7 @@
     <string name="eight" translatable="false">8</string>
     <string name="nine" translatable="false">9</string>
     <string name="clear" translatable="false">AC</string>
-    <string name="backspace" translatable="false"> </string>
+    <string name="backspace">Backspace</string>
     <string name="divideBy100" translatable="false">%</string>
     <string name="degree" translatable="false">DEG</string>
     <string name="sine" translatable="false">sin</string>
@@ -31,6 +31,30 @@
     <string name="factorial" translatable="false">!</string>
     <string name="square" translatable="false">√</string>
     <string name="squareInv" translatable="false">x²</string>
+
+    <!-- F-UI-5: content description cho các icon button chỉ có ký hiệu, không có text -->
+    <string name="cd_toggle_scientific_mode">Toggle scientific functions</string>
+    <string name="cd_parentheses">Parentheses</string>
+    <string name="cd_exponent">Exponent</string>
+    <string name="cd_divide">Divide</string>
+    <string name="cd_multiply">Multiply</string>
+    <string name="cd_subtract">Subtract</string>
+    <string name="cd_add">Add</string>
+    <string name="cd_decimal_point">Decimal point</string>
+    <string name="cd_equals">Equals</string>
+    <string name="cd_more_options">More options</string>
+
+    <!-- X-UI-0: Bill Splitter -->
+    <string name="bill_splitter_title">Bill Splitter</string>
+    <string name="app_menu_bill_splitter">Bill Splitter</string>
+    <string name="bill_splitter_amount_label">Bill amount</string>
+    <string name="bill_splitter_people_label">Number of people</string>
+    <string name="bill_splitter_minus">−</string>
+    <string name="bill_splitter_plus">+</string>
+    <string name="bill_splitter_tip_label">Tip</string>
+    <string name="bill_splitter_tip_value">%1$d%%</string>
+    <string name="bill_splitter_total_label">Total (incl. tip)</string>
+    <string name="bill_splitter_per_person_label">Each person pays</string>
 
     <!-- App Menu -->
     <string name="app_menu_show_history">Show History</string>
@@ -59,6 +83,9 @@
     <string name="domain_error">Domain error</string>
     <string name="math_error">Math error</string>
     <string name="syntax_error">Syntax error</string>
+    <!-- X-CALC-1: giải thích cụ thể hơn "Domain error" chung chung -->
+    <string name="error_explain_log_nonpositive">ln/log is only defined for x > 0</string>
+    <string name="error_explain_tan_singularity">tan is undefined here (cos = 0)</string>
     <string name="app_menu_settings">Settings (Ads may appear)</string>
     <string name="value_too_large">Value too large</string>
 

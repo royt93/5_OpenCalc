@@ -125,7 +125,9 @@
                         android:id="@+id/scientistModeRow2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1">
+                        android:layout_weight="1"
+                        android:visibility="gone"
+                        tools:visibility="visible">
 
                         <Button
                             android:id="@+id/degreeButton"
@@ -210,7 +212,9 @@
                         android:id="@+id/scientistModeRow3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1">
+                        android:layout_weight="1"
+                        android:visibility="gone"
+                        tools:visibility="visible">
 
                         <Button
                             style="@style/CalculatorButton.Function"
@@ -440,6 +444,7 @@
                 android:autofillHints="false"
                 android:background="?attr/foreground_color"
                 android:inputType="textNoSuggestions"
+                android:maxLength="200"
                 android:paddingHorizontal="30sp"
                 android:singleLine="true"
                 android:text=""

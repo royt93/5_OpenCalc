@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.appcompat.app.AppCompatDelegate.*
 import androidx.preference.PreferenceManager
 import com.google.gson.Gson
+import com.google.gson.JsonSyntaxException
 import com.mckimquyen.opencal.model.History
 import com.mckimquyen.opencal.util.Logger
 
@@ -13,16 +14,24 @@ class MyPreferences(context: Context) {
     companion object {
         private const val THEME = "royTHEME"
         private const val FORCE_DAY_NIGHT = "royFORCE_DAY_NIGHT"
-        private const val KEY_VIBRATION_STATUS = "royKEY_VIBRATION_STATUS"
+        // F-UI-1: phải khớp app:key trong res/xml/root_preferences.xml — trước đây lệch
+        // ("roy*" vs "mckimquyen.opencal.*") khiến toggle Settings không có tác dụng gì.
+        private const val KEY_VIBRATION_STATUS = "mckimquyen.opencal.KEY_VIBRATION_STATUS"
         private const val KEY_HISTORY = "royHISTORY"
-        private const val KEY_PREVENT_PHONE_FROM_SLEEPING = "royPREVENT_PHONE_FROM_SLEEPING"
-        private const val KEY_HISTORY_SIZE = "royHISTORY_SIZE"
+        private const val KEY_PREVENT_PHONE_FROM_SLEEPING =
+            "mckimquyen.opencal.PREVENT_PHONE_FROM_SLEEPING"
+        private const val KEY_HISTORY_SIZE = "mckimquyen.opencal.HISTORY_SIZE"
         private const val KEY_SCIENTIFIC_MODE_ENABLED_BY_DEFAULT =
-            "roySCIENTIFIC_MODE_ENABLED_BY_DEFAULT"
+            "mckimquyen.opencal.SCIENTIFIC_MODE_ENABLED_BY_DEFAULT"
         private const val KEY_RADIANS_INSTEAD_OF_DEGREES_BY_DEFAULT =
-            "royRADIANS_INSTEAD_OF_DEGREES_BY_DEFAULT"
-        private const val KEY_NUMBER_PRECISION = "royNUMBER_PRECISION"
+            "mckimquyen.opencal.RADIANS_INSTEAD_OF_DEGREES_BY_DEFAULT"
+        private const val KEY_NUMBER_PRECISION = "mckimquyen.opencal.NUMBER_PRECISION"
         private const val KEY_APP_LANGUAGE = "royAPP_LANGUAGE"
+
+        // F-DATA-4: historySize="-1" (∞) không được nghĩa là "không giới hạn tuyệt đối" —
+        // vẫn phải chặn ở 1 trần cứng để tránh blob SharedPreferences+Gson phình vô hạn
+        // (re-serialize toàn bộ mỗi lần thêm 1 phần tử) gây chậm dần/OOM về lâu dài.
+        private const val HISTORY_HARD_CAP = 10_000
     }
 
     private val preferences = PreferenceManager.getDefaultSharedPreferences(context)
@@ -64,7 +73,14 @@ class MyPreferences(context: Context) {
         // session — tránh trả về dữ liệu cũ sau saveHistory.
         val json = preferences.getString(KEY_HISTORY, null)
         return if (json != null) {
-            gson.fromJson(json, Array<History>::class.java).asList().toMutableList()
+            try {
+                gson.fromJson(json, Array<History>::class.java).asList().toMutableList()
+            } catch (e: JsonSyntaxException) {
+                // F-DATA-1: JSON hỏng (restore backup lệch version, ghi dở khi bị kill...)
+                // không được crash app mỗi lần mở — coi như mất lịch sử, không mất cả app.
+                Logger.d("MyPreferences.getHistory: corrupt history JSON, resetting. ${e.message}")
+                mutableListOf()
+            }
         } else {
             mutableListOf()
         }
@@ -73,10 +89,10 @@ class MyPreferences(context: Context) {
     fun saveHistory(context: Context, history: List<History>) {
         val gson = Gson()
         val history2 = history.toMutableList()
-        historySize?.let { hs ->
-            while (hs.toInt() > 0 && history2.size > hs.toInt()) {
-                history2.removeAt(0)
-            }
+        val userLimit = historySize?.toIntOrNull()?.takeIf { it > 0 }
+        val effectiveLimit = userLimit ?: HISTORY_HARD_CAP
+        while (history2.size > effectiveLimit) {
+            history2.removeAt(0)
         }
         MyPreferences(context).history = gson.toJson(history2) // Convert to json
     }

@@ -4,10 +4,17 @@ apply plugin: 'kotlin-android'
 android {
     compileSdk 37
 
+    // N-INFRA-1: baseline lỗi lint đã tồn tại từ trước (vd F-UI-7 onBackPressed deprecated)
+    // để CI không fail ngay lần chạy đầu vì nợ kỹ thuật cũ — lỗi MỚI phát sinh sau baseline
+    // này vẫn sẽ fail CI như bình thường.
+    lint {
+        baseline = file("lint-baseline.xml")
+    }
+
     namespace 'com.mckimquyen.opencal'
     defaultConfig {
         applicationId "com.mckimquyen.opencal"
-        resourceConfigurations += ['ar', 'az', 'bn', 'bs', 'de', 'el', 'es', 'fa', 'fr', 'hi', 'hr', 'in', 'it', 'ja', 'mk', 'nb-rNO', 'pt-rBR', 'ru', 'tr', 'uk', 'vi', 'zh-rHK', 'zh-rTW']
+        resourceConfigurations += ['ar', 'az', 'bn', 'bs', 'cs', 'de', 'el', 'es', 'fa', 'fr', 'hi', 'hr', 'in', 'it', 'ja', 'mk', 'ml', 'nb-rNO', 'or', 'pl', 'pt-rBR', 'ru', 'sr', 'tr', 'uk', 'vi', 'zh-rHK', 'zh-rTW']
         minSdkVersion 24
         targetSdkVersion 37
         versionCode 20260829

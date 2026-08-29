@@ -19,18 +19,30 @@ Backlog rã theo kiểu scrum từ audit toàn bộ source code (5 agent nội b
 
 Tất cả item trong backlog này hiện ở trạng thái **💭 Ideas / chưa triển khai** — chờ quyết định sprint kế tiếp.
 
-## 📋 Sprint 1 — đã chọn (2026-08-28)
+## ✅ Sprint 1 — ĐÃ XONG (2026-08-28)
 
-User chọn kết hợp **Stabilize (P0/P1 bug)** + **Differentiation (exclusive feature)**, bỏ qua Monetization/Play Billing (N-AD-1/N-AD-2) cho sprint này.
+User chọn kết hợp **Stabilize (P0/P1 bug)** + **Differentiation (exclusive feature)**, bỏ qua Monetization/Play Billing (N-AD-1/N-AD-2) cho sprint này. Toàn bộ 16 hạng mục dưới đây đã code xong, build+lint+test (`testDevDebugUnitTest`, `lint`, `assembleDevDebug`) PASS, và verify thực tế trên device `SM-S928B`/thiết bị hiện tại (screenshot trực tiếp cho các fix quan trọng: tan(90°), ln(0.5), Bill Splitter, Theme swatch).
 
-**Stabilize (P0/P1):**
-- F-UI-1 (Settings 6/7 preference chết), F-INFRA-1 (5 locale bị cắt), F-AD-1 (rewarded test ID release), F-CALC-1/2/3/7/8 (bug core tính toán + race condition), F-UI-2/3/5/9 (race condition input, scientific mode ẩn landscape, accessibility, StackOverflow input dài), F-DATA-1/2/3/4 (crash JSON, I/O main thread, unbounded history), N-INFRA-1 (CI pipeline build+lint+test).
-- F-SEC-1 (keystore leak): **giữ nguyên quyết định hoãn xử lý git/GitHub** — không nằm trong sprint code, chỉ theo dõi.
+**Stabilize (P0/P1) — ✅ Implemented:**
+- F-CALC-1/6, F-CALC-2, F-CALC-3, F-CALC-7, F-CALC-8 (bug core tính toán + race condition cờ lỗi) — `ext/Calculator.kt`, `ui/MainActivity.kt`.
+- F-UI-1 (Settings 6/7 preference chết — key mismatch) — `db/MyPreferences.kt`.
+- F-INFRA-1 (5 locale bị cắt: cs/ml/or/pl/sr) — `app/build.gradle`.
+- F-UI-2 (race condition + đọc View sai thread), F-UI-3 (scientific mode ẩn vĩnh viễn landscape), F-UI-5 (contentDescription sai 12 chỗ), F-UI-9 (StackOverflow input dài) — `ui/MainActivity.kt` + layout XML + `strings.xml`.
+- F-DATA-1 (crash JSON hỏng), F-DATA-4 (unbounded history ∞) — `db/MyPreferences.kt`.
+- F-DATA-2/3 (history I/O trên Main Thread) — `ui/MainActivity.kt`.
+- N-INFRA-1 (CI pipeline GitHub Actions build+lint+test) — `.github/workflows/ci.yml` + `app/lint-baseline.xml` (baseline hoá nợ lint cũ, vd F-UI-7, để không chặn CI).
 
-**Differentiation (exclusive feature, effort thấp-vừa):**
-- X-CALC-1 (Explain my error — tận dụng hạ tầng cờ lỗi sau khi fix F-CALC-1/2/5), X-UI-0 (Bill Splitter), X-UI-1 (theme preview carousel marketing), X-UI-0b (Material You dynamic color), X-AD-5 (marketing hoá ad-UX-tốt-sẵn-có).
+**Differentiation (exclusive feature) — ✅ Implemented:**
+- X-CALC-1 (Explain my error — giải thích domain error cụ thể thay vì chung chung) — `ext/Calculator.kt` (`DomainErrorReason`) + `ui/MainActivity.kt`.
+- X-UI-0 (Bill Splitter — màn hình mới, menu "Bill Splitter") — `ui/BillSplitterActivity.kt` + layout + manifest + menu.
+- X-UI-1/0b (Theme preview carousel dạng lưới swatch màu thay vì list chữ) — `model/Themes.kt`, `model/ThemeSwatchAdapter.kt` + layout.
 
-Trạng thái các item trên: **📋 Picked**. Còn lại trong backlog (Monetization Play Billing, phần lớn Enhancements/New Features/Ideas khác) giữ nguyên **💭 Ideas** chờ sprint sau.
+**⏸️ Deferred / chưa làm trong sprint này (cần input hoặc quyết định thêm từ user):**
+- **F-AD-1** (AdMob Rewarded test ID) — KHÔNG tự sửa được vì cần ID rewarded thật từ AdMob Console, không thể tự bịa. Vẫn đang dùng test ID trong `app/build.gradle:47`.
+- **F-SEC-1** (keystore + password lộ trên GitHub public) — giữ nguyên quyết định hoãn xử lý git/GitHub của user, chỉ ghi nhận.
+- **X-AD-5** (marketing hoá ad-UX tốt sẵn có) — bản chất là việc viết mô tả Play Store, không phải code, chưa làm.
+
+Còn lại trong backlog (Monetization Play Billing N-AD-1/N-AD-2, phần lớn Enhancements/New Features/Ideas khác) giữ nguyên **💭 Ideas** chờ sprint sau.
 
 ## Priority & Size convention
 

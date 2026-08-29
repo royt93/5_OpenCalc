@@ -202,6 +202,10 @@ P2 · S — dọn sạch, chỉ giữ rule cho dependency thật.
 `proguard-rules.pro:4` — giữ nguyên toàn bộ namespace `com.google.*` (Material, Gson, Play Review...) trong khi `AdmobApplovinWrapper:1.1.5` đã tự mang consumer ProGuard rule chính xác cho `com.google.android.gms.ads.**`/`com.applovin.**`/`com.google.android.ump.**`.
 P2 · S — thu hẹp rule, để lib tự quản consumer rules.
 
+### F-INFRA-8 — `gradle.properties` hardcode `org.gradle.java.home` theo path máy dev cục bộ (phát hiện khi làm N-INFRA-1 CI pipeline)
+`gradle.properties:10` = `/Users/loitran/Library/Java/JavaVirtualMachines/jbr-17.0.14/Contents/Home` — path chỉ tồn tại trên máy hiện tại, sẽ khiến build lỗi ("Java home supplied is invalid") trên máy dev khác hoặc CI runner nếu gọi `./gradlew` trực tiếp không override. Đã fix ở tầm CI bằng cách luôn truyền `-Dorg.gradle.java.home="$JAVA_HOME"` trong `.github/workflows/ci.yml` (verify thực tế: build thành công khi override sang JDK khác hẳn path hardcode) — không sửa `gradle.properties` vì đây là override có chủ đích cho máy hiện tại (commit gần nhất "Update Gradle configuration with specific Java home"). Máy dev khác cần tự thêm dòng override tương ứng hoặc luôn gọi kèm `-D` như CI.
+P3 · S (đã fix phần CI; phần "máy dev khác" chỉ cần biết cách override, không bắt buộc sửa thêm).
+
 ### F-INFRA-6 — Dependency khai báo trùng lặp
 `androidx.preference:preference-ktx:1.2.1` khai 2 lần (`app/build.gradle:139,144`).
 P3 · S.

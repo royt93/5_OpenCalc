@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/background_color">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".ui.BillSplitterActivity">
+
+            <ImageView
+                android:id="@+id/ivBillSplitterBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="18dp"
+                android:background="@drawable/ic_baseline_arrow_back_24"
+                android:backgroundTint="?attr/text_color"
+                android:contentDescription="@string/back"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvBillSplitterTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:paddingVertical="18dp"
+                android:text="@string/bill_splitter_title"
+                android:textColor="?attr/text_color"
+                android:textSize="22sp"
+                app:layout_constraintBottom_toBottomOf="@+id/ivBillSplitterBack"
+                app:layout_constraintStart_toEndOf="@+id/ivBillSplitterBack"
+                app:layout_constraintTop_toTopOf="@+id/ivBillSplitterBack" />
+
+            <TextView
+                android:id="@+id/tvBillAmountLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/bill_splitter_amount_label"
+                android:textColor="?attr/text_color"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivBillSplitterBack" />
+
+            <EditText
+                android:id="@+id/etBillAmount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="8dp"
+                android:autofillHints="false"
+                android:background="?attr/foreground_color"
+                android:hint="0"
+                android:inputType="numberDecimal"
+                android:padding="12dp"
+                android:textColor="?attr/text_color"
+                android:textSize="28sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvBillAmountLabel"
+                tools:ignore="LabelFor" />
+
+            <TextView
+                android:id="@+id/tvPeopleCountLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/bill_splitter_people_label"
+                android:textColor="?attr/text_color"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etBillAmount" />
+
+            <Button
+                android:id="@+id/btnPeopleMinus"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="?attr/button_symbol_color"
+                android:text="@string/bill_splitter_minus"
+                app:layout_constraintStart_toStartOf="@+id/tvPeopleCountLabel"
+                app:layout_constraintTop_toBottomOf="@+id/tvPeopleCountLabel" />
+
+            <TextView
+                android:id="@+id/tvPeopleCount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="12dp"
+                android:gravity="center"
+                android:text="2"
+                android:textColor="?attr/text_color"
+                android:textSize="28sp"
+                app:layout_constraintBottom_toBottomOf="@+id/btnPeopleMinus"
+                app:layout_constraintEnd_toStartOf="@+id/btnPeoplePlus"
+                app:layout_constraintStart_toEndOf="@+id/btnPeopleMinus"
+                app:layout_constraintTop_toTopOf="@+id/btnPeopleMinus" />
+
+            <Button
+                android:id="@+id/btnPeoplePlus"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:backgroundTint="?attr/button_symbol_color"
+                android:text="@string/bill_splitter_plus"
+                app:layout_constraintEnd_toEndOf="@+id/tvBillAmountLabel"
+                app:layout_constraintTop_toTopOf="@+id/btnPeopleMinus" />
+
+            <TextView
+                android:id="@+id/tvTipLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/bill_splitter_tip_label"
+                android:textColor="?attr/text_color"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnPeopleMinus" />
+
+            <SeekBar
+                android:id="@+id/sbTipPercent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="4dp"
+                android:max="50"
+                android:progress="10"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvTipLabel" />
+
+            <TextView
+                android:id="@+id/tvTipValue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:textColor="?attr/text_color"
+                android:textSize="16sp"
+                tools:text="10%"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sbTipPercent" />
+
+            <View
+                android:id="@+id/vDivider"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="24dp"
+                android:background="?attr/text_color"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvTipValue" />
+
+            <TextView
+                android:id="@+id/tvTotalWithTipLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/bill_splitter_total_label"
+                android:textColor="?attr/text_color"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/vDivider" />
+
+            <TextView
+                android:id="@+id/tvTotalWithTip"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:text="0"
+                android:textColor="?attr/text_color"
+                android:textSize="22sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvTotalWithTipLabel" />
+
+            <TextView
+                android:id="@+id/tvPerPersonLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/bill_splitter_per_person_label"
+                android:textColor="?attr/text_color"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvTotalWithTip" />
+
+            <TextView
+                android:id="@+id/tvPerPerson"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginBottom="32dp"
+                android:text="0"
+                android:textColor="?attr/button_equals_color"
+                android:textSize="36sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvPerPersonLabel" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</FrameLayout>
