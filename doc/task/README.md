@@ -68,6 +68,10 @@ Theo feedback UI trực tiếp từ user (icon VIP crown quá to) + chọn tiế
 
 Chuỗi 3 tính năng tự động (N-CALC-4 → N-DATA-1 → N-CALC-2) đã hoàn tất, đều pass gate + verify device.
 
+## ✅ Bug fix ngoài kế hoạch — Edge-to-edge (2026-08-29)
+
+User báo trực tiếp qua screenshot: title/back-arrow của `BillSplitterActivity` và `BaseConverterActivity` bị status bar đè lên. Audit toàn bộ Activity (xem [F-UI-12](01_fixes.md)) xác nhận cả 2 activity mới thêm trong session này thiếu cặp `UIUtils.setupEdgeToEdge1/2` mà mọi activity khác đều có — đã fix cả 2, verify lại trên emulator. Ghi nhận thêm khuyến nghị dài hạn [E-INFRA-6](02_enhancements.md) để tránh tái diễn khi thêm activity mới sau này.
+
 Tính năng tiếp theo cho vòng loop kế tiếp chưa chọn — chờ user quyết định qua `AskUserQuestion` khi bắt đầu.
 
 ## Priority & Size convention

@@ -103,6 +103,10 @@ P2 · S.
 `MainActivity.kt:1000,1150` — điều kiện `itemCount >= historySize` chạy SAU khi append, nên giới hạn 100 thực tế chỉ giữ 99 item hiển thị; `onResume()` lặp lại lỗi tương tự. Tầng SharedPreferences (`MyPreferences.kt`) lại dùng đúng điều kiện `size > limit`, khiến UI và dữ liệu lưu không đồng nhất (list hiển thị và list lưu lệch nhau 1 phần tử).
 P2 · S — đồng bộ điều kiện trim giữa UI (`MainActivity`) và storage (`MyPreferences`).
 
+### ✅ F-UI-12 — `BillSplitterActivity`/`BaseConverterActivity` bị status bar đè lên (edge-to-edge) — **P1, đã fix**
+Cả 2 activity mới thêm trong session này thiếu cặp `UIUtils.setupEdgeToEdge1(window)` (trước `setContentView`) + `UIUtils.setupEdgeToEdge2(rootView = findViewById(R.id.layoutRoot), paddingTop = true, paddingBottom = true)` (sau `setContentView`) mà **mọi** Activity khác trong app (`MainActivity`, `SettingsActivity`, `AboutActivity`, `SplashActivity`, `VipActivity`) đều gọi. `targetSdk 37` khiến Android 15+ ép edge-to-edge bất kể app có opt-in hay không — thiếu insets listener này làm back-arrow + title đè lên đồng hồ/icon status bar. Layout XML đã sẵn `android:id="@+id/layoutRoot"` đúng convention nhưng code Kotlin quên gọi 2 hàm trên. Do user báo trực tiếp qua screenshot test, phát hiện qua audit toàn bộ Activity (agent research) rồi fix cả 2 file theo đúng pattern từ `AboutActivity.kt`. Verify trên emulator: cả 2 màn hình đều đã có khoảng cách đúng với status bar.
+**Rủi ro tái diễn**: `BaseActivity.kt` không tự động xử lý insets cho activity con — mỗi activity phải tự nhớ copy cặp gọi này. Đã xảy ra đúng lỗi này 2 lần liên tiếp (BillSplitter + BaseConverter được thêm cùng đợt). **Khuyến nghị dài hạn** (chưa làm, ghi nhận riêng): chuyển việc gọi `setupEdgeToEdge1/2` vào `BaseActivity` (override `setContentView`) để mọi activity mới tự động thừa hưởng, không cần nhớ copy-paste.
+
 ## Ad & VIP (`RApp.kt`, `feature/vip/*`, `common/const/AdKeys.kt`, `app/build.gradle`)
 
 ### F-AD-1 — AdMob Rewarded ID release vẫn là test ID Google — **P0**
