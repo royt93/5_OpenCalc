@@ -199,6 +199,16 @@ class MainActivity : BaseActivity() {
             }
         }
 
+        // N-DATA-3: lọc history theo biểu thức/kết quả — không cần debounce, filter() chỉ
+        // duyệt mảng trong RAM (không I/O), rẻ hơn nhiều so với việc thêm Handler/coroutine delay.
+        binding.etHistorySearch.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+            override fun afterTextChanged(s: Editable?) {
+                historyAdapter.filter(s?.toString().orEmpty())
+            }
+        })
+
         binding.slidingLayout.addPanelSlideListener(object : PanelSlideListener {
             override fun onPanelSlide(panel: View, slideOffset: Float) {
                 if (slideOffset == 0f) { // If the panel got collapsed
@@ -1161,14 +1171,21 @@ class MainActivity : BaseActivity() {
                                             // Remove former results if > historySize preference
                                             // N-DATA-4: xoá entry cũ nhất CHƯA GHIM — break nếu
                                             // toàn bộ còn lại đã ghim để tránh lặp vô hạn.
+                                            // N-DATA-3: dùng fullHistorySize (không phải itemCount,
+                                            // vốn bị thu hẹp khi đang lọc) để không trim nhầm theo
+                                            // số lượng entry đang HIỂN THỊ thay vì số thật.
                                             val historySize =
                                                 prefs.historySize!!.toInt()
-                                            while (historySize > 0 && historyAdapter.itemCount >= historySize) {
+                                            while (historySize > 0 && historyAdapter.fullHistorySize >= historySize) {
                                                 if (!historyAdapter.removeOldestUnpinnedHistoryElement()) break
                                             }
 
-                                            // Scroll to the bottom of the recycle view
-                                            binding.rvHistory.scrollToPosition(historyAdapter.itemCount - 1)
+                                            // Scroll to the bottom of the recycle view — bỏ qua
+                                            // khi đang lọc vì "cuối danh sách hiển thị" không nhất
+                                            // thiết là entry vừa thêm.
+                                            if (!historyAdapter.isFiltered) {
+                                                binding.rvHistory.scrollToPosition(historyAdapter.itemCount - 1)
+                                            }
                                         }
                                     }
                                 }
@@ -1326,8 +1343,10 @@ class MainActivity : BaseActivity() {
         // Remove former results if > historySize preference
         // Remove from the RecycleView
         // N-DATA-4: xoá entry cũ nhất CHƯA GHIM — break nếu toàn bộ còn lại đã ghim.
+        // N-DATA-3: fullHistorySize thay vì itemCount — tránh trim theo số lượng bị thu hẹp lúc
+        // đang lọc.
         val historySize = prefs.historySize!!.toInt()
-        while (historySize > 0 && historyAdapter.itemCount >= historySize) {
+        while (historySize > 0 && historyAdapter.fullHistorySize >= historySize) {
             if (!historyAdapter.removeOldestUnpinnedHistoryElement()) break
         }
         // F-DATA-3: đọc/ghi lại toàn bộ blob history mỗi lần resume — chạy nền, không block Main.

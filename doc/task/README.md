@@ -58,6 +58,8 @@ Theo feedback UI trực tiếp từ user (icon VIP crown quá to) + chọn tiế
 
 - ✅ **N-UI-4 (Copy-as-text/Share)** — xem chi tiết ở [`03_new_features.md`](03_new_features.md). Long-press history row → popup Copy/Share → Android share sheet. Phát hiện + fix bug UX: long-press gốc trên `itemView` không bao giờ nhận được sự kiện do bị 2 TextView con chiếm hết.
 
+- ✅ **N-DATA-3 (Search/filter history)** — xem chi tiết ở [`03_new_features.md`](03_new_features.md). Ô tìm kiếm lọc theo calculation/result trong RAM, không đụng logic ghim/trim/persist hiện có. Tránh trước 1 bug: sửa các nơi dùng `itemCount` (bị thu hẹp khi lọc) sang `fullHistorySize` cho trim.
+
 Tính năng tiếp theo cho vòng loop kế tiếp chưa chọn — chờ user quyết định qua `AskUserQuestion` khi bắt đầu.
 
 ## Priority & Size convention

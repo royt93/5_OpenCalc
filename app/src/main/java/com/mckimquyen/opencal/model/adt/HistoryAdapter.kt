@@ -29,6 +29,39 @@ class HistoryAdapter(
     private val onPinToggle: (updatedHistory: List<History>) -> Unit = {},
 ) : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
 
+    // N-DATA-3: null = không filter (hiện nguyên `history`). Khi có filter, đây là INDEX vào
+    // `history` của các entry khớp query — giữ index (không copy History) để pin/xoá vẫn sửa
+    // đúng phần tử gốc, và không phải viết lại toàn bộ logic ghi/xoá bên dưới theo "vị trí hiển thị".
+    private var activeQuery: String = ""
+    private var filteredIndices: List<Int>? = null
+
+    private fun recomputeFilter() {
+        val query = activeQuery.trim()
+        filteredIndices = if (query.isEmpty()) {
+            null
+        } else {
+            history.indices.filter { i ->
+                history[i].calculation?.contains(query, ignoreCase = true) == true ||
+                        history[i].result?.contains(query, ignoreCase = true) == true
+            }
+        }
+    }
+
+    /** Map vị trí đang HIỂN THỊ (adapter position) -> index thật trong `history`. */
+    private fun indexAt(adapterPosition: Int): Int = filteredIndices?.get(adapterPosition) ?: adapterPosition
+
+    val isFiltered: Boolean get() = filteredIndices != null
+
+    /** Kích thước history THẬT (không phụ thuộc filter) — dùng cho logic trim/scroll ở MainActivity. */
+    val fullHistorySize: Int get() = history.size
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun filter(query: String) {
+        activeQuery = query
+        recomputeFilter()
+        notifyDataSetChanged()
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
         val view = LayoutInflater
             .from(parent.context)
@@ -36,21 +69,28 @@ class HistoryAdapter(
         return HistoryViewHolder(view)
     }
 
-    override fun getItemCount(): Int = history.size
+    override fun getItemCount(): Int = filteredIndices?.size ?: history.size
 
     override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
-        holder.bind(history[position], position)
+        holder.bind(indexAt(position), position)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun appendHistory(historyList: List<History>) {
         val startPosition = this.history.size
         this.history.addAll(historyList)
-        notifyItemRangeInserted(startPosition, historyList.size)
+        recomputeFilter()
+        if (filteredIndices == null) {
+            notifyItemRangeInserted(startPosition, historyList.size)
+        } else {
+            notifyDataSetChanged()
+        }
     }
 
     @SuppressLint("NotifyDataSetChanged")
     fun appendOneHistoryElement(history: History) {
         this.history.add(history)
+        recomputeFilter()
         notifyDataSetChanged()
     }
 
@@ -64,6 +104,7 @@ class HistoryAdapter(
         val index = history.indexOfFirst { !it.isPinned }
         if (index == -1) return false
         this.history.removeAt(index)
+        recomputeFilter()
         notifyDataSetChanged()
         return true
     }
@@ -71,6 +112,7 @@ class HistoryAdapter(
     @SuppressLint("NotifyDataSetChanged")
     fun clearHistory() {
         this.history.clear()
+        recomputeFilter()
         notifyDataSetChanged()
     }
 
@@ -89,7 +131,8 @@ class HistoryAdapter(
             return typedValue.data
         }
 
-        fun bind(historyElement: History, position: Int) {
+        fun bind(actualIndex: Int, adapterPosition: Int) {
+            val historyElement = history[actualIndex]
             // Set calculation, result and time
             calculation.text = historyElement.calculation
             result.text = historyElement.result
@@ -103,12 +146,16 @@ class HistoryAdapter(
                     /* minResolution = */ DateUtils.DAY_IN_MILLIS,
                     /* flags = */ DateUtils.FORMAT_ABBREV_RELATIVE,
                 )
-                // Check if the former result has the same date -> hide the date
-                if (position > 0) {
+                // Check if the former VISIBLE result has the same date -> hide the date
+                // N-DATA-3: so sánh với entry liền trước trong danh sách ĐANG HIỂN THỊ (qua
+                // indexAt), không phải liền trước trong `history` gốc — khi đang lọc, 2 entry kề
+                // nhau trên màn hình có thể cách xa nhau trong `history` thật.
+                if (adapterPosition > 0) {
+                    val prevElement = history[indexAt(adapterPosition - 1)]
                     if (
-                        history[position - 1].time?.isNotEmpty() == true
+                        prevElement.time?.isNotEmpty() == true
                         && DateUtils.getRelativeTimeSpanString(
-                            /* time = */ history[position - 1].time?.toLong() ?: 0,
+                            /* time = */ prevElement.time?.toLong() ?: 0,
                             /* now = */ System.currentTimeMillis(),
                             /* minResolution = */ DateUtils.DAY_IN_MILLIS,
                             /* flags = */ DateUtils.FORMAT_ABBREV_RELATIVE,
@@ -121,11 +168,12 @@ class HistoryAdapter(
                 } else {
                     time.visibility = View.VISIBLE
                 }
-                // Check if the next result has the same date -> hide the separator
-                if (position + 1 < history.size) {
+                // Check if the next VISIBLE result has the same date -> hide the separator
+                if (adapterPosition + 1 < itemCount) {
+                    val nextElement = history[indexAt(adapterPosition + 1)]
                     if (
                         DateUtils.getRelativeTimeSpanString(
-                            /* time = */ history[position + 1].time?.toLong() ?: 0,
+                            /* time = */ nextElement.time?.toLong() ?: 0,
                             /* now = */ System.currentTimeMillis(),
                             /* minResolution = */ DateUtils.DAY_IN_MILLIS,
                             /* flags = */ DateUtils.FORMAT_ABBREV_RELATIVE,
@@ -207,8 +255,9 @@ class HistoryAdapter(
             pin.setOnClickListener {
                 val currentPosition = bindingAdapterPosition
                 if (currentPosition == RecyclerView.NO_POSITION) return@setOnClickListener
-                history[currentPosition] = history[currentPosition].copy(
-                    isPinned = !history[currentPosition].isPinned
+                val currentIndex = indexAt(currentPosition)
+                history[currentIndex] = history[currentIndex].copy(
+                    isPinned = !history[currentIndex].isPinned
                 )
                 notifyItemChanged(currentPosition)
                 onPinToggle(history.toList())
