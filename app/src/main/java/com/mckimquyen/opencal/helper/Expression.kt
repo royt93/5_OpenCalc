@@ -7,13 +7,20 @@ class Expression {
     fun getCleanExpression(
         calculation: String,
         decimalSeparatorSymbol: String,
-        groupingSeparatorSymbol: String
+        groupingSeparatorSymbol: String,
+        lastAnswer: Double? = null
     ): String {
         var cleanCalculation = replaceSymbolsFromCalculation(
             calculation,
             decimalSeparatorSymbol,
             groupingSeparatorSymbol
         )
+        // N-CALC-6: thay "ans" bằng giá trị số NGAY TẠI ĐÂY (trước addMultiply) thay vì dạy
+        // parser đệ quy xuống trong Calculator.kt nhận biết token chữ mới — an toàn hơn nhiều vì
+        // addMultiply/addParenthesis đã xử lý sẵn số bọc trong ngoặc, không cần đụng tokenizer lõi.
+        if (cleanCalculation.contains("ans")) {
+            cleanCalculation = cleanCalculation.replace("ans", "(${lastAnswer ?: 0.0})")
+        }
         cleanCalculation = addMultiply(cleanCalculation)
         if (cleanCalculation.contains('√')) {
             cleanCalculation = formatSquare(cleanCalculation)

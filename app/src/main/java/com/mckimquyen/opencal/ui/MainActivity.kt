@@ -94,6 +94,9 @@ class MainActivity : BaseActivity() {
 
     // Memory M+/M-/MR/MC — chỉ lưu trong phiên (reset khi thoát app, giống calculator vật lý).
     private var memoryValue: Double? = null
+
+    // N-CALC-6: kết quả "=" gần nhất, dùng cho token "ans" trong biểu thức tiếp theo.
+    private var lastAnswer: Double? = null
     private var isDegreeModeActivated = true // Set degree by default
     private var errorStatusOld = false
 
@@ -679,7 +682,8 @@ class MainActivity : BaseActivity() {
                     val calculationTmp = Expression().getCleanExpression(
                         calculation,
                         decimalSeparatorSymbol,
-                        groupingSeparatorSymbol
+                        groupingSeparatorSymbol,
+                        lastAnswer
                     )
                     // F-UI-9: parser đệ quy xuống, biểu thức bất thường (nhiều ngoặc lồng nhau)
                     // có thể vượt stack — không để crash cả app.
@@ -838,7 +842,8 @@ class MainActivity : BaseActivity() {
         val calculationTmp = Expression().getCleanExpression(
             calculation,
             decimalSeparatorSymbol,
-            groupingSeparatorSymbol
+            groupingSeparatorSymbol,
+            lastAnswer
         )
         val result = try {
             Calculator().evaluate(calculationTmp, isDegreeModeActivated)
@@ -962,6 +967,10 @@ class MainActivity : BaseActivity() {
         updateDisplay(view, "π")
     }
 
+    fun ansButton(view: View) {
+        updateDisplay(view, getString(R.string.ans))
+    }
+
     fun factorialButton(view: View) {
         addSymbol(view, "!")
     }
@@ -1038,7 +1047,8 @@ class MainActivity : BaseActivity() {
                     val calculationTmp = Expression().getCleanExpression(
                         calculation,
                         decimalSeparatorSymbol,
-                        groupingSeparatorSymbol
+                        groupingSeparatorSymbol,
+                        lastAnswer
                     )
                     // F-UI-9: parser đệ quy xuống, biểu thức bất thường (nhiều ngoặc lồng nhau)
                     // có thể vượt stack — không để crash cả app.
@@ -1057,6 +1067,8 @@ class MainActivity : BaseActivity() {
 
                     // If result is a number and it is finite
                     if (!result.isNaN() && result.isFinite()) {
+                        lastAnswer = result
+
                         // If there is an unused 0 at the end, remove it : 2.0 -> 2
                         if ((result * 10) % 10 == 0.0) {
                             resultString = String.format("%.0f", result)

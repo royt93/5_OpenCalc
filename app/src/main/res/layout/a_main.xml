@@ -274,11 +274,17 @@
                             android:text="@string/logarithm"
                             tools:ignore="UsingOnClickInXml" />
 
-                        <Space
+                        <Button
+                            android:id="@+id/ansButton"
+                            style="@style/CalculatorButton.Function"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_margin="0dp"
-                            android:layout_weight="0.6" />
+                            android:layout_weight="0.6"
+                            android:onClick="ansButton"
+                            android:text="@string/ans"
+                            android:textSize="14sp"
+                            tools:ignore="UsingOnClickInXml,SmallSp" />
 
                     </TableRow>
 

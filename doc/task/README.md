@@ -52,6 +52,8 @@ Theo feedback UI trực tiếp từ user (icon VIP crown quá to) + chọn tiế
 - ✅ **N-CALC-8 (Memory M+/M−/MR/MC)** — xem chi tiết ở [`03_new_features.md`](03_new_features.md). Verify đầy đủ 4 nút trên emulator Pixel_10_Pro_XL.
 - ✅ **N-CALC-5 (History tap-to-recall)** — hoá ra đã có sẵn từ trước, nhưng vô tác dụng do một bug P0 mới phát hiện: **F-DATA-9** — `equalsButton` tự huỷ chính coroutine của nó qua `calculationJob` dùng chung (regression từ chính fix Sprint 1), khiến history KHÔNG BAO GIỜ được lưu dù UI vẫn hiển thị kết quả đúng. Đã fix (`NonCancellable`) + verify history lưu đúng + tap-to-recall hoạt động đúng trên emulator. Xem [`01_fixes.md`](01_fixes.md#-f-data-9).
 
+- ✅ **N-CALC-6 ("ans" reference)** — xem chi tiết ở [`03_new_features.md`](03_new_features.md). Thay token bằng string substitution trước `addMultiply`, không đụng parser lõi. Verify `5+3=8` → `ans+1=9` trên emulator.
+
 Tính năng tiếp theo cho vòng loop kế tiếp chưa chọn — chờ user quyết định qua `AskUserQuestion` khi bắt đầu.
 
 ## Priority & Size convention
