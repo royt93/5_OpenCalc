@@ -10,6 +10,7 @@ import com.mckimquyen.opencal.R
 import com.mckimquyen.opencal.databinding.ABaseConverterBinding
 import com.mckimquyen.opencal.db.MyPreferences
 import com.mckimquyen.opencal.model.Themes
+import com.roy.sdkadbmob.UIUtils
 
 /**
  * N-CALC-2: đổi hệ số DEC/HEX/OCT/BIN cho số nguyên không âm (tối đa Long.MAX_VALUE). Tách thành
@@ -37,8 +38,16 @@ class BaseConverterActivity : BaseActivity() {
             window.statusBarColor = ContextCompat.getColor(this, R.color.background_color)
         }
 
+        // F-EDGE-1: thiếu cặp setupEdgeToEdge1/2 (có ở mọi Activity khác trong app) khiến
+        // targetSdk 37 (Android 15+ ép edge-to-edge) làm title/back-arrow bị status bar đè lên.
+        UIUtils.setupEdgeToEdge1(window)
         binding = ABaseConverterBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        UIUtils.setupEdgeToEdge2(
+            rootView = findViewById(R.id.layoutRoot),
+            paddingTop = true,
+            paddingBottom = true
+        )
 
         binding.ivBaseConverterBack.setOnClickListener { finish() }
 

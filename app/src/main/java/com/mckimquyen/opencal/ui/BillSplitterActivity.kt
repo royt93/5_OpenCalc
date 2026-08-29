@@ -10,6 +10,7 @@ import com.mckimquyen.opencal.databinding.ABillSplitterBinding
 import com.mckimquyen.opencal.db.MyPreferences
 import com.mckimquyen.opencal.helper.NumberFormatter
 import com.mckimquyen.opencal.model.Themes
+import com.roy.sdkadbmob.UIUtils
 import java.text.DecimalFormatSymbols
 import kotlin.math.roundToInt
 
@@ -48,8 +49,16 @@ class BillSplitterActivity : BaseActivity() {
             window.statusBarColor = ContextCompat.getColor(this, R.color.background_color)
         }
 
+        // F-EDGE-1: thiếu cặp setupEdgeToEdge1/2 (có ở mọi Activity khác trong app) khiến
+        // targetSdk 37 (Android 15+ ép edge-to-edge) làm title/back-arrow bị status bar đè lên.
+        UIUtils.setupEdgeToEdge1(window)
         binding = ABillSplitterBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        UIUtils.setupEdgeToEdge2(
+            rootView = findViewById(R.id.layoutRoot),
+            paddingTop = true,
+            paddingBottom = true
+        )
 
         binding.ivBillSplitterBack.setOnClickListener { finish() }
 
