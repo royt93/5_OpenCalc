@@ -1,6 +1,7 @@
 package com.mckimquyen.opencal.model.adt
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context.CLIPBOARD_SERVICE
@@ -13,9 +14,11 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.widget.PopupMenu
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.mckimquyen.opencal.R
+import com.mckimquyen.opencal.ext.share
 import com.mckimquyen.opencal.model.History
 
 class HistoryAdapter(
@@ -152,53 +155,46 @@ class HistoryAdapter(
                     onElementClick.invoke(it)
                 }
             }
-            calculation.setOnLongClickListener {
-                val clipboardManager =
-                    itemView.context.getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
-                clipboardManager.setPrimaryClip(
-                    ClipData.newPlainText(
-                        itemView.context.getString(R.string.clipboard_label_copied_calculation),
-                        historyElement.calculation
-                    )
-                )
-                if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.S_V2)
-                    Toast.makeText(itemView.context, R.string.value_copied, Toast.LENGTH_SHORT)
-                        .show()
-
-
-                true // Or false if not consumed
-            }
-            result.setOnLongClickListener {
-                val clipboardManager =
-                    itemView.context.getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
-                clipboardManager.setPrimaryClip(
-                    ClipData.newPlainText(
-                        itemView.context.getString(R.string.clipboard_label_copied_history_result),
-                        historyElement.result
-                    )
-                )
-                if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.S_V2)
-                    Toast.makeText(itemView.context, R.string.value_copied, Toast.LENGTH_SHORT)
-                        .show()
-                true // Or false if not consumed
-            }
-
-            // Long-press on entire card to copy both calculation and result
-            itemView.setOnLongClickListener {
-                val clipboardManager =
-                    itemView.context.getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
+            // N-UI-4: long-press TRÊN BẤT KỲ view con nào trong card (calculation/result đều
+            // match_parent width, chồng gần kín chiều cao card) mở popup Copy/Share cho "calc =
+            // result" — gắn thẳng vào itemView sẽ KHÔNG BAO GIỜ nhận được long-press vì 2 TextView
+            // con đã tiêu thụ hết sự kiện trước, nên phải gắn trực tiếp vào calculation/result.
+            val showCopyShareMenu = View.OnLongClickListener { anchor ->
                 val combinedText = "${historyElement.calculation} = ${historyElement.result}"
-                clipboardManager.setPrimaryClip(
-                    ClipData.newPlainText(
-                        itemView.context.getString(R.string.clipboard_label_copied_calc_and_result),
-                        combinedText
-                    )
-                )
-                if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.S_V2)
-                    Toast.makeText(itemView.context, R.string.value_copied, Toast.LENGTH_SHORT)
-                        .show()
+                val popup = PopupMenu(itemView.context, anchor)
+                popup.menu.add(0, 1, 0, itemView.context.getString(R.string.action_copy))
+                popup.menu.add(0, 2, 1, itemView.context.getString(R.string.action_share))
+                popup.setOnMenuItemClickListener { menuItem ->
+                    when (menuItem.itemId) {
+                        1 -> {
+                            val clipboardManager = itemView.context
+                                .getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
+                            clipboardManager.setPrimaryClip(
+                                ClipData.newPlainText(
+                                    itemView.context.getString(R.string.clipboard_label_copied_calc_and_result),
+                                    combinedText
+                                )
+                            )
+                            if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.S_V2)
+                                Toast.makeText(itemView.context, R.string.value_copied, Toast.LENGTH_SHORT)
+                                    .show()
+                            true
+                        }
+
+                        2 -> {
+                            (itemView.context as Activity).share(combinedText)
+                            true
+                        }
+
+                        else -> false
+                    }
+                }
+                popup.show()
                 true
             }
+            calculation.setOnLongClickListener(showCopyShareMenu)
+            result.setOnLongClickListener(showCopyShareMenu)
+            itemView.setOnLongClickListener(showCopyShareMenu)
 
             // Pin state
             if (historyElement.isPinned) {

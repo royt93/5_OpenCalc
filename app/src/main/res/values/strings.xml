@@ -137,8 +137,6 @@
     <!-- New strings for multi-language support -->
     <!-- Clipboard labels -->
     <string name="clipboard_label_copied_result">Copied result</string>
-    <string name="clipboard_label_copied_calculation">Copied history calculation</string>
-    <string name="clipboard_label_copied_history_result">Copied history result</string>
     <string name="clipboard_label_copied_calc_and_result">Copied calculation and result</string>
 
     <!-- Toast messages -->
@@ -201,6 +199,8 @@
     <string name="cancel">Cancel</string>
     <string name="confirm">Confirm</string>
     <string name="ok">OK</string>
+    <string name="action_copy">Copy</string>
+    <string name="action_share">Share</string>
     <string name="vip_reward_not_earned">Reward not earned. Please try again later.</string>
     <string name="vip_success_message">Congratulations! VIP activated for %1$d days. Enjoy your ad-free experience.</string>
 </resources>

@@ -44,8 +44,6 @@
 
     <!-- Clipboard labels -->
     <string name="clipboard_label_copied_result">Risultato copiato</string>
-    <string name="clipboard_label_copied_calculation">Calcolo della cronologia copiato</string>
-    <string name="clipboard_label_copied_history_result">Risultato della cronologia copiato</string>
     <string name="clipboard_label_copied_calc_and_result">Calcolo e risultato copiati</string>
 
     <!-- Toast messages -->

@@ -16,8 +16,6 @@
 
     <!-- Clipboard labels -->
     <string name="clipboard_label_copied_result">Nəticə kopyalandı</string>
-    <string name="clipboard_label_copied_calculation">Tarixçə hesablaması kopyalandı</string>
-    <string name="clipboard_label_copied_history_result">Tarixçə nəticəsi kopyalandı</string>
     <string name="clipboard_label_copied_calc_and_result">Hesablama və nəticə kopyalandı</string>
 
     <!-- Toast messages -->

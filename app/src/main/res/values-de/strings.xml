@@ -51,8 +51,6 @@
 
     <!-- Clipboard labels -->
     <string name="clipboard_label_copied_result">Ergebnis kopiert</string>
-    <string name="clipboard_label_copied_calculation">Verlaufsberechnung kopiert</string>
-    <string name="clipboard_label_copied_history_result">Verlaufsergebnis kopiert</string>
     <string name="clipboard_label_copied_calc_and_result">Berechnung und Ergebnis kopiert</string>
 
     <!-- Toast messages -->

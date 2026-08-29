@@ -27,8 +27,6 @@
 
     <!-- Clipboard labels -->
     <string name="clipboard_label_copied_result">Kopiran rezultat</string>
-    <string name="clipboard_label_copied_calculation">Kopirana historija izračuna</string>
-    <string name="clipboard_label_copied_history_result">Kopiran historijski rezultat</string>
     <string name="clipboard_label_copied_calc_and_result">Kopirani izračun i rezultat</string>
 
     <!-- Toast messages -->

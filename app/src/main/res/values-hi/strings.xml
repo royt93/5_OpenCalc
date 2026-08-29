@@ -37,8 +37,6 @@
 
     <!-- Clipboard labels -->
     <string name="clipboard_label_copied_result">परिणाम कॉपी किया गया</string>
-    <string name="clipboard_label_copied_calculation">इतिहास गणना कॉपी की गई</string>
-    <string name="clipboard_label_copied_history_result">इतिहास परिणाम कॉपी किया गया</string>
     <string name="clipboard_label_copied_calc_and_result">गणना और परिणाम कॉपी किए गए</string>
 
     <!-- Toast messages -->

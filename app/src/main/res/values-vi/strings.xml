@@ -31,8 +31,6 @@
     <!-- New strings for multi-language support -->
     <!-- Clipboard labels -->
     <string name="clipboard_label_copied_result">Đã sao chép kết quả</string>
-    <string name="clipboard_label_copied_calculation">Đã sao chép phép tính</string>
-    <string name="clipboard_label_copied_history_result">Đã sao chép kết quả lịch sử</string>
     <string name="clipboard_label_copied_calc_and_result">Đã sao chép phép tính và kết quả</string>
 
     <!-- Toast messages -->

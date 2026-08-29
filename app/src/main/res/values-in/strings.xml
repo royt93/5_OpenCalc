@@ -28,8 +28,6 @@
 
     <!-- Clipboard labels -->
     <string name="clipboard_label_copied_result">Hasil disalin</string>
-    <string name="clipboard_label_copied_calculation">Perhitungan riwayat disalin</string>
-    <string name="clipboard_label_copied_history_result">Hasil riwayat disalin</string>
     <string name="clipboard_label_copied_calc_and_result">Perhitungan dan hasil disalin</string>
 
     <!-- Toast messages -->

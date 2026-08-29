@@ -50,8 +50,6 @@
 
     <!-- Clipboard labels -->
     <string name="clipboard_label_copied_result">Resultado copiado</string>
-    <string name="clipboard_label_copied_calculation">Cálculo del historial copiado</string>
-    <string name="clipboard_label_copied_history_result">Resultado del historial copiado</string>
     <string name="clipboard_label_copied_calc_and_result">Cálculo y resultado copiados</string>
 
     <!-- Toast messages -->

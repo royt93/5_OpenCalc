@@ -50,8 +50,6 @@
 
     <!-- Clipboard labels -->
     <string name="clipboard_label_copied_result">ഫലം പകർത്തി</string>
-    <string name="clipboard_label_copied_calculation">ചരിത്ര കണക്കുകൂട്ടൽ പകർത്തി</string>
-    <string name="clipboard_label_copied_history_result">ചരിത്ര ഫലം പകർത്തി</string>
     <string name="clipboard_label_copied_calc_and_result">കണക്കുകൂട്ടലും ഫലവും പകർത്തി</string>
 
     <!-- Toast messages -->

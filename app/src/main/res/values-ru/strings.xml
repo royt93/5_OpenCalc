@@ -52,8 +52,6 @@
 
     <!-- Clipboard labels -->
     <string name="clipboard_label_copied_result">Результат скопирован</string>
-    <string name="clipboard_label_copied_calculation">Вычисление из истории скопировано</string>
-    <string name="clipboard_label_copied_history_result">Результат из истории скопирован</string>
     <string name="clipboard_label_copied_calc_and_result">Вычисление и результат скопированы</string>
 
     <!-- Toast messages -->

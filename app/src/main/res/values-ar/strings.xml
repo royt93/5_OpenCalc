@@ -17,8 +17,6 @@
 
     <!-- Clipboard labels -->
     <string name="clipboard_label_copied_result">نسخ النتيجة</string>
-    <string name="clipboard_label_copied_calculation">نسخ حساب السجل</string>
-    <string name="clipboard_label_copied_history_result">نسخ نتيجة السجل</string>
     <string name="clipboard_label_copied_calc_and_result">نسخ الحساب والنتيجة</string>
 
     <!-- Toast messages -->

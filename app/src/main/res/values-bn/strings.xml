@@ -28,8 +28,6 @@
 
     <!-- Clipboard labels -->
     <string name="clipboard_label_copied_result">ফলাফল অনুলিপি করা হয়েছে</string>
-    <string name="clipboard_label_copied_calculation">ইতিহাস গণনা অনুলিপি করা হয়েছে</string>
-    <string name="clipboard_label_copied_history_result">ইতিহাস ফলাফল অনুলিপি করা হয়েছে</string>
     <string name="clipboard_label_copied_calc_and_result">গণনা এবং ফলাফল অনুলিপি করা হয়েছে</string>
 
     <!-- Toast messages -->

@@ -12,8 +12,6 @@
 
     <!-- Clipboard labels -->
     <string name="clipboard_label_copied_result">ଫଳାଫଳ କପି କରାଯାଇଛି</string>
-    <string name="clipboard_label_copied_calculation">ଇତିହାସ ଗଣନା କପି କରାଯାଇଛି</string>
-    <string name="clipboard_label_copied_history_result">ଇତିହାସ ଫଳାଫଳ କପି କରାଯାଇଛି</string>
     <string name="clipboard_label_copied_calc_and_result">ଗଣନା ଏବଂ ଫଳାଫଳ କପି କରାଯାଇଛି</string>
 
     <!-- Toast messages -->

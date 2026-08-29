@@ -29,8 +29,6 @@
 
     <!-- Clipboard labels -->
     <string name="clipboard_label_copied_result">Αντιγράφηκε το αποτέλεσμα</string>
-    <string name="clipboard_label_copied_calculation">Αντιγράφηκε ο υπολογισμός ιστορικού</string>
-    <string name="clipboard_label_copied_history_result">Αντιγράφηκε το αποτέλεσμα ιστορικού</string>
     <string name="clipboard_label_copied_calc_and_result">Αντιγράφηκαν υπολογισμός και αποτέλεσμα</string>
 
     <!-- Toast messages -->

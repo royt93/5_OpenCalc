@@ -56,6 +56,8 @@ Theo feedback UI trực tiếp từ user (icon VIP crown quá to) + chọn tiế
 
 - ✅ **N-DATA-4 (Pin/favorite history)** — xem chi tiết ở [`03_new_features.md`](03_new_features.md). Icon tim thêm vào cả 6 biến thể `i_history.xml`, mọi logic trim history đổi sang pin-aware. Verify: ghim → Clear History → chỉ entry ghim sống sót.
 
+- ✅ **N-UI-4 (Copy-as-text/Share)** — xem chi tiết ở [`03_new_features.md`](03_new_features.md). Long-press history row → popup Copy/Share → Android share sheet. Phát hiện + fix bug UX: long-press gốc trên `itemView` không bao giờ nhận được sự kiện do bị 2 TextView con chiếm hết.
+
 Tính năng tiếp theo cho vòng loop kế tiếp chưa chọn — chờ user quyết định qua `AskUserQuestion` khi bắt đầu.
 
 ## Priority & Size convention

@@ -50,8 +50,6 @@
 
     <!-- Clipboard labels -->
     <string name="clipboard_label_copied_result">結果をコピーしました</string>
-    <string name="clipboard_label_copied_calculation">履歴の計算をコピーしました</string>
-    <string name="clipboard_label_copied_history_result">履歴の結果をコピーしました</string>
     <string name="clipboard_label_copied_calc_and_result">計算と結果をコピーしました</string>
 
     <!-- Toast messages -->

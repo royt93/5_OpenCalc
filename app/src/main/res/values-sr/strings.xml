@@ -27,8 +27,6 @@
 
     <!-- Clipboard labels -->
     <string name="clipboard_label_copied_result">Копиран резултат</string>
-    <string name="clipboard_label_copied_calculation">Копирано историјско израчунавање</string>
-    <string name="clipboard_label_copied_history_result">Копиран резултат из историје</string>
     <string name="clipboard_label_copied_calc_and_result">Копирани прорачун и резултат</string>
 
     <!-- Toast messages -->

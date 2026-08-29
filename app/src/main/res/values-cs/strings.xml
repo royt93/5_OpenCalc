@@ -50,8 +50,6 @@
 
     <!-- Clipboard labels -->
     <string name="clipboard_label_copied_result">Zkopírovaný výsledek</string>
-    <string name="clipboard_label_copied_calculation">Zkopírovaný výpočet z historie</string>
-    <string name="clipboard_label_copied_history_result">Zkopírovaný výsledek z historie</string>
     <string name="clipboard_label_copied_calc_and_result">Zkopírovaný výpočet a výsledek</string>
 
     <!-- Toast messages -->

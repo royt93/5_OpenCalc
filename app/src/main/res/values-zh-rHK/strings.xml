@@ -57,8 +57,6 @@
 
     <!-- Clipboard labels -->
     <string name="clipboard_label_copied_result">已複製結果</string>
-    <string name="clipboard_label_copied_calculation">已複製歷史計算</string>
-    <string name="clipboard_label_copied_history_result">已複製歷史結果</string>
     <string name="clipboard_label_copied_calc_and_result">已複製計算和結果</string>
 
     <!-- Toast messages -->

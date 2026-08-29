@@ -15,8 +15,6 @@
 
     <!-- Clipboard labels -->
     <string name="clipboard_label_copied_result">نتیجه کپی شد</string>
-    <string name="clipboard_label_copied_calculation">محاسبه تاریخچه کپی شد</string>
-    <string name="clipboard_label_copied_history_result">نتیجه تاریخچه کپی شد</string>
     <string name="clipboard_label_copied_calc_and_result">محاسبه و نتیجه کپی شد</string>
 
     <!-- Toast messages -->
