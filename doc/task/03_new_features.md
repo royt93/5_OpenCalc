@@ -5,7 +5,7 @@
 - **N-CALC-1 — Chế độ chính xác cao / phân số** (BigDecimal hoặc a/b) tránh sai số double — nhiều app cạnh tranh (Desmos, HiPER Calc) có "exact mode". P2 · L.
 - **N-CALC-2 — Base conversion (BIN/OCT/DEC/HEX)** — tính năng phổ biến trong scientific calculator, hiện chưa có file nào liên quan. P2 · L.
 - **N-CALC-3 — Unit + currency converter** (độ dài, khối lượng, nhiệt độ, tỷ giá tiền tệ qua API) tích hợp ngay màn tính hoặc màn riêng — nguồn agy: hầu hết calculator top Play Store đều có (nguồn: agy, độc lập). P2 · L (phần tỷ giá cần API key + xử lý offline cache).
-- **N-CALC-8 — Biến/bộ nhớ M+/M−/MR/MC** — tính năng calculator cổ điển, tích hợp trực tiếp vào parser hiện tại (nguồn: codex, độc lập). P2 · M.
+- ✅ **N-CALC-8 — Biến/bộ nhớ M+/M−/MR/MC** — tính năng calculator cổ điển, tích hợp trực tiếp vào parser hiện tại (nguồn: codex, độc lập). P2 · M. **Implemented**: `MainActivity.memoryAddButton/memorySubtractButton/memoryRecallButton/memoryClearButton` + `evaluateCurrentInputOrNull()`, dùng lại `calculationJob`/`calculationMutex`. UI: hàng nút mới `scientistModeRow4` trong `a_main.xml` + `layout-sw720dp-land/a_main.xml` (bỏ qua `layout-land` vì các row đã đủ 8 cột). MR/MC tự mờ (alpha 0.4) khi memory rỗng. Verify trên emulator Pixel_10_Pro_XL: M+ (78→memory=78), MR (recall "78" vào input rỗng), M− (0−20=−20), MC (memory về rỗng, MR/MC mờ lại).
 - **N-CALC-4 — Hằng số vật lý** (c, h, k_B, N_A...) chọn qua danh sách bên cạnh π/e hiện có. P3 · M.
 - **N-CALC-5 — History reuse / "tap to recall"** — tap vào 1 dòng history để tái sử dụng phép tính con (mở rộng `HistoryAdapter`, thêm callback insert-vào-input). P2 · M.
 - **N-CALC-6 — "ans" reference / multi-line expression** — dùng kết quả câu trước trong câu sau (`ans + 5`). P2 · M.

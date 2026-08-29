@@ -44,6 +44,15 @@ User chọn kết hợp **Stabilize (P0/P1 bug)** + **Differentiation (exclusive
 
 Còn lại trong backlog (Monetization Play Billing N-AD-1/N-AD-2, phần lớn Enhancements/New Features/Ideas khác) giữ nguyên **💭 Ideas** chờ sprint sau.
 
+## ✅ Sprint 2 — ĐÃ XONG (2026-08-29)
+
+Theo feedback UI trực tiếp từ user (icon VIP crown quá to) + chọn tiếp 1 tính năng mới qua `AskUserQuestion`.
+
+- **UI feedback — VIP badge chip** — thu nhỏ 2 lần liên tiếp theo phản hồi user (`chipVipBadge` trong `a_main.xml`): giảm `chipMinHeight`/`layout_height` 24dp→18dp, `textSize` 11sp→9sp, `chipIconSize` 16dp→14dp→10dp, thêm `app:ensureMinTouchTargetSize="false"` (nguyên nhân gốc khiến chip trông to hơn nội dung thực — MDC ép min touch target 48dp).
+- ✅ **N-CALC-8 (Memory M+/M−/MR/MC)** — xem chi tiết ở [`03_new_features.md`](03_new_features.md). Verify đầy đủ 4 nút trên emulator Pixel_10_Pro_XL.
+
+Tính năng tiếp theo cho vòng loop kế tiếp chưa chọn — chờ user quyết định qua `AskUserQuestion` khi bắt đầu.
+
 ## Priority & Size convention
 
 - **P0** = critical, nên làm ngay/trước khi phát hành release tiếp theo (mất doanh thu, crash, data loss).

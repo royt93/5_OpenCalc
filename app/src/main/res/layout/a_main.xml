@@ -283,6 +283,66 @@
                     </TableRow>
 
                     <TableRow
+                        android:id="@+id/scientistModeRow4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:visibility="gone"
+                        tools:visibility="visible">
+
+                        <Button
+                            android:id="@+id/btnMemoryAdd"
+                            style="@style/CalculatorButton.Function"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="0dp"
+                            android:layout_weight="1"
+                            android:onClick="memoryAddButton"
+                            android:text="@string/memory_add"
+                            tools:ignore="UsingOnClickInXml" />
+
+                        <Button
+                            android:id="@+id/btnMemorySubtract"
+                            style="@style/CalculatorButton.Function"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="0dp"
+                            android:layout_weight="1"
+                            android:onClick="memorySubtractButton"
+                            android:text="@string/memory_subtract"
+                            tools:ignore="UsingOnClickInXml" />
+
+                        <Button
+                            android:id="@+id/btnMemoryRecall"
+                            style="@style/CalculatorButton.Function"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="0dp"
+                            android:layout_weight="1"
+                            android:onClick="memoryRecallButton"
+                            android:text="@string/memory_recall"
+                            tools:ignore="UsingOnClickInXml" />
+
+                        <Button
+                            android:id="@+id/btnMemoryClear"
+                            style="@style/CalculatorButton.Function"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="0dp"
+                            android:layout_weight="1"
+                            android:onClick="memoryClearButton"
+                            android:text="@string/memory_clear"
+                            tools:ignore="UsingOnClickInXml" />
+
+                        <Space
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="0dp"
+                            android:layout_weight="0.6" />
+
+                    </TableRow>
+
+                    <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="3">
@@ -619,7 +679,8 @@
             app:textStartPadding="1dp"
             app:layout_constraintBottom_toBottomOf="@+id/btnAppMenu"
             app:layout_constraintEnd_toStartOf="@+id/btnAppMenu"
-            app:layout_constraintTop_toTopOf="@+id/btnAppMenu" />
+            app:layout_constraintTop_toTopOf="@+id/btnAppMenu"
+            tools:ignore="SmallSp" />
 
         <TextView
             android:id="@+id/degreeTextView"

@@ -31,6 +31,10 @@
     <string name="factorial" translatable="false">!</string>
     <string name="square" translatable="false">√</string>
     <string name="squareInv" translatable="false">x²</string>
+    <string name="memory_add" translatable="false">M+</string>
+    <string name="memory_subtract" translatable="false">M−</string>
+    <string name="memory_recall" translatable="false">MR</string>
+    <string name="memory_clear" translatable="false">MC</string>
 
     <!-- F-UI-5: content description cho các icon button chỉ có ký hiệu, không có text -->
     <string name="cd_toggle_scientific_mode">Toggle scientific functions</string>

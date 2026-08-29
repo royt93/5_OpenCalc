@@ -90,6 +90,9 @@ class MainActivity : BaseActivity() {
     // độc lập cùng đụng vào prefs.history — không có mutex thì job chạy sau có thể ghi đè bằng
     // snapshot cũ, làm mất entry vừa lưu.
     private val historyMutex = Mutex()
+
+    // Memory M+/M-/MR/MC — chỉ lưu trong phiên (reset khi thoát app, giống calculator vật lý).
+    private var memoryValue: Double? = null
     private var isDegreeModeActivated = true // Set degree by default
     private var errorStatusOld = false
 
@@ -132,6 +135,9 @@ class MainActivity : BaseActivity() {
         binding.chipVipBadge?.setOnClickListener {
             startActivity(Intent(this, VipActivity::class.java), null)
         }
+
+        // Memory M+/M-/MR/MC: MR/MC mờ đi khi chưa có gì trong bộ nhớ.
+        refreshMemoryButtonsState()
 
         // Disable the keyboard on display EditText
         binding.input.showSoftInputOnFocus = false
@@ -625,12 +631,14 @@ class MainActivity : BaseActivity() {
         if (binding.scientistModeRow2.visibility != View.VISIBLE) {
             binding.scientistModeRow2.visibility = View.VISIBLE
             binding.scientistModeRow3.visibility = View.VISIBLE
+            binding.scientistModeRow4?.visibility = View.VISIBLE
             binding.scientistModeSwitchButton?.setImageResource(R.drawable.ic_baseline_keyboard_arrow_up_24)
             binding.degreeTextView.visibility = View.VISIBLE
             binding.degreeTextView.text = binding.degreeButton.text.toString()
         } else {
             binding.scientistModeRow2.visibility = View.GONE
             binding.scientistModeRow3.visibility = View.GONE
+            binding.scientistModeRow4?.visibility = View.GONE
             binding.scientistModeSwitchButton?.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24)
             binding.degreeTextView.visibility = View.GONE
             binding.degreeTextView.text = binding.degreeButton.text.toString()
@@ -821,6 +829,68 @@ class MainActivity : BaseActivity() {
 
     fun addButton(view: View) {
         addSymbol(view, "+")
+    }
+
+    /** Đánh giá biểu thức hiện tại trong input, dùng cho M+/M- (không đụng UI/history). */
+    private fun evaluateCurrentInputOrNull(calculation: String): Double? {
+        if (calculation.isEmpty()) return null
+        val calculationTmp = Expression().getCleanExpression(
+            calculation,
+            decimalSeparatorSymbol,
+            groupingSeparatorSymbol
+        )
+        val result = try {
+            Calculator().evaluate(calculationTmp, isDegreeModeActivated)
+        } catch (e: StackOverflowError) {
+            Double.NaN
+        }
+        return if (!result.isNaN() && result.isFinite()) result else null
+    }
+
+    private fun refreshMemoryButtonsState() {
+        val hasMemory = memoryValue != null
+        binding.btnMemoryRecall?.isEnabled = hasMemory
+        binding.btnMemoryRecall?.alpha = if (hasMemory) 1f else 0.4f
+        binding.btnMemoryClear?.isEnabled = hasMemory
+        binding.btnMemoryClear?.alpha = if (hasMemory) 1f else 0.4f
+    }
+
+    fun memoryAddButton(view: View) {
+        keyVibration(view)
+        calculationJob?.cancel()
+        calculationJob = lifecycleScope.launch(Dispatchers.Default) {
+            val calculation = withContext(Dispatchers.Main) { binding.input.text.toString() }
+            calculationMutex.withLock {
+                val result = evaluateCurrentInputOrNull(calculation) ?: return@withLock
+                memoryValue = (memoryValue ?: 0.0) + result
+                withContext(Dispatchers.Main) { refreshMemoryButtonsState() }
+            }
+        }
+    }
+
+    fun memorySubtractButton(view: View) {
+        keyVibration(view)
+        calculationJob?.cancel()
+        calculationJob = lifecycleScope.launch(Dispatchers.Default) {
+            val calculation = withContext(Dispatchers.Main) { binding.input.text.toString() }
+            calculationMutex.withLock {
+                val result = evaluateCurrentInputOrNull(calculation) ?: return@withLock
+                memoryValue = (memoryValue ?: 0.0) - result
+                withContext(Dispatchers.Main) { refreshMemoryButtonsState() }
+            }
+        }
+    }
+
+    fun memoryRecallButton(view: View) {
+        val value = memoryValue ?: return
+        keyVibration(view)
+        updateDisplay(view, value.toString().replace(".", decimalSeparatorSymbol))
+    }
+
+    fun memoryClearButton(view: View) {
+        keyVibration(view)
+        memoryValue = null
+        refreshMemoryButtonsState()
     }
 
     fun subtractButton(view: View) {
