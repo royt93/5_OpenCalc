@@ -23,7 +23,7 @@
             app:layout_constraintBottom_toTopOf="@+id/guideline1"
             app:layout_constraintTop_toTopOf="parent">
 
-            <EditText
+            <com.mckimquyen.opencal.ui.CalculatorInputEditText
                 android:id="@+id/input"
                 style="@style/RobotoFontCondensedMedium"
                 android:layout_width="wrap_content"

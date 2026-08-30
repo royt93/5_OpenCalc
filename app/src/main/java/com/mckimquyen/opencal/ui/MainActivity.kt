@@ -13,7 +13,9 @@ import android.os.Handler
 import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.ActionMode
 import android.view.HapticFeedbackConstants
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.accessibility.AccessibilityEvent
@@ -21,6 +23,7 @@ import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.Button
 import android.widget.HorizontalScrollView
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.widget.PopupMenu
 import android.content.res.ColorStateList
@@ -71,6 +74,12 @@ import kotlin.jvm.java
 var appLanguage: Locale = Locale.getDefault()
 
 class MainActivity : BaseActivity() {
+    companion object {
+        private const val KEY_SAVED_INV = "KEY_SAVED_INV"
+        private const val KEY_SAVED_DEGREE = "KEY_SAVED_DEGREE"
+        private const val KEY_SAVED_SCIENTIST_VISIBLE = "KEY_SAVED_SCIENTIST_VISIBLE"
+    }
+
     private lateinit var view: View
 
     private val decimalSeparatorSymbol =
@@ -152,6 +161,8 @@ class MainActivity : BaseActivity() {
         view = binding.root
         setContentView(view)
 
+        onBackPressedDispatcher.addCallback(this, doubleBackToExitCallback)
+
         AdManager.setCurrentActivity(this)
         AdManager.loadInterstitial(this)
 
@@ -166,6 +177,23 @@ class MainActivity : BaseActivity() {
 
         // Disable the keyboard on display EditText
         binding.input.showSoftInputOnFocus = false
+
+        // F-UI-4: chặn "Paste"/"Paste as plain text" từ context menu — input chỉ nhận ký tự
+        // qua các nút bấm (đã disable bàn phím ở trên), paste tự do bỏ qua toàn bộ validation/
+        // adjacency-guard trong addSymbol(). Copy/cắt vẫn hoạt động bình thường.
+        val blockPasteActionMode = object : ActionMode.Callback {
+            override fun onCreateActionMode(mode: ActionMode?, menu: Menu?) = true
+            override fun onPrepareActionMode(mode: ActionMode?, menu: Menu?): Boolean {
+                menu?.removeItem(android.R.id.paste)
+                menu?.removeItem(android.R.id.pasteAsPlainText)
+                return true
+            }
+
+            override fun onActionItemClicked(mode: ActionMode?, item: MenuItem?) = false
+            override fun onDestroyActionMode(mode: ActionMode?) {}
+        }
+        binding.input.customInsertionActionModeCallback = blockPasteActionMode
+        binding.input.customSelectionActionModeCallback = blockPasteActionMode
 
         // https://www.geeksforgeeks.org/how-to-detect-long-press-in-android/
         binding.backspaceButton.setOnLongClickListener {
@@ -262,6 +290,10 @@ class MainActivity : BaseActivity() {
         if (prefs.useRadiansByDefault) {
             enableOrDisableDegreeMode()
         }
+
+        // F-UI-11: sau khi áp default từ preference ở trên, ghi đè lại bằng state user tự bật
+        // tay (INV/DEG-RAD/scientific mode) đã lưu trước khi xoay màn hình.
+        restoreToggleState(savedInstanceState)
 
         // Focus by default
         binding.input.requestFocus()
@@ -716,7 +748,10 @@ class MainActivity : BaseActivity() {
             return result
         }
         return BigDecimal(result).setScale(
-            prefs.numberPrecision!!.toInt(),
+            // F-UI-6: preference string có thể hỏng/null (SharedPreferences bị sửa tay hoặc
+            // migrate lỗi) — fallback về default "10" thay vì crash NullPointerException/
+            // NumberFormatException.
+            prefs.numberPrecision?.toIntOrNull() ?: 10,
             RoundingMode.HALF_EVEN
         ).toDouble()
     }
@@ -1095,13 +1130,10 @@ class MainActivity : BaseActivity() {
         updateResultDisplay()
     }
 
-    fun invButton(view: View) {
-        keyVibration(view)
-
-        if (!isInvButtonClicked) {
-            isInvButtonClicked = true
-
-            // change buttons
+    // F-UI-11: tách riêng để applyRestoredUiState() dùng lại được sau khi xoay màn hình,
+    // không lặp code.
+    private fun setInvButtonLabels(isInv: Boolean) {
+        if (isInv) {
             binding.sineButton.setText(R.string.sineInv)
             binding.cosineButton.setText(R.string.cosineInv)
             binding.tangentButton.setText(R.string.tangentInv)
@@ -1109,9 +1141,6 @@ class MainActivity : BaseActivity() {
             binding.logarithmButton.setText(R.string.logarithmInv)
             binding.squareButton.setText(R.string.squareInv)
         } else {
-            isInvButtonClicked = false
-
-            // change buttons
             binding.sineButton.setText(R.string.sine)
             binding.cosineButton.setText(R.string.cosine)
             binding.tangentButton.setText(R.string.tangent)
@@ -1119,6 +1148,12 @@ class MainActivity : BaseActivity() {
             binding.logarithmButton.setText(R.string.logarithm)
             binding.squareButton.setText(R.string.square)
         }
+    }
+
+    fun invButton(view: View) {
+        keyVibration(view)
+        isInvButtonClicked = !isInvButtonClicked
+        setInvButtonLabels(isInvButtonClicked)
     }
 
     @SuppressLint("SetTextI18n")
@@ -1245,9 +1280,13 @@ class MainActivity : BaseActivity() {
                                             // N-DATA-3: dùng fullHistorySize (không phải itemCount,
                                             // vốn bị thu hẹp khi đang lọc) để không trim nhầm theo
                                             // số lượng entry đang HIỂN THỊ thay vì số thật.
+                                            // F-UI-6: fallback default "100" nếu preference hỏng/null.
                                             val historySize =
-                                                prefs.historySize!!.toInt()
-                                            while (historySize > 0 && historyAdapter.fullHistorySize >= historySize) {
+                                                prefs.historySize?.toIntOrNull() ?: 100
+                                            // F-UI-8: ">" (không phải ">=") khớp với ngưỡng trim
+                                            // thật ở MyPreferences.saveHistory — ">=" trim SỚM 1
+                                            // item, khiến historySize="100" chỉ còn giữ 99 item.
+                                            while (historySize > 0 && historyAdapter.fullHistorySize > historySize) {
                                                 if (!historyAdapter.removeOldestUnpinnedHistoryElement()) break
                                             }
 
@@ -1375,8 +1414,14 @@ class MainActivity : BaseActivity() {
                 val leftPartWithoutSpaces = leftPart.replace(groupingSeparatorSymbol, "")
                 functionLength = leftPart.length - leftPartWithoutSpaces.length
 
-                newValue = leftPartWithoutSpaces.subSequence(0, leftPartWithoutSpaces.length - 1)
-                    .toString() +
+                // F-UI-10: leftPartWithoutSpaces có thể rỗng nếu leftPart chỉ toàn dấu grouping
+                // separator — subSequence(0, -1) trước đây ném StringIndexOutOfBoundsException.
+                val leftPartDropLast = if (leftPartWithoutSpaces.isNotEmpty()) {
+                    leftPartWithoutSpaces.subSequence(0, leftPartWithoutSpaces.length - 1).toString()
+                } else {
+                    ""
+                }
+                newValue = leftPartDropLast +
                         binding.input.text.subSequence(cursorPosition, textLength).toString()
             }
 
@@ -1419,8 +1464,11 @@ class MainActivity : BaseActivity() {
         // N-DATA-4: xoá entry cũ nhất CHƯA GHIM — break nếu toàn bộ còn lại đã ghim.
         // N-DATA-3: fullHistorySize thay vì itemCount — tránh trim theo số lượng bị thu hẹp lúc
         // đang lọc.
-        val historySize = prefs.historySize!!.toInt()
-        while (historySize > 0 && historyAdapter.fullHistorySize >= historySize) {
+        // F-UI-6: fallback default "100" nếu preference hỏng/null.
+        val historySize = prefs.historySize?.toIntOrNull() ?: 100
+        // F-UI-8: ">" khớp với ngưỡng trim thật ở MyPreferences.saveHistory (xem giải thích ở
+        // equalsButton()).
+        while (historySize > 0 && historyAdapter.fullHistorySize > historySize) {
             if (!historyAdapter.removeOldestUnpinnedHistoryElement()) break
         }
         // F-DATA-3: đọc/ghi lại toàn bộ blob history mỗi lần resume — chạy nền, không block Main.
@@ -1451,19 +1499,60 @@ class MainActivity : BaseActivity() {
         super.onPause()
     }
 
+    // F-UI-11: state user tự bật tay (không thuộc SharedPreferences) bị mất khi xoay màn hình
+    // vì Activity restart hoàn toàn — chỉ giá trị mặc định từ preference được áp lại ở onCreate.
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putBoolean(KEY_SAVED_INV, isInvButtonClicked)
+        outState.putBoolean(KEY_SAVED_DEGREE, isDegreeModeActivated)
+        outState.putBoolean(
+            KEY_SAVED_SCIENTIST_VISIBLE,
+            binding.scientistModeRow2.isVisible
+        )
+    }
+
+    private fun restoreToggleState(savedInstanceState: Bundle?) {
+        if (savedInstanceState == null) return
+
+        val savedInv = savedInstanceState.getBoolean(KEY_SAVED_INV, isInvButtonClicked)
+        if (savedInv != isInvButtonClicked) {
+            isInvButtonClicked = savedInv
+            setInvButtonLabels(isInvButtonClicked)
+        }
+
+        val savedDegree = savedInstanceState.getBoolean(KEY_SAVED_DEGREE, isDegreeModeActivated)
+        if (savedDegree != isDegreeModeActivated) {
+            enableOrDisableDegreeMode()
+        }
+
+        val savedScientistVisible =
+            savedInstanceState.getBoolean(KEY_SAVED_SCIENTIST_VISIBLE, false)
+        val currentScientistVisible = binding.scientistModeRow2.isVisible
+        if (savedScientistVisible != currentScientistVisible) {
+            enableOrDisableScientistMode()
+        }
+    }
+
     private var doubleBackToExitPressedOnce: Boolean = false
     private val backPressHandler = Handler(Looper.getMainLooper())
     private val resetBackPressRunnable = Runnable { doubleBackToExitPressedOnce = false }
 
-    @Deprecated("Deprecated in Java")
-    override fun onBackPressed() {
-        if (doubleBackToExitPressedOnce) {
-            super.onBackPressed()
-            return
+    // F-UI-7: OnBackPressedCallback thay cho onBackPressed() deprecated — API cũ phá
+    // predictive-back gesture trên Android 13+ (không cho preview animation trước khi back thật).
+    private val doubleBackToExitCallback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            if (doubleBackToExitPressedOnce) {
+                finish()
+                return
+            }
+            doubleBackToExitPressedOnce = true
+            Toast.makeText(
+                this@MainActivity,
+                getString(R.string.toast_double_back_to_exit),
+                Toast.LENGTH_LONG
+            ).show()
+            backPressHandler.postDelayed(resetBackPressRunnable, 2000)
         }
-        this.doubleBackToExitPressedOnce = true
-        Toast.makeText(this, getString(R.string.toast_double_back_to_exit), Toast.LENGTH_LONG).show()
-        backPressHandler.postDelayed(resetBackPressRunnable, 2000)
     }
 
     override fun onDestroy() {

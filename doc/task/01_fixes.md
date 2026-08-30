@@ -71,37 +71,37 @@ P1 · M — serialize input mutation (Mutex/Channel) hoặc chỉ offload phần
 `enableOrDisableScientistMode()` (`MainActivity.kt:596-610`) giả định `scientistModeRow2/3` khởi tạo `GONE` (chỉ đúng ở `layout/a_main.xml`). Ở `layout-land/a_main.xml` các row này mặc định `VISIBLE` và KHÔNG có `scientistModeSwitchButton` để bật lại → `onCreate` gọi hàm này khi pref mặc định `true` sẽ ẩn mất sin/cos/tan/log không có cách nào bật lại (multi-window/freeform/foldable không tôn trọng `screenOrientation="portrait"`).
 P1 · M — đồng bộ trạng thái GONE/VISIBLE ban đầu giữa layout portrait/landscape, đảm bảo luôn có control để bật lại.
 
-### F-UI-4 — Paste clipboard bypass toàn bộ input validation
+### ✅ F-UI-4 — Paste clipboard bypass toàn bộ input validation — đã fix
 `binding.input` vẫn nhận native long-press "Paste" (chỉ tắt `showSoftInputOnFocus`), chèn thẳng text vào `Editable` bỏ qua `NumberFormatter`/symbol-collision logic mà mọi nút bấm đều đi qua. Code detect-paste cũ đã bị comment out (`MainActivity.kt:246-270`) chưa thay bằng filter thật.
-P2 · M — thêm `InputFilter` chuẩn hoá text dán qua cùng pipeline với button tap, hoặc chặn paste tự do.
+P2 · M — **Đã fix, 2 bước**: bước 1 chỉ set `customInsertionActionModeCallback`/`customSelectionActionModeCallback` để ẩn nút "Paste" khỏi context-menu nổi — **verify trên emulator phát hiện đây là fix KHÔNG ĐỦ**: `adb shell input keyevent KEYCODE_PASTE` (phím tắt) vẫn dán được bình thường vì nó gọi thẳng `TextView.onTextContextMenuItem()`, không đi qua ActionMode. Bước 2 (fix thật): tạo `ui/CalculatorInputEditText.kt` (subclass `AppCompatEditText`) override `onTextContextMenuItem()` chặn `android.R.id.paste`/`pasteAsPlainText` — điểm chặn DUY NHẤT chung cho cả 2 đường. Đổi tag `<EditText id="@+id/input">` sang `<com.mckimquyen.opencal.ui.CalculatorInputEditText>` ở cả 3 layout (`layout`, `layout-land`, `layout-sw720dp-land`). Class mới cũng override `getText()` trả non-null (EditText luôn có buffer) để tránh phải sửa ~23 chỗ gọi `binding.input.text` trong `MainActivity.kt` (Kotlin coi kiểu Java platform-type khác đi khi truy cập qua 1 subclass Kotlin cùng module). Verify lại bằng `KEYCODE_PASTE` sau fix: không còn dán được nữa; Copy/Cut/Share vẫn hoạt động bình thường.
 
 ### F-UI-5 — `contentDescription` sai/generic trên hầu hết icon button (vi phạm accessibility)
 Hầu hết `ImageButton` ở `a_main.xml`, `a_about.xml`, `a_settings.xml` dùng tên app thay vì mô tả hành động (TalkBack đọc "OpenCalc" cho nút chia/nhân/cộng/trừ...). Cụ thể: `a_main.xml:155,307,319,331,376,421,466,493,516`; `a_settings.xml:32`; `a_about.xml:33`. (`backspaceButton` dòng 504 làm đúng, dùng làm mẫu.)
 P1 · S — thêm string resource riêng cho từng action.
 
-### F-UI-6 — `!!.toInt()` không try/catch trên preference string
+### ✅ F-UI-6 — `!!.toInt()` không try/catch trên preference string — đã fix
 `prefs.numberPrecision!!.toInt()` (`MainActivity.kt:591`), `prefs.historySize!!.toInt()` (`:999,:1149`). Chưa crash vì giá trị hiện cố định, nhưng fragile — nên hardening cùng lúc fix F-UI-1.
-P3 · S.
+P3 · S — **Đã fix**: cả 3 chỗ đổi sang `prefs.xxx?.toIntOrNull() ?: default` (`numberPrecision` fallback `10`, `historySize` fallback `100`, khớp default trong `root_preferences.xml`/`MyPreferences.kt`).
 
-### F-UI-7 — `onBackPressed()` deprecated, phá predictive-back gesture Android 13+
+### ✅ F-UI-7 — `onBackPressed()` deprecated, phá predictive-back gesture Android 13+ — đã fix
 `MainActivity.kt:1177-1186` override API cũ thay vì `OnBackPressedCallback`/`onBackPressedDispatcher`.
-P2 · S.
+P2 · S — **Đã fix**: thay bằng `OnBackPressedCallback` đăng ký qua `onBackPressedDispatcher.addCallback(this, ...)` trong `onCreate`, giữ nguyên logic double-back-to-exit. Verify trên emulator: bấm back 1 lần hiện Toast "Please click BACK again to exit", bấm lần 2 (trong 2s) app thoát về launcher đúng — xác nhận qua `logcat` (`TransitionRequestInfo type=CLOSE`) + `dumpsys activity` (resumed activity chuyển về launcher).
 
 ### F-UI-9 — Không giới hạn độ dài input → `StackOverflowError` crash toàn app (nguồn: claude session độc lập)
 `Calculator.kt` (parser đệ quy xuống, dòng 92-282) và `Expression.getPercentString` không giới hạn độ sâu/độ dài; layout không có `InputFilter`/`maxLength` trên `binding.input`; `evaluate()` không được gọi trong try/catch. Paste (xem F-UI-4) một chuỗi rất dài (vd nhiều dấu ngoặc lồng nhau lặp lại) có thể làm parser đệ quy vượt stack → crash toàn app, không chỉ lỗi phép tính.
 P2 · S — thêm `maxLength` trên input + try/catch quanh `evaluate()` (fallback hiện lỗi thay vì crash).
 
-### F-UI-10 — Backspace có thể `StringIndexOutOfBoundsException` (nguồn: claude session độc lập, chưa tự verify lại)
+### ✅ F-UI-10 — Backspace có thể `StringIndexOutOfBoundsException` — đã fix
 `MainActivity.kt:1108-1109` — guard hiện tại không đảm bảo `leftPartWithoutSpaces` non-empty sau khi bỏ dấu grouping separator.
-P2 · S.
+P2 · S — **Đã fix**: thêm check `isNotEmpty()` trước khi `subSequence(0, length - 1)`, trả `""` nếu rỗng thay vì crash. Verify trên emulator: gõ số + backspace liên tục tới rỗng, không crash (regression check), `dumpsys activity` xác nhận app vẫn resumed.
 
-### F-UI-11 — Xoay màn hình mất trạng thái toggle không lưu `onSaveInstanceState`
+### ✅ F-UI-11 — Xoay màn hình mất trạng thái toggle không lưu `onSaveInstanceState` — đã fix
 Các state như `isInvButtonClicked`, `errorStatusOld`, trạng thái scientific mode do user bật tay không được lưu qua config change (xoay màn hình) — UX bug thật (không crash): user bật "Inv" hoặc scientific mode rồi xoay máy sẽ bị reset về mặc định.
-P2 · S.
+P2 · S — **Đã fix**: override `onSaveInstanceState` lưu 3 giá trị (`isInvButtonClicked`, `isDegreeModeActivated`, visibility của `scientistModeRow2`); `restoreToggleState()` gọi ở cuối `onCreate` (sau khi áp default từ preference) để ghi đè lại đúng state user tự bật tay, dùng lại các hàm toggle sẵn có (`enableOrDisableDegreeMode`, `enableOrDisableScientistMode`) thay vì set trực tiếp field để không bỏ sót side-effect UI. Tách `setInvButtonLabels()` khỏi `invButton()` để dùng lại được. **Verify trên emulator** (MainActivity khoá `screenOrientation="portrait"` nên xoay vật lý không kích hoạt recreate — ép recreate bằng đổi `font_scale` qua `adb shell settings put system font_scale 1.1`, cùng cơ chế Android dùng cho mọi config change bao gồm xoay màn hình thật): bật INV + đổi DEG→RAD → recreate → cả 2 state đều giữ nguyên đúng (RAD, sin⁻¹/cos⁻¹/tan⁻¹/x²/e^/10^ vẫn hiện).
 
-### F-UI-8 — History UI off-by-one, lệch với tầng lưu trữ (nguồn: codex, độc lập)
+### ✅ F-UI-8 — History UI off-by-one, lệch với tầng lưu trữ (nguồn: codex, độc lập) — đã fix
 `MainActivity.kt:1000,1150` — điều kiện `itemCount >= historySize` chạy SAU khi append, nên giới hạn 100 thực tế chỉ giữ 99 item hiển thị; `onResume()` lặp lại lỗi tương tự. Tầng SharedPreferences (`MyPreferences.kt`) lại dùng đúng điều kiện `size > limit`, khiến UI và dữ liệu lưu không đồng nhất (list hiển thị và list lưu lệch nhau 1 phần tử).
-P2 · S — đồng bộ điều kiện trim giữa UI (`MainActivity`) và storage (`MyPreferences`).
+P2 · S — **Đã fix**: đổi cả 2 chỗ (`equalsButton()` + `onResume()`) từ `fullHistorySize >= historySize` sang `fullHistorySize > historySize`, khớp đúng ngưỡng `size > effectiveLimit` đã dùng ở `MyPreferences.saveHistory()`. Verify qua code review đối chiếu 2 điều kiện khớp nhau; không có unit test riêng (logic gắn với `HistoryAdapter`/RecyclerView, cần instrumented test để tạo >100 item — để sau nếu cần).
 
 ### ✅ F-UI-12 — `BillSplitterActivity`/`BaseConverterActivity` bị status bar đè lên (edge-to-edge) — **P1, đã fix**
 Cả 2 activity mới thêm trong session này thiếu cặp `UIUtils.setupEdgeToEdge1(window)` (trước `setContentView`) + `UIUtils.setupEdgeToEdge2(rootView = findViewById(R.id.layoutRoot), paddingTop = true, paddingBottom = true)` (sau `setContentView`) mà **mọi** Activity khác trong app (`MainActivity`, `SettingsActivity`, `AboutActivity`, `SplashActivity`, `VipActivity`) đều gọi. `targetSdk 37` khiến Android 15+ ép edge-to-edge bất kể app có opt-in hay không — thiếu insets listener này làm back-arrow + title đè lên đồng hồ/icon status bar. Layout XML đã sẵn `android:id="@+id/layoutRoot"` đúng convention nhưng code Kotlin quên gọi 2 hàm trên. Do user báo trực tiếp qua screenshot test, phát hiện qua audit toàn bộ Activity (agent research) rồi fix cả 2 file theo đúng pattern từ `AboutActivity.kt`. Verify trên emulator: cả 2 màn hình đều đã có khoảng cách đúng với status bar.

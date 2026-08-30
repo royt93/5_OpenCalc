@@ -85,6 +85,19 @@ User chọn "Fix nốt bug tính toán còn lại" qua `AskUserQuestion`. 4 bug 
 
 Verify bằng 6 unit test mới (`CalculatorTest` ×3, `ExpressionCalculatorPipelineTest` ×3) + toàn bộ test cũ vẫn pass, không regress.
 
+## ✅ Sprint 4 — ĐÃ XONG (2026-08-30)
+
+User chọn "Fix nốt bug UI" qua `AskUserQuestion`. 6 bug (`F-UI-4/6/7/8/10/11`) trong `ui/MainActivity.kt` + 3 layout `a_main.xml` + 1 file mới `ui/CalculatorInputEditText.kt`. Build+lint+`testDevDebugUnitTest` PASS, 3 vòng code-review (agent riêng, chạy sau mỗi thay đổi quan trọng) đều 0 finding, smoke test tay đầy đủ trên emulator Pixel_10_Pro_XL.
+
+- **F-UI-4** (paste bypass validation) — phát hiện tự smoke test: fix lần 1 (chỉ ẩn menu "Paste" qua `customSelectionActionModeCallback`) KHÔNG đủ, `KEYCODE_PASTE` vẫn bypass được. Fix lại đúng chỗ: subclass `CalculatorInputEditText` override `onTextContextMenuItem()` — điểm chặn chung cho cả context-menu lẫn phím tắt. Verify lại bằng `adb shell input keyevent KEYCODE_PASTE`: không còn dán được.
+- **F-UI-6** (crash tiềm ẩn parse preference) — `!!.toInt()` → `?.toIntOrNull() ?: default` ở 3 chỗ.
+- **F-UI-7** (predictive-back Android 13+ bị phá) — `onBackPressed()` deprecated → `OnBackPressedCallback`. Verify double-back-to-exit qua `logcat`/`dumpsys activity`.
+- **F-UI-8** (history off-by-one) — `>=` → `>` khớp ngưỡng trim thật ở `MyPreferences.saveHistory`.
+- **F-UI-10** (backspace crash tiềm ẩn) — guard `isNotEmpty()` trước `subSequence`.
+- **F-UI-11** (mất state INV/DEG-RAD/scientific mode khi xoay màn hình) — `onSaveInstanceState`/`restoreToggleState()`. Verify bằng cách ép activity recreate qua đổi `font_scale` (MainActivity khoá portrait nên xoay vật lý trên emulator không kích hoạt được) — state giữ nguyên đúng sau recreate.
+
+Quy trình audit theo yêu cầu user: code-review sau mỗi lần sửa quan trọng + smoke test device tự chọn (emulator Pixel_10_Pro_XL) trước khi push — quy trình này tự bắt được lỗi F-UI-4 fix lần 1 chưa đủ, phải sửa lại đúng chỗ trước khi coi là xong.
+
 Tính năng tiếp theo cho vòng loop kế tiếp chưa chọn — chờ user quyết định qua `AskUserQuestion` khi bắt đầu.
 
 ## Priority & Size convention
