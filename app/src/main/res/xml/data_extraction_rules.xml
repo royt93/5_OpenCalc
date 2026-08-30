@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- F-INFRA-7: loại trừ VIP state khỏi cloud backup và device-to-device transfer (API 31+) —
+     tránh vector khôi phục trạng thái VIP trái phép qua backup/restore giữa các thiết bị/tài khoản. -->
+<data-extraction-rules>
+    <cloud-backup>
+        <exclude domain="sharedpref" path="vip_screen_prefs.xml" />
+    </cloud-backup>
+    <device-transfer>
+        <exclude domain="sharedpref" path="vip_screen_prefs.xml" />
+    </device-transfer>
+</data-extraction-rules>

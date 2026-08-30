@@ -27,19 +27,19 @@ class MyPreferencesInstrumentedTest {
     fun clean() {
         val p = MyPreferences(ctx)
         p.historySize = "100"
-        MyPreferences(ctx).saveHistory(ctx, mutableListOf())
+        MyPreferences(ctx).saveHistory(mutableListOf())
     }
 
     @After
     fun cleanup() {
         MyPreferences(ctx).historySize = "100"
-        MyPreferences(ctx).saveHistory(ctx, mutableListOf())
+        MyPreferences(ctx).saveHistory(mutableListOf())
     }
 
     @Test
     fun saveAndGetRoundTrip() {
         val p = MyPreferences(ctx)
-        p.saveHistory(ctx, listOf(h("1+1", "2"), h("2+2", "4")))
+        p.saveHistory(listOf(h("1+1", "2"), h("2+2", "4")))
 
         val loaded = MyPreferences(ctx).getHistory()
         assertEquals(2, loaded.size)
@@ -56,15 +56,15 @@ class MyPreferencesInstrumentedTest {
     fun cachedInstanceReturnsFreshHistoryAfterEachSave() {
         val p = MyPreferences(ctx) // instance được cache, dùng lại như MainActivity.prefs
 
-        p.saveHistory(ctx, listOf(h("1+1", "2")))
+        p.saveHistory(listOf(h("1+1", "2")))
         assertEquals(1, p.getHistory().size)
 
-        p.saveHistory(ctx, listOf(h("1+1", "2"), h("9×9", "81")))
+        p.saveHistory(listOf(h("1+1", "2"), h("9×9", "81")))
         val second = p.getHistory()
         assertEquals(2, second.size)
         assertEquals("9×9", second[1].calculation)
 
-        p.saveHistory(ctx, listOf(h("1+1", "2"), h("9×9", "81"), h("√9", "3")))
+        p.saveHistory(listOf(h("1+1", "2"), h("9×9", "81"), h("√9", "3")))
         assertEquals(3, p.getHistory().size)
     }
 
@@ -72,7 +72,7 @@ class MyPreferencesInstrumentedTest {
     fun historyTrimmedToHistorySize() {
         MyPreferences(ctx).historySize = "2"
         val p = MyPreferences(ctx) // đọc historySize="2" lúc khởi tạo
-        p.saveHistory(ctx, listOf(h("a", "1"), h("b", "2"), h("c", "3"), h("d", "4")))
+        p.saveHistory(listOf(h("a", "1"), h("b", "2"), h("c", "3"), h("d", "4")))
 
         val loaded = MyPreferences(ctx).getHistory()
         assertEquals(2, loaded.size)
@@ -84,8 +84,8 @@ class MyPreferencesInstrumentedTest {
     @Test
     fun emptyWhenCleared() {
         val p = MyPreferences(ctx)
-        p.saveHistory(ctx, listOf(h("1+1", "2")))
-        p.saveHistory(ctx, mutableListOf())
+        p.saveHistory(listOf(h("1+1", "2")))
+        p.saveHistory(mutableListOf())
         assertEquals(0, MyPreferences(ctx).getHistory().size)
     }
 }

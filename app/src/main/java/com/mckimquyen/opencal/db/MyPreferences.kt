@@ -50,8 +50,6 @@ class MyPreferences(context: Context) {
         preferences.getBoolean(KEY_RADIANS_INSTEAD_OF_DEGREES_BY_DEFAULT, false)
         set(value) = preferences.edit().putBoolean(KEY_RADIANS_INSTEAD_OF_DEGREES_BY_DEFAULT, value)
             .apply()
-    private var history = preferences.getString(KEY_HISTORY, null)
-        set(value) = preferences.edit().putString(KEY_HISTORY, value).apply()
     var preventPhoneFromSleepingMode =
         preferences.getBoolean(KEY_PREVENT_PHONE_FROM_SLEEPING, false)
         set(value) = preferences.edit().putBoolean(KEY_PREVENT_PHONE_FROM_SLEEPING, value).apply()
@@ -86,7 +84,7 @@ class MyPreferences(context: Context) {
         }
     }
 
-    fun saveHistory(context: Context, history: List<History>) {
+    fun saveHistory(history: List<History>) {
         val gson = Gson()
         val history2 = history.toMutableList()
         val userLimit = historySize?.toIntOrNull()?.takeIf { it > 0 }
@@ -98,6 +96,9 @@ class MyPreferences(context: Context) {
             if (index == -1) break
             history2.removeAt(index)
         }
-        MyPreferences(context).history = gson.toJson(history2) // Convert to json
+        // F-DATA-6: ghi thẳng qua `preferences` của chính instance này thay vì tạo
+        // MyPreferences(context) mới chỉ để gọi setter — field `history` cũ chỉ tồn tại làm
+        // trung gian cho setter đó, không ai đọc, nên bỏ luôn cả field lẫn param `context` thừa.
+        preferences.edit().putString(KEY_HISTORY, gson.toJson(history2)).apply()
     }
 }

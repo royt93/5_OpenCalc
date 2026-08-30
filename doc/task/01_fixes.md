@@ -169,21 +169,21 @@ P1 · S.
 `MyPreferences.kt:77` (`while (hs.toInt() > 0 && ...)`) + `arrays.xml:22` (`item>-1<` cho "∞") → điều kiện trim không bao giờ đúng, history phình vô hạn, mỗi lần "=" re-serialize blob ngày càng lớn → chậm dần, rủi ro OOM.
 P1 · M.
 
-### F-DATA-5 — Race condition/lost update khi lưu history đồng thời
+### ✅ F-DATA-5 — Race condition/lost update khi lưu history đồng thời — hoá ra đã fix sẵn
 `equalsButton` tạo coroutine mới mỗi lần bấm (`Dispatchers.Default`), đọc→sửa→ghi không khoá đồng bộ trong `MyPreferences`. Bấm "=" liên tiếp nhanh có thể mất 1 entry history âm thầm.
-P2 · M.
+P2 · M — **Kiểm tra lại code hiện tại: cả 4 call site của `prefs.saveHistory()` trong `MainActivity.kt` (equalsButton, onPinToggle, "Clear History", onResume trim) đều đã bọc trong CÙNG 1 `historyMutex.withLock { }`** (field `Mutex()` duy nhất trên instance MainActivity) — di sản từ fix F-DATA-9/N-DATA-3/N-DATA-4 ở các sprint trước, audit ban đầu không nhận ra các fix đó đã giải quyết luôn race condition này. Không cần sửa thêm.
 
-### F-DATA-6 — State kép: field `history` private không còn là nguồn sự thật
+### ✅ F-DATA-6 — State kép: field `history` private không còn là nguồn sự thật — đã fix
 `MyPreferences.kt:44-45,81` — field set qua setter nhưng `getHistory()` luôn đọc tươi từ SharedPreferences, bỏ qua field này; `saveHistory()` tạo instance `MyPreferences` mới thay vì dùng `this`.
-P3 · S — dọn dead state.
+P3 · S — **Đã fix**: xoá field `history` chết + tham số `context` thừa của `saveHistory()`, ghi thẳng qua `preferences` (field sẵn có của instance) bằng `preferences.edit().putString(KEY_HISTORY, ...).apply()`. Cập nhật 4 call site ở `MainActivity.kt` + toàn bộ test instrumented liên quan (`MainActivityTest.kt`, `MyPreferencesInstrumentedTest.kt`) bỏ tham số `context` không cần nữa. Verify: build thành công + smoke test history save/load/pin/search trên cả emulator lẫn device thật, dữ liệu không mất qua nhiều lần cài lại.
 
-### F-DATA-7 — `appLanguage` dùng `.commit()` đồng bộ, phần còn lại dùng `.apply()`
+### F-DATA-7 — `appLanguage` dùng `.commit()` đồng bộ, phần còn lại dùng `.apply()` — xem xét, KHÔNG sửa
 `MyPreferences.kt:56`, gọi trực tiếp từ click listener dialog (`LanguageHelper.kt:78`) → block Main Thread cho disk fsync trước khi restart app.
-P2 · S.
+P2 · S — **Kết luận sau khi đọc kỹ ngữ cảnh gọi: `.commit()` ở đây là CHỦ ĐÍCH, không phải sơ suất.** Ngay sau khi set `appLanguage`, `restartApp()` gọi `killProcess()` — nếu dùng `.apply()` (ghi đĩa bất đồng bộ), giá trị ngôn ngữ mới có thể CHƯA kịp flush xuống đĩa trước khi process bị giết, khiến lựa chọn ngôn ngữ bị mất sau restart (mất dữ liệu thật, nghiêm trọng hơn nhiều so với 1 lần block Main Thread ngắn trong click handler một lần, không lặp lại). Đổi sang `.apply()` như đề xuất ban đầu sẽ là REGRESSION. Fix đúng chỗ là loại bỏ nhu cầu `killProcess()` hoàn toàn — xem F-INFRA-3 (giảm rủi ro race) và N-INFRA-4 (giải pháp triệt để: `AppCompatDelegate.setApplicationLocales()`, chưa làm trong sprint này).
 
-### F-DATA-8 — Không có version/migration strategy cho schema `History`
+### F-DATA-8 — Không có version/migration strategy cho schema `History` — ponytail, chủ động SKIP
 `model/History.kt` không có version field, migration hiện dựa pattern thủ công `time.isNullOrEmpty()` (`HistoryAdapter.kt:73`).
-P3 · S.
+P3 · S — **Chủ động không làm (YAGNI)**: pattern hiện tại (field mới nullable/có default, Gson tự điền default JVM cho JSON cũ thiếu field — xem ví dụ `isPinned`) đã đủ dùng cho model 4 field đơn giản này. Thêm hạ tầng version/migration là speculative cho nhu cầu chưa từng phát sinh (rollback, migration rẽ nhánh). Đã thêm comment `ponytail:` giải thích ngay tại `History.kt` để lần audit sau không đề xuất lại.
 
 ### ✅ F-DATA-9 — `equalsButton` tự huỷ chính coroutine của nó → history không bao giờ được lưu — **P0, đã fix**
 `MainActivity.kt` (`equalsButton`): `binding.input.setText(formattedResult)` kích hoạt `TextWatcher.onTextChanged` → `updateResultDisplay()` → `calculationJob?.cancel()`. Vì `equalsButton` và `updateResultDisplay` dùng chung field `calculationJob`, lệnh này tự huỷ CHÍNH coroutine đang chạy của `equalsButton`. Việc huỷ có hiệu lực ngay khi coroutine resume ở `withContext` kế tiếp — tức là toàn bộ phần sau `setText` (set cursor, và quan trọng nhất là lưu history vào `historyMutex`/`prefs.saveHistory`) bị `CancellationException` nuốt mất mà không có dấu hiệu gì, 100% các lần bấm "=". Đây là regression từ chính fix Sprint 1 (thêm field `calculationJob` dùng chung để chống race condition) — trước đó bug không tồn tại vì chưa có cơ chế tự-huỷ này. Phát hiện khi verify tính năng N-CALC-5 (tap-to-recall từ history) trên emulator: tính "=" xong nhưng `royHISTORY` trong SharedPreferences luôn là `[]`.
@@ -198,29 +198,29 @@ P0 · S — thêm 5 locale còn thiếu vào `resourceConfigurations`, hoặc b�
 ### F-INFRA-2 — AdMob Rewarded ID release = test ID Google
 Trùng với F-AD-1, xem chi tiết ở mục Ad & VIP.
 
-### F-INFRA-3 — `LanguageHelper.restartApp()` gọi `killProcess` ngay sau `startActivity` cùng process
+### ✅ F-INFRA-3 — `LanguageHelper.restartApp()` gọi `killProcess` ngay sau `startActivity` cùng process — đã fix (giảm rủi ro)
 `LanguageHelper.kt:146-159` — `Process.killProcess` gần như ngay sau `startActivity` có thể giết Activity mới trước khi kịp `onCreate`, khiến app thoát đột ngột thay vì restart mượt khi đổi ngôn ngữ.
-P1 · M — chuyển sang `AppCompatDelegate.setApplicationLocales()` (tận dụng `locales_config.xml` đã có, xem N-INFRA-4).
+P1 · M — **Đã fix**: bọc `killProcess()` trong `Handler(Looper.getMainLooper()).postDelayed({...}, 300)` — nhường 1 nhịp cho hệ thống kịp khởi động Activity/task mới trước khi giết process. Không đổi sang `AppCompatDelegate.setApplicationLocales()` (N-INFRA-4) trong sprint này vì đó là thay đổi kiến trúc lớn hơn nhiều (bỏ hẳn cơ chế restart thủ công), để dành cho quyết định riêng. Verify trên device thật (`R9JN61LDLFJ`): đổi ngôn ngữ → app restart sạch (log `OpenCalcApplication onCreate` xác nhận process mới) → dấu thập phân đổi đúng theo locale mới (dấu phẩy cho vi-VN), không crash.
 
-### F-INFRA-4 — ProGuard rules chứa hàng loạt rule "chết" cho lib không tồn tại trong dependencies
+### ✅ F-INFRA-4 — ProGuard rules chứa hàng loạt rule "chết" cho lib không tồn tại trong dependencies — đã fix
 `proguard-rules.pro:4-196` — rule cho butterknife, retrofit/retrofit2, facebook, realm, eventbus, rx, glide, jsoup, uCrop, dexter... không lib nào có trong `app/build.gradle`. Rõ ràng copy từ template cũ, gây khó audit/maintain.
-P2 · S — dọn sạch, chỉ giữ rule cho dependency thật.
+P2 · S — **Đã fix**: xoá toàn bộ rule cho lib không có trong `dependencies {}` (đã đối chiếu từng dòng: không `libs/*.jar` nào tồn tại, xác nhận không có gì bị rule này bảo vệ thực sự cần thiết). File giảm từ 196 dòng còn ~22 dòng, chỉ giữ: in-app billing keep (chờ N-AD-1), block Gson thật (Signature/Annotation/Unsafe/TypeAdapterFactory/enum), và GMS advertising ID. Verify: build+lint+`testDevDebugUnitTest` PASS, app chạy bình thường trên emulator + device thật (ads, Settings, VIP screen).
 
-### F-INFRA-5 — `-keep public class com.google.** {*;}` quá rộng, vô hiệu hoá phần lớn lợi ích R8 shrink/obfuscate
+### ✅ F-INFRA-5 — `-keep public class com.google.** {*;}` quá rộng, vô hiệu hoá phần lớn lợi ích R8 shrink/obfuscate — đã fix
 `proguard-rules.pro:4` — giữ nguyên toàn bộ namespace `com.google.*` (Material, Gson, Play Review...) trong khi `AdmobApplovinWrapper:1.1.5` đã tự mang consumer ProGuard rule chính xác cho `com.google.android.gms.ads.**`/`com.applovin.**`/`com.google.android.ump.**`.
-P2 · S — thu hẹp rule, để lib tự quản consumer rules.
+P2 · S — **Đã fix**: xoá hẳn rule `com.google.**` (và rule con trùng lặp `com.google.android.gms.**` từ template FCM cũ), dựa hoàn toàn vào consumer ProGuard rules tự mang theo của từng AAR (Material, Play Review, AdmobApplovinWrapper) — đây là cơ chế chuẩn của Android Gradle Plugin, không cần app khai lại thủ công. **Đây là thay đổi rủi ro cao nhất trong đợt dọn dẹp này** (build type nào cũng bật R8 kể cả debug) nên verify kỹ trên cả 2 thiết bị: emulator Pixel_10_Pro_XL và device thật `R9JN61LDLFJ` — app khởi động bình thường, tính toán đúng, PopupMenu/Settings/VIP screen (Material components + AdmobWrapper reflection) render đầy đủ không lỗi, App Open ad tải và đóng được bình thường trên cả 2 máy.
 
 ### F-INFRA-8 — `gradle.properties` hardcode `org.gradle.java.home` theo path máy dev cục bộ (phát hiện khi làm N-INFRA-1 CI pipeline)
 `gradle.properties:10` = `/Users/loitran/Library/Java/JavaVirtualMachines/jbr-17.0.14/Contents/Home` — path chỉ tồn tại trên máy hiện tại, sẽ khiến build lỗi ("Java home supplied is invalid") trên máy dev khác hoặc CI runner nếu gọi `./gradlew` trực tiếp không override. Đã fix ở tầm CI bằng cách luôn truyền `-Dorg.gradle.java.home="$JAVA_HOME"` trong `.github/workflows/ci.yml` (verify thực tế: build thành công khi override sang JDK khác hẳn path hardcode) — không sửa `gradle.properties` vì đây là override có chủ đích cho máy hiện tại (commit gần nhất "Update Gradle configuration with specific Java home"). Máy dev khác cần tự thêm dòng override tương ứng hoặc luôn gọi kèm `-D` như CI.
 P3 · S (đã fix phần CI; phần "máy dev khác" chỉ cần biết cách override, không bắt buộc sửa thêm).
 
-### F-INFRA-6 — Dependency khai báo trùng lặp
+### ✅ F-INFRA-6 — Dependency khai báo trùng lặp — đã fix
 `androidx.preference:preference-ktx:1.2.1` khai 2 lần (`app/build.gradle:139,144`).
-P3 · S.
+P3 · S — **Đã fix**: xoá dòng trùng.
 
-### F-INFRA-7 — `allowBackup="true"` không có `dataExtractionRules`/`fullBackupContent` loại trừ (nguồn: claude session độc lập, đã verify: `AndroidManifest.xml:13` chỉ có `android:allowBackup="true"`, không có 2 attribute kia)
+### ✅ F-INFRA-7 — `allowBackup="true"` không có `dataExtractionRules`/`fullBackupContent` loại trừ — đã fix
 Android Auto Backup mặc định sẽ backup TOÀN BỘ SharedPreferences (bao gồm VIP prefs `grantedAtMs`/`userRedeemedOnce` và history) lên Google Drive của user, không loại trừ gì. Kết hợp với F-AD-9 (VIP secret dễ lộ), tăng thêm 1 vector khôi phục trạng thái VIP trái phép qua backup/restore giữa các thiết bị/tài khoản.
-P2 · S — thêm `android:dataExtractionRules`/`android:fullBackupContent` loại trừ file SharedPreferences chứa VIP state, hoặc chấp nhận rủi ro nếu tác động thấp.
+P2 · S — **Đã fix**: thêm `res/xml/backup_rules.xml` (API < 31, `fullBackupContent`) + `res/xml/data_extraction_rules.xml` (API 31+, `dataExtractionRules`, loại trừ cả `cloud-backup` lẫn `device-transfer`), cả 2 đều loại trừ `sharedpref` path `vip_screen_prefs.xml` (file `VipPrefs.kt` dùng, chứa `grantedAtMs`/`userRedeemedOnce`). Khai 2 attribute tương ứng trong `AndroidManifest.xml`. **Giới hạn đã biết**: chỉ loại trừ được state phía app (`VipPrefs`) — bản thân "nguồn sự thật" VIP nằm trong storage riêng của SDK `AdmobApplovinWrapper` (ngoài tầm kiểm soát của app) nên đây là giảm thiểu một phần, không triệt để; history/settings vẫn được backup bình thường (chấp nhận được, không nhạy cảm). Verify: build thành công, XML resource hợp lệ; chưa test thực tế luồng backup/restore qua `bmgr` (ngoài phạm vi sprint).
 
 ## P3 khác — ghi nhận, không khẩn (nguồn: claude session độc lập, chưa tự verify lại từng dòng)
 

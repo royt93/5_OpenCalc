@@ -36,7 +36,7 @@ class MainActivityTest {
 
     @Before
     fun clearHistory() {
-        MyPreferences(ctx).saveHistory(ctx, mutableListOf())
+        MyPreferences(ctx).saveHistory(mutableListOf())
     }
 
     // ---------- helpers ----------

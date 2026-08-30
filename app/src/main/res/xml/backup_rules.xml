@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- F-INFRA-7: loại trừ VIP state khỏi Android Auto Backup (API < 31) — tránh vector khôi phục
+     trạng thái VIP trái phép qua backup/restore giữa các thiết bị/tài khoản. -->
+<full-backup-content>
+    <exclude domain="sharedpref" path="vip_screen_prefs.xml" />
+</full-backup-content>

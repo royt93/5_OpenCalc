@@ -230,7 +230,7 @@ class MainActivity : BaseActivity() {
             onPinToggle = { updatedHistory ->
                 lifecycleScope.launch(Dispatchers.IO) {
                     historyMutex.withLock {
-                        prefs.saveHistory(this@MainActivity, updatedHistory.toMutableList())
+                        prefs.saveHistory(updatedHistory.toMutableList())
                     }
                 }
             },
@@ -529,7 +529,7 @@ class MainActivity : BaseActivity() {
         lifecycleScope.launch(Dispatchers.IO) {
             historyMutex.withLock {
                 val remaining = prefs.getHistory().filter { it.isPinned }.toMutableList()
-                prefs.saveHistory(this@MainActivity, remaining)
+                prefs.saveHistory(remaining)
                 withContext(Dispatchers.Main) {
                     historyAdapter.clearHistory()
                     if (remaining.isNotEmpty()) {
@@ -1262,7 +1262,7 @@ class MainActivity : BaseActivity() {
                                             )
                                         )
 
-                                        prefs.saveHistory(this@MainActivity, history)
+                                        prefs.saveHistory(history)
 
                                         // Update history variables
                                         withContext(Dispatchers.Main) {
@@ -1482,7 +1482,7 @@ class MainActivity : BaseActivity() {
                     if (index == -1) break
                     history.removeAt(index)
                 }
-                prefs.saveHistory(this@MainActivity, history)
+                prefs.saveHistory(history)
             }
         }
 

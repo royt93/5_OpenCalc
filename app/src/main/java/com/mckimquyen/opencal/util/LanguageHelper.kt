@@ -5,6 +5,8 @@ import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Build
+import android.os.Handler
+import android.os.Looper
 import androidx.core.content.ContextCompat
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.mckimquyen.opencal.R
@@ -154,8 +156,13 @@ object LanguageHelper {
             activity.startActivity(it)
             activity.finish()
 
-            // Force kill process để đảm bảo app restart hoàn toàn
-            android.os.Process.killProcess(android.os.Process.myPid())
+            // F-INFRA-3: startActivity() chỉ enqueue intent qua Binder IPC tới system_server,
+            // không đợi Activity mới thực sự bắt đầu — killProcess() ngay lập tức có thể giết
+            // process trước khi hệ thống kịp khởi động Activity/task mới, khiến app thoát hẳn
+            // thay vì restart. Trễ 1 nhịp để nhường chỗ cho việc khởi động đó diễn ra trước.
+            Handler(Looper.getMainLooper()).postDelayed({
+                android.os.Process.killProcess(android.os.Process.myPid())
+            }, 300)
         }
     }
 }

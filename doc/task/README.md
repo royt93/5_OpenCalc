@@ -98,6 +98,24 @@ User chọn "Fix nốt bug UI" qua `AskUserQuestion`. 6 bug (`F-UI-4/6/7/8/10/11
 
 Quy trình audit theo yêu cầu user: code-review sau mỗi lần sửa quan trọng + smoke test device tự chọn (emulator Pixel_10_Pro_XL) trước khi push — quy trình này tự bắt được lỗi F-UI-4 fix lần 1 chưa đủ, phải sửa lại đúng chỗ trước khi coi là xong.
 
+## ✅ Sprint 5 — ĐÃ XONG (2026-08-30)
+
+User chọn "Dọn nợ kỹ thuật Data/Infra" qua `AskUserQuestion`. F-DATA-5/6/7/8 + F-INFRA-3/4/5/6/7/8 (10 hạng mục). Build+lint+`testDevDebugUnitTest` PASS, code-review 0 finding, smoke test trên cả emulator Pixel_10_Pro_XL lẫn device thật `R9JN61LDLFJ`.
+
+- **F-DATA-5** (race condition lưu history) — hoá ra đã fix sẵn từ các sprint trước (`historyMutex` đã bọc cả 4 call site), chỉ cập nhật doc.
+- **F-DATA-6** (state kép trong MyPreferences) — xoá field `history` chết + param `context` thừa của `saveHistory()`.
+- **F-DATA-7** (`.commit()` cho appLanguage) — **quyết định KHÔNG sửa**: `.commit()` là chủ đích để tránh mất dữ liệu ngôn ngữ trước `killProcess()` sắp gọi; đổi sang `.apply()` sẽ là regression.
+- **F-DATA-8** (thiếu version/migration cho History) — **chủ động skip (YAGNI)**, thêm comment `ponytail:` giải thích.
+- **F-INFRA-3** (killProcess race khi đổi ngôn ngữ) — thêm delay 300ms qua Handler.
+- **F-INFRA-4** (ProGuard rule chết cho lib không tồn tại) — dọn 196 dòng còn ~22 dòng.
+- **F-INFRA-5** (`com.google.**` keep quá rộng) — xoá hẳn, dựa vào consumer rules của từng AAR. Rủi ro cao nhất đợt này, verify kỹ nhất.
+- **F-INFRA-6** (dependency trùng) — xoá dòng trùng `preference-ktx`.
+- **F-INFRA-7** (backup không loại trừ VIP state) — thêm `dataExtractionRules`/`backup_rules` loại trừ `vip_screen_prefs.xml`.
+
+**Phát hiện ngoài phạm vi (chưa fix)**: `app/src/androidTest/java/com/mckimquyen/opencal/model/adt/HistoryAdapterInstrumentedTest.kt` compile lỗi (`compileDevDebugAndroidTestKotlin` fail) — xác nhận qua `git stash` là bug **có sẵn từ trước phiên này**, không liên quan đến các thay đổi ở đây, do test chưa được cập nhật theo API `HistoryAdapter` hiện tại (constructor/method đã đổi qua các tính năng search/pin). Không chặn `testDevDebugUnitTest`/`lint`/`assembleDevDebug` (gate chính thức của project) nên chưa xử lý trong sprint này — ghi nhận cho vòng sau.
+
+**Lưu ý môi trường test**: cả emulator lẫn máy thật dùng để smoke test đều có nhiều app quảng cáo khác cài sẵn (`com.saigonphantomlabs.chess`, `com.galaxyjoy.cpuinfo`) thỉnh thoảng tự bật lên đè activity đang test (nghi do cùng chia sẻ AppLovin MAX test network hoặc adware chéo quảng cáo) — không liên quan tới code OpenCalc, đã xác minh bằng cách force-stop app lạ rồi test lại.
+
 Tính năng tiếp theo cho vòng loop kế tiếp chưa chọn — chờ user quyết định qua `AskUserQuestion` khi bắt đầu.
 
 ## Priority & Size convention
