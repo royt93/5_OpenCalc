@@ -21,7 +21,6 @@ import com.mckimquyen.opencal.db.MyPreferences
 import com.mckimquyen.opencal.model.Themes
 import com.mckimquyen.opencal.rateAppInApp
 import com.roy.sdkadbmob.AdManager
-import com.roy.sdkadbmob.UIUtils
 import java.util.Locale
 
 class SettingsActivity : BaseActivity() {
@@ -46,13 +45,8 @@ class SettingsActivity : BaseActivity() {
         themes.applyDayNightOverride()
         setTheme(themes.getTheme())
 
-        UIUtils.setupEdgeToEdge1(window)
+        // E-INFRA-6: setupEdgeToEdge1/2 giờ tự động chạy trong BaseActivity.setContentView().
         setContentView(R.layout.a_settings)
-        UIUtils.setupEdgeToEdge2(
-            rootView = findViewById(R.id.layoutRoot),
-            paddingTop = true,
-            paddingBottom = true
-        )
 
         if (savedInstanceState == null) {
             supportFragmentManager

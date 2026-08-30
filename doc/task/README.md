@@ -70,7 +70,9 @@ Chuỗi 3 tính năng tự động (N-CALC-4 → N-DATA-1 → N-CALC-2) đã ho�
 
 ## ✅ Bug fix ngoài kế hoạch — Edge-to-edge (2026-08-29)
 
-User báo trực tiếp qua screenshot: title/back-arrow của `BillSplitterActivity` và `BaseConverterActivity` bị status bar đè lên. Audit toàn bộ Activity (xem [F-UI-12](01_fixes.md)) xác nhận cả 2 activity mới thêm trong session này thiếu cặp `UIUtils.setupEdgeToEdge1/2` mà mọi activity khác đều có — đã fix cả 2, verify lại trên emulator. Ghi nhận thêm khuyến nghị dài hạn [E-INFRA-6](02_enhancements.md) để tránh tái diễn khi thêm activity mới sau này.
+User báo trực tiếp qua screenshot: title/back-arrow của `BillSplitterActivity` và `BaseConverterActivity` bị status bar đè lên. Audit toàn bộ Activity (xem [F-UI-12](01_fixes.md)) xác nhận cả 2 activity mới thêm trong session này thiếu cặp `UIUtils.setupEdgeToEdge1/2` mà mọi activity khác đều có — đã fix cả 2, verify lại trên emulator.
+
+Sau đó thực hiện luôn khuyến nghị dài hạn [E-INFRA-6](02_enhancements.md): chuyển cặp hàm này vào `BaseActivity` (override `setContentView`) để mọi activity con tự động đúng, không cần nhớ copy-paste — xoá lời gọi thủ công trùng lặp ở 6/7 activity (`SplashActivity` giữ nguyên vì không kế thừa `BaseActivity`). Verify lại `MainActivity`/`BaseConverterActivity` không regression.
 
 Tính năng tiếp theo cho vòng loop kế tiếp chưa chọn — chờ user quyết định qua `AskUserQuestion` khi bắt đầu.
 

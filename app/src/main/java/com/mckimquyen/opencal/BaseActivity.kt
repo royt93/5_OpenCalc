@@ -5,14 +5,43 @@ import android.content.Context
 import android.content.res.Configuration
 import android.os.Build
 import android.view.Display
+import android.view.View
+import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.play.core.review.ReviewInfo
 import com.google.android.play.core.review.ReviewManagerFactory
 import com.mckimquyen.opencal.util.Logger
+import com.roy.sdkadbmob.UIUtils
 import java.util.Calendar
 
 open class BaseActivity : AppCompatActivity() {
+
+    // E-INFRA-6: gom setupEdgeToEdge1/2 vào đây thay vì để từng Activity con tự nhớ gọi — đã
+    // quên sót 2 lần liên tiếp (BillSplitterActivity, BaseConverterActivity, xem F-UI-12) khi
+    // targetSdk 37 (Android 15+) ép edge-to-edge bất kể app có opt-in hay không. Override cả 2
+    // overload setContentView vì SettingsActivity dùng bản nhận resId, các activity còn lại dùng
+    // bản nhận View (qua ViewBinding).
+    override fun setContentView(layoutResID: Int) {
+        UIUtils.setupEdgeToEdge1(window)
+        super.setContentView(layoutResID)
+        applyEdgeToEdgePadding()
+    }
+
+    override fun setContentView(view: View) {
+        UIUtils.setupEdgeToEdge1(window)
+        super.setContentView(view)
+        applyEdgeToEdgePadding()
+    }
+
+    // Lấy root view thật (con duy nhất của content frame android.R.id.content) thay vì
+    // findViewById theo 1 id cố định — mỗi layout hiện đặt tên root khác nhau ("layoutRoot" ở
+    // hầu hết activity, "root_layout" ở SplashActivity), cách này không phụ thuộc quy ước đặt tên.
+    private fun applyEdgeToEdgePadding() {
+        val contentFrame = findViewById<ViewGroup>(android.R.id.content) ?: return
+        val root = contentFrame.getChildAt(0) ?: return
+        UIUtils.setupEdgeToEdge2(rootView = root, paddingTop = true, paddingBottom = true)
+    }
 
     override fun attachBaseContext(context: Context) {
         // Apply language first

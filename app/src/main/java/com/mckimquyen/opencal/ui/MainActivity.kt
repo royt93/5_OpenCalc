@@ -51,7 +51,6 @@ import com.mckimquyen.opencal.model.Themes
 import com.mckimquyen.opencal.model.adt.HistoryAdapter
 import com.mckimquyen.opencal.util.Logger
 import com.roy.sdkadbmob.AdManager
-import com.roy.sdkadbmob.UIUtils
 import com.sothree.slidinguppanel.PanelSlideListener
 import com.sothree.slidinguppanel.PanelState
 import kotlinx.coroutines.Dispatchers
@@ -148,16 +147,10 @@ class MainActivity : BaseActivity() {
         themes.applyDayNightOverride()
         setTheme(themes.getTheme())
 
-        UIUtils.setupEdgeToEdge1(window)
-
+        // E-INFRA-6: setupEdgeToEdge1/2 giờ tự động chạy trong BaseActivity.setContentView().
         binding = AMainBinding.inflate(layoutInflater)
         view = binding.root
         setContentView(view)
-        UIUtils.setupEdgeToEdge2(
-            rootView = findViewById(R.id.layoutRoot),
-            paddingTop = true,
-            paddingBottom = true
-        )
 
         AdManager.setCurrentActivity(this)
         AdManager.loadInterstitial(this)

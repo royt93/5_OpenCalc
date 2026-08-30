@@ -17,7 +17,6 @@ import com.mckimquyen.opencal.ext.shareApp
 import com.mckimquyen.opencal.model.Themes
 import com.mckimquyen.opencal.rateAppInApp
 import com.roy.sdkadbmob.AdManager
-import com.roy.sdkadbmob.UIUtils
 
 class AboutActivity : BaseActivity() {
     private lateinit var binding: AAboutBinding
@@ -54,15 +53,10 @@ class AboutActivity : BaseActivity() {
             window.statusBarColor = ContextCompat.getColor(this, R.color.background_color)
         }
 
-        UIUtils.setupEdgeToEdge1(window)
+        // E-INFRA-6: setupEdgeToEdge1/2 giờ tự động chạy trong BaseActivity.setContentView().
         binding = AAboutBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-        UIUtils.setupEdgeToEdge2(
-            rootView = findViewById(R.id.layoutRoot),
-            paddingTop = true,
-            paddingBottom = true
-        )
 
         // Set app version
         val versionName =

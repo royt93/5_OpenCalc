@@ -21,7 +21,6 @@ import com.mckimquyen.opencal.ext.openUrlInBrowser
 import com.mckimquyen.opencal.model.Themes
 import com.mckimquyen.opencal.util.Logger
 import com.roy.sdkadbmob.AdManager
-import com.roy.sdkadbmob.UIUtils
 import nl.dionsegijn.konfetti.core.Party
 import nl.dionsegijn.konfetti.core.Position
 import nl.dionsegijn.konfetti.core.emitter.Emitter
@@ -64,14 +63,9 @@ class VipActivity : BaseActivity() {
             window.statusBarColor = ContextCompat.getColor(this, R.color.background_color)
         }
 
-        UIUtils.setupEdgeToEdge1(window)
+        // E-INFRA-6: setupEdgeToEdge1/2 giờ tự động chạy trong BaseActivity.setContentView().
         binding = AVipBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        UIUtils.setupEdgeToEdge2(
-            rootView = findViewById(R.id.layoutRoot),
-            paddingTop = true,
-            paddingBottom = true,
-        )
 
         vipPrefs = VipPrefs(this)
 
