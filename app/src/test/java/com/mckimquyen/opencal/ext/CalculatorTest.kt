@@ -71,6 +71,13 @@ class CalculatorTest {
         // 0.5! = Γ(1.5) = √π / 2 ≈ 0.8862269
         assertEquals(0.8862269, calc.factorial(0.5), 1e-6)
 
+    // F-CALC-4: số ÂM nguyên vẫn phải là NaN (cực của hàm Gamma), nhưng số ÂM thập phân
+    // hợp lệ phải tính qua Gamma thay vì bị chặn NaN vô điều kiện như trước fix.
+    @Test fun factorialNegativeIntegerIsStillNaN() = assertTrue(calc.factorial(-3.0).isNaN())
+    @Test fun factorialNegativeNonIntegerUsesGamma() =
+        // (-0.5)! = Γ(0.5) = √π ≈ 1.7724539
+        assertEquals(1.7724539, calc.factorial(-0.5), 1e-6)
+
     // ---------- Lượng giác (độ) ----------
     @Test fun sinDegrees() = assertEquals(0.5, eval("sin(30)", degree = true), 1e-9)
     @Test fun cosDegrees() = assertEquals(1.0, eval("cos(0)", degree = true), DELTA)
@@ -92,6 +99,13 @@ class CalculatorTest {
     @Test fun lnOfZeroSetsDomainErrorAndNegInfinite() {
         val r = eval("ln(0)")
         assertTrue(r.isInfinite())
+        assertTrue(domain_error)
+    }
+
+    // F-CALC-6: ln của số ÂM cũng phải set domain_error (không chỉ x=0).
+    @Test fun lnOfNegativeSetsDomainError() {
+        val r = eval("ln(-5)")
+        assertTrue(r.isNaN())
         assertTrue(domain_error)
     }
 

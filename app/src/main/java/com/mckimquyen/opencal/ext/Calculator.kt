@@ -34,16 +34,20 @@ class Calculator {
     fun factorial(number: Double): Double {
         return if (number >= 171) {
             Double.POSITIVE_INFINITY
-        } else if (number < 0) {
-            Double.NaN
         } else {
             val decimalPartOfNumber = number - number.toInt()
             if (decimalPartOfNumber == 0.0) {
-                var factorial = BigInteger("1")
-                for (i in 1..number.toInt()) {
-                    factorial *= i.toBigInteger()
+                // F-CALC-4: chỉ số nguyên ÂM mới vô nghĩa (cực của hàm Gamma), số thập phân âm
+                // hợp lệ (vd (-0.5)! = Γ(0.5)) phải rơi vào nhánh gammaLanczos bên dưới.
+                if (number < 0) {
+                    Double.NaN
+                } else {
+                    var factorial = BigInteger("1")
+                    for (i in 1..number.toInt()) {
+                        factorial *= i.toBigInteger()
+                    }
+                    factorial.toDouble()
                 }
-                factorial.toDouble()
             } else gammaLanczos(number + 1)
         }
     }

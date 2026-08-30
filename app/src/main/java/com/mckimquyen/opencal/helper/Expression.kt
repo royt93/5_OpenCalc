@@ -78,9 +78,26 @@ class Expression {
         if (percentPos < 1) {
             return calculation
         }
-        // find the last operator before the last %
-        val operatorBeforePercentPos = calculation.subSequence(0, percentPos - 1)
-            .lastIndexOfAny(charArrayOf('-', '+', '*', '/', '('))
+        // F-CALC-9: quét ngược tìm operator/'(' ở CÙNG mức ngoặc với '%', bỏ qua nội dung
+        // bên trong ngoặc con — trước đây lastIndexOfAny không đếm độ sâu ngoặc nên
+        // "(10+5)%" bắt nhầm '+' nằm TRONG ngoặc làm operator, tính ra 10.5 thay vì 0.15.
+        var depth = 0
+        var operatorBeforePercentPos = -1
+        for (i in percentPos - 1 downTo 0) {
+            val c = calculation[i]
+            if (c == ')') {
+                depth++
+            } else if (c == '(') {
+                if (depth == 0) {
+                    operatorBeforePercentPos = i
+                    break
+                }
+                depth--
+            } else if (depth == 0 && c in "-+*/") {
+                operatorBeforePercentPos = i
+                break
+            }
+        }
 
         if (operatorBeforePercentPos < 1) {
             return calculation

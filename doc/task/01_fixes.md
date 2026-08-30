@@ -33,21 +33,21 @@ P1 · S — so sánh trực tiếp `x==90.0` (degree) / `x==Math.PI/2` (radian),
 Pattern lặp lại ở mọi hàm sin/cos/tan/arc*: `if (x > 0 && x < 1.0E-14) x = round(x)`. Verify: `sin(360°) = -2.449...E-16`, `cos(270°) = -1.836...E-16` hiện số cực nhỏ âm xấu thay vì `0`.
 P1 · S — đổi điều kiện thành `abs(x) < 1.0E-14`.
 
-### F-CALC-4 — `factorial()` từ chối mọi số âm kể cả số thập phân âm hợp lệ (Γ function)
+### ✅ F-CALC-4 — `factorial()` từ chối mọi số âm kể cả số thập phân âm hợp lệ (Γ function) — đã fix
 `Calculator.kt:26-27`. `(-0.5)!` nhập được qua UI, đáng lẽ = Γ(0.5) ≈ 1.7724539 nhưng trả `NaN`.
-P2 · S — chỉ NaN khi `number<0 && number==number.toInt()`.
+P2 · S — **Đã fix**: `factorial()` giờ chỉ trả `NaN` khi `number<0 && decimalPartOfNumber==0.0` (số nguyên âm — cực thật của hàm Gamma); số thập phân âm rơi đúng vào nhánh `gammaLanczos(number+1)`. Verify unit test `CalculatorTest.factorialNegativeNonIntegerUsesGamma` (`(-0.5)! ≈ 1.7724539`) + `factorialNegativeIntegerIsStillNaN` (`(-3)!` vẫn NaN, không regress).
 
-### F-CALC-5 — `0/0` không hiện đúng "Division by zero"
+### ✅ F-CALC-5 — `0/0` không hiện đúng "Division by zero" — đã fix
 `Calculator.kt:105-111` set `division_by_0=true` nhưng `0.0/0.0` là `NaN` không phải `Infinity`. `MainActivity.kt:1010-1031` chỉ đọc cờ này trong nhánh `isInfinite()`, nên rơi vào nhánh `isNaN()` → hiện "Math error" chung chung.
-P2 · S — check `division_by_0` trước cả nhánh NaN.
+P2 · S — **Đã fix**: `equalsButton()` giờ check `division_by_0` NGAY SAU `syntax_error`/`domain_error`, TRƯỚC cả `isInfinite()`/`isNaN()` — bao trùm cả `0/0` (NaN) lẫn `x/0, x≠0` (Infinity). Verify unit test `ExpressionCalculatorPipelineTest.zeroDividedByZeroSetsDivisionByZeroFlag`.
 
-### F-CALC-6 — `ln(-5)` không set `domain_error`
+### ✅ F-CALC-6 — `ln(-5)` không set `domain_error` — hoá ra đã fix sẵn từ Sprint 1
 `Calculator.kt:158-166` domain check chỉ xét `x==0` (qua bug F-CALC-1), bỏ sót `x<0`. Verify: `ln(-5)=NaN, domain_error=false` → hiện "Math error" thay vì "Domain error".
-P3 · S — gộp chung fix với F-CALC-1: `if (x <= 0.0) domain_error = true`.
+P3 · S — **Kiểm tra lại code hiện tại: đã dùng `if (x <= 0.0)` từ khi fix F-CALC-1 ở Sprint 1** (cover cả `x==0` lẫn `x<0` cùng lúc, audit ban đầu bỏ sót không đánh dấu). Không cần sửa thêm, chỉ thêm regression test `CalculatorTest.lnOfNegativeSetsDomainError` để khẳng định + chặn regression tương lai.
 
-### F-CALC-9 — Percent trong ngoặc có toán tử tính sai (nguồn: claude session độc lập, chưa tự verify lại bằng cách chạy thử)
+### ✅ F-CALC-9 — Percent trong ngoặc có toán tử tính sai (nguồn: claude session độc lập) — đã fix
 `Expression.kt:62-64` — `getPercentString` quét ngược tìm operator để quyết định cách diễn giải `%` nhưng không đếm độ sâu ngoặc. Vd `(10+5)%` bị tính ra `10.5` thay vì `0.15` đúng (15% dạng thập phân). Input hợp lý trong tình huống tính chiết khấu trên tổng đã có trong ngoặc.
-P2 · M.
+P2 · M — **Đã fix**: thay `lastIndexOfAny` (không phân biệt độ sâu ngoặc) bằng vòng quét ngược thủ công có đếm `depth` — bỏ qua operator nằm trong ngoặc con lồng, chỉ dừng ở operator/`(` cùng mức với `%`. Verify unit test `ExpressionCalculatorPipelineTest.percentOfParenthesizedExpression` (`(10+5)% = 0.15`) + `percentAfterMultiplyOfParenthesizedExpression` (`2×(10+5)% = 0.3`), không regress `percentAdded`/`percentAlone` đã có từ trước.
 
 ### F-CALC-8 — Parser chấp nhận ký tự thừa cuối biểu thức (nguồn: codex, độc lập)
 `Calculator.kt:85` — `parse()` chỉ log khi chưa đọc hết chuỗi (`pos < equation.length`) nhưng vẫn trả kết quả đã tính được thay vì báo lỗi. Vd `"2abc"` có thể bị tính thành `2` thay vì báo syntax error.

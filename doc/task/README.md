@@ -74,6 +74,17 @@ User báo trực tiếp qua screenshot: title/back-arrow của `BillSplitterActi
 
 Sau đó thực hiện luôn khuyến nghị dài hạn [E-INFRA-6](02_enhancements.md): chuyển cặp hàm này vào `BaseActivity` (override `setContentView`) để mọi activity con tự động đúng, không cần nhớ copy-paste — xoá lời gọi thủ công trùng lặp ở 6/7 activity (`SplashActivity` giữ nguyên vì không kế thừa `BaseActivity`). Verify lại `MainActivity`/`BaseConverterActivity` không regression.
 
+## ✅ Sprint 3 — ĐÃ XONG (2026-08-30)
+
+User chọn "Fix nốt bug tính toán còn lại" qua `AskUserQuestion`. 4 bug core (`F-CALC-4/5/6/9`), toàn bộ thuần logic `ext/Calculator.kt` + `helper/Expression.kt` (F-CALC-6 không đụng UI), không chạm layout/UI khác ngoại trừ 1 dòng reorder trong `MainActivity.equalsButton`. Build+lint+`testDevDebugUnitTest` PASS.
+
+- **F-CALC-4** ((-0.5)! trả NaN sai) — sửa điều kiện NaN trong `factorial()` chỉ áp dụng cho số nguyên âm (cực thật của Gamma), số thập phân âm rơi đúng nhánh `gammaLanczos`.
+- **F-CALC-5** (0/0 hiện "Math error" thay vì "Division by zero") — reorder check `division_by_0` lên trước `isInfinite()`/`isNaN()` trong `equalsButton()`.
+- **F-CALC-6** (ln(-5) thiếu domain_error) — audit lại phát hiện ĐÃ được fix ngầm từ Sprint 1 (chung fix với F-CALC-1, check `x <= 0.0`); chỉ thêm regression test, không sửa code.
+- **F-CALC-9** ((10+5)% tính sai ra 10.5 thay vì 0.15) — `getPercentString` đổi từ `lastIndexOfAny` (mù độ sâu ngoặc) sang quét ngược có đếm `depth`, bỏ qua operator nằm trong ngoặc con.
+
+Verify bằng 6 unit test mới (`CalculatorTest` ×3, `ExpressionCalculatorPipelineTest` ×3) + toàn bộ test cũ vẫn pass, không regress.
+
 Tính năng tiếp theo cho vòng loop kế tiếp chưa chọn — chờ user quyết định qua `AskUserQuestion` khi bắt đầu.
 
 ## Priority & Size convention

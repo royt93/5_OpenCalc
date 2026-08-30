@@ -1282,11 +1282,14 @@ class MainActivity : BaseActivity() {
                                         null -> getString(R.string.domain_error)
                                     }
                                 )
+                            } else if (division_by_0) {
+                                // F-CALC-5: 0/0 = NaN (không phải Infinity) nên phải check cờ
+                                // division_by_0 TRƯỚC nhánh isInfinite()/isNaN(), không thì rơi
+                                // vào "Math error" chung chung thay vì "Division by zero".
+                                setErrorColor(true)
+                                binding.resultDisplay.setText(getString(R.string.division_by_0))
                             } else if (result.isInfinite()) {
-                                if (division_by_0) {
-                                    setErrorColor(true)
-                                    binding.resultDisplay.setText(getString(R.string.division_by_0))
-                                } else if (result < 0) binding.resultDisplay.setText("-" + getString(R.string.infinity))
+                                if (result < 0) binding.resultDisplay.setText("-" + getString(R.string.infinity))
                                 else binding.resultDisplay.setText(getString(R.string.value_too_large))
                             } else if (result.isNaN()) {
                                 setErrorColor(true)

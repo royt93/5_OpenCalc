@@ -59,4 +59,21 @@ class ExpressionCalculatorPipelineTest {
         assertTrue(r.isInfinite())
         assertTrue(division_by_0)
     }
+
+    // F-CALC-5: 0/0 là NaN (không phải Infinity) nhưng vẫn phải set division_by_0
+    // để UI (equalsButton) hiện đúng "Division by zero" thay vì "Math error" chung chung.
+    @Test fun zeroDividedByZeroSetsDivisionByZeroFlag() {
+        val r = compute("0÷0")
+        assertTrue(r.isNaN())
+        assertTrue(division_by_0)
+    }
+
+    // F-CALC-9: % trong ngoặc không có operator đứng trước ngoặc phải hiểu là % của
+    // TOÀN BỘ giá trị trong ngoặc, không bắt nhầm operator nằm sâu bên trong ngoặc.
+    // (10+5)% = 15% dạng thập phân = 0.15 (KHÔNG PHẢI 10.5).
+    @Test fun percentOfParenthesizedExpression() = assertEquals(0.15, compute("(10+5)%"), DELTA)
+
+    // Percent vẫn đúng khi đứng sau phép nhân với 1 group trong ngoặc: 2×(10+5)% = 2×0.15 = 0.3
+    @Test fun percentAfterMultiplyOfParenthesizedExpression() =
+        assertEquals(0.3, compute("2×(10+5)%"), DELTA)
 }
