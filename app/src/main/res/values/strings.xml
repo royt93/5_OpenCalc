@@ -83,6 +83,11 @@
     <string name="export_history_empty">History is empty, nothing to export</string>
     <string name="export_history_success">History exported</string>
     <string name="export_history_failed">Failed to export history</string>
+    <string name="app_menu_import_history">Import History</string>
+    <string name="import_history_success">Entries imported: %d</string>
+    <string name="import_history_skipped">(skipped: %d)</string>
+    <string name="import_history_failed">Failed to import history: no valid rows found</string>
+    <string name="import_history_truncated">(file too large, line limit: %d)</string>
     <string name="app_menu_about">About (Ads may appear)</string>
 
     <!-- Theme choices -->

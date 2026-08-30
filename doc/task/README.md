@@ -116,6 +116,12 @@ User chọn "Dọn nợ kỹ thuật Data/Infra" qua `AskUserQuestion`. F-DATA-5
 
 **Lưu ý môi trường test**: cả emulator lẫn máy thật dùng để smoke test đều có nhiều app quảng cáo khác cài sẵn (`com.saigonphantomlabs.chess`, `com.galaxyjoy.cpuinfo`) thỉnh thoảng tự bật lên đè activity đang test (nghi do cùng chia sẻ AppLovin MAX test network hoặc adware chéo quảng cáo) — không liên quan tới code OpenCalc, đã xác minh bằng cách force-stop app lạ rồi test lại.
 
+## ✅ Sprint 6 — ĐÃ XONG (2026-08-30)
+
+User yêu cầu bỏ qua nhóm liên quan Ad SDK (Crashlytics/In-app Update cũng bị user từ chối rõ ràng — xem `03_new_features.md` N-INFRA-2/N-INFRA-5 **❌ Skipped**), chọn **N-DATA-2 (Import History CSV)** qua `AskUserQuestion`.
+
+- ✅ **N-DATA-2 (Import History CSV)** — xem chi tiết ở [`03_new_features.md`](03_new_features.md). Parser tách riêng `helper/HistoryCsv.kt` + 12 unit test. **Code-review tự bắt được 1 bug thật** trước khi ship: merge entry import vào cuối danh sách phá bất biến "đầu = cũ nhất" mà logic trim dựa vào (entry import cũ có thể sống sót thay vì entry hôm nay) — fix bằng `sortBy { time }` trước khi lưu. Verify bằng cách đọc thẳng `shared_prefs/*.xml` qua `adb run-as` (đáng tin hơn cuộn UI qua adb gesture, vốn khó điều khiển chính xác qua SlidingUpPanel + RecyclerView lồng nhau).
+
 Tính năng tiếp theo cho vòng loop kế tiếp chưa chọn — chờ user quyết định qua `AskUserQuestion` khi bắt đầu.
 
 ## Priority & Size convention

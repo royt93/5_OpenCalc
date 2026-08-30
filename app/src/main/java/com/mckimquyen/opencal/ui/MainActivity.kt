@@ -47,6 +47,7 @@ import com.mckimquyen.opencal.ext.openUrlInBrowser
 import com.mckimquyen.opencal.ext.rateApp
 import com.mckimquyen.opencal.ext.syntax_error
 import com.mckimquyen.opencal.helper.Expression
+import com.mckimquyen.opencal.helper.HistoryCsv
 import com.mckimquyen.opencal.helper.NumberFormatter
 import com.mckimquyen.opencal.helper.PhysicalConstants
 import com.mckimquyen.opencal.model.History
@@ -78,6 +79,9 @@ class MainActivity : BaseActivity() {
         private const val KEY_SAVED_INV = "KEY_SAVED_INV"
         private const val KEY_SAVED_DEGREE = "KEY_SAVED_DEGREE"
         private const val KEY_SAVED_SCIENTIST_VISIBLE = "KEY_SAVED_SCIENTIST_VISIBLE"
+
+        // N-DATA-2: chặn đọc file khổng lồ chọn nhầm khi Import History.
+        private const val MAX_IMPORT_LINES = 20_000
     }
 
     private lateinit var view: View
@@ -130,6 +134,79 @@ class MainActivity : BaseActivity() {
                     if (exported) R.string.export_history_success else R.string.export_history_failed,
                     Toast.LENGTH_SHORT
                 ).show()
+            }
+        }
+    }
+
+    // N-DATA-2: cùng lý do đăng ký sớm như exportHistoryLauncher ở trên. "*/*" thay vì "text/csv"
+    // vì nhiều file provider báo sai mime type cho .csv (application/octet-stream, text/plain...)
+    // — để parser tự validate nội dung, đổi lại picker cho chọn mọi file.
+    private val importHistoryLauncher = registerForActivityResult(
+        ActivityResultContracts.OpenDocument()
+    ) { uri ->
+        if (uri == null) return@registerForActivityResult
+        lifecycleScope.launch(Dispatchers.IO) {
+            // Đọc tối đa MAX_IMPORT_LINES+1 dòng để phát hiện file bị cắt bớt (ponytail: giới hạn
+            // đủ rộng so với HISTORY_HARD_CAP=10_000, tránh đọc hết 1 file text nhiều trăm MB vào
+            // bộ nhớ) — dòng thừa thứ +1 chỉ dùng để biết CÓ bị cắt hay không, không đem parse.
+            val rawLines = try {
+                contentResolver.openInputStream(uri)?.bufferedReader()
+                    ?.useLines { it.take(MAX_IMPORT_LINES + 1).toList() }
+            } catch (e: Exception) {
+                null
+            }
+
+            if (rawLines == null) {
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(this@MainActivity, R.string.import_history_failed, Toast.LENGTH_SHORT).show()
+                }
+                return@launch
+            }
+            val truncated = rawLines.size > MAX_IMPORT_LINES
+            val (imported, skipped) = HistoryCsv.parse(rawLines.take(MAX_IMPORT_LINES))
+
+            if (imported.isEmpty() && skipped == 0) {
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(this@MainActivity, R.string.import_history_failed, Toast.LENGTH_SHORT).show()
+                }
+                return@launch
+            }
+
+            // Set (không phải List) để "in" bên dưới là O(1) thay vì O(n) — History là data class
+            // nên hashCode/equals tự sinh theo giá trị, không cần định nghĩa thêm.
+            val importedSet = imported.toHashSet()
+            historyMutex.withLock {
+                val merged = prefs.getHistory()
+                merged.addAll(imported)
+                // saveHistory() trim entry cũ nhất CHƯA GHIM trước theo VỊ TRÍ ĐẦU DANH SÁCH (xem
+                // MyPreferences.saveHistory) — bất biến này chỉ đúng nếu vị trí == thứ tự thời gian
+                // thật, vốn luôn giữ đúng ở mọi nơi khác (equalsButton chỉ append entry MỚI NHẤT vào
+                // cuối). Import lại chèn entry với thời gian BẤT KỲ (có thể rất cũ) vào cuối danh
+                // sách — nếu không sắp xếp lại, entry import cũ có thể "trông như mới nhất" và sống
+                // sót, trong khi entry hôm nay bị trim nhầm. Sort lại theo time trước khi lưu để
+                // khôi phục đúng bất biến.
+                merged.sortBy { it.time?.toLongOrNull() ?: Long.MAX_VALUE }
+                prefs.saveHistory(merged)
+
+                // Đọc lại từ storage (đã trim) để UI khớp đúng với dữ liệu thật đã lưu, tránh lệch
+                // kiểu F-UI-8 nếu chỉ append thẳng danh sách imported chưa qua trim.
+                val trimmed = prefs.getHistory()
+                // Đếm số entry import THẬT SỰ còn sống sót sau trim (không phải tổng số dòng parse
+                // được) — trim có thể loại bớt nếu vượt historySize. Tính trên IO thread (vẫn đang ở
+                // đây) chứ không phải Main — với file 20k dòng, phép đếm này có thể tốn đáng kể.
+                val survivedCount = trimmed.count { it in importedSet }
+
+                withContext(Dispatchers.Main) {
+                    historyAdapter.clearHistory()
+                    historyAdapter.appendHistory(trimmed)
+                    if (!historyAdapter.isFiltered) {
+                        binding.rvHistory.scrollToPosition(historyAdapter.itemCount - 1)
+                    }
+                    var message = getString(R.string.import_history_success, survivedCount)
+                    if (skipped > 0) message += " " + getString(R.string.import_history_skipped, skipped)
+                    if (truncated) message += " " + getString(R.string.import_history_truncated, MAX_IMPORT_LINES)
+                    Toast.makeText(this@MainActivity, message, Toast.LENGTH_LONG).show()
+                }
             }
         }
     }
@@ -573,6 +650,10 @@ class MainActivity : BaseActivity() {
     // calculation/result có thể chứa dấu phẩy (groupingSeparatorSymbol của locale), nếu không quote
     // sẽ vỡ cấu trúc CSV.
     private fun csvEscape(field: String): String = "\"" + field.replace("\"", "\"\"") + "\""
+
+    fun importHistory(menuItem: MenuItem) {
+        importHistoryLauncher.launch(arrayOf("*/*"))
+    }
 
     private fun keyVibration(view: View) {
         if (prefs.vibrationMode) {

@@ -21,6 +21,11 @@
         app:showAsAction="ifRoom" />
 
     <item
+        android:onClick="importHistory"
+        android:title="@string/app_menu_import_history"
+        app:showAsAction="ifRoom" />
+
+    <item
         android:onClick="openSettings"
         android:title="@string/app_menu_settings"
         app:showAsAction="always" />
