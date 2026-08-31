@@ -1,91 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="math_error">ഗണിത പിശക്</string>
+    <string name="app_name_display">കാൽക്കുലേറ്റർ</string>
+    <string name="backspace">ബാക്ക്‌സ്‌പേസ്</string>
+    <string name="dialog_physical_constant_title">ഭൗതിക സ്ഥിരാങ്കം ചേർക്കുക</string>
+    <string name="cd_toggle_scientific_mode">ശാസ്ത്രീയ ഫംഗ്ഷനുകൾ ടോഗിൾ ചെയ്യുക</string>
+    <string name="cd_parentheses">ബ്രാക്കറ്റുകൾ</string>
+    <string name="cd_exponent">ഘാതം</string>
+    <string name="cd_divide">ഹരിക്കുക</string>
+    <string name="cd_multiply">ഗുണിക്കുക</string>
+    <string name="cd_subtract">കുറയ്ക്കുക</string>
+    <string name="cd_add">കൂട്ടുക</string>
+    <string name="cd_decimal_point">ദശാംശ ബിന്ദു</string>
+    <string name="cd_equals">തുല്യം</string>
+    <string name="cd_more_options">കൂടുതൽ ഓപ്ഷനുകൾ</string>
+    <string name="cd_pin_history">ചരിത്രം മായ്ക്കുമ്പോൾ നിലനിർത്താൻ ഈ കണക്കുകൂട്ടൽ പിൻ ചെയ്യുക</string>
+    <string name="hint_search_history">ചരിത്രത്തിൽ തിരയുക</string>
+    <string name="base_converter_title">സംഖ്യാ വ്യവസ്ഥ മാറ്റുന്ന ഉപകരണം</string>
+    <string name="app_menu_base_converter">സംഖ്യാ വ്യവസ്ഥ മാറ്റുന്ന ഉപകരണം</string>
+    <string name="base_converter_hint">ഏതെങ്കിലും ബേസിൽ നമ്പർ ടൈപ്പ് ചെയ്യുക — മറ്റുള്ളവ സ്വയമേവ അപ്ഡേറ്റ് ചെയ്യപ്പെടും</string>
+    <string name="base_converter_dec">DEC (ബേസ് 10)</string>
+    <string name="base_converter_hex">HEX (ബേസ് 16)</string>
+    <string name="base_converter_oct">OCT (ബേസ് 8)</string>
+    <string name="base_converter_bin">BIN (ബേസ് 2)</string>
+    <string name="bill_splitter_title">ബിൽ വിഭജനം</string>
+    <string name="app_menu_bill_splitter">ബിൽ വിഭജനം</string>
+    <string name="bill_splitter_amount_label">ബിൽ തുക</string>
+    <string name="bill_splitter_people_label">ആളുകളുടെ എണ്ണം</string>
+    <string name="bill_splitter_tip_label">ടിപ്പ്</string>
+    <string name="bill_splitter_total_label">ആകെ (ടിപ്പ് ഉൾപ്പെടെ)</string>
+    <string name="bill_splitter_per_person_label">ഒരാൾ നൽകേണ്ട തുക</string>
     <string name="app_menu_show_history">ചരിത്രം കാണിക്കുക</string>
     <string name="app_menu_hide_history">ചരിത്രം മറയ്ക്കുക</string>
+    <string name="app_menu_theme">തീം</string>
     <string name="app_menu_clear_history">ചരിത്രം മായ്ക്കുക</string>
-    <string name="theme_light">വെളിച്ചം</string>
+    <string name="app_menu_export_history">ചരിത്രം കയറ്റുമതി ചെയ്യുക</string>
+    <string name="export_history_empty">ചരിത്രം ശൂന്യമാണ്, കയറ്റുമതി ചെയ്യാൻ ഒന്നുമില്ല</string>
+    <string name="export_history_success">ചരിത്രം വിജയകരമായി കയറ്റുമതി ചെയ്തു</string>
+    <string name="export_history_failed">ചരിത്രം കയറ്റുമതി ചെയ്യുന്നത് പരാജയപ്പെട്ടു</string>
+    <string name="app_menu_import_history">ചരിത്രം ഇറക്കുമതി ചെയ്യുക</string>
+    <string name="import_history_success">ഇറക്കുമതി ചെയ്തവ: %d</string>
+    <string name="import_history_skipped">(ഒഴിവാക്കിയത്: %d)</string>
+    <string name="import_history_failed">ഇറക്കുമതി പരാജയപ്പെട്ടു: സാധുവായ വരികൾ കണ്ടെത്തിയില്ല</string>
+    <string name="import_history_truncated">(ഫയൽ വളരെ വലുതാണ്, വരികളുടെ പരിധി: %d)</string>
+    <string name="app_menu_about">കുറിച്ച് (പരസ്യങ്ങൾ ഉണ്ടായേക്കാം)</string>
+    <string name="theme_system">സിസ്റ്റം</string>
+    <string name="theme_amoled">Amoled</string>
+    <string name="theme_light">ലൈറ്റ്</string>
+    <string name="theme_dark">ഡാർക്ക്</string>
     <string name="theme_sunset">സൂര്യാസ്തമയം</string>
     <string name="theme_ocean">സമുദ്രം</string>
     <string name="theme_forest">വനം</string>
     <string name="theme_nord">Nord</string>
-    <string name="theme_highcontrast">ഉയർന്ന കോൺട്രാസ്റ്റ്</string>
+    <string name="theme_highcontrast">ഹൈ കോൺട്രാസ്റ്റ്</string>
     <string name="theme_lavender">ലാവെൻഡർ</string>
     <string name="value_copied">പകർത്തി</string>
-    <string name="infinity">അനന്തത</string>
-    <string name="division_by_0">0 കൊണ്ട് ഹരിക്കാനാവില്ല</string>
-    <string name="app_menu_about">കുറിച്ച് (Ads may appear)</string>
-    <string name="theme_system">സംവിധാനം</string>
-    <string name="syntax_error">വാക്യഘടന പിശക്</string>
+    <string name="infinity">അനന്തം</string>
+    <string name="division_by_0">0 കൊണ്ട് ഹരിക്കാൻ കഴിയില്ല</string>
+    <string name="domain_error">ഡൊമെയ്ൻ പിശക്</string>
+    <string name="math_error">ഗണിത പിശക്</string>
+    <string name="syntax_error">സിന്റാക്സ് പിശക്</string>
+    <string name="error_explain_log_nonpositive">ln/log x > 0 ന് മാത്രമേ നിർവചിച്ചിട്ടുള്ളൂ</string>
+    <string name="error_explain_tan_singularity">tan ഇവിടെ നിർവചിച്ചിട്ടില്ല (cos = 0)</string>
+    <string name="app_menu_settings">ക്രമീകരണങ്ങൾ (പരസ്യങ്ങൾ ഉണ്ടായേക്കാം)</string>
     <string name="value_too_large">മൂല്യം വളരെ വലുതാണ്</string>
     <string name="preferences_title">ക്രമീകരണങ്ങൾ</string>
-    <string name="preferences_general_category">പൊതുവായ</string>
+    <string name="preferences_general_category">പൊതുവായത്</string>
     <string name="preferences_history_category">ചരിത്രം</string>
-    <string name="preferences_prevent_phone_from_sleeping_title">ഫോൺ ഉറങ്ങുന്നത് തടയുക</string>
-    <string name="domain_error">ഡൊമെയ്ൻ പിശക്</string>
-    <string name="preferences_radians_instead_of_degrees_by_default_title">റേഡിയൻസ്</string>
-    <string name="preferences_advanced_category">ഉയര്‍ന്ന</string>
-    <string name="preferences_scientif_mode_enabled_by_default_summary">സ്ഥിരസ്ഥിതിയായി ശാസ്ത്രീയ സമ്പ്രദായം സജീവമാക്കുക</string>
-    <string name="preferences_scientif_mode_enabled_by_default_title">ശാസ്ത്രീയ സമ്പ്രദായം</string>
-    <string name="theme_amoled">ആമോലെഡ്</string>
-    <string name="app_menu_theme">പ്രതിപാദ്യം</string>
-    <string name="preferences_vibration_summary">ഒരു ബട്ടൺ അമർത്തുമ്പോൾ വിറയ്‌ക്കുക</string>
-    <string name="about_rate">ഈ പ്രയോഗത്തെ വിലയിരുത്തുക</string>
-    <string name="preferences_language_title">ഭാഷ</string>
-    <string name="about_title">കുറിച്ച്</string>
-    <string name="privacy_policy">സ്വകാര്യതാ നയം</string>
-    <string name="preferences_number_precision">ദശാംശ സ്ഥാനങ്ങളുടെ എണ്ണം</string>
-    <string name="thanks_for_using_app">OpenCalc ഉപയോഗിച്ചതിന് നന്ദി❤️</string>
-    <string name="app_version_title">പതിപ്പ്</string>
-    <string name="app_name_display">കണക്കുക്കൂട്ടല്‍ യന്ത്രം</string>
+    <string name="preferences_prevent_phone_from_sleeping_summary">ആപ്പ് തുറന്നിരിക്കുമ്പോൾ സ്ക്രീൻ ഓഫാകുന്നത് തടയുക</string>
+    <string name="preferences_vibration_summary">ബട്ടൺ അമർത്തുമ്പോൾ വൈബ്രേഷൻ നൽകുക</string>
+    <string name="preferences_history_size">ചരിത്രത്തിൽ സംരക്ഷിച്ച ഫലങ്ങൾ</string>
+    <string name="preferences_vibration_title">വൈബ്രേഷൻ</string>
+    <string name="preferences_prevent_phone_from_sleeping_title">സ്‌ക്രീൻ ഓണാക്കി നിലനിർത്തുക</string>
+    <string name="preferences_advanced_category">വിപുലമായത്</string>
+    <string name="preferences_scientif_mode_enabled_by_default_summary">സ്ഥിരസ്ഥിതിയായി സയന്റിഫിക് മോഡ് സജീവമാക്കുക</string>
+    <string name="preferences_scientif_mode_enabled_by_default_title">സയന്റിഫിക് മോഡ്</string>
+    <string name="preferences_radians_instead_of_degrees_by_default_title">റേഡിയൻ</string>
+    <string name="preferences_radians_instead_of_degrees_by_default_summary">ഡിഗ്രിക്ക് പകരം റേഡിയൻ ഡിഫോൾട്ടായി ഉപയോഗിക്കുക</string>
     <string name="about_help_us_category">ഞങ്ങളെ സഹായിക്കൂ</string>
     <string name="about_other_category">മറ്റുള്ളവ</string>
-    <string name="theme_dark">ഇരുട്ട്</string>
-    <string name="app_menu_settings">ക്രമീകരണങ്ങൾ (Ads may appear)</string>
-    <string name="preferences_vibration_title">വിറയലുകൾ</string>
-    <string name="preferences_history_size">ഫലങ്ങൾ ചരിത്രത്തിൽ സംരക്ഷിച്ചു</string>
-    <string name="preferences_radians_instead_of_degrees_by_default_summary">സ്ഥിരസ്ഥിതിയായി ഡിഗ്രിക്ക് പകരം റേഡിയൻസ് ഉപയോഗിക്കുക</string>
-    <string name="preferences_prevent_phone_from_sleeping_summary">പ്രയോഗം മുൻവശത്തായിരിക്കുമ്പോൾ ഫോൺ ഉറങ്ങുന്നത് തടയുക</string>
-    <string name="send_feedback">പ്രതികരണം അയയ്ക്കുക</string>
-
-    <!-- Clipboard labels -->
+    <string name="about_rate">ഈ ആപ്പ് റേറ്റുചെയ്യുക</string>
+    <string name="app_version_title">പതിപ്പ്</string>
+    <string name="thanks_for_using_app">കാൽക്കുലേറ്റർ ഉപയോഗിച്ചതിന് നന്ദി ❤️</string>
+    <string name="preferences_number_precision">ദശാംശ സ്ഥാനങ്ങളുടെ എണ്ണം</string>
+    <string name="privacy_policy">സ്വകാര്യതാ നയം</string>
+    <string name="about_title">കുറിച്ച്</string>
+    <string name="preferences_language_title">ഭാഷ</string>
+    <string name="get_more_apps">കൂടുതൽ ആപ്പുകൾ നേടുക</string>
+    <string name="share_this_app">ഈ ആപ്പ് പങ്കിടുക</string>
+    <string name="github">ഉറവിട കോഡ് (Fork)</string>
+    <string name="source_code">ഉറവിട കോഡ് (യഥാർത്ഥം)</string>
+    <string name="license">ലൈസൻസ്</string>
+    <string name="join_tester_community">ടെസ്റ്റർ കമ്മ്യൂണിറ്റിയിൽ ചേരുക</string>
+    <string name="send_feedback">ഫീഡ്‌ബാക്ക് അയയ്ക്കുക</string>
     <string name="clipboard_label_copied_result">ഫലം പകർത്തി</string>
     <string name="clipboard_label_copied_calc_and_result">കണക്കുകൂട്ടലും ഫലവും പകർത്തി</string>
-
-    <!-- Toast messages -->
-    <string name="toast_double_back_to_exit">പുറത്തുകടക്കാൻ ദയവായി വീണ്ടും ബാക്ക് ക്ലിക്കുചെയ്യുക</string>
-
-    <!-- Dialog text -->
+    <string name="history_entry_deleted">ചരിത്ര എൻട്രി ഇല്ലാതാക്കി</string>
+    <string name="undo">പഴയപടിയാക്കുക</string>
+    <string name="toast_double_back_to_exit">പുറത്തുകടക്കാൻ വീണ്ടും ബാക്ക് അമർത്തുക</string>
     <string name="dialog_tester_community_title">സ്ഥിരീകരിക്കുക</string>
-    <string name="dialog_tester_community_message">നിങ്ങളും ഒരു പ്രോഗ്രാമറാണെങ്കിൽ നിങ്ങളുടെ ആപ്ലിക്കേഷൻ പരീക്ഷിക്കാൻ ടെസ്റ്ററുകളെ തിരയുകയാണെങ്കിൽ. ഇപ്പോൾ ഞങ്ങളുടെ ടെസ്റ്റർ കമ്മ്യൂണിറ്റിയിൽ ചേരുക</string>
+    <string name="dialog_tester_community_message">നിങ്ങളും ഒരു ഡെവലപ്പർ ആണെങ്കിൽ ആപ്പിനായി ടെസ്റ്റർമാരെ അന്വേഷിക്കുകയാണെങ്കിൽ, ഇപ്പോൾ ഞങ്ങളുടെ കമ്മ്യൂണിറ്റിയിൽ ചേരൂ!</string>
     <string name="dialog_select_language_title">ഭാഷ തിരഞ്ഞെടുക്കുക</string>
     <string name="button_ok">ശരി</string>
     <string name="button_cancel">റദ്ദാക്കുക</string>
-
-    <!-- Calculator mode indicators -->
-    <string name="degree_mode_deg">DEG</string>
-    <string name="degree_mode_rad">RAD</string>
-
-    <!-- Chooser titles -->
-    <string name="chooser_title_send_feedback">പ്രതികരണം അയയ്ക്കുക</string>
+    <string name="chooser_title_send_feedback">ഫീഡ്‌ബാക്ക് അയയ്ക്കുക</string>
     <string name="chooser_title_share">ദയവായി തിരഞ്ഞെടുക്കുക</string>
-    <string name="chooser_title_share_via">വഴി പങ്കിടുക</string>
+    <string name="chooser_title_share_via">ഇതിലൂടെ പങ്കിടുക</string>
+    <string name="share_app_message_prefix">
+ഈ ആപ്പ് വളരെ ഉപയോഗപ്രദമാണ്, ദയവായി ഡൗൺലോഡ് ചെയ്ത് പരീക്ഷിക്കുക:
 
-    <!-- Share/Marketing text -->
-    <string name="share_app_message_prefix">\nഈ ആപ്ലിക്കേഷൻ വളരെ ഉപയോഗപ്രദമാണ്, അനുഭവിക്കാൻ ദയവായി ഡൗൺലോഡ് ചെയ്ത് ഇൻസ്റ്റാൾ ചെയ്യുക\n\n</string>
-    <string name="developer_name">SAIGON PHANTOM LABS</string>
-
-    <!-- Language settings -->
-    <string name="language_system_default">സിസ്റ്റം സ്ഥിരസ്ഥിതി</string>
+</string>
+    <string name="language_system_default">സിസ്റ്റം ഡിഫോൾട്ട്</string>
     <string name="preferences_language_summary">ആപ്പ് ഭാഷ തിരഞ്ഞെടുക്കുക</string>
-
-    <!-- Missing strings -->
-    <string name="deg">DEG</string>
-    <string name="_45">45</string>
-    <string name="get_more_apps">കൂടുതൽ ആപ്പുകൾ നേടുക</string>
-    <string name="share_this_app">ഈ ആപ്പ് പങ്കിടുക</string>
-    <string name="github">സോഴ്സ് കോഡ് (Forked)</string>
-    <string name="source_code">സോഴ്സ് കോഡ് (Original)</string>
-    <string name="license">ലൈസൻസ്</string>
-    <string name="join_tester_community">ടെസ്റ്റർ കമ്മ്യൂണിറ്റിയിൽ ചേരുക</string>
+    <string name="vip_active">VIP സജീവമാണ്</string>
+    <string name="vip_free_user">സൗജന്യ ഉപയോക്താവ്</string>
+    <string name="vip_subtitle_free">പരസ്യരഹിത അനുഭവം അൺലോക്ക് ചെയ്യുക</string>
+    <string name="vip_until">%1$s വരെ</string>
+    <string name="vip_activated_at">സജീവമാക്കിയത്: %1$s</string>
+    <string name="vip_expires_at">കാലാവധി: %1$s</string>
+    <string name="vip_active_remaining">ബാക്കി: %1$dd %2$dh</string>
+    <string name="vip_redeem_label">VIP കോഡ് നൽകുക</string>
+    <string name="vip_redeem_button">സജീവമാക്കുക</string>
+    <string name="vip_redeem_invalid">അസാധുവായ VIP കോഡ്</string>
+    <string name="vip_watch_ad_3d">പരസ്യം കാണുക → 3 ദിവസത്തെ VIP</string>
+    <string name="vip_buy_30d_locked">30 ദിവസത്തെ VIP വാങ്ങുക — ഉടൻ വരുന്നു</string>
+    <string name="vip_buy_90d_locked">90 ദിവസത്തെ VIP വാങ്ങുക — ഉടൻ വരുന്നു</string>
+    <string name="vip_buy_1y_locked">1 വർഷത്തെ VIP വാങ്ങുക — ഉടൻ വരുന്നു</string>
+    <string name="vip_buy_lifetime_locked">ആജീവനാന്ത VIP വാങ്ങുക — ഉടൻ വരുന്നു</string>
+    <string name="vip_restore_locked">വാങ്ങൽ പുനഃസ്ഥാപിക്കുക — ഉടൻ വരുന്നു</string>
+    <string name="vip_revoke_all_button">VIP റദ്ദാക്കുക</string>
+    <string name="vip_revoke_all_confirm_title">റദ്ദാക്കൽ സ്ഥിരീകരിക്കുക</string>
+    <string name="vip_revoke_all_confirm_message">നിങ്ങൾക്ക് VIP റദ്ദാക്കി സൗജന്യ അക്കൗണ്ടിലേക്ക് മടങ്ങാൻ താൽപ്പര്യമുണ്ടെന്ന് ഉറപ്പാണോ?</string>
+    <string name="vip_entry_first_install">🎁 പുതിയ ഇൻസ്റ്റലേഷൻ സമ്മാനം</string>
+    <string name="vip_entry_redeemed">VIP %1$d ദിവസങ്ങൾ</string>
+    <string name="vip_success_title">വിജയകരം</string>
+    <string name="vip_failed_title">പരാജയം</string>
+    <string name="back">പിന്നിലേക്ക്</string>
+    <string name="cancel">റദ്ദാക്കുക</string>
+    <string name="confirm">സ്ഥിരീകരിക്കുക</string>
+    <string name="ok">ശരി</string>
+    <string name="action_copy">പകർത്തുക</string>
+    <string name="action_share">പങ്കിടുക</string>
+    <string name="vip_reward_not_earned">പ്രതിഫലം ലഭിച്ചില്ല. ദയവായി പിന്നീട് വീണ്ടും ശ്രമിക്കുക.</string>
+    <string name="vip_success_message">അഭിനന്ദനങ്ങൾ! %1$d ദിവസത്തേക്ക് VIP സജീവമാക്കി. പരസ്യരഹിത അനുഭവം ആസ്വദിക്കൂ.</string>
 </resources>

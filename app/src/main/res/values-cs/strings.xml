@@ -1,12 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="preferences_vibration_title">Vibrace</string>
+    <string name="app_name_display">Kalkulačka</string>
+    <string name="backspace">Backspace</string>
+    <string name="dialog_physical_constant_title">Vložit fyzikální konstantu</string>
+    <string name="cd_toggle_scientific_mode">Přepnout vědecké funkce</string>
+    <string name="cd_parentheses">Závorky</string>
+    <string name="cd_exponent">Mocnina</string>
+    <string name="cd_divide">Dělit</string>
+    <string name="cd_multiply">Násobit</string>
+    <string name="cd_subtract">Odečíst</string>
+    <string name="cd_add">Přičíst</string>
+    <string name="cd_decimal_point">Desetinná tečka</string>
+    <string name="cd_equals">Rovná se</string>
+    <string name="cd_more_options">Další možnosti</string>
+    <string name="cd_pin_history">Připnout tento výpočet, aby byl zachován při promazání historie</string>
+    <string name="hint_search_history">Hledat v historii</string>
+    <string name="base_converter_title">Převodník číselných soustav</string>
+    <string name="app_menu_base_converter">Převodník číselných soustav</string>
+    <string name="base_converter_hint">Zadejte číslo v libovolné soustavě — ostatní se automaticky aktualizují</string>
+    <string name="base_converter_dec">DEC (desítková)</string>
+    <string name="base_converter_hex">HEX (šestnáctková)</string>
+    <string name="base_converter_oct">OCT (osmičková)</string>
+    <string name="base_converter_bin">BIN (dvojková)</string>
+    <string name="bill_splitter_title">Rozdělení účtu</string>
+    <string name="app_menu_bill_splitter">Rozdělení účtu</string>
+    <string name="bill_splitter_amount_label">Částka účtu</string>
+    <string name="bill_splitter_people_label">Počet osob</string>
+    <string name="bill_splitter_tip_label">Spropitné</string>
+    <string name="bill_splitter_total_label">Celkem (včetně spropitného)</string>
+    <string name="bill_splitter_per_person_label">Na osobu</string>
     <string name="app_menu_show_history">Zobrazit historii</string>
     <string name="app_menu_hide_history">Skrýt historii</string>
     <string name="app_menu_theme">Motiv</string>
-    <string name="app_name_display">Kalkulačka</string>
     <string name="app_menu_clear_history">Vymazat historii</string>
-    <string name="app_menu_about">O aplikaci (Ads may appear)</string>
+    <string name="app_menu_export_history">Exportovat historii</string>
+    <string name="export_history_empty">Historie je prázdná, není co exportovat</string>
+    <string name="export_history_success">Historie byla exportována</string>
+    <string name="export_history_failed">Export historie se nezdařil</string>
+    <string name="app_menu_import_history">Importovat historii</string>
+    <string name="import_history_success">Importováno záznamů: %d</string>
+    <string name="import_history_skipped">(přeskočeno: %d)</string>
+    <string name="import_history_failed">Import historie se nezdařil: nebyly nalezeny platné řádky</string>
+    <string name="import_history_truncated">(soubor je příliš velký, limit řádků: %d)</string>
+    <string name="app_menu_about">O aplikaci (Může obsahovat reklamy)</string>
+    <string name="theme_system">Systémový</string>
     <string name="theme_amoled">Amoled</string>
     <string name="theme_light">Světlý</string>
     <string name="theme_dark">Tmavý</string>
@@ -19,73 +56,90 @@
     <string name="value_copied">Zkopírováno</string>
     <string name="infinity">Nekonečno</string>
     <string name="division_by_0">Nelze dělit nulou</string>
-    <string name="app_menu_settings">Nastavení (Ads may appear)</string>
-    <string name="value_too_large">Příliš vysoká hodnota</string>
+    <string name="domain_error">Chyba definičního oboru</string>
+    <string name="math_error">Matematická chyba</string>
+    <string name="syntax_error">Chyba syntaxe</string>
+    <string name="error_explain_log_nonpositive">ln/log je definován pouze pro x > 0</string>
+    <string name="error_explain_tan_singularity">tan zde není definován (cos = 0)</string>
+    <string name="app_menu_settings">Nastavení (Může obsahovat reklamy)</string>
+    <string name="value_too_large">Hodnota je příliš velká</string>
     <string name="preferences_title">Nastavení</string>
     <string name="preferences_general_category">OBECNÉ</string>
     <string name="preferences_history_category">HISTORIE</string>
+    <string name="preferences_prevent_phone_from_sleeping_summary">Zabránit zhasnutí obrazovky, když je aplikace v popředí</string>
     <string name="preferences_vibration_summary">Vibrovat při stisknutí tlačítka</string>
-    <string name="preferences_history_size">Výsledek byl uložen do historie</string>
-    <string name="preferences_prevent_phone_from_sleeping_title">Zabránit uspání telefonu</string>
+    <string name="preferences_history_size">Počet výsledků uložených v historii</string>
+    <string name="preferences_vibration_title">Vibrace</string>
+    <string name="preferences_prevent_phone_from_sleeping_title">Ponechat obrazovku zapnutou</string>
     <string name="preferences_advanced_category">POKROČILÉ</string>
-    <string name="preferences_scientif_mode_enabled_by_default_summary">Aktivovat vědecký režim defaultně</string>
+    <string name="preferences_scientif_mode_enabled_by_default_summary">Aktivovat vědecký režim jako výchozí</string>
+    <string name="preferences_scientif_mode_enabled_by_default_title">Vědecký režim</string>
     <string name="preferences_radians_instead_of_degrees_by_default_title">Radiány</string>
-    <string name="preferences_radians_instead_of_degrees_by_default_summary">Používat radiány místo stupňů</string>
+    <string name="preferences_radians_instead_of_degrees_by_default_summary">Používat radiány místo stupňů jako výchozí</string>
     <string name="about_help_us_category">POMOZTE NÁM</string>
-    <string name="domain_error">Domain error</string>
-    <string name="math_error">Math error</string>
-    <string name="syntax_error">Syntax error</string>
     <string name="about_other_category">OSTATNÍ</string>
-    <string name="about_rate">Ohodnotit aplikaci</string>
-    <string name="thanks_for_using_app">Děkujeme za používání Calculator ❤️</string>
+    <string name="about_rate">Ohodnotit tuto aplikaci</string>
+    <string name="app_version_title">Verze</string>
+    <string name="thanks_for_using_app">Děkujeme za používání Kalkulačky ❤️</string>
     <string name="preferences_number_precision">Počet desetinných míst</string>
     <string name="privacy_policy">Zásady ochrany soukromí</string>
     <string name="about_title">O aplikaci</string>
     <string name="preferences_language_title">Jazyk</string>
-    <string name="theme_system">Systém</string>
-    <string name="preferences_scientif_mode_enabled_by_default_title">Vědecký režim</string>
-    <string name="app_version_title">Verze</string>
-    <string name="preferences_prevent_phone_from_sleeping_summary">Zabrání uspání telefonu, když je aplikace v popředí</string>
+    <string name="get_more_apps">Získat další aplikace</string>
+    <string name="share_this_app">Sdílet tuto aplikaci</string>
+    <string name="github">Zdrojový kód (Fork)</string>
+    <string name="source_code">Zdrojový kód (Původní)</string>
+    <string name="license">Licence</string>
+    <string name="join_tester_community">Připojit se ke komunitě testerů</string>
     <string name="send_feedback">Odeslat zpětnou vazbu</string>
-
-    <!-- Clipboard labels -->
     <string name="clipboard_label_copied_result">Zkopírovaný výsledek</string>
     <string name="clipboard_label_copied_calc_and_result">Zkopírovaný výpočet a výsledek</string>
-
-    <!-- Toast messages -->
-    <string name="toast_double_back_to_exit">Pro ukončení klikněte znovu na ZPĚT</string>
-
-    <!-- Dialog text -->
+    <string name="history_entry_deleted">Záznam z historie byl smazán</string>
+    <string name="undo">Vrátit zpět</string>
+    <string name="toast_double_back_to_exit">Stiskněte ZPĚT znovu pro ukončení</string>
     <string name="dialog_tester_community_title">Potvrdit</string>
-    <string name="dialog_tester_community_message">Pokud jste také programátor a hledáte testery pro testování vaší aplikace. Připojte se k naší komunitě testerů nyní</string>
+    <string name="dialog_tester_community_message">Pokud jste také vývojář a hledáte testery pro svou aplikaci, připojte se k naší komunitě testerů hned teď!</string>
     <string name="dialog_select_language_title">Vyberte jazyk</string>
     <string name="button_ok">OK</string>
     <string name="button_cancel">Zrušit</string>
-
-    <!-- Calculator mode indicators -->
-    <string name="degree_mode_deg">DEG</string>
-    <string name="degree_mode_rad">RAD</string>
-
-    <!-- Chooser titles -->
     <string name="chooser_title_send_feedback">Odeslat zpětnou vazbu</string>
-    <string name="chooser_title_share">Vyberte prosím</string>
+    <string name="chooser_title_share">Prosím vyberte</string>
     <string name="chooser_title_share_via">Sdílet přes</string>
+    <string name="share_app_message_prefix">
+Tato aplikace je velmi užitečná, stáhněte si ji a vyzkoušejte:
 
-    <!-- Share/Marketing text -->
-    <string name="share_app_message_prefix">\nTato aplikace je velmi užitečná, stáhněte si ji a nainstalujte pro vyzkoušení\n\n</string>
-    <string name="developer_name">SAIGON PHANTOM LABS</string>
-
-    <!-- Language settings -->
-    <string name="language_system_default">Výchozí systém</string>
+</string>
+    <string name="language_system_default">Výchozí nastavení systému</string>
     <string name="preferences_language_summary">Vyberte jazyk aplikace</string>
-
-    <!-- Missing strings -->
-    <string name="deg">DEG</string>
-    <string name="_45">45</string>
-    <string name="get_more_apps">Získat další aplikace</string>
-    <string name="share_this_app">Sdílet tuto aplikaci</string>
-    <string name="github">Zdrojový kód (Forked)</string>
-    <string name="source_code">Zdrojový kód (Original)</string>
-    <string name="license">Licence</string>
-    <string name="join_tester_community">Připojte se ke komunitě testerů</string>
+    <string name="vip_active">VIP aktivní</string>
+    <string name="vip_free_user">Bezplatný uživatel</string>
+    <string name="vip_subtitle_free">Odemkněte zážitek bez reklam</string>
+    <string name="vip_until">Do %1$s</string>
+    <string name="vip_activated_at">Aktivováno: %1$s</string>
+    <string name="vip_expires_at">Vyprší: %1$s</string>
+    <string name="vip_active_remaining">Zbývá: %1$dd %2$dh</string>
+    <string name="vip_redeem_label">Zadejte kód VIP</string>
+    <string name="vip_redeem_button">Aktivovat</string>
+    <string name="vip_redeem_invalid">Neplatný VIP kód</string>
+    <string name="vip_watch_ad_3d">Zhlédnout reklamu → 3 dny VIP</string>
+    <string name="vip_buy_30d_locked">Koupit VIP na 30 dní — již brzy</string>
+    <string name="vip_buy_90d_locked">Kupit VIP na 90 dní — již brzy</string>
+    <string name="vip_buy_1y_locked">Koupit VIP na 1 rok — již brzy</string>
+    <string name="vip_buy_lifetime_locked">Koupit doživotní VIP — již brzy</string>
+    <string name="vip_restore_locked">Obnovit nákup — již brzy</string>
+    <string name="vip_revoke_all_button">Zrušit VIP</string>
+    <string name="vip_revoke_all_confirm_title">Potvrdit zrušení</string>
+    <string name="vip_revoke_all_confirm_message">Opravdu chcete zrušit VIP a vrátit se k bezplatnému účtu?</string>
+    <string name="vip_entry_first_install">🎁 Dárek k nové instalaci</string>
+    <string name="vip_entry_redeemed">VIP %1$d dní</string>
+    <string name="vip_success_title">Úspěch</string>
+    <string name="vip_failed_title">Neúspěch</string>
+    <string name="back">Zpět</string>
+    <string name="cancel">Zrušit</string>
+    <string name="confirm">Potvrdit</string>
+    <string name="ok">OK</string>
+    <string name="action_copy">Kopírovat</string>
+    <string name="action_share">Sdílet</string>
+    <string name="vip_reward_not_earned">Odměna nebyla získána. Zkuste to prosím znovu později.</string>
+    <string name="vip_success_message">Gratulujeme! VIP aktivováno na %1$d dní. Užijte si aplikaci bez reklam.</string>
 </resources>

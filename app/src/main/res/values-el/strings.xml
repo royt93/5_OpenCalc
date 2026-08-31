@@ -1,127 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name_display">Αριθμομηχανή</string>
-    <!-- App Menu -->
+    <string name="backspace">Backspace</string>
+    <string name="dialog_physical_constant_title">Εισαγωγή φυσικής σταθεράς</string>
+    <string name="cd_toggle_scientific_mode">Εναλλαγή επιστημονικών συναρτήσεων</string>
+    <string name="cd_parentheses">Παρενθέσεις</string>
+    <string name="cd_exponent">Εκθέτης</string>
+    <string name="cd_divide">Διαίρεση</string>
+    <string name="cd_multiply">Πολλαπλασιασμός</string>
+    <string name="cd_subtract">Αφαίρεση</string>
+    <string name="cd_add">Πρόσθεση</string>
+    <string name="cd_decimal_point">Υποδιαστολή</string>
+    <string name="cd_equals">Ίσον</string>
+    <string name="cd_more_options">Περισσότερες επιλογές</string>
+    <string name="cd_pin_history">Καρφίτσωμα αυτού του υπολογισμού για διατήρηση κατά την εκκαθάριση</string>
+    <string name="hint_search_history">Αναζήτηση στο ιστορικό</string>
+    <string name="base_converter_title">Μετατροπέας βάσεων</string>
+    <string name="app_menu_base_converter">Μετατροπέας βάσεων</string>
+    <string name="base_converter_hint">Πληκτρολογήστε έναν αριθμό σε οποιαδήποτε βάση — οι υπόλοιπες ενημερώνονται αυτόματα</string>
+    <string name="base_converter_dec">DEC (βάση 10)</string>
+    <string name="base_converter_hex">HEX (βάση 16)</string>
+    <string name="base_converter_oct">OCT (βάση 8)</string>
+    <string name="base_converter_bin">BIN (βάση 2)</string>
+    <string name="bill_splitter_title">Διαίρεση λογαριασμού</string>
+    <string name="app_menu_bill_splitter">Διαίρεση λογαριασμού</string>
+    <string name="bill_splitter_amount_label">Ποσό λογαριασμού</string>
+    <string name="bill_splitter_people_label">Αριθμός ατόμων</string>
+    <string name="bill_splitter_tip_label">Φιλοδώρημα</string>
+    <string name="bill_splitter_total_label">Σύνολο (με φιλοδώρημα)</string>
+    <string name="bill_splitter_per_person_label">Ανά άτομο</string>
     <string name="app_menu_show_history">Εμφάνιση ιστορικού</string>
     <string name="app_menu_hide_history">Απόκρυψη ιστορικού</string>
     <string name="app_menu_theme">Θέμα</string>
-    <string name="app_menu_clear_history">Απαλοιφή ιστορικού</string>
-    <string name="app_menu_about">Σχετικά (Ads may appear)</string>
-    <!-- Theme choices -->
-    <string name="theme_system">Συστήματος</string>
+    <string name="app_menu_clear_history">Εκκαθάριση ιστορικού</string>
+    <string name="app_menu_export_history">Εξαγωγή ιστορικού</string>
+    <string name="export_history_empty">Το ιστορικό είναι κενό, δεν υπάρχει τίποτα για εξαγωγή</string>
+    <string name="export_history_success">Το ιστορικό εξήχθη</string>
+    <string name="export_history_failed">Αποτυχία εξαγωγής ιστορικού</string>
+    <string name="app_menu_import_history">Εισαγωγή ιστορικού</string>
+    <string name="import_history_success">Εισήχθησαν εγγραφές: %d</string>
+    <string name="import_history_skipped">(παραλείφθηκαν: %d)</string>
+    <string name="import_history_failed">Αποτυχία εισαγωγής: δεν βρέθηκαν έγκυρες γραμμές</string>
+    <string name="import_history_truncated">(πολύ μεγάλο αρχείο, όριο γραμμών: %d)</string>
+    <string name="app_menu_about">Σχετικά (Μπορεί να περιέχει διαφημίσεις)</string>
+    <string name="theme_system">Σύστημα</string>
+    <string name="theme_amoled">Amoled</string>
     <string name="theme_light">Φωτεινό</string>
-    <string name="theme_dark">Σκούρο</string>
+    <string name="theme_dark">Σκοτεινό</string>
     <string name="theme_sunset">Ηλιοβασίλεμα</string>
     <string name="theme_ocean">Ωκεανός</string>
     <string name="theme_forest">Δάσος</string>
     <string name="theme_nord">Nord</string>
     <string name="theme_highcontrast">Υψηλή αντίθεση</string>
     <string name="theme_lavender">Λεβάντα</string>
-    <!-- Others -->
-    <string name="value_copied">Αντιγράφηκε στο πρόχειρο</string>
+    <string name="value_copied">Αντιγράφηκε</string>
     <string name="infinity">Άπειρο</string>
     <string name="division_by_0">Αδύνατη η διαίρεση με το 0</string>
-    <string name="domain_error">Σφάλμα τομέα</string>
+    <string name="domain_error">Σφάλμα πεδίου ορισμού</string>
     <string name="math_error">Μαθηματικό σφάλμα</string>
-    <string name="syntax_error">Συντακτικό λάθος</string>
-    <string name="value_too_large">Πολύ μεγάλη τιμή</string>
-    <string name="send_feedback">Αποστολή σχολίων</string>
-
-    <!-- Clipboard labels -->
-    <string name="clipboard_label_copied_result">Αντιγράφηκε το αποτέλεσμα</string>
-    <string name="clipboard_label_copied_calc_and_result">Αντιγράφηκαν υπολογισμός και αποτέλεσμα</string>
-
-    <!-- Toast messages -->
-    <string name="toast_double_back_to_exit">Παρακαλώ πατήστε ΠΙΣΩ ξανά για έξοδο</string>
-
-    <!-- Dialog text -->
-    <string name="dialog_tester_community_title">Επιβεβαίωση</string>
-    <string name="dialog_tester_community_message">Εάν είστε επίσης προγραμματιστής και αναζητάτε δοκιμαστές για να δοκιμάσουν την εφαρμογή σας. Εγγραφείτε στην κοινότητα δοκιμαστών μας τώρα</string>
-    <string name="dialog_select_language_title">Επιλογή γλώσσας</string>
-    <string name="button_ok">OK</string>
-    <string name="button_cancel">Ακύρωση</string>
-
-    <!-- Calculator mode indicators -->
-    <string name="degree_mode_deg">DEG</string>
-    <string name="degree_mode_rad">RAD</string>
-
-    <!-- Chooser titles -->
-    <string name="chooser_title_send_feedback">Αποστολή σχολίων</string>
-    <string name="chooser_title_share">Παρακαλώ επιλέξτε</string>
-    <string name="chooser_title_share_via">Κοινοποίηση μέσω</string>
-
-    <!-- Share/Marketing text -->
-    <string name="share_app_message_prefix">\nΑυτή η εφαρμογή είναι πολύ χρήσιμη, παρακαλώ κατεβάστε και εγκαταστήστε για να τη δοκιμάσετε\n\n</string>
-    <string name="developer_name">SAIGON PHANTOM LABS</string>
-
-    <!-- Language settings -->
-    <string name="language_system_default">Προεπιλογή συστήματος</string>
-    <string name="preferences_language_summary">Επιλέξτε γλώσσα εφαρμογής</string>
-
-    <!-- Missing strings -->
-    <string name="app_menu_settings">Ρυθμίσεις (Ads may appear)</string>
+    <string name="syntax_error">Συντακτικό σφάλμα</string>
+    <string name="error_explain_log_nonpositive">Το ln/log ορίζεται μόνο για x > 0</string>
+    <string name="error_explain_tan_singularity">Η tan δεν ορίζεται εδώ (cos = 0)</string>
+    <string name="app_menu_settings">Ρυθμίσεις (Μπορεί να περιέχει διαφημίσεις)</string>
+    <string name="value_too_large">Η τιμή είναι πολύ μεγάλη</string>
     <string name="preferences_title">Ρυθμίσεις</string>
     <string name="preferences_general_category">ΓΕΝΙΚΑ</string>
     <string name="preferences_history_category">ΙΣΤΟΡΙΚΟ</string>
-    <string name="preferences_prevent_phone_from_sleeping_summary">Αποτροπή της αναστολής λειτουργίας του τηλεφώνου όταν η εφαρμογή είναι ενεργή</string>
-    <string name="preferences_vibration_summary">Δόνηση όταν πατιέται ένα κουμπί</string>
+    <string name="preferences_prevent_phone_from_sleeping_summary">Αποτροπή απενεργοποίησης της οθόνης όσο η εφαρμογή είναι στο προσκήνιο</string>
+    <string name="preferences_vibration_summary">Δόνηση κατά το πάτημα κουμπιού</string>
     <string name="preferences_history_size">Αποτελέσματα αποθηκευμένα στο ιστορικό</string>
-    <string name="preferences_vibration_title">Δονήσεις</string>
-    <string name="preferences_prevent_phone_from_sleeping_title">Αποτροπή αναστολής λειτουργίας τηλεφώνου</string>
-    <string name="preferences_advanced_category">ΠΡΟΗΓΜΕΝΑ</string>
+    <string name="preferences_vibration_title">Δόνηση</string>
+    <string name="preferences_prevent_phone_from_sleeping_title">Διατήρηση οθόνης ενεργής</string>
+    <string name="preferences_advanced_category">ΓΙΑ ΠΡΟΧΩΡΗΜΕΝΟΥΣ</string>
     <string name="preferences_scientif_mode_enabled_by_default_summary">Ενεργοποίηση επιστημονικής λειτουργίας από προεπιλογή</string>
     <string name="preferences_scientif_mode_enabled_by_default_title">Επιστημονική λειτουργία</string>
     <string name="preferences_radians_instead_of_degrees_by_default_title">Ακτίνια</string>
     <string name="preferences_radians_instead_of_degrees_by_default_summary">Χρήση ακτινίων αντί για μοίρες από προεπιλογή</string>
     <string name="about_help_us_category">ΒΟΗΘΗΣΤΕ ΜΑΣ</string>
     <string name="about_other_category">ΑΛΛΑ</string>
-    <string name="about_rate">Αξιολογήστε αυτήν την εφαρμογή</string>
+    <string name="about_rate">Αξιολογήστε αυτή την εφαρμογή</string>
     <string name="app_version_title">Έκδοση</string>
-    <string name="thanks_for_using_app">Ευχαριστούμε που χρησιμοποιείτε το Calculator ❤️</string>
+    <string name="thanks_for_using_app">Ευχαριστούμε που χρησιμοποιείτε την Αριθμομηχανή ❤️</string>
     <string name="preferences_number_precision">Αριθμός δεκαδικών ψηφίων</string>
     <string name="privacy_policy">Πολιτική απορρήτου</string>
     <string name="about_title">Σχετικά</string>
     <string name="preferences_language_title">Γλώσσα</string>
-    <string name="deg">DEG</string>
-    <string name="_45">45</string>
-    <string name="get_more_apps">Λάβετε περισσότερες εφαρμογές</string>
-    <string name="share_this_app">Μοιραστείτε αυτήν την εφαρμογή</string>
-    <string name="github">Πηγαίος κώδικας (Forked)</string>
-    <string name="source_code">Πηγαίος κώδικας (Original)</string>
-    <string name="license">Άδεια</string>
-    <string name="join_tester_community">Εγγραφείτε στην κοινότητα δοκιμαστών</string>
+    <string name="get_more_apps">Περισσότερες εφαρμογές</string>
+    <string name="share_this_app">Κοινοποίηση εφαρμογής</string>
+    <string name="github">Πηγαίος κώδικας (Fork)</string>
+    <string name="source_code">Πηγαίος κώδικας (Αρχικός)</string>
+    <string name="license">Άδεια χρήσης</string>
+    <string name="join_tester_community">Συμμετοχή στην κοινότητα δοκιμαστών</string>
+    <string name="send_feedback">Αποστολή σχολίων</string>
+    <string name="clipboard_label_copied_result">Το αποτέλεσμα αντιγράφηκε</string>
+    <string name="clipboard_label_copied_calc_and_result">Ο υπολογισμός και το αποτέλεσμα αντιγράφηκαν</string>
+    <string name="history_entry_deleted">Η εγγραφή ιστορικού διαγράφηκε</string>
+    <string name="undo">Αναίρεση</string>
+    <string name="toast_double_back_to_exit">Πατήστε ΠΙΣΩ ξανά για έξοδο</string>
+    <string name="dialog_tester_community_title">Επιβεβαίωση</string>
+    <string name="dialog_tester_community_message">Αν είστε κι εσείς προγραμματιστής και αναζητάτε δοκιμαστές για την εφαρμογή σας, ελάτε στην κοινότητά μας τώρα!</string>
+    <string name="dialog_select_language_title">Επιλογή γλώσσας</string>
+    <string name="button_ok">OK</string>
+    <string name="button_cancel">Ακύρωση</string>
+    <string name="chooser_title_send_feedback">Αποστολή σχολίων</string>
+    <string name="chooser_title_share">Παρακαλώ επιλέξτε</string>
+    <string name="chooser_title_share_via">Κοινοποίηση μέσω</string>
+    <string name="share_app_message_prefix">
+Αυτή η εφαρμογή είναι πολύ χρήσιμη, κατεβάστε και δοκιμάστε την:
 
-    <!-- VIP -->
-    <string name="vip_screen_title">VIP</string>
-    <string name="vip_badge">VIP</string>
+</string>
+    <string name="language_system_default">Προεπιλογή συστήματος</string>
+    <string name="preferences_language_summary">Επιλέξτε γλώσσα εφαρμογής</string>
     <string name="vip_active">VIP ενεργό</string>
     <string name="vip_free_user">Δωρεάν χρήστης</string>
     <string name="vip_subtitle_free">Ξεκλειδώστε εμπειρία χωρίς διαφημίσεις</string>
     <string name="vip_until">Έως %1$s</string>
     <string name="vip_activated_at">Ενεργοποιήθηκε: %1$s</string>
     <string name="vip_expires_at">Λήγει: %1$s</string>
-    <string name="vip_remaining">%1$dd %2$02dh %3$02dm %4$02ds</string>
     <string name="vip_active_remaining">Απομένουν: %1$dd %2$dh</string>
     <string name="vip_redeem_label">Εισαγάγετε κωδικό VIP</string>
     <string name="vip_redeem_button">Ενεργοποίηση</string>
     <string name="vip_redeem_invalid">Μη έγκυρος κωδικός VIP</string>
     <string name="vip_watch_ad_3d">Δείτε διαφήμιση → 3 ημέρες VIP</string>
-    <string name="vip_buy_30d_locked">Αγορά VIP 30 ημερών — σύντομα</string>
-    <string name="vip_buy_90d_locked">Αγορά VIP 90 ημερών — σύντομα</string>
-    <string name="vip_buy_1y_locked">Αγορά VIP 1 έτους — σύντομα</string>
-    <string name="vip_buy_lifetime_locked">Αγορά VIP εφ\' όρου ζωής — σύντομα</string>
-    <string name="vip_restore_locked">Επαναφορά αγοράς — σύντομα</string>
+    <string name="vip_buy_30d_locked">Αγορά 30 ημερών VIP — σύντομα κοντά σας</string>
+    <string name="vip_buy_90d_locked">Αγορά 90 ημερών VIP — σύντομα κοντά σας</string>
+    <string name="vip_buy_1y_locked">Αγορά 1 έτους VIP — σύντομα κοντά σας</string>
+    <string name="vip_buy_lifetime_locked">Αγορά ισόβιου VIP — σύντομα κοντά σας</string>
+    <string name="vip_restore_locked">Επαναφορά αγοράς — σύντομα κοντά σας</string>
     <string name="vip_revoke_all_button">Ανάκληση VIP</string>
     <string name="vip_revoke_all_confirm_title">Επιβεβαίωση ανάκλησης</string>
-    <string name="vip_revoke_all_confirm_message">Σίγουρα θέλετε να ανακαλέσετε το VIP και να επιστρέψετε σε δωρεάν λογαριασμό;</string>
+    <string name="vip_revoke_all_confirm_message">Είστε βέβαιοι ότι θέλετε να ανακαλέσετε το VIP και να επιστρέψετε στον δωρεάν λογαριασμό;</string>
     <string name="vip_entry_first_install">🎁 Δώρο νέας εγκατάστασης</string>
-    <string name="vip_entry_redeemed">VIP %1$d ημέρες</string>
+    <string name="vip_entry_redeemed">VIP για %1$d ημέρες</string>
     <string name="vip_success_title">Επιτυχία</string>
     <string name="vip_failed_title">Αποτυχία</string>
     <string name="back">Πίσω</string>
-    <string name="cancel">Άκυρο</string>
+    <string name="cancel">Ακύρωση</string>
     <string name="confirm">Επιβεβαίωση</string>
     <string name="ok">OK</string>
-    <string name="vip_reward_not_earned">Δεν κερδίσατε ανταμοιβή. Δοκιμάστε ξανά αργότερα.</string>
+    <string name="action_copy">Αντιγραφή</string>
+    <string name="action_share">Κοινοποίηση</string>
+    <string name="vip_reward_not_earned">Η ανταμοιβή δεν αποκτήθηκε. Δοκιμάστε ξανά αργότερα.</string>
     <string name="vip_success_message">Συγχαρητήρια! Το VIP ενεργοποιήθηκε για %1$d ημέρες. Απολαύστε την εμπειρία χωρίς διαφημίσεις.</string>
 </resources>

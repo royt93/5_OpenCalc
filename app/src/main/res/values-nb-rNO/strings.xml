@@ -1,118 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name_display">Kalkulator</string>
+    <string name="backspace">Rettetast</string>
+    <string name="dialog_physical_constant_title">Sett inn fysisk konstant</string>
+    <string name="cd_toggle_scientific_mode">Bytt vitenskapelige funksjoner</string>
+    <string name="cd_parentheses">Parenteser</string>
+    <string name="cd_exponent">Eksponent</string>
+    <string name="cd_divide">Dele</string>
+    <string name="cd_multiply">Gange</string>
+    <string name="cd_subtract">Trekke fra</string>
+    <string name="cd_add">Legge til</string>
+    <string name="cd_decimal_point">Desimaltegn</string>
+    <string name="cd_equals">Er lik</string>
+    <string name="cd_more_options">Flere alternativer</string>
+    <string name="cd_pin_history">Fest denne beregningen slik at den beholdes når historikken tømmes</string>
+    <string name="hint_search_history">Søk i historikk</string>
+    <string name="base_converter_title">Tallbase-konverterer</string>
+    <string name="app_menu_base_converter">Tallbase-konverterer</string>
+    <string name="base_converter_hint">Skriv inn et tall i en hvilken som helst base — de andre oppdateres automatisk</string>
+    <string name="base_converter_dec">DEC (titallet 10)</string>
+    <string name="base_converter_hex">HEX (sekstentallet 16)</string>
+    <string name="base_converter_oct">OCT (åttetallet 8)</string>
+    <string name="base_converter_bin">BIN (totall 2)</string>
+    <string name="bill_splitter_title">Regningsdeler</string>
+    <string name="app_menu_bill_splitter">Regningsdeler</string>
+    <string name="bill_splitter_amount_label">Regningsbeløp</string>
+    <string name="bill_splitter_people_label">Antall personer</string>
+    <string name="bill_splitter_tip_label">Tips</string>
+    <string name="bill_splitter_total_label">Totalt (inkl. tips)</string>
+    <string name="bill_splitter_per_person_label">Hver person betaler</string>
     <string name="app_menu_show_history">Vis historikk</string>
     <string name="app_menu_hide_history">Skjul historikk</string>
+    <string name="app_menu_theme">Tema</string>
+    <string name="app_menu_clear_history">Tøm historikk</string>
+    <string name="app_menu_export_history">Eksporter historikk</string>
+    <string name="export_history_empty">Historikken er tom, ingenting å eksportere</string>
+    <string name="export_history_success">Historikk eksportert</string>
+    <string name="export_history_failed">Kunne ikke eksportere historikk</string>
+    <string name="app_menu_import_history">Importer historikk</string>
+    <string name="import_history_success">Importerte oppføringer: %d</string>
+    <string name="import_history_skipped">(hoppet over: %d)</string>
+    <string name="import_history_failed">Kunne ikke importere historikk: ingen gyldige rader funnet</string>
+    <string name="import_history_truncated">(filen er for stor, radgrense: %d)</string>
+    <string name="app_menu_about">Om (Kan inneholde annonser)</string>
+    <string name="theme_system">System</string>
+    <string name="theme_amoled">Amoled</string>
     <string name="theme_light">Lys</string>
     <string name="theme_dark">Mørk</string>
-    <string name="value_copied">Kopiert</string>
-    <string name="app_menu_theme">Drakt</string>
-    <string name="app_menu_clear_history">Tøm historikk</string>
-    <string name="app_menu_about">Om (Ads may appear)</string>
-    <string name="theme_system">System</string>
     <string name="theme_sunset">Solnedgang</string>
     <string name="theme_ocean">Hav</string>
     <string name="theme_forest">Skog</string>
     <string name="theme_nord">Nord</string>
     <string name="theme_highcontrast">Høy kontrast</string>
     <string name="theme_lavender">Lavendel</string>
+    <string name="value_copied">Kopiert</string>
     <string name="infinity">Uendelig</string>
     <string name="division_by_0">Kan ikke dele på 0</string>
-    <string name="domain_error">Domenefeil</string>
-    <string name="math_error">Mattefeil</string>
+    <string name="domain_error">Definisjonsområdefeil</string>
+    <string name="math_error">Matematisk feil</string>
     <string name="syntax_error">Syntaksfeil</string>
-    <string name="theme_amoled">Svart</string>
-    <string name="app_menu_settings">Innstillinger (Ads may appear)</string>
-    <string name="preferences_title">Innstillinger</string>
-    <string name="preferences_history_category">Historikk</string>
-    <string name="preferences_scientif_mode_enabled_by_default_title">Vitenskapelig modus</string>
-    <string name="preferences_vibration_summary">Vibrasjon ved knappetrykk</string>
-    <string name="preferences_vibration_title">Vibrasjoner</string>
-    <string name="preferences_prevent_phone_from_sleeping_title">Forhindre søvn</string>
-    <string name="preferences_advanced_category">Avansert</string>
-    <string name="preferences_radians_instead_of_degrees_by_default_summary">Bruk radianer istedenfor grader som forvalg</string>
-    <string name="preferences_radians_instead_of_degrees_by_default_title">Radianer</string>
-    <string name="about_rate">Vurder programmet</string>
-    <string name="privacy_policy">Personvernspraksis</string>
-    <string name="preferences_scientif_mode_enabled_by_default_summary">Aktiver vitenskapelig modus som forvalg</string>
-    <string name="preferences_history_size">Resultater lagret i historikk</string>
-    <string name="preferences_general_category">Generelt</string>
-    <string name="about_other_category">Annet</string>
-    <string name="about_help_us_category">Hjelp oss</string>
-    <string name="app_version_title">Versjon</string>
-    <string name="about_title">Om</string>
-    <string name="thanks_for_using_app">Takk for at du bruker Calculator ❤️</string>
-    <string name="preferences_number_precision">Antall siffer etter komma</string>
-    <string name="preferences_prevent_phone_from_sleeping_summary">Forhindre enheten i søvn når programmet er i forgrunnen</string>
-    <string name="preferences_language_title">Språk</string>
+    <string name="error_explain_log_nonpositive">ln/log er kun definert for x > 0</string>
+    <string name="error_explain_tan_singularity">tan er udefinert her (cos = 0)</string>
+    <string name="app_menu_settings">Innstillinger (Kan inneholde annonser)</string>
     <string name="value_too_large">Verdien er for stor</string>
-    <string name="send_feedback">Send tilbakemelding</string>
-
-    <!-- Clipboard labels -->
-    <string name="clipboard_label_copied_result">Kopiert resultat</string>
-    <string name="clipboard_label_copied_calc_and_result">Kopiert beregning og resultat</string>
-
-    <!-- Toast messages -->
-    <string name="toast_double_back_to_exit">Vennligst klikk TILBAKE igjen for å avslutte</string>
-
-    <!-- Dialog text -->
-    <string name="dialog_tester_community_title">Bekreft</string>
-    <string name="dialog_tester_community_message">Hvis du også er en programmerer og leter etter testere for å teste applikasjonen din. Bli med i vår testerfellesskap nå</string>
-    <string name="dialog_select_language_title">Velg språk</string>
-    <string name="button_ok">OK</string>
-    <string name="button_cancel">Avbryt</string>
-
-    <!-- Calculator mode indicators -->
-    <string name="degree_mode_deg">DEG</string>
-    <string name="degree_mode_rad">RAD</string>
-
-    <!-- Chooser titles -->
-    <string name="chooser_title_send_feedback">Send tilbakemelding</string>
-    <string name="chooser_title_share">Vennligst velg</string>
-    <string name="chooser_title_share_via">Del via</string>
-
-    <!-- Share/Marketing text -->
-    <string name="share_app_message_prefix">\nDenne applikasjonen er veldig nyttig, vennligst last ned og installer for å oppleve\n\n</string>
-    <string name="developer_name">SAIGON PHANTOM LABS</string>
-
-    <!-- Language settings -->
-    <string name="language_system_default">Systemstandard</string>
-    <string name="preferences_language_summary">Velg appspråk</string>
-
-    <!-- Missing strings -->
-    <string name="deg">DEG</string>
-    <string name="_45">45</string>
+    <string name="preferences_title">Innstillinger</string>
+    <string name="preferences_general_category">GENERELT</string>
+    <string name="preferences_history_category">HISTORIKK</string>
+    <string name="preferences_prevent_phone_from_sleeping_summary">Forhindre at skjermen slår seg av mens appen er i forgrunnen</string>
+    <string name="preferences_vibration_summary">Vibrer ved trykk på knapper</string>
+    <string name="preferences_history_size">Resultater lagret i historikken</string>
+    <string name="preferences_vibration_title">Vibrasjon</string>
+    <string name="preferences_prevent_phone_from_sleeping_title">Hold skjermen på</string>
+    <string name="preferences_advanced_category">AVANSERT</string>
+    <string name="preferences_scientif_mode_enabled_by_default_summary">Aktiver vitenskapelig modus som standard</string>
+    <string name="preferences_scientif_mode_enabled_by_default_title">Vitenskapelig modus</string>
+    <string name="preferences_radians_instead_of_degrees_by_default_title">Radianer</string>
+    <string name="preferences_radians_instead_of_degrees_by_default_summary">Bruk radianer i stedet for grader som standard</string>
+    <string name="about_help_us_category">HJELP OSS</string>
+    <string name="about_other_category">ANNET</string>
+    <string name="about_rate">Vurder denne appen</string>
+    <string name="app_version_title">Versjon</string>
+    <string name="thanks_for_using_app">Takk for at du bruker Kalkulator ❤️</string>
+    <string name="preferences_number_precision">Antall desimaler</string>
+    <string name="privacy_policy">Personvernerklæring</string>
+    <string name="about_title">Om</string>
+    <string name="preferences_language_title">Språk</string>
     <string name="get_more_apps">Få flere apper</string>
     <string name="share_this_app">Del denne appen</string>
-    <string name="github">Kildekode (Forked)</string>
+    <string name="github">Kildekode (Fork)</string>
     <string name="source_code">Kildekode (Original)</string>
     <string name="license">Lisens</string>
     <string name="join_tester_community">Bli med i testerfellesskapet</string>
+    <string name="send_feedback">Send tilbakemelding</string>
+    <string name="clipboard_label_copied_result">Kopiert resultat</string>
+    <string name="clipboard_label_copied_calc_and_result">Kopiert beregning og resultat</string>
+    <string name="history_entry_deleted">Historikkoppføring slettet</string>
+    <string name="undo">Angre</string>
+    <string name="toast_double_back_to_exit">Trykk TILBAKE igjen for å avslutte</string>
+    <string name="dialog_tester_community_title">Bekreft</string>
+    <string name="dialog_tester_community_message">Hvis du også er en utvikler og ser etter testere for appen din, bli med i fellesskapet vårt nå!</string>
+    <string name="dialog_select_language_title">Velg språk</string>
+    <string name="button_ok">OK</string>
+    <string name="button_cancel">Avbryt</string>
+    <string name="chooser_title_send_feedback">Send tilbakemelding</string>
+    <string name="chooser_title_share">Vennligst velg</string>
+    <string name="chooser_title_share_via">Del via</string>
+    <string name="share_app_message_prefix">
+Denne appen er veldig nyttig, last ned og prøv:
 
-    <!-- VIP -->
-    <string name="vip_screen_title">VIP</string>
-    <string name="vip_badge">VIP</string>
+</string>
+    <string name="language_system_default">Systemstandard</string>
+    <string name="preferences_language_summary">Velg appspråk</string>
     <string name="vip_active">VIP aktiv</string>
-    <string name="vip_free_user">Gratis bruker</string>
+    <string name="vip_free_user">Gratisbruker</string>
     <string name="vip_subtitle_free">Lås opp en annonsefri opplevelse</string>
-    <string name="vip_until">Til %1$s</string>
+    <string name="vip_until">Frem til %1$s</string>
     <string name="vip_activated_at">Aktivert: %1$s</string>
     <string name="vip_expires_at">Utløper: %1$s</string>
-    <string name="vip_remaining">%1$dd %2$02dh %3$02dm %4$02ds</string>
-    <string name="vip_active_remaining">Gjenstår: %1$dd %2$dh</string>
+    <string name="vip_active_remaining">Gjenværende: %1$dd %2$dh</string>
     <string name="vip_redeem_label">Skriv inn VIP-kode</string>
     <string name="vip_redeem_button">Aktiver</string>
     <string name="vip_redeem_invalid">Ugyldig VIP-kode</string>
     <string name="vip_watch_ad_3d">Se annonse → 3 dager VIP</string>
-    <string name="vip_buy_30d_locked">Kjøp VIP 30 dager — kommer snart</string>
-    <string name="vip_buy_90d_locked">Kjøp VIP 90 dager — kommer snart</string>
-    <string name="vip_buy_1y_locked">Kjøp VIP 1 år — kommer snart</string>
-    <string name="vip_buy_lifetime_locked">Kjøp VIP for alltid — kommer snart</string>
+    <string name="vip_buy_30d_locked">Kjøp 30 dagers VIP — kommer snart</string>
+    <string name="vip_buy_90d_locked">Kjøp 90 dagers VIP — kommer snart</string>
+    <string name="vip_buy_1y_locked">Kjøp 1 års VIP — kommer snart</string>
+    <string name="vip_buy_lifetime_locked">Kjøp livstids-VIP — kommer snart</string>
     <string name="vip_restore_locked">Gjenopprett kjøp — kommer snart</string>
     <string name="vip_revoke_all_button">Tilbakekall VIP</string>
     <string name="vip_revoke_all_confirm_title">Bekreft tilbakekalling</string>
-    <string name="vip_revoke_all_confirm_message">Er du sikker på at du vil tilbakekalle VIP og gå tilbake til en gratis konto?</string>
-    <string name="vip_entry_first_install">🎁 Gave for ny installasjon</string>
+    <string name="vip_revoke_all_confirm_message">Er du sikker på at du vil tilbakekalle VIP og gå tilbake til en gratiskonto?</string>
+    <string name="vip_entry_first_install">🎁 Ny installasjonsgave</string>
     <string name="vip_entry_redeemed">VIP %1$d dager</string>
     <string name="vip_success_title">Vellykket</string>
     <string name="vip_failed_title">Mislyktes</string>
@@ -120,6 +138,8 @@
     <string name="cancel">Avbryt</string>
     <string name="confirm">Bekreft</string>
     <string name="ok">OK</string>
-    <string name="vip_reward_not_earned">Belønning ikke oppnådd. Prøv igjen senere.</string>
-    <string name="vip_success_message">Gratulerer! VIP aktivert i %1$d dager. Nyt den annonsefrie opplevelsen.</string>
+    <string name="action_copy">Kopier</string>
+    <string name="action_share">Del</string>
+    <string name="vip_reward_not_earned">Belønning ikke mottatt. Prøv igjen senere.</string>
+    <string name="vip_success_message">Gratulerer! VIP aktivert for %1$d dager. Nyt den annonsefrie opplevelsen.</string>
 </resources>

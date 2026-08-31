@@ -1,10 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name_display">Máy tính</string>
+    <string name="backspace">Xóa lùi</string>
+    <string name="dialog_physical_constant_title">Chèn hằng số vật lý</string>
+    <string name="cd_toggle_scientific_mode">Bật/tắt hàm khoa học</string>
+    <string name="cd_parentheses">Dấu ngoặc</string>
+    <string name="cd_exponent">Số mũ</string>
+    <string name="cd_divide">Chia</string>
+    <string name="cd_multiply">Nhân</string>
+    <string name="cd_subtract">Trừ</string>
+    <string name="cd_add">Cộng</string>
+    <string name="cd_decimal_point">Dấu thập phân</string>
+    <string name="cd_equals">Bằng</string>
+    <string name="cd_more_options">Tùy chọn khác</string>
+    <string name="cd_pin_history">Ghim phép tính này để không bị xóa khi dọn lịch sử</string>
+    <string name="hint_search_history">Tìm kiếm lịch sử</string>
+    <string name="base_converter_title">Chuyển đổi cơ số</string>
+    <string name="app_menu_base_converter">Chuyển đổi cơ số</string>
+    <string name="base_converter_hint">Nhập số ở hệ bất kỳ — các hệ khác tự động cập nhật</string>
+    <string name="base_converter_dec">DEC (cơ số 10)</string>
+    <string name="base_converter_hex">HEX (cơ số 16)</string>
+    <string name="base_converter_oct">OCT (cơ số 8)</string>
+    <string name="base_converter_bin">BIN (cơ số 2)</string>
+    <string name="bill_splitter_title">Chia tiền hóa đơn</string>
+    <string name="app_menu_bill_splitter">Chia tiền hóa đơn</string>
+    <string name="bill_splitter_amount_label">Số tiền hóa đơn</string>
+    <string name="bill_splitter_people_label">Số người</string>
+    <string name="bill_splitter_tip_label">Tiền tip</string>
+    <string name="bill_splitter_total_label">Tổng cộng (gồm tip)</string>
+    <string name="bill_splitter_per_person_label">Mỗi người trả</string>
     <string name="app_menu_show_history">Hiện lịch sử</string>
     <string name="app_menu_hide_history">Ẩn lịch sử</string>
+    <string name="app_menu_theme">Chủ đề</string>
     <string name="app_menu_clear_history">Xóa lịch sử</string>
+    <string name="app_menu_export_history">Xuất lịch sử</string>
+    <string name="export_history_empty">Lịch sử trống, không có gì để xuất</string>
+    <string name="export_history_success">Đã xuất lịch sử</string>
+    <string name="export_history_failed">Xuất lịch sử thất bại</string>
+    <string name="app_menu_import_history">Nhập lịch sử</string>
+    <string name="import_history_success">Đã nhập: %d mục</string>
+    <string name="import_history_skipped">(bỏ qua: %d)</string>
+    <string name="import_history_failed">Nhập lịch sử thất bại: không tìm thấy dòng hợp lệ</string>
+    <string name="import_history_truncated">(tệp quá lớn, giới hạn số dòng: %d)</string>
+    <string name="app_menu_about">Về ứng dụng (Có thể có quảng cáo)</string>
     <string name="theme_system">Hệ thống</string>
+    <string name="theme_amoled">Amoled</string>
+    <string name="theme_light">Sáng</string>
     <string name="theme_dark">Tối</string>
     <string name="theme_sunset">Hoàng hôn</string>
     <string name="theme_ocean">Đại dương</string>
@@ -12,92 +53,70 @@
     <string name="theme_nord">Nord</string>
     <string name="theme_highcontrast">Tương phản cao</string>
     <string name="theme_lavender">Hoa oải hương</string>
+    <string name="value_copied">Đã sao chép</string>
+    <string name="infinity">Vô cực</string>
     <string name="division_by_0">Không thể chia cho 0</string>
-    <string name="domain_error">Lỗi tên miền</string>
+    <string name="domain_error">Lỗi ngoài tập xác định</string>
     <string name="math_error">Lỗi toán học</string>
     <string name="syntax_error">Lỗi cú pháp</string>
-    <string name="app_menu_about">Về ứng dụng (Ads may appear)</string>
-    <string name="app_menu_theme">Chủ đề</string>
-    <string name="infinity">Vô cực</string>
-    <string name="value_copied">Đã sao chép</string>
-    <string name="theme_light">Sáng</string>
-    <string name="theme_amoled">Amoled</string>
+    <string name="error_explain_log_nonpositive">ln/log chỉ xác định khi x > 0</string>
+    <string name="error_explain_tan_singularity">tan không xác định tại đây (cos = 0)</string>
+    <string name="app_menu_settings">Cài đặt (Có thể có quảng cáo)</string>
     <string name="value_too_large">Giá trị quá lớn</string>
-    <string name="app_menu_settings">Cài đặt (Ads may appear)</string>
     <string name="preferences_title">Cài đặt</string>
-    <string name="app_version_title">Phiên bản</string>
-    <string name="send_feedback">Gửi phản hồi</string>
-
-    <!-- New strings for multi-language support -->
-    <!-- Clipboard labels -->
-    <string name="clipboard_label_copied_result">Đã sao chép kết quả</string>
-    <string name="clipboard_label_copied_calc_and_result">Đã sao chép phép tính và kết quả</string>
-
-    <!-- Toast messages -->
-    <string name="toast_double_back_to_exit">Vui lòng nhấn BACK lần nữa để thoát</string>
-
-    <!-- Dialog text -->
-    <string name="dialog_tester_community_title">Xác nhận</string>
-    <string name="dialog_tester_community_message">Nếu bạn cũng là lập trình viên và đang tìm kiếm người kiểm thử cho ứng dụng của mình. Hãy tham gia cộng đồng kiểm thử của chúng tôi ngay bây giờ</string>
-    <string name="dialog_select_language_title">Chọn ngôn ngữ</string>
-    <string name="button_ok">Đồng ý</string>
-    <string name="button_cancel">Hủy</string>
-
-    <!-- Calculator mode indicators -->
-    <string name="degree_mode_deg">DEG</string>
-    <string name="degree_mode_rad">RAD</string>
-
-    <!-- Chooser titles -->
-    <string name="chooser_title_send_feedback">Gửi phản hồi</string>
-    <string name="chooser_title_share">Vui lòng chọn</string>
-    <string name="chooser_title_share_via">Chia sẻ qua</string>
-
-    <!-- Share/Marketing text -->
-    <string name="share_app_message_prefix">\nỨng dụng này rất hữu ích, hãy tải xuống và cài đặt để trải nghiệm\n\n</string>
-    <string name="developer_name">SAIGON PHANTOM LABS</string>
-
-    <!-- Language settings -->
-    <string name="language_system_default">Mặc định hệ thống</string>
-    <string name="preferences_language_summary">Chọn ngôn ngữ ứng dụng</string>
     <string name="preferences_general_category">CHUNG</string>
     <string name="preferences_history_category">LỊCH SỬ</string>
-    <string name="preferences_advanced_category">NÂNG CAO</string>
-    <string name="preferences_vibration_title">Rung</string>
+    <string name="preferences_prevent_phone_from_sleeping_summary">Giữ màn hình luôn bật khi ứng dụng đang chạy ở nền trước</string>
     <string name="preferences_vibration_summary">Rung khi nhấn nút</string>
+    <string name="preferences_history_size">Kết quả được lưu trong lịch sử</string>
+    <string name="preferences_vibration_title">Rung</string>
+    <string name="preferences_prevent_phone_from_sleeping_title">Giữ màn hình luôn sáng</string>
+    <string name="preferences_advanced_category">NÂNG CAO</string>
+    <string name="preferences_scientif_mode_enabled_by_default_summary">Kích hoạt chế độ khoa học theo mặc định</string>
+    <string name="preferences_scientif_mode_enabled_by_default_title">Chế độ khoa học</string>
     <string name="preferences_radians_instead_of_degrees_by_default_title">Radian</string>
     <string name="preferences_radians_instead_of_degrees_by_default_summary">Sử dụng radian thay vì độ theo mặc định</string>
-    <string name="preferences_scientif_mode_enabled_by_default_title">Chế độ khoa học</string>
-    <string name="preferences_scientif_mode_enabled_by_default_summary">Kích hoạt chế độ khoa học theo mặc định</string>
-    <string name="preferences_number_precision">Số chữ số thập phân</string>
-    <string name="preferences_history_size">Kết quả được lưu trong lịch sử</string>
-    <string name="preferences_prevent_phone_from_sleeping_title">Ngăn điện thoại ngủ</string>
-    <string name="preferences_prevent_phone_from_sleeping_summary">Ngăn điện thoại ngủ khi ứng dụng đang chạy</string>
     <string name="about_help_us_category">HỖ TRỢ CHÚNG TÔI</string>
     <string name="about_other_category">KHÁC</string>
     <string name="about_rate">Đánh giá ứng dụng này</string>
+    <string name="app_version_title">Phiên bản</string>
+    <string name="thanks_for_using_app">Cảm ơn bạn đã sử dụng Máy tính ❤️</string>
+    <string name="preferences_number_precision">Số chữ số thập phân</string>
+    <string name="privacy_policy">Chính sách bảo mật</string>
     <string name="about_title">Về ứng dụng</string>
     <string name="preferences_language_title">Ngôn ngữ</string>
     <string name="get_more_apps">Xem thêm ứng dụng</string>
     <string name="share_this_app">Chia sẻ ứng dụng này</string>
-    <string name="privacy_policy">Chính sách bảo mật</string>
-    <string name="github">Mã nguồn (Forked)</string>
-    <string name="source_code">Mã nguồn (Original)</string>
+    <string name="github">Mã nguồn (Bản phân nhánh)</string>
+    <string name="source_code">Mã nguồn (Bản gốc)</string>
     <string name="license">Giấy phép</string>
     <string name="join_tester_community">Tham gia cộng đồng kiểm thử</string>
-    <string name="thanks_for_using_app">Cảm ơn bạn đã sử dụng Máy tính ❤️</string>
-    <string name="deg">DEG</string>
-    <string name="_45">45</string>
+    <string name="send_feedback">Gửi phản hồi</string>
+    <string name="clipboard_label_copied_result">Đã sao chép kết quả</string>
+    <string name="clipboard_label_copied_calc_and_result">Đã sao chép phép tính và kết quả</string>
+    <string name="history_entry_deleted">Đã xóa mục lịch sử</string>
+    <string name="undo">Hoàn tác</string>
+    <string name="toast_double_back_to_exit">Vui lòng nhấn BACK lần nữa để thoát</string>
+    <string name="dialog_tester_community_title">Xác nhận</string>
+    <string name="dialog_tester_community_message">Nếu bạn cũng là lập trình viên và đang tìm kiếm người kiểm thử cho ứng dụng của mình, hãy tham gia cộng đồng kiểm thử của chúng tôi ngay bây giờ.</string>
+    <string name="dialog_select_language_title">Chọn ngôn ngữ</string>
+    <string name="button_ok">Đồng ý</string>
+    <string name="button_cancel">Hủy</string>
+    <string name="chooser_title_send_feedback">Gửi phản hồi</string>
+    <string name="chooser_title_share">Vui lòng chọn</string>
+    <string name="chooser_title_share_via">Chia sẻ qua</string>
+    <string name="share_app_message_prefix">
+Ứng dụng này rất hữu ích, hãy tải xuống và cài đặt để trải nghiệm
 
-    <!-- VIP -->
-    <string name="vip_screen_title">VIP</string>
-    <string name="vip_badge">VIP</string>
+</string>
+    <string name="language_system_default">Mặc định hệ thống</string>
+    <string name="preferences_language_summary">Chọn ngôn ngữ ứng dụng</string>
     <string name="vip_active">VIP đang kích hoạt</string>
     <string name="vip_free_user">Người dùng miễn phí</string>
     <string name="vip_subtitle_free">Mở khoá trải nghiệm không quảng cáo</string>
     <string name="vip_until">Đến %1$s</string>
     <string name="vip_activated_at">Kích hoạt: %1$s</string>
     <string name="vip_expires_at">Hết hạn: %1$s</string>
-    <string name="vip_remaining">%1$dd %2$02dh %3$02dm %4$02ds</string>
     <string name="vip_active_remaining">Còn lại: %1$dd %2$dh</string>
     <string name="vip_redeem_label">Nhập mã VIP</string>
     <string name="vip_redeem_button">Kích hoạt</string>
@@ -115,12 +134,12 @@
     <string name="vip_entry_redeemed">VIP %1$d ngày</string>
     <string name="vip_success_title">Thành công</string>
     <string name="vip_failed_title">Thất bại</string>
-
-    <!-- Common -->
     <string name="back">Quay lại</string>
-    <string name="cancel">Huỷ</string>
+    <string name="cancel">Hủy</string>
     <string name="confirm">Xác nhận</string>
     <string name="ok">OK</string>
+    <string name="action_copy">Sao chép</string>
+    <string name="action_share">Chia sẻ</string>
     <string name="vip_reward_not_earned">Chưa nhận được thưởng. Vui lòng thử lại sau.</string>
     <string name="vip_success_message">Chúc mừng! Đã kích hoạt VIP %1$d ngày. Tận hưởng trải nghiệm không quảng cáo nhé.</string>
 </resources>

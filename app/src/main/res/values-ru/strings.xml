@@ -1,15 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name_display">Калькулятор</string>
-    <string name="infinity">Бесконечность</string>
-    <!-- Меню приложения -->
+    <string name="backspace">Возврат</string>
+    <string name="dialog_physical_constant_title">Вставить физическую константу</string>
+    <string name="cd_toggle_scientific_mode">Переключить научные функции</string>
+    <string name="cd_parentheses">Скобки</string>
+    <string name="cd_exponent">Степень</string>
+    <string name="cd_divide">Разделить</string>
+    <string name="cd_multiply">Умножить</string>
+    <string name="cd_subtract">Вычесть</string>
+    <string name="cd_add">Сложить</string>
+    <string name="cd_decimal_point">Десятичная точка</string>
+    <string name="cd_equals">Равно</string>
+    <string name="cd_more_options">Дополнительные параметры</string>
+    <string name="cd_pin_history">Закрепить это вычисление, чтобы сохранить его при очистке истории</string>
+    <string name="hint_search_history">Поиск по истории</string>
+    <string name="base_converter_title">Конвертер систем счисления</string>
+    <string name="app_menu_base_converter">Конвертер систем счисления</string>
+    <string name="base_converter_hint">Введите число в любой системе счисления — остальные обновятся автоматически</string>
+    <string name="base_converter_dec">DEC (10-ичная)</string>
+    <string name="base_converter_hex">HEX (16-ричная)</string>
+    <string name="base_converter_oct">OCT (8-ричная)</string>
+    <string name="base_converter_bin">BIN (2-ичная)</string>
+    <string name="bill_splitter_title">Разделение счёта</string>
+    <string name="app_menu_bill_splitter">Разделение счёта</string>
+    <string name="bill_splitter_amount_label">Сумма счёта</string>
+    <string name="bill_splitter_people_label">Количество человек</string>
+    <string name="bill_splitter_tip_label">Чаевые</string>
+    <string name="bill_splitter_total_label">Итого (с чаевыми)</string>
+    <string name="bill_splitter_per_person_label">С каждого человека</string>
     <string name="app_menu_show_history">Показать историю</string>
     <string name="app_menu_hide_history">Скрыть историю</string>
     <string name="app_menu_theme">Тема</string>
-    <string name="app_menu_clear_history">Очистить Историю</string>
-    <string name="app_menu_about">О приложении (Ads may appear)</string>
-    <!-- Другое -->
-    <string name="value_copied">Скопировано</string>
+    <string name="app_menu_clear_history">Очистить историю</string>
+    <string name="app_menu_export_history">Экспорт истории</string>
+    <string name="export_history_empty">История пуста, нечего экспортировать</string>
+    <string name="export_history_success">История экспортирована</string>
+    <string name="export_history_failed">Не удалось экспортировать историю</string>
+    <string name="app_menu_import_history">Импорт истории</string>
+    <string name="import_history_success">Импортировано записей: %d</string>
+    <string name="import_history_skipped">(пропущено: %d)</string>
+    <string name="import_history_failed">Ошибка импорта истории: нет корректных строк</string>
+    <string name="import_history_truncated">(файл слишком велик, лимит строк: %d)</string>
+    <string name="app_menu_about">О приложении (Может содержать рекламу)</string>
+    <string name="theme_system">Системная</string>
+    <string name="theme_amoled">AMOLED</string>
     <string name="theme_light">Светлая</string>
     <string name="theme_dark">Тёмная</string>
     <string name="theme_sunset">Закат</string>
@@ -18,89 +53,70 @@
     <string name="theme_nord">Nord</string>
     <string name="theme_highcontrast">Высокий контраст</string>
     <string name="theme_lavender">Лаванда</string>
+    <string name="value_copied">Скопировано</string>
+    <string name="infinity">Бесконечность</string>
     <string name="division_by_0">Нельзя разделить на 0</string>
+    <string name="domain_error">Ошибка области определения</string>
     <string name="math_error">Математическая ошибка</string>
     <string name="syntax_error">Синтаксическая ошибка</string>
-    <string name="theme_system">Системная</string>
-    <string name="theme_amoled">Чёрная</string>
-    <string name="domain_error">Ошибка домена</string>
-    <string name="app_menu_settings">Настройки (Ads may appear)</string>
+    <string name="error_explain_log_nonpositive">ln/log определен только для x > 0</string>
+    <string name="error_explain_tan_singularity">tan не определен здесь (cos = 0)</string>
+    <string name="app_menu_settings">Настройки (Может содержать рекламу)</string>
     <string name="value_too_large">Значение очень большое</string>
     <string name="preferences_title">Настройки</string>
     <string name="preferences_general_category">ОСНОВНЫЕ</string>
+    <string name="preferences_history_category">ИСТОРИЯ</string>
+    <string name="preferences_prevent_phone_from_sleeping_summary">Предотвращать отключение экрана во время работы приложения</string>
+    <string name="preferences_vibration_summary">Вибрация при нажатии кнопок</string>
+    <string name="preferences_history_size">Количество результатов, сохраняемых в истории</string>
     <string name="preferences_vibration_title">Вибрация</string>
-    <string name="preferences_prevent_phone_from_sleeping_title">Предотвращать телефон от сна</string>
+    <string name="preferences_prevent_phone_from_sleeping_title">Не выключать экран</string>
+    <string name="preferences_advanced_category">РАСШИРЕННЫЕ</string>
+    <string name="preferences_scientif_mode_enabled_by_default_summary">Активировать научный режим по умолчанию</string>
     <string name="preferences_scientif_mode_enabled_by_default_title">Научный режим</string>
     <string name="preferences_radians_instead_of_degrees_by_default_title">Радианы</string>
     <string name="preferences_radians_instead_of_degrees_by_default_summary">Использовать радианы вместо градусов по умолчанию</string>
-    <string name="preferences_advanced_category">РАСШИРЕННЫЕ</string>
     <string name="about_help_us_category">ПОМОЧЬ НАМ</string>
     <string name="about_other_category">ПРОЧЕЕ</string>
     <string name="about_rate">Оценить приложение</string>
     <string name="app_version_title">Версия</string>
-    <string name="thanks_for_using_app">Спасибо за использование Calculator ❤️</string>
+    <string name="thanks_for_using_app">Спасибо за использование Калькулятора ❤️</string>
+    <string name="preferences_number_precision">Количество десятичных знаков</string>
     <string name="privacy_policy">Политика конфиденциальности</string>
     <string name="about_title">О приложении</string>
-    <string name="preferences_vibration_summary">Вибрация при нажатии кнопок</string>
-    <string name="preferences_history_size">Количество результатов, сохраняемых в истории</string>
-    <string name="preferences_scientif_mode_enabled_by_default_summary">Активировать научный режим по умолчанию</string>
     <string name="preferences_language_title">Язык</string>
-    <string name="preferences_number_precision">Количество десятичных разрядов</string>
-    <string name="preferences_history_category">ИСТОРИЯ</string>
-    <string name="preferences_prevent_phone_from_sleeping_summary">Предотвратить телефон от спящего режима, пока открыто приложение</string>
-    <string name="send_feedback">Отправить отзыв</string>
-
-    <!-- Clipboard labels -->
-    <string name="clipboard_label_copied_result">Результат скопирован</string>
-    <string name="clipboard_label_copied_calc_and_result">Вычисление и результат скопированы</string>
-
-    <!-- Toast messages -->
-    <string name="toast_double_back_to_exit">Пожалуйста, нажмите НАЗАД снова, чтобы выйти</string>
-
-    <!-- Dialog text -->
-    <string name="dialog_tester_community_title">Подтвердить</string>
-    <string name="dialog_tester_community_message">Если вы также программист и ищете тестировщиков для тестирования вашего приложения. Присоединяйтесь к нашему сообществу тестировщиков прямо сейчас</string>
-    <string name="dialog_select_language_title">Выберите язык</string>
-    <string name="button_ok">ОК</string>
-    <string name="button_cancel">Отмена</string>
-
-    <!-- Calculator mode indicators -->
-    <string name="degree_mode_deg">DEG</string>
-    <string name="degree_mode_rad">RAD</string>
-
-    <!-- Chooser titles -->
-    <string name="chooser_title_send_feedback">Отправить отзыв</string>
-    <string name="chooser_title_share">Пожалуйста, выберите</string>
-    <string name="chooser_title_share_via">Поделиться через</string>
-
-    <!-- Share/Marketing text -->
-    <string name="share_app_message_prefix">\nЭто приложение очень полезно, пожалуйста, загрузите и установите, чтобы попробовать\n\n</string>
-    <string name="developer_name">SAIGON PHANTOM LABS</string>
-
-    <!-- Language settings -->
-    <string name="language_system_default">Системный по умолчанию</string>
-    <string name="preferences_language_summary">Выберите язык приложения</string>
-
-    <!-- Missing strings -->
-    <string name="deg">DEG</string>
-    <string name="_45">45</string>
     <string name="get_more_apps">Получить больше приложений</string>
     <string name="share_this_app">Поделиться этим приложением</string>
-    <string name="github">Исходный код (Forked)</string>
+    <string name="github">Исходный код (Fork)</string>
     <string name="source_code">Исходный код (Original)</string>
     <string name="license">Лицензия</string>
     <string name="join_tester_community">Присоединиться к сообществу тестировщиков</string>
+    <string name="send_feedback">Отправить отзыв</string>
+    <string name="clipboard_label_copied_result">Результат скопирован</string>
+    <string name="clipboard_label_copied_calc_and_result">Вычисление и результат скопированы</string>
+    <string name="history_entry_deleted">Запись истории удалена</string>
+    <string name="undo">Отменить</string>
+    <string name="toast_double_back_to_exit">Пожалуйста, нажмите НАЗАД снова, чтобы выйти</string>
+    <string name="dialog_tester_community_title">Подтвердить</string>
+    <string name="dialog_tester_community_message">Если вы также разработчик и ищете тестировщиков для своего приложения, присоединяйтесь к нашему сообществу прямо сейчас!</string>
+    <string name="dialog_select_language_title">Выберите язык</string>
+    <string name="button_ok">ОК</string>
+    <string name="button_cancel">Отмена</string>
+    <string name="chooser_title_send_feedback">Отправить отзыв</string>
+    <string name="chooser_title_share">Пожалуйста, выберите</string>
+    <string name="chooser_title_share_via">Поделиться через</string>
+    <string name="share_app_message_prefix">
+Это приложение очень полезно, пожалуйста, загрузите и установите его:
 
-    <!-- VIP -->
-    <string name="vip_screen_title">VIP</string>
-    <string name="vip_badge">VIP</string>
+</string>
+    <string name="language_system_default">Системный по умолчанию</string>
+    <string name="preferences_language_summary">Выберите язык приложения</string>
     <string name="vip_active">VIP активен</string>
     <string name="vip_free_user">Бесплатный пользователь</string>
     <string name="vip_subtitle_free">Откройте доступ без рекламы</string>
     <string name="vip_until">До %1$s</string>
     <string name="vip_activated_at">Активировано: %1$s</string>
     <string name="vip_expires_at">Истекает: %1$s</string>
-    <string name="vip_remaining">%1$dd %2$02dh %3$02dm %4$02ds</string>
     <string name="vip_active_remaining">Осталось: %1$dd %2$dh</string>
     <string name="vip_redeem_label">Введите VIP-код</string>
     <string name="vip_redeem_button">Активировать</string>
@@ -122,6 +138,8 @@
     <string name="cancel">Отмена</string>
     <string name="confirm">Подтвердить</string>
     <string name="ok">OK</string>
+    <string name="action_copy">Копировать</string>
+    <string name="action_share">Поделиться</string>
     <string name="vip_reward_not_earned">Награда не получена. Повторите попытку позже.</string>
     <string name="vip_success_message">Поздравляем! VIP активирован на %1$d дн. Наслаждайтесь использованием без рекламы.</string>
 </resources>

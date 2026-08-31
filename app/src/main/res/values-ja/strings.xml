@@ -1,125 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name_display">電卓</string>
+    <string name="backspace">バックスペース</string>
+    <string name="dialog_physical_constant_title">物理定数を挿入</string>
+    <string name="cd_toggle_scientific_mode">関数電卓機能の切り替え</string>
+    <string name="cd_parentheses">括弧</string>
+    <string name="cd_exponent">指数</string>
+    <string name="cd_divide">除算</string>
+    <string name="cd_multiply">乗算</string>
+    <string name="cd_subtract">減算</string>
+    <string name="cd_add">加算</string>
+    <string name="cd_decimal_point">小数点</string>
+    <string name="cd_equals">イコール</string>
+    <string name="cd_more_options">その他のオプション</string>
+    <string name="cd_pin_history">履歴消去時に残すようこの計算をピン留め</string>
+    <string name="hint_search_history">履歴を検索</string>
+    <string name="base_converter_title">基数変換</string>
+    <string name="app_menu_base_converter">基数変換</string>
+    <string name="base_converter_hint">任意の基数で数値を入力 — 他の基数も自動更新されます</string>
+    <string name="base_converter_dec">DEC (10進数)</string>
+    <string name="base_converter_hex">HEX (16進数)</string>
+    <string name="base_converter_oct">OCT (8進数)</string>
+    <string name="base_converter_bin">BIN (2進数)</string>
+    <string name="bill_splitter_title">割り勘計算</string>
+    <string name="app_menu_bill_splitter">割り勘計算</string>
+    <string name="bill_splitter_amount_label">請求金額</string>
+    <string name="bill_splitter_people_label">人数</string>
+    <string name="bill_splitter_tip_label">チップ</string>
+    <string name="bill_splitter_total_label">合計 (チップ込)</string>
+    <string name="bill_splitter_per_person_label">1人あたりの支払額</string>
     <string name="app_menu_show_history">履歴を表示</string>
     <string name="app_menu_hide_history">履歴を非表示</string>
     <string name="app_menu_theme">テーマ</string>
-    <string name="app_menu_about">About (Ads may appear)</string>
-    <string name="infinity">無限大</string>
-    <string name="app_menu_settings">設定 (Ads may appear)</string>
-    <string name="theme_sunset">サンセット</string>
+    <string name="app_menu_clear_history">履歴を消去</string>
+    <string name="app_menu_export_history">履歴をエクスポート</string>
+    <string name="export_history_empty">履歴が空のためエクスポートできません</string>
+    <string name="export_history_success">履歴をエクスポートしました</string>
+    <string name="export_history_failed">履歴のエクスポートに失敗しました</string>
+    <string name="app_menu_import_history">履歴をインポート</string>
+    <string name="import_history_success">インポート完了: %d 件</string>
+    <string name="import_history_skipped">(スキップ: %d 件)</string>
+    <string name="import_history_failed">インポート失敗: 有効な行が見つかりません</string>
+    <string name="import_history_truncated">(ファイルが大きすぎます、上限: %d 行)</string>
+    <string name="app_menu_about">アプリ情報 (広告が表示される場合があります)</string>
+    <string name="theme_system">システム準拠</string>
+    <string name="theme_amoled">AMOLED</string>
+    <string name="theme_light">ライト</string>
+    <string name="theme_dark">ダーク</string>
+    <string name="theme_sunset">夕焼け</string>
     <string name="theme_ocean">オーシャン</string>
     <string name="theme_forest">フォレスト</string>
     <string name="theme_nord">Nord</string>
     <string name="theme_highcontrast">ハイコントラスト</string>
     <string name="theme_lavender">ラベンダー</string>
-    <string name="preferences_history_category">履歴</string>
-    <string name="preferences_general_category">全般</string>
-    <string name="preferences_radians_instead_of_degrees_by_default_title">ラジアン</string>
-    <string name="about_help_us_category">手を貸して下さい</string>
-    <string name="about_other_category">その他</string>
-    <string name="about_rate">このアプリを評価する</string>
-    <string name="app_version_title">バージョン</string>
-    <string name="thanks_for_using_app">OpenCalc をご利用いただきありがとうございます❤️</string>
-    <string name="privacy_policy">個人情報保護方針</string>
-    <string name="preferences_scientif_mode_enabled_by_default_summary">デフォルトで科学モードを有効にする</string>
-    <string name="preferences_history_size">結果を履歴に残す</string>
-    <string name="preferences_language_title">言語</string>
-    <string name="value_too_large">値が大きすぎます</string>
-    <string name="division_by_0">0 で割り切れない</string>
-    <string name="math_error">数学エラー</string>
-    <string name="domain_error">ドメインエラー</string>
-    <string name="value_copied">コピーした</string>
-    <string name="theme_amoled">アモルデッド</string>
-    <string name="preferences_radians_instead_of_degrees_by_default_summary">デフォルトで度(° )ではなくラジアン(rad)を使用する</string>
-    <string name="preferences_scientif_mode_enabled_by_default_title">科学モード</string>
-    <string name="preferences_advanced_category">アドバンスド</string>
-    <string name="preferences_prevent_phone_from_sleeping_title">スマホがスリープしないようにする</string>
-    <string name="preferences_title">設定</string>
-    <string name="preferences_vibration_title">バイブレーション</string>
-    <string name="preferences_vibration_summary">ボタンが押されたときに振動する</string>
-    <string name="preferences_prevent_phone_from_sleeping_summary">アプリがフォアグラウンドにある間は、スマホがスリープしないようにする</string>
+    <string name="value_copied">コピーしました</string>
+    <string name="infinity">無限大</string>
+    <string name="division_by_0">0 で割ることはできません</string>
+    <string name="domain_error">定義域エラー</string>
+    <string name="math_error">計算エラー</string>
     <string name="syntax_error">構文エラー</string>
-    <string name="about_title">About</string>
-    <string name="theme_dark">ダーク</string>
-    <string name="theme_system">システム</string>
-    <string name="theme_light">ライト</string>
+    <string name="error_explain_log_nonpositive">ln/log は x > 0 でのみ定義されます</string>
+    <string name="error_explain_tan_singularity">tan はこの値で定義されていません (cos = 0)</string>
+    <string name="app_menu_settings">設定 (広告が表示される場合があります)</string>
+    <string name="value_too_large">数値が大きすぎます</string>
+    <string name="preferences_title">設定</string>
+    <string name="preferences_general_category">一般</string>
+    <string name="preferences_history_category">履歴</string>
+    <string name="preferences_prevent_phone_from_sleeping_summary">アプリ使用中は画面の自動消灯を防止します</string>
+    <string name="preferences_vibration_summary">ボタンを押したときに振動する</string>
+    <string name="preferences_history_size">履歴に保存する件数</string>
+    <string name="preferences_vibration_title">バイブレーション</string>
+    <string name="preferences_prevent_phone_from_sleeping_title">画面の自動消灯を防止</string>
+    <string name="preferences_advanced_category">詳細設定</string>
+    <string name="preferences_scientif_mode_enabled_by_default_summary">起動時に関数電卓モードを有効にする</string>
+    <string name="preferences_scientif_mode_enabled_by_default_title">関数電卓モード</string>
+    <string name="preferences_radians_instead_of_degrees_by_default_title">ラジアン</string>
+    <string name="preferences_radians_instead_of_degrees_by_default_summary">度 (DEG) の代わりにラジアン (RAD) をデフォルトで使用</string>
+    <string name="about_help_us_category">サポート</string>
+    <string name="about_other_category">その他</string>
+    <string name="about_rate">アプリを評価する</string>
+    <string name="app_version_title">バージョン</string>
+    <string name="thanks_for_using_app">電卓をご利用いただきありがとうございます ❤️</string>
     <string name="preferences_number_precision">小数点以下の桁数</string>
-    <string name="app_menu_clear_history">履歴を削除</string>
+    <string name="privacy_policy">プライバシーポリシー</string>
+    <string name="about_title">アプリについて</string>
+    <string name="preferences_language_title">言語</string>
+    <string name="get_more_apps">他のアプリを見る</string>
+    <string name="share_this_app">このアプリを共有</string>
+    <string name="github">ソースコード (Fork版)</string>
+    <string name="source_code">ソースコード (オリジナル)</string>
+    <string name="license">ライセンス</string>
+    <string name="join_tester_community">テスターコミュニティに参加</string>
     <string name="send_feedback">フィードバックを送信</string>
-
-    <!-- Clipboard labels -->
-    <string name="clipboard_label_copied_result">結果をコピーしました</string>
-    <string name="clipboard_label_copied_calc_and_result">計算と結果をコピーしました</string>
-
-    <!-- Toast messages -->
-    <string name="toast_double_back_to_exit">終了するには、もう一度「戻る」をクリックしてください</string>
-
-    <!-- Dialog text -->
+    <string name="clipboard_label_copied_result">コピーされた計算結果</string>
+    <string name="clipboard_label_copied_calc_and_result">コピーされた計算式と結果</string>
+    <string name="history_entry_deleted">履歴項目を削除しました</string>
+    <string name="undo">元に戻す</string>
+    <string name="toast_double_back_to_exit">もう一度「戻る」を押すと終了します</string>
     <string name="dialog_tester_community_title">確認</string>
-    <string name="dialog_tester_community_message">あなたもプログラマーで、アプリケーションをテストするテスターを探している場合。今すぐテスターコミュニティに参加してください</string>
+    <string name="dialog_tester_community_message">あなたがプログラマーでアプリのテスターを探しているなら、今すぐテスターコミュニティに参加してください。</string>
     <string name="dialog_select_language_title">言語を選択</string>
     <string name="button_ok">OK</string>
     <string name="button_cancel">キャンセル</string>
-
-    <!-- Calculator mode indicators -->
-    <string name="degree_mode_deg">DEG</string>
-    <string name="degree_mode_rad">RAD</string>
-
-    <!-- Chooser titles -->
     <string name="chooser_title_send_feedback">フィードバックを送信</string>
     <string name="chooser_title_share">選択してください</string>
     <string name="chooser_title_share_via">共有方法</string>
+    <string name="share_app_message_prefix">
+とても便利な電卓アプリです。ぜひダウンロードしてお試しください：
 
-    <!-- Share/Marketing text -->
-    <string name="share_app_message_prefix">\nこのアプリケーションは非常に便利です。ダウンロードしてインストールして体験してください\n\n</string>
-    <string name="developer_name">SAIGON PHANTOM LABS</string>
-
-    <!-- Language settings -->
-    <string name="language_system_default">システムのデフォルト</string>
-    <string name="preferences_language_summary">アプリの言語を選択</string>
-
-    <!-- Missing strings -->
-    <string name="deg">DEG</string>
-    <string name="_45">45</string>
-    <string name="get_more_apps">他のアプリを取得</string>
-    <string name="share_this_app">このアプリを共有</string>
-    <string name="github">ソースコード (Forked)</string>
-    <string name="source_code">ソースコード (Original)</string>
-    <string name="license">ライセンス</string>
-    <string name="join_tester_community">テスターコミュニティに参加</string>
-
-    <!-- VIP -->
-    <string name="vip_screen_title">VIP</string>
-    <string name="vip_badge">VIP</string>
-    <string name="vip_active">VIP 有効</string>
+</string>
+    <string name="language_system_default">システム標準</string>
+    <string name="preferences_language_summary">アプリの表示言語を選択</string>
+    <string name="vip_active">VIP 有効中</string>
     <string name="vip_free_user">無料ユーザー</string>
-    <string name="vip_subtitle_free">広告なしの体験を解放</string>
+    <string name="vip_subtitle_free">広告なしの快適な体験をアンロック</string>
     <string name="vip_until">%1$s まで</string>
-    <string name="vip_activated_at">有効化: %1$s</string>
-    <string name="vip_expires_at">期限: %1$s</string>
-    <string name="vip_remaining">%1$dd %2$02dh %3$02dm %4$02ds</string>
-    <string name="vip_active_remaining">残り: %1$dd %2$dh</string>
-    <string name="vip_redeem_label">VIPコードを入力</string>
+    <string name="vip_activated_at">有効化日時: %1$s</string>
+    <string name="vip_expires_at">有効期限: %1$s</string>
+    <string name="vip_active_remaining">残り期間: %1$dd %2$dh</string>
+    <string name="vip_redeem_label">VIP コードを入力</string>
     <string name="vip_redeem_button">有効化</string>
-    <string name="vip_redeem_invalid">無効なVIPコード</string>
-    <string name="vip_watch_ad_3d">広告を見る → VIP 3日間</string>
-    <string name="vip_buy_30d_locked">VIP 30日を購入 — 近日公開</string>
-    <string name="vip_buy_90d_locked">VIP 90日を購入 — 近日公開</string>
-    <string name="vip_buy_1y_locked">VIP 1年を購入 — 近日公開</string>
-    <string name="vip_buy_lifetime_locked">VIP 無期限を購入 — 近日公開</string>
+    <string name="vip_redeem_invalid">無効な VIP コードです</string>
+    <string name="vip_watch_ad_3d">広告を見る → 3日間 VIP</string>
+    <string name="vip_buy_30d_locked">30日間 VIP を購入 — 近日公開</string>
+    <string name="vip_buy_90d_locked">90日間 VIP を購入 — 近日公開</string>
+    <string name="vip_buy_1y_locked">1年間 VIP を購入 — 近日公開</string>
+    <string name="vip_buy_lifetime_locked">永久 VIP を購入 — 近日公開</string>
     <string name="vip_restore_locked">購入を復元 — 近日公開</string>
-    <string name="vip_revoke_all_button">VIPを取り消す</string>
-    <string name="vip_revoke_all_confirm_title">取り消しの確認</string>
-    <string name="vip_revoke_all_confirm_message">VIPを取り消して無料アカウントに戻しますか？</string>
+    <string name="vip_revoke_all_button">VIP を解除</string>
+    <string name="vip_revoke_all_confirm_title">解除の確認</string>
+    <string name="vip_revoke_all_confirm_message">VIP を解除して無料アカウントに戻しますか？</string>
     <string name="vip_entry_first_install">🎁 新規インストール特典</string>
-    <string name="vip_entry_redeemed">VIP %1$d日</string>
+    <string name="vip_entry_redeemed">VIP %1$d 日間</string>
     <string name="vip_success_title">成功</string>
     <string name="vip_failed_title">失敗</string>
     <string name="back">戻る</string>
     <string name="cancel">キャンセル</string>
     <string name="confirm">確認</string>
     <string name="ok">OK</string>
-    <string name="vip_reward_not_earned">報酬を獲得できませんでした。後でもう一度お試しください。</string>
-    <string name="vip_success_message">おめでとうございます！VIPを%1$d日間有効化しました。広告なしでお楽しみください。</string>
+    <string name="action_copy">コピー</string>
+    <string name="action_share">共有</string>
+    <string name="vip_reward_not_earned">リワードを獲得できませんでした。後でもう一度お試しください。</string>
+    <string name="vip_success_message">おめでとうございます！ %1$d 日間の VIP が有効になりました。広告なしでお楽しみください。</string>
 </resources>

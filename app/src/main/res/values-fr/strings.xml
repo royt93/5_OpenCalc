@@ -1,37 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name_display">Calculatrice</string>
+    <string name="backspace">Retour arrière</string>
+    <string name="dialog_physical_constant_title">Insérer une constante physique</string>
+    <string name="cd_toggle_scientific_mode">Basculer les fonctions scientifiques</string>
+    <string name="cd_parentheses">Parenthèses</string>
+    <string name="cd_exponent">Exposant</string>
+    <string name="cd_divide">Diviser</string>
+    <string name="cd_multiply">Multiplier</string>
+    <string name="cd_subtract">Soustraire</string>
+    <string name="cd_add">Ajouter</string>
+    <string name="cd_decimal_point">Point décimal</string>
+    <string name="cd_equals">Égal</string>
+    <string name="cd_more_options">Plus d\'options</string>
+    <string name="cd_pin_history">Épingler ce calcul pour le conserver lors du nettoyage de l\'historique</string>
+    <string name="hint_search_history">Rechercher dans l\'historique</string>
+    <string name="base_converter_title">Convertisseur de base</string>
+    <string name="app_menu_base_converter">Convertisseur de base</string>
+    <string name="base_converter_hint">Tapez un nombre dans n\'importe quelle base — les autres sont mises à jour automatiquement</string>
+    <string name="base_converter_dec">DEC (base 10)</string>
+    <string name="base_converter_hex">HEX (base 16)</string>
+    <string name="base_converter_oct">OCT (base 8)</string>
+    <string name="base_converter_bin">BIN (base 2)</string>
+    <string name="bill_splitter_title">Partage d\'addition</string>
+    <string name="app_menu_bill_splitter">Partage d\'addition</string>
+    <string name="bill_splitter_amount_label">Montant de l\'addition</string>
+    <string name="bill_splitter_people_label">Nombre de personnes</string>
+    <string name="bill_splitter_tip_label">Pourboire</string>
+    <string name="bill_splitter_total_label">Total (pourboire inclus)</string>
+    <string name="bill_splitter_per_person_label">Chaque personne paie</string>
     <string name="app_menu_show_history">Afficher l\'historique</string>
     <string name="app_menu_hide_history">Masquer l\'historique</string>
     <string name="app_menu_theme">Thème</string>
-    <string name="app_menu_about">À propos (Ads may appear)</string>
-    <string name="infinity">Infini</string>
     <string name="app_menu_clear_history">Supprimer l\'historique</string>
-    <string name="value_copied">Copié</string>
+    <string name="app_menu_export_history">Exporter l\'historique</string>
+    <string name="export_history_empty">L\'historique est vide, rien à exporter</string>
+    <string name="export_history_success">Historique exporté</string>
+    <string name="export_history_failed">Échec de l\'exportation de l\'historique</string>
+    <string name="app_menu_import_history">Importer l\'historique</string>
+    <string name="import_history_success">Entrées importées : %d</string>
+    <string name="import_history_skipped">(ignorées : %d)</string>
+    <string name="import_history_failed">Échec de l\'importation de l\'historique : aucune ligne valide trouvée</string>
+    <string name="import_history_truncated">(fichier trop volumineux, limite : %d lignes)</string>
+    <string name="app_menu_about">À propos (Peut contenir des annonces)</string>
     <string name="theme_system">Système</string>
+    <string name="theme_amoled">Amoled</string>
     <string name="theme_light">Clair</string>
     <string name="theme_dark">Sombre</string>
-    <string name="theme_amoled">Amoled</string>
     <string name="theme_sunset">Coucher de soleil</string>
     <string name="theme_ocean">Océan</string>
     <string name="theme_forest">Forêt</string>
     <string name="theme_nord">Nord</string>
     <string name="theme_highcontrast">Contraste élevé</string>
     <string name="theme_lavender">Lavande</string>
-    <string name="math_error">Erreur mathématique</string>
+    <string name="value_copied">Copié</string>
+    <string name="infinity">Infini</string>
     <string name="division_by_0">Division par 0 impossible</string>
-    <string name="domain_error">Erreur de domaine</string>
+    <string name="domain_error">Erreur de domaine de définition</string>
+    <string name="math_error">Erreur mathématique</string>
     <string name="syntax_error">Erreur de syntaxe</string>
-    <string name="value_too_large">valeur trop grande</string>
-    <string name="app_menu_settings">Paramètres (Ads may appear)</string>
-    <string name="preferences_general_category">GÉNÉRAL</string>
-    <string name="preferences_prevent_phone_from_sleeping_summary">Empêcher le telephone de se mettre en veille pendant l\'utilisation de l\'application</string>
-    <string name="preferences_vibration_summary">Émettre des vibrations lorsqu\'un bouton est pressé</string>
+    <string name="error_explain_log_nonpositive">ln/log n\'est défini que pour x > 0</string>
+    <string name="error_explain_tan_singularity">tan n\'est pas défini ici (cos = 0)</string>
+    <string name="app_menu_settings">Paramètres (Peut contenir des annonces)</string>
+    <string name="value_too_large">Valeur trop grande</string>
     <string name="preferences_title">Paramètres</string>
+    <string name="preferences_general_category">GÉNÉRAL</string>
     <string name="preferences_history_category">HISTORIQUE</string>
+    <string name="preferences_prevent_phone_from_sleeping_summary">Empêcher le téléphone de se mettre en veille pendant l\'utilisation de l\'application</string>
+    <string name="preferences_vibration_summary">Émettre des vibrations lorsqu\'un bouton est pressé</string>
     <string name="preferences_history_size">Résultats sauvegardés dans l\'historique</string>
     <string name="preferences_vibration_title">Vibrations</string>
-    <string name="preferences_prevent_phone_from_sleeping_title">Empêcher le téléphone de se mettre en veille</string>
+    <string name="preferences_prevent_phone_from_sleeping_title">Garder l\'écran allumé</string>
     <string name="preferences_advanced_category">AVANCÉ</string>
     <string name="preferences_scientif_mode_enabled_by_default_summary">Activer le mode scientifique par défaut</string>
     <string name="preferences_scientif_mode_enabled_by_default_title">Mode scientifique</string>
@@ -41,64 +80,43 @@
     <string name="about_other_category">AUTRE</string>
     <string name="about_rate">Évaluer cette application</string>
     <string name="app_version_title">Version</string>
-    <string name="thanks_for_using_app">Merci d\'utiliser Calculator ❤️</string>
-    <string name="privacy_policy">Politique de confidentialité</string>
+    <string name="thanks_for_using_app">Merci d\'utiliser Calculatrice ❤️</string>
     <string name="preferences_number_precision">Nombre de chiffres après la virgule</string>
+    <string name="privacy_policy">Politique de confidentialité</string>
     <string name="about_title">À propos</string>
     <string name="preferences_language_title">Langue</string>
-    <string name="send_feedback">Envoyer des commentaires</string>
-
-    <!-- Clipboard labels -->
-    <string name="clipboard_label_copied_result">Résultat copié</string>
-    <string name="clipboard_label_copied_calc_and_result">Calcul et résultat copiés</string>
-
-    <!-- Toast messages -->
-    <string name="toast_double_back_to_exit">Veuillez cliquer à nouveau sur RETOUR pour quitter</string>
-
-    <!-- Dialog text -->
-    <string name="dialog_tester_community_title">Confirmer</string>
-    <string name="dialog_tester_community_message">Si vous êtes également programmeur et que vous recherchez des testeurs pour tester votre application. Rejoignez notre communauté de testeurs maintenant</string>
-    <string name="dialog_select_language_title">Sélectionner la langue</string>
-    <string name="button_ok">OK</string>
-    <string name="button_cancel">Annuler</string>
-
-    <!-- Calculator mode indicators -->
-    <string name="degree_mode_deg">DEG</string>
-    <string name="degree_mode_rad">RAD</string>
-
-    <!-- Chooser titles -->
-    <string name="chooser_title_send_feedback">Envoyer des commentaires</string>
-    <string name="chooser_title_share">Veuillez choisir</string>
-    <string name="chooser_title_share_via">Partager via</string>
-
-    <!-- Share/Marketing text -->
-    <string name="share_app_message_prefix">\nCette application est très utile, veuillez la télécharger et l\'installer pour l\'essayer\n\n</string>
-    <string name="developer_name">SAIGON PHANTOM LABS</string>
-
-    <!-- Language settings -->
-    <string name="language_system_default">Défaut du système</string>
-    <string name="preferences_language_summary">Sélectionner la langue de l\'application</string>
-
-    <!-- Missing strings -->
-    <string name="deg">DEG</string>
-    <string name="_45">45</string>
     <string name="get_more_apps">Obtenir plus d\'applications</string>
     <string name="share_this_app">Partager cette application</string>
-    <string name="github">Code source (Forked)</string>
+    <string name="github">Code source (Fork)</string>
     <string name="source_code">Code source (Original)</string>
     <string name="license">Licence</string>
     <string name="join_tester_community">Rejoindre la communauté de testeurs</string>
+    <string name="send_feedback">Envoyer des commentaires</string>
+    <string name="clipboard_label_copied_result">Résultat copié</string>
+    <string name="clipboard_label_copied_calc_and_result">Calcul et résultat copiés</string>
+    <string name="history_entry_deleted">Entrée de l\'historique supprimée</string>
+    <string name="undo">Annuler</string>
+    <string name="toast_double_back_to_exit">Veuillez cliquer à nouveau sur RETOUR pour quitter</string>
+    <string name="dialog_tester_community_title">Confirmer</string>
+    <string name="dialog_tester_community_message">Si vous êtes également programmeur et que vous recherchez des testeurs pour votre application, rejoignez notre communauté de testeurs dès maintenant !</string>
+    <string name="dialog_select_language_title">Sélectionner la langue</string>
+    <string name="button_ok">OK</string>
+    <string name="button_cancel">Annuler</string>
+    <string name="chooser_title_send_feedback">Envoyer des commentaires</string>
+    <string name="chooser_title_share">Veuillez choisir</string>
+    <string name="chooser_title_share_via">Partager via</string>
+    <string name="share_app_message_prefix">
+Cette application est très utile, veuillez la télécharger et l\'installer pour l\'essayer :
 
-    <!-- VIP -->
-    <string name="vip_screen_title">VIP</string>
-    <string name="vip_badge">VIP</string>
+</string>
+    <string name="language_system_default">Par défaut du système</string>
+    <string name="preferences_language_summary">Sélectionner la langue de l\'application</string>
     <string name="vip_active">VIP actif</string>
     <string name="vip_free_user">Utilisateur gratuit</string>
     <string name="vip_subtitle_free">Débloquez une expérience sans publicité</string>
     <string name="vip_until">Jusqu\'au %1$s</string>
     <string name="vip_activated_at">Activé : %1$s</string>
     <string name="vip_expires_at">Expire : %1$s</string>
-    <string name="vip_remaining">%1$dd %2$02dh %3$02dm %4$02ds</string>
     <string name="vip_active_remaining">Restant : %1$dd %2$dh</string>
     <string name="vip_redeem_label">Saisir le code VIP</string>
     <string name="vip_redeem_button">Activer</string>
@@ -120,6 +138,8 @@
     <string name="cancel">Annuler</string>
     <string name="confirm">Confirmer</string>
     <string name="ok">OK</string>
-    <string name="vip_reward_not_earned">Récompense non obtenue. Réessayez plus tard.</string>
+    <string name="action_copy">Copier</string>
+    <string name="action_share">Partager</string>
+    <string name="vip_reward_not_earned">Récompense non obtenue. Veuillez réessayer plus tard.</string>
     <string name="vip_success_message">Félicitations ! VIP activé pour %1$d jours. Profitez de votre expérience sans publicité.</string>
 </resources>

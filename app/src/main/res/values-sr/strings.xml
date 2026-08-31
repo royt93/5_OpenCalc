@@ -1,11 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="syntax_error">Синтаксна грешка</string>
+    <string name="app_name_display">Калкулатор</string>
+    <string name="backspace">Брисање уназад</string>
+    <string name="dialog_physical_constant_title">Уметни физичку константу</string>
+    <string name="cd_toggle_scientific_mode">Пребаци научне функције</string>
+    <string name="cd_parentheses">Заграде</string>
+    <string name="cd_exponent">Експонент</string>
+    <string name="cd_divide">Подели</string>
+    <string name="cd_multiply">Помножи</string>
+    <string name="cd_subtract">Одузми</string>
+    <string name="cd_add">Сабери</string>
+    <string name="cd_decimal_point">Децимална тачка</string>
+    <string name="cd_equals">Једнако</string>
+    <string name="cd_more_options">Више опција</string>
+    <string name="cd_pin_history">Закачи овај прорачун да се сачува приликом брисања историје</string>
+    <string name="hint_search_history">Претражи историју</string>
+    <string name="base_converter_title">Конвертер бројних основа</string>
+    <string name="app_menu_base_converter">Конвертер бројних основа</string>
+    <string name="base_converter_hint">Унесите број у било којој основи — остале се аутоматски ажурирају</string>
+    <string name="base_converter_dec">DEC (основа 10)</string>
+    <string name="base_converter_hex">HEX (основа 16)</string>
+    <string name="base_converter_oct">OCT (основа 8)</string>
+    <string name="base_converter_bin">BIN (основа 2)</string>
+    <string name="bill_splitter_title">Подела рачуна</string>
+    <string name="app_menu_bill_splitter">Подела рачуна</string>
+    <string name="bill_splitter_amount_label">Износ рачуна</string>
+    <string name="bill_splitter_people_label">Број особа</string>
+    <string name="bill_splitter_tip_label">Напојница</string>
+    <string name="bill_splitter_total_label">Укупно (са напојницом)</string>
+    <string name="bill_splitter_per_person_label">Свака особа плаћа</string>
     <string name="app_menu_show_history">Прикажи историју</string>
     <string name="app_menu_hide_history">Сакриј историју</string>
-    <string name="app_menu_clear_history">Обриши историју</string>
-    <string name="app_menu_about">О апликацији (Ads may appear)</string>
     <string name="app_menu_theme">Тема</string>
+    <string name="app_menu_clear_history">Очисти историју</string>
+    <string name="app_menu_export_history">Извези историју</string>
+    <string name="export_history_empty">Историја је празна, нема шта да се извезе</string>
+    <string name="export_history_success">Историја је успешно извезена</string>
+    <string name="export_history_failed">Неуспешан извоз историје</string>
+    <string name="app_menu_import_history">Увези историју</string>
+    <string name="import_history_success">Увезени записи: %d</string>
+    <string name="import_history_skipped">(прескочено: %d)</string>
+    <string name="import_history_failed">Неуспешан увоз: нема важећих редова</string>
+    <string name="import_history_truncated">(датотека је превелика, лимит редова: %d)</string>
+    <string name="app_menu_about">О апликацији (Може садржати рекламе)</string>
+    <string name="theme_system">Системска</string>
+    <string name="theme_amoled">Amoled</string>
     <string name="theme_light">Светла</string>
     <string name="theme_dark">Тамна</string>
     <string name="theme_sunset">Залазак сунца</string>
@@ -14,78 +53,93 @@
     <string name="theme_nord">Nord</string>
     <string name="theme_highcontrast">Висок контраст</string>
     <string name="theme_lavender">Лаванда</string>
-    <string name="infinity">Безброј</string>
-    <string name="division_by_0">Не може се поделити са 0</string>
+    <string name="value_copied">Копирано</string>
+    <string name="infinity">Бесконачност</string>
+    <string name="division_by_0">Дељење са 0 није могуће</string>
     <string name="domain_error">Грешка домена</string>
     <string name="math_error">Математичка грешка</string>
-    <string name="app_name_display">Калкулатор</string>
-    <string name="theme_system">Систем</string>
-    <string name="theme_amoled">Црна</string>
-    <string name="value_copied">Копирано</string>
-    <string name="value_too_large">Превелика вредност</string>
-    <string name="send_feedback">Пошаљи повратне информације</string>
-
-    <!-- Clipboard labels -->
-    <string name="clipboard_label_copied_result">Копиран резултат</string>
-    <string name="clipboard_label_copied_calc_and_result">Копирани прорачун и резултат</string>
-
-    <!-- Toast messages -->
-    <string name="toast_double_back_to_exit">Молимо кликните НАЗАД поново за излаз</string>
-
-    <!-- Dialog text -->
-    <string name="dialog_tester_community_title">Потврди</string>
-    <string name="dialog_tester_community_message">Ако сте такође програмер и тражите тестере да тестирају вашу апликацију. Придружите се нашој заједници тестера сада</string>
-    <string name="dialog_select_language_title">Изаберите језик</string>
-    <string name="button_ok">У реду</string>
-    <string name="button_cancel">Откажи</string>
-
-    <!-- Calculator mode indicators -->
-    <string name="degree_mode_deg">DEG</string>
-    <string name="degree_mode_rad">RAD</string>
-
-    <!-- Chooser titles -->
-    <string name="chooser_title_send_feedback">Пошаљи повратне информације</string>
-    <string name="chooser_title_share">Молимо изаберите</string>
-    <string name="chooser_title_share_via">Подели преко</string>
-
-    <!-- Share/Marketing text -->
-    <string name="share_app_message_prefix">\nОва апликација је веома корисна, молимо преузмите и инсталирајте да искусите\n\n</string>
-    <string name="developer_name">SAIGON PHANTOM LABS</string>
-
-    <!-- Language settings -->
-    <string name="language_system_default">Подразумевано системом</string>
-    <string name="preferences_language_summary">Изаберите језик апликације</string>
-
-    <!-- Missing strings -->
-    <string name="app_menu_settings">Подешавања (Ads may appear)</string>
+    <string name="syntax_error">Синтаксна грешка</string>
+    <string name="error_explain_log_nonpositive">ln/log је дефинисан само за x > 0</string>
+    <string name="error_explain_tan_singularity">tan овде није дефинисан (cos = 0)</string>
+    <string name="app_menu_settings">Подешавања (Може садржати рекламе)</string>
+    <string name="value_too_large">Вредност је превелика</string>
     <string name="preferences_title">Подешавања</string>
     <string name="preferences_general_category">ОПШТЕ</string>
     <string name="preferences_history_category">ИСТОРИЈА</string>
-    <string name="preferences_prevent_phone_from_sleeping_summary">Спречи телефон да заспи док је апликација активна</string>
-    <string name="preferences_vibration_summary">Вибрирај када се притисне дугме</string>
-    <string name="preferences_history_size">Резултати сачувани у историји</string>
-    <string name="preferences_vibration_title">Вибрације</string>
-    <string name="preferences_prevent_phone_from_sleeping_title">Спречи телефон да заспи</string>
+    <string name="preferences_prevent_phone_from_sleeping_summary">Спречи искључивање екрана док је апликација отворена</string>
+    <string name="preferences_vibration_summary">Вибрација при притиску на дугме</string>
+    <string name="preferences_history_size">Број резултата сачуваних у историји</string>
+    <string name="preferences_vibration_title">Вибрација</string>
+    <string name="preferences_prevent_phone_from_sleeping_title">Држи екран укљученим</string>
     <string name="preferences_advanced_category">НАПРЕДНО</string>
-    <string name="preferences_scientif_mode_enabled_by_default_summary">Активирај научни режим по подразумеваним поставкама</string>
+    <string name="preferences_scientif_mode_enabled_by_default_summary">Активирај научни режим по стандарду</string>
     <string name="preferences_scientif_mode_enabled_by_default_title">Научни режим</string>
     <string name="preferences_radians_instead_of_degrees_by_default_title">Радијани</string>
-    <string name="preferences_radians_instead_of_degrees_by_default_summary">Користи радијане уместо степени по подразумеваним поставкама</string>
+    <string name="preferences_radians_instead_of_degrees_by_default_summary">Користи радијане уместо степени по стандарду</string>
     <string name="about_help_us_category">ПОМОЗИТЕ НАМ</string>
-    <string name="about_other_category">ДРУГО</string>
+    <string name="about_other_category">ОСТАЛО</string>
     <string name="about_rate">Оцените ову апликацију</string>
     <string name="app_version_title">Верзија</string>
-    <string name="thanks_for_using_app">Хвала што користите Calculator ❤️</string>
+    <string name="thanks_for_using_app">Хвала што користите Калкулатор ❤️</string>
     <string name="preferences_number_precision">Број децималних места</string>
     <string name="privacy_policy">Политика приватности</string>
     <string name="about_title">О апликацији</string>
     <string name="preferences_language_title">Језик</string>
-    <string name="deg">DEG</string>
-    <string name="_45">45</string>
-    <string name="get_more_apps">Преузмите још апликација</string>
+    <string name="get_more_apps">Још апликација</string>
     <string name="share_this_app">Подели ову апликацију</string>
-    <string name="github">Изворни код (Forked)</string>
-    <string name="source_code">Изворни код (Original)</string>
+    <string name="github">Изворни код (Fork)</string>
+    <string name="source_code">Изворни код (Оригинал)</string>
     <string name="license">Лиценца</string>
-    <string name="join_tester_community">Придружите се заједници тестера</string>
+    <string name="join_tester_community">Придружи се заједници тестера</string>
+    <string name="send_feedback">Пошаљи повратне информације</string>
+    <string name="clipboard_label_copied_result">Резултат је копиран</string>
+    <string name="clipboard_label_copied_calc_and_result">Рачун и резултат су копирани</string>
+    <string name="history_entry_deleted">Ставка из историје је избрисана</string>
+    <string name="undo">Опозови</string>
+    <string name="toast_double_back_to_exit">Притисните НАЗАД поново за излаз</string>
+    <string name="dialog_tester_community_title">Потврди</string>
+    <string name="dialog_tester_community_message">Ако сте програмер и тражите тестере за своју апликацију, придружите се нашој заједници одмах!</string>
+    <string name="dialog_select_language_title">Изаберите језик</string>
+    <string name="button_ok">У реду</string>
+    <string name="button_cancel">Откажи</string>
+    <string name="chooser_title_send_feedback">Пошаљи повратне информације</string>
+    <string name="chooser_title_share">Молимо изаберите</string>
+    <string name="chooser_title_share_via">Подели путем</string>
+    <string name="share_app_message_prefix">
+Ова апликација је веома корисна, преузмите је и испробајте:
+
+</string>
+    <string name="language_system_default">Системски подразумевано</string>
+    <string name="preferences_language_summary">Изаберите језик апликације</string>
+    <string name="vip_active">VIP је активан</string>
+    <string name="vip_free_user">Бесплатан корисник</string>
+    <string name="vip_subtitle_free">Откључајте искуство без реклама</string>
+    <string name="vip_until">До %1$s</string>
+    <string name="vip_activated_at">Активирано: %1$s</string>
+    <string name="vip_expires_at">Истиче: %1$s</string>
+    <string name="vip_active_remaining">Преостало: %1$dd %2$dh</string>
+    <string name="vip_redeem_label">Унесите VIP код</string>
+    <string name="vip_redeem_button">Активирај</string>
+    <string name="vip_redeem_invalid">Неважећи VIP код</string>
+    <string name="vip_watch_ad_3d">Гледај рекламу → 3 дана VIP-а</string>
+    <string name="vip_buy_30d_locked">Купи 30 дана VIP-а — ускоро</string>
+    <string name="vip_buy_90d_locked">Купи 90 дана VIP-а — ускоро</string>
+    <string name="vip_buy_1y_locked">Купи 1 годину VIP-a — ускоро</string>
+    <string name="vip_buy_lifetime_locked">Купи доживотни VIP — ускоро</string>
+    <string name="vip_restore_locked">Врати куповину — ускоро</string>
+    <string name="vip_revoke_all_button">Опозови VIP</string>
+    <string name="vip_revoke_all_confirm_title">Потврди опозив</string>
+    <string name="vip_revoke_all_confirm_message">Да ли сте сигурни да желите да опозовете VIP и вратите се на бесплатан налог?</string>
+    <string name="vip_entry_first_install">🎁 Поклон за нову инсталацију</string>
+    <string name="vip_entry_redeemed">VIP %1$d дана</string>
+    <string name="vip_success_title">Успешно</string>
+    <string name="vip_failed_title">Неуспешно</string>
+    <string name="back">Назад</string>
+    <string name="cancel">Откажи</string>
+    <string name="confirm">Потврди</string>
+    <string name="ok">У реду</string>
+    <string name="action_copy">Копирај</string>
+    <string name="action_share">Подели</string>
+    <string name="vip_reward_not_earned">Награда није преузета. Молимо покушајте поново касније.</string>
+    <string name="vip_success_message">Честитамо! VIP је активиран на %1$d дана. Уживајте у искуству без реклама.</string>
 </resources>

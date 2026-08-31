@@ -1,91 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name_display">କାଲକୁଲେଟର</string>
+    <string name="backspace">ବ୍ୟାକସ୍ପେସ୍</string>
+    <string name="dialog_physical_constant_title">ଭୌତିକ ସ୍ଥିରାଙ୍କ ଯୋଡନ୍ତୁ</string>
+    <string name="cd_toggle_scientific_mode">ବୈଜ୍ଞାନିକ ଫଙ୍କସନ୍ ଟଗଲ୍ କରନ୍ତୁ</string>
+    <string name="cd_parentheses">ବନ୍ଧନୀ</string>
+    <string name="cd_exponent">ଘାତାଙ୍କ</string>
+    <string name="cd_divide">ହରଣ</string>
+    <string name="cd_multiply">ଗୁଣନ</string>
+    <string name="cd_subtract">ଫେଡାଣ</string>
+    <string name="cd_add">ମିଶାଣ</string>
+    <string name="cd_decimal_point">ଦଶମିକ ବିନ୍ଦୁ</string>
+    <string name="cd_equals">ସମାନ</string>
+    <string name="cd_more_options">ଅଧିକ ବିକଳ୍ପ</string>
+    <string name="cd_pin_history">ଇତିହାସ ସଫା କରିବା ସମୟରେ ରଖିବା ପାଇଁ ଏହି ଗଣନାକୁ ପିନ୍ କରନ୍ତୁ</string>
+    <string name="hint_search_history">ଇତିହାସରେ ଖୋଜନ୍ତୁ</string>
+    <string name="base_converter_title">ସଂଖ୍ୟା ଭିତ୍ତି ରୂପାନ୍ତରକ</string>
+    <string name="app_menu_base_converter">ସଂଖ୍ୟା ଭିତ୍ତି ରୂପାନ୍ତରକ</string>
+    <string name="base_converter_hint">ଯେକୌଣସି ଆଧାରରେ ଏକ ସଂଖ୍ୟା ଲେଖନ୍ତୁ — ଅନ୍ୟଗୁଡ଼ିକ ସ୍ୱୟଂଚାଳିତ ଭାବରେ ଅପଡେଟ୍ ହେବ</string>
+    <string name="base_converter_dec">DEC (ଆଧାର 10)</string>
+    <string name="base_converter_hex">HEX (ଆଧାର 16)</string>
+    <string name="base_converter_oct">OCT (ଆଧାର 8)</string>
+    <string name="base_converter_bin">BIN (ଆଧାର 2)</string>
+    <string name="bill_splitter_title">ବିଲ୍ ବିଭାଜକ</string>
+    <string name="app_menu_bill_splitter">ବିଲ୍ ବିଭାଜକ</string>
+    <string name="bill_splitter_amount_label">ବିଲ୍ ରାଶି</string>
+    <string name="bill_splitter_people_label">ଲୋକଙ୍କ ସଂଖ୍ୟା</string>
+    <string name="bill_splitter_tip_label">ଟିପ୍</string>
+    <string name="bill_splitter_total_label">ମୋଟ (ଟିପ୍ ସହିତ)</string>
+    <string name="bill_splitter_per_person_label">ପ୍ରତ୍ୟେକ ବ୍ୟକ୍ତି ଦେବେ</string>
     <string name="app_menu_show_history">ଇତିହାସ ଦେଖାନ୍ତୁ</string>
     <string name="app_menu_hide_history">ଇତିହାସ ଲୁଚାନ୍ତୁ</string>
+    <string name="app_menu_theme">ଥିମ୍</string>
+    <string name="app_menu_clear_history">ଇତିହାସ ସଫା କରନ୍ତୁ</string>
+    <string name="app_menu_export_history">ଇତିହାସ ରପ୍ତାନି କରନ୍ତୁ</string>
+    <string name="export_history_empty">ଇତିହାସ ଖାଲି ଅଛି, ରପ୍ତାନି କରିବାକୁ କିଛି ନାହିଁ</string>
+    <string name="export_history_success">ଇତିହାସ ରପ୍ତାନି ସଫଳ ହେଲା</string>
+    <string name="export_history_failed">ଇତିହାସ ରପ୍ତାନି ବିଫଳ ହେଲା</string>
+    <string name="app_menu_import_history">ଇତିହାସ ଆମଦାନୀ କରନ୍ତୁ</string>
+    <string name="import_history_success">ଆମଦାନୀ ହୋଇଥିବା ଏଣ୍ଟ୍ରି: %d</string>
+    <string name="import_history_skipped">(ଛଡ଼ାଯାଇଥିବା: %d)</string>
+    <string name="import_history_failed">ଆମଦାନୀ ବିଫଳ: କୌଣସି ବୈଧ ଧାଡ଼ି ମିଳିଲା ନାହିଁ</string>
+    <string name="import_history_truncated">(ଫାଇଲ୍ ବହୁତ ବଡ଼, ଧାଡ଼ି ସୀମା: %d)</string>
+    <string name="app_menu_about">ବିଷୟରେ (ବିଜ୍ଞାପନ ଥାଇପାରେ)</string>
+    <string name="theme_system">ସିଷ୍ଟମ୍</string>
+    <string name="theme_amoled">Amoled</string>
+    <string name="theme_light">ହାଲୁକା</string>
+    <string name="theme_dark">ଅନ୍ଧକାର</string>
     <string name="theme_sunset">ସୂର୍ଯ୍ୟାସ୍ତ</string>
     <string name="theme_ocean">ମହାସାଗର</string>
     <string name="theme_forest">ଜଙ୍ଗଲ</string>
     <string name="theme_nord">Nord</string>
-    <string name="theme_highcontrast">ଉଚ୍ଚ ବିପରୀତ</string>
+    <string name="theme_highcontrast">ଉଚ୍ଚ କଣ୍ଟ୍ରାଷ୍ଟ</string>
     <string name="theme_lavender">ଲାଭେଣ୍ଡର</string>
-    <string name="send_feedback">ମତାମତ ପଠାନ୍ତୁ</string>
-
-    <!-- Clipboard labels -->
-    <string name="clipboard_label_copied_result">ଫଳାଫଳ କପି କରାଯାଇଛି</string>
-    <string name="clipboard_label_copied_calc_and_result">ଗଣନା ଏବଂ ଫଳାଫଳ କପି କରାଯାଇଛି</string>
-
-    <!-- Toast messages -->
-    <string name="toast_double_back_to_exit">ବାହାରିବାକୁ ଦୟାକରି ପୁନର୍ବାର ବ୍ୟାକ୍ କ୍ଲିକ୍ କରନ୍ତୁ</string>
-
-    <!-- Dialog text -->
-    <string name="dialog_tester_community_title">ନିଶ୍ଚିତ କରନ୍ତୁ</string>
-    <string name="dialog_tester_community_message">ଯଦି ଆପଣ ମଧ୍ୟ ଜଣେ ପ୍ରୋଗ୍ରାମର୍ ଏବଂ ଆପଣଙ୍କ ଆପ୍ଲିକେସନ୍ ପରୀକ୍ଷା କରିବାକୁ ପରୀକ୍ଷକ ଖୋଜୁଛନ୍ତି। ବର୍ତ୍ତମାନ ଆମର ପରୀକ୍ଷକ ସମ୍ପ୍ରଦାୟରେ ଯୋଗ ଦିଅନ୍ତୁ</string>
-    <string name="dialog_select_language_title">ଭାଷା ଚୟନ କରନ୍ତୁ</string>
-    <string name="button_ok">ଠିକ୍ ଅଛି</string>
-    <string name="button_cancel">ବାତିଲ୍ କରନ୍ତୁ</string>
-
-    <!-- Calculator mode indicators -->
-    <string name="degree_mode_deg">DEG</string>
-    <string name="degree_mode_rad">RAD</string>
-
-    <!-- Chooser titles -->
-    <string name="chooser_title_send_feedback">ମତାମତ ପଠାନ୍ତୁ</string>
-    <string name="chooser_title_share">ଦୟାକରି ଚୟନ କରନ୍ତୁ</string>
-    <string name="chooser_title_share_via">ଏହା ମାଧ୍ୟମରେ ଶେୟାର କରନ୍ତୁ</string>
-
-    <!-- Share/Marketing text -->
-    <string name="share_app_message_prefix">\nଏହି ଆପ୍ଲିକେସନ୍ ଅତ୍ୟନ୍ତ ଉପଯୋଗୀ, ଅନୁଭବ କରିବାକୁ ଦୟାକରି ଡାଉନଲୋଡ୍ ଏବଂ ଇନଷ୍ଟଲ୍ କରନ୍ତୁ\n\n</string>
-    <string name="developer_name">SAIGON PHANTOM LABS</string>
-
-    <!-- Language settings -->
-    <string name="language_system_default">ସିଷ୍ଟମ୍ ଡିଫଲ୍ଟ</string>
-    <string name="preferences_language_summary">ଆପ୍ ଭାଷା ଚୟନ କରନ୍ତୁ</string>
-
-    <!-- Missing strings -->
-    <string name="app_name_display">କ୍ୟାଲକୁଲେଟର</string>
-    <string name="app_menu_clear_history">ଇତିହାସ ଖାଲି କରନ୍ତୁ</string>
-    <string name="app_menu_about">ବିଷୟରେ (Ads may appear)</string>
-    <string name="app_menu_theme">ଥିମ୍</string>
-    <string name="theme_system">ସିଷ୍ଟମ୍</string>
-    <string name="theme_amoled">ଆମୋଲେଡ୍</string>
-    <string name="theme_light">ହାଲୁକା</string>
-    <string name="theme_dark">ଗାଢ଼</string>
-    <string name="value_copied">କପି କରାଯାଇଛି</string>
+    <string name="value_copied">କପି ହୋଇଛି</string>
     <string name="infinity">ଅନନ୍ତ</string>
-    <string name="division_by_0">0 ଦ୍ୱାରା ଭାଗ କରାଯାଇପାରିବ ନାହିଁ</string>
+    <string name="division_by_0">0 ଦ୍ୱାରା ହରଣ ସମ୍ଭବ ନୁହେଁ</string>
     <string name="domain_error">ଡୋମେନ୍ ତ୍ରୁଟି</string>
-    <string name="math_error">ଗଣିତ ତ୍ରୁଟି</string>
+    <string name="math_error">ଗାଣିତିକ ତ୍ରୁଟି</string>
     <string name="syntax_error">ସିଣ୍ଟାକ୍ସ ତ୍ରୁଟି</string>
-    <string name="app_menu_settings">ସେଟିଂସ୍ (Ads may appear)</string>
-    <string name="value_too_large">ମୂଲ୍ୟ ଅତ୍ୟଧିକ ବଡ଼</string>
+    <string name="error_explain_log_nonpositive">ln/log କେବଳ x > 0 ପାଇଁ ସଂଜ୍ଞାୟିତ</string>
+    <string name="error_explain_tan_singularity">tan ଏଠାରେ ଅସଂଜ୍ଞାୟିତ (cos = 0)</string>
+    <string name="app_menu_settings">ସେଟିଂସ୍ (ବିଜ୍ଞାପନ ଥାଇପାରେ)</string>
+    <string name="value_too_large">ମୂଲ୍ୟ ବହୁତ ବଡ଼</string>
     <string name="preferences_title">ସେଟିଂସ୍</string>
     <string name="preferences_general_category">ସାଧାରଣ</string>
     <string name="preferences_history_category">ଇତିହାସ</string>
-    <string name="preferences_prevent_phone_from_sleeping_summary">ଆପ୍ ଅଗ୍ରଭାଗରେ ଥିବାବେଳେ ଫୋନକୁ ଶୋଇବାକୁ ବାରଣ କରନ୍ତୁ</string>
-    <string name="preferences_vibration_summary">ବଟନ୍ ଦବାଇବା ସମୟରେ କମ୍ପନ କରନ୍ତୁ</string>
-    <string name="preferences_history_size">ଇତିହାସରେ ସଞ୍ଚିତ ଫଳାଫଳ</string>
+    <string name="preferences_prevent_phone_from_sleeping_summary">ଆପ୍ ଚାଲିଥିବା ସମୟରେ ସ୍କ୍ରିନ୍ ବନ୍ଦ ହେବାକୁ ରୋକନ୍ତୁ</string>
+    <string name="preferences_vibration_summary">ବଟନ୍ ଦବାଇଲେ କମ୍ପନ ହେବ</string>
+    <string name="preferences_history_size">ଇତିହାସରେ ସଂରକ୍ଷିତ ଫଳାଫଳ</string>
     <string name="preferences_vibration_title">କମ୍ପନ</string>
-    <string name="preferences_prevent_phone_from_sleeping_title">ଫୋନକୁ ଶୋଇବାକୁ ବାରଣ କରନ୍ତୁ</string>
+    <string name="preferences_prevent_phone_from_sleeping_title">ସ୍କ୍ରିନ୍ ଅନ୍ ରଖନ୍ତୁ</string>
     <string name="preferences_advanced_category">ଉନ୍ନତ</string>
     <string name="preferences_scientif_mode_enabled_by_default_summary">ଡିଫଲ୍ଟ ଭାବରେ ବୈଜ୍ଞାନିକ ମୋଡ୍ ସକ୍ରିୟ କରନ୍ତୁ</string>
     <string name="preferences_scientif_mode_enabled_by_default_title">ବୈଜ୍ଞାନିକ ମୋଡ୍</string>
-    <string name="preferences_radians_instead_of_degrees_by_default_title">ରେଡିୟାନ୍</string>
-    <string name="preferences_radians_instead_of_degrees_by_default_summary">ଡିଫଲ୍ଟ ଭାବରେ ଡିଗ୍ରୀ ବଦଳରେ ରେଡିୟାନ୍ ବ୍ୟବହାର କରନ୍ତୁ</string>
+    <string name="preferences_radians_instead_of_degrees_by_default_title">ରେଡିଆନ୍</string>
+    <string name="preferences_radians_instead_of_degrees_by_default_summary">ଡିଗ୍ରୀ ବଦଳରେ ରେଡିଆନ୍ ଡିଫଲ୍ଟ ଭାବରେ ବ୍ୟବହାର କରନ୍ତୁ</string>
     <string name="about_help_us_category">ଆମକୁ ସାହାଯ୍ୟ କରନ୍ତୁ</string>
     <string name="about_other_category">ଅନ୍ୟାନ୍ୟ</string>
-    <string name="about_rate">ଏହି ଆପ୍କୁ ମୂଲ୍ୟାଙ୍କନ କରନ୍ତୁ</string>
+    <string name="about_rate">ଏହି ଆପ୍ କୁ ରେଟ୍ କରନ୍ତୁ</string>
     <string name="app_version_title">ସଂସ୍କରଣ</string>
-    <string name="thanks_for_using_app">Calculator ବ୍ୟବହାର କରିବା ପାଇଁ ଧନ୍ୟବାଦ ❤️</string>
+    <string name="thanks_for_using_app">କାଲକୁଲେଟର ବ୍ୟବହାର କରିଥିବାରୁ ଧନ୍ୟବାଦ ❤️</string>
     <string name="preferences_number_precision">ଦଶମିକ ସ୍ଥାନ ସଂଖ୍ୟା</string>
     <string name="privacy_policy">ଗୋପନୀୟତା ନୀତି</string>
     <string name="about_title">ବିଷୟରେ</string>
     <string name="preferences_language_title">ଭାଷା</string>
-    <string name="deg">DEG</string>
-    <string name="_45">45</string>
-    <string name="get_more_apps">ଅଧିକ ଆପ୍ ପାଆନ୍ତୁ</string>
-    <string name="share_this_app">ଏହି ଆପ୍କୁ ସେୟାର କରନ୍ତୁ</string>
-    <string name="github">ସୋର୍ସ କୋଡ୍ (Forked)</string>
-    <string name="source_code">ସୋର୍ସ କୋଡ୍ (Original)</string>
+    <string name="get_more_apps">ଅଧିକ ଆପ୍ସ ପାଆନ୍ତୁ</string>
+    <string name="share_this_app">ଏହି ଆପ୍ କୁ ସେୟାର କରନ୍ତୁ</string>
+    <string name="github">ଉତ୍ସ କୋଡ୍ (Fork)</string>
+    <string name="source_code">ଉତ୍ସ କୋଡ୍ (ମୂଳ)</string>
     <string name="license">ଲାଇସେନ୍ସ</string>
     <string name="join_tester_community">ପରୀକ୍ଷକ ସମ୍ପ୍ରଦାୟରେ ଯୋଗ ଦିଅନ୍ତୁ</string>
+    <string name="send_feedback">ମତାମତ ପଠାନ୍ତୁ</string>
+    <string name="clipboard_label_copied_result">ଫଳାଫଳ କପି ହୋଇଛି</string>
+    <string name="clipboard_label_copied_calc_and_result">ଗଣନା ଏବଂ ଫଳାଫଳ କପି ହୋଇଛି</string>
+    <string name="history_entry_deleted">ଇତିହାସ ଏଣ୍ଟ୍ରି ବିଲୋପ ହୋଇଛି</string>
+    <string name="undo">ପୂର୍ବବତ୍ କରନ୍ତୁ</string>
+    <string name="toast_double_back_to_exit">ବାହାରିବା ପାଇଁ ଦୟାକରି ପୁଣି ପଛକୁ ଦବାନ୍ତୁ</string>
+    <string name="dialog_tester_community_title">ନିଶ୍ଚିତ କରନ୍ତୁ</string>
+    <string name="dialog_tester_community_message">ଯଦି ଆପଣ ମଧ୍ୟ ଜଣେ ଡେଭଲପର ଏବଂ ଆପଣଙ୍କ ଆପ୍ ପାଇଁ ପରୀକ୍ଷକ ଖୋଜୁଛନ୍ତି, ତେବେ ବର୍ତ୍ତମାନ ଆମ ସମ୍ପ୍ରଦାୟରେ ଯୋଗ ଦିଅନ୍ତୁ!</string>
+    <string name="dialog_select_language_title">ଭାଷା ବାଛନ୍ତୁ</string>
+    <string name="button_ok">ଠିକ୍ ଅଛି</string>
+    <string name="button_cancel">ବାତିଲ୍</string>
+    <string name="chooser_title_send_feedback">ମତାମତ ପଠାନ୍ତୁ</string>
+    <string name="chooser_title_share">ଦୟାକରି ବାଛନ୍ତୁ</string>
+    <string name="chooser_title_share_via">ମାଧ୍ୟମରେ ସେୟାର କରନ୍ତୁ</string>
+    <string name="share_app_message_prefix">
+ଏହି ଆପ୍ଲିକେସନ୍ ଟି ବହୁତ ଉପଯୋଗୀ, ଅନୁଭବ କରିବାକୁ ଦୟାକରି ଡାଉନଲୋଡ୍ ଏବଂ ଇନଷ୍ଟଲ୍ କରନ୍ତୁ:
+
+</string>
+    <string name="language_system_default">ସିଷ୍ଟମ୍ ଡିଫଲ୍ଟ</string>
+    <string name="preferences_language_summary">ଆପ୍ ଭାଷା ବାଛନ୍ତୁ</string>
+    <string name="vip_active">VIP ସକ୍ରିୟ ଅଛି</string>
+    <string name="vip_free_user">ମାଗଣା ବ୍ୟବହାରକାରୀ</string>
+    <string name="vip_subtitle_free">ବିଜ୍ଞାପନମୁକ୍ତ ଅନୁଭୂତି ଅନଲକ୍ କରନ୍ତୁ</string>
+    <string name="vip_until">%1$s ପର୍ଯ୍ୟନ୍ତ</string>
+    <string name="vip_activated_at">ସକ୍ରିୟ ହୋଇଛି: %1$s</string>
+    <string name="vip_expires_at">ମିଆଦ ଶେଷ: %1$s</string>
+    <string name="vip_active_remaining">ବାକି ଅଛି: %1$dd %2$dh</string>
+    <string name="vip_redeem_label">VIP କୋଡ୍ ପ୍ରବେଶ କରନ୍ତୁ</string>
+    <string name="vip_redeem_button">ସକ୍ରିୟ କରନ୍ତୁ</string>
+    <string name="vip_redeem_invalid">ଅବୈଧ VIP କୋଡ୍</string>
+    <string name="vip_watch_ad_3d">ବିଜ୍ଞାପନ ଦେଖନ୍ତୁ → 3 ଦିନ VIP</string>
+    <string name="vip_buy_30d_locked">30 ଦିନର VIP କିଣନ୍ତୁ — ଖୁବ୍ ଶୀଘ୍ର</string>
+    <string name="vip_buy_90d_locked">90 ଦିନର VIP କିଣନ୍ତୁ — ଖୁବ୍ ଶୀଘ୍ର</string>
+    <string name="vip_buy_1y_locked">1 ବର୍ଷର VIP କିଣନ୍ତୁ — ଖୁବ୍ ଶୀଘ୍ର</string>
+    <string name="vip_buy_lifetime_locked">ଆଜୀବନ VIP କିଣନ୍ତୁ — ଖୁବ୍ ଶୀଘ୍ର</string>
+    <string name="vip_restore_locked">କ୍ରୟ ପୁନରୁଦ୍ଧାର କରନ୍ତୁ — ଖୁବ୍ ଶୀଘ୍ର</string>
+    <string name="vip_revoke_all_button">VIP ପ୍ରତ୍ୟାହାର କରନ୍ତୁ</string>
+    <string name="vip_revoke_all_confirm_title">ପ୍ରତ୍ୟାହାର ନିଶ୍ଚିତ କରନ୍ତୁ</string>
+    <string name="vip_revoke_all_confirm_message">ଆପଣ ନିଶ୍ଚିତ କି VIP ପ୍ରତ୍ୟାହାର କରି ମାଗଣା ଖାତାକୁ ଫେରିବାକୁ ଚାହାଁନ୍ତି?</string>
+    <string name="vip_entry_first_install">🎁 ନୂତନ ସଂସ୍ଥାପନ ଉପହାର</string>
+    <string name="vip_entry_redeemed">VIP %1$d ଦିନ</string>
+    <string name="vip_success_title">ସଫଳ</string>
+    <string name="vip_failed_title">ବିଫଳ</string>
+    <string name="back">ପଛକୁ</string>
+    <string name="cancel">ବାତିଲ୍</string>
+    <string name="confirm">ନିଶ୍ଚିତ କରନ୍ତୁ</string>
+    <string name="ok">ଠିକ୍ ଅଛି</string>
+    <string name="action_copy">କପି କରନ୍ତୁ</string>
+    <string name="action_share">ସେୟାର କରନ୍ତୁ</string>
+    <string name="vip_reward_not_earned">ପୁରସ୍କାର ମିଳିଲା ନାହିଁ। ଦୟାକରି ପରେ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।</string>
+    <string name="vip_success_message">ଅଭିନନ୍ଦନ! %1$d ଦିନ ପାଇଁ VIP ସକ୍ରିୟ ହେଲା। ବିଜ୍ଞାପନମୁକ୍ତ ଅନୁଭୂତି ଉପଭୋଗ କରନ୍ତୁ।</string>
 </resources>

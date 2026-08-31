@@ -1,77 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name_display">Kalkulator</string>
-
-    <string name="infinity">Tak terhingga</string>
-
-    <!-- App Menu -->
+    <string name="backspace">Backspace</string>
+    <string name="dialog_physical_constant_title">Sisipkan konstanta fisik</string>
+    <string name="cd_toggle_scientific_mode">Alihkan fungsi ilmiah</string>
+    <string name="cd_parentheses">Tanda kurung</string>
+    <string name="cd_exponent">Eksponen</string>
+    <string name="cd_divide">Bagi</string>
+    <string name="cd_multiply">Kali</string>
+    <string name="cd_subtract">Kurang</string>
+    <string name="cd_add">Tambah</string>
+    <string name="cd_decimal_point">Titik desimal</string>
+    <string name="cd_equals">Sama dengan</string>
+    <string name="cd_more_options">Opsi lainnya</string>
+    <string name="cd_pin_history">Sematkan perhitungan ini agar tetap ada saat riwayat dibersihkan</string>
+    <string name="hint_search_history">Cari riwayat</string>
+    <string name="base_converter_title">Konverter Basis</string>
+    <string name="app_menu_base_converter">Konverter Basis</string>
+    <string name="base_converter_hint">Ketik angka dalam basis apa pun — basis lainnya akan diperbarui otomatis</string>
+    <string name="base_converter_dec">DEC (basis 10)</string>
+    <string name="base_converter_hex">HEX (basis 16)</string>
+    <string name="base_converter_oct">OCT (basis 8)</string>
+    <string name="base_converter_bin">BIN (basis 2)</string>
+    <string name="bill_splitter_title">Bagi Tagihan</string>
+    <string name="app_menu_bill_splitter">Bagi Tagihan</string>
+    <string name="bill_splitter_amount_label">Jumlah tagihan</string>
+    <string name="bill_splitter_people_label">Jumlah orang</string>
+    <string name="bill_splitter_tip_label">Tip</string>
+    <string name="bill_splitter_total_label">Total (termasuk tip)</string>
+    <string name="bill_splitter_per_person_label">Setiap orang membayar</string>
     <string name="app_menu_show_history">Tampilkan Riwayat</string>
     <string name="app_menu_hide_history">Sembunyikan Riwayat</string>
     <string name="app_menu_theme">Tema</string>
     <string name="app_menu_clear_history">Hapus Riwayat</string>
-    <string name="app_menu_about">Tentang (Ads may appear)</string>
-
-    <!-- Theme choices -->
+    <string name="app_menu_export_history">Ekspor Riwayat</string>
+    <string name="export_history_empty">Riwayat kosong, tidak ada yang diekspor</string>
+    <string name="export_history_success">Riwayat berhasil diekspor</string>
+    <string name="export_history_failed">Gagal mengekspor riwayat</string>
+    <string name="app_menu_import_history">Impor Riwayat</string>
+    <string name="import_history_success">Entri diimpor: %d</string>
+    <string name="import_history_skipped">(dilewati: %d)</string>
+    <string name="import_history_failed">Gagal mengimpor riwayat: tidak ada baris yang valid</string>
+    <string name="import_history_truncated">(berkas terlalu besar, batas baris: %d)</string>
+    <string name="app_menu_about">Tentang (Mungkin berisi iklan)</string>
     <string name="theme_system">Sistem</string>
     <string name="theme_amoled">Amoled</string>
     <string name="theme_light">Terang</string>
     <string name="theme_dark">Gelap</string>
     <string name="theme_sunset">Matahari Terbenam</string>
-    <string name="theme_ocean">Samudera</string>
+    <string name="theme_ocean">Samudra</string>
     <string name="theme_forest">Hutan</string>
     <string name="theme_nord">Nord</string>
     <string name="theme_highcontrast">Kontras Tinggi</string>
     <string name="theme_lavender">Lavender</string>
-
-    <!-- Others -->
     <string name="value_copied">Disalin</string>
-    <string name="send_feedback">Kirim masukan</string>
-
-    <!-- Clipboard labels -->
-    <string name="clipboard_label_copied_result">Hasil disalin</string>
-    <string name="clipboard_label_copied_calc_and_result">Perhitungan dan hasil disalin</string>
-
-    <!-- Toast messages -->
-    <string name="toast_double_back_to_exit">Silakan klik KEMBALI lagi untuk keluar</string>
-
-    <!-- Dialog text -->
-    <string name="dialog_tester_community_title">Konfirmasi</string>
-    <string name="dialog_tester_community_message">Jika Anda juga seorang programmer dan mencari penguji untuk menguji aplikasi Anda. Bergabunglah dengan komunitas penguji kami sekarang</string>
-    <string name="dialog_select_language_title">Pilih Bahasa</string>
-    <string name="button_ok">OK</string>
-    <string name="button_cancel">Batal</string>
-
-    <!-- Calculator mode indicators -->
-    <string name="degree_mode_deg">DEG</string>
-    <string name="degree_mode_rad">RAD</string>
-
-    <!-- Chooser titles -->
-    <string name="chooser_title_send_feedback">Kirim masukan</string>
-    <string name="chooser_title_share">Silakan pilih</string>
-    <string name="chooser_title_share_via">Bagikan melalui</string>
-
-    <!-- Share/Marketing text -->
-    <string name="share_app_message_prefix">\nAplikasi ini sangat berguna, silakan unduh dan instal untuk mencoba\n\n</string>
-    <string name="developer_name">SAIGON PHANTOM LABS</string>
-
-    <!-- Language settings -->
-    <string name="language_system_default">Bawaan Sistem</string>
-    <string name="preferences_language_summary">Pilih bahasa aplikasi</string>
-
-    <!-- Missing strings -->
-    <string name="division_by_0">Tidak dapat dibagi dengan 0</string>
+    <string name="infinity">Tak hingga</string>
+    <string name="division_by_0">Tidak bisa dibagi 0</string>
     <string name="domain_error">Kesalahan domain</string>
     <string name="math_error">Kesalahan matematika</string>
     <string name="syntax_error">Kesalahan sintaks</string>
-    <string name="app_menu_settings">Pengaturan (Ads may appear)</string>
+    <string name="error_explain_log_nonpositive">ln/log hanya terdefinisi untuk x > 0</string>
+    <string name="error_explain_tan_singularity">tan tidak terdefinisi di sini (cos = 0)</string>
+    <string name="app_menu_settings">Pengaturan (Mungkin berisi iklan)</string>
     <string name="value_too_large">Nilai terlalu besar</string>
     <string name="preferences_title">Pengaturan</string>
     <string name="preferences_general_category">UMUM</string>
     <string name="preferences_history_category">RIWAYAT</string>
-    <string name="preferences_prevent_phone_from_sleeping_summary">Cegah ponsel tertidur saat aplikasi di latar depan</string>
-    <string name="preferences_vibration_summary">Berikan getaran saat tombol ditekan</string>
-    <string name="preferences_history_size">Hasil yang disimpan di riwayat</string>
+    <string name="preferences_prevent_phone_from_sleeping_summary">Cegah layar mati saat aplikasi berada di latar depan</string>
+    <string name="preferences_vibration_summary">Getar saat tombol ditekan</string>
+    <string name="preferences_history_size">Hasil disimpan dalam riwayat</string>
     <string name="preferences_vibration_title">Getaran</string>
-    <string name="preferences_prevent_phone_from_sleeping_title">Cegah ponsel tertidur</string>
+    <string name="preferences_prevent_phone_from_sleeping_title">Jaga layar tetap menyala</string>
     <string name="preferences_advanced_category">LANJUTAN</string>
     <string name="preferences_scientif_mode_enabled_by_default_summary">Aktifkan mode ilmiah secara default</string>
     <string name="preferences_scientif_mode_enabled_by_default_title">Mode ilmiah</string>
@@ -81,30 +80,43 @@
     <string name="about_other_category">LAINNYA</string>
     <string name="about_rate">Beri nilai aplikasi ini</string>
     <string name="app_version_title">Versi</string>
-    <string name="thanks_for_using_app">Terima kasih telah menggunakan Calculator ❤️</string>
+    <string name="thanks_for_using_app">Terima kasih telah menggunakan Kalkulator ❤️</string>
     <string name="preferences_number_precision">Jumlah tempat desimal</string>
     <string name="privacy_policy">Kebijakan privasi</string>
     <string name="about_title">Tentang</string>
     <string name="preferences_language_title">Bahasa</string>
-    <string name="deg">DEG</string>
-    <string name="_45">45</string>
-    <string name="get_more_apps">Dapatkan lebih banyak aplikasi</string>
+    <string name="get_more_apps">Dapatkan aplikasi lainnya</string>
     <string name="share_this_app">Bagikan aplikasi ini</string>
-    <string name="github">Kode sumber (Forked)</string>
-    <string name="source_code">Kode sumber (Original)</string>
+    <string name="github">Kode sumber (Fork)</string>
+    <string name="source_code">Kode sumber (Asli)</string>
     <string name="license">Lisensi</string>
     <string name="join_tester_community">Bergabung dengan komunitas penguji</string>
+    <string name="send_feedback">Kirim masukan</string>
+    <string name="clipboard_label_copied_result">Hasil disalin</string>
+    <string name="clipboard_label_copied_calc_and_result">Perhitungan dan hasil disalin</string>
+    <string name="history_entry_deleted">Entri riwayat dihapus</string>
+    <string name="undo">Urungkan</string>
+    <string name="toast_double_back_to_exit">Silakan tekan KEMBALI lagi untuk keluar</string>
+    <string name="dialog_tester_community_title">Konfirmasi</string>
+    <string name="dialog_tester_community_message">Jika Anda juga seorang pengembang dan mencari penguji untuk aplikasi Anda, bergabunglah dengan komunitas penguji kami sekarang!</string>
+    <string name="dialog_select_language_title">Pilih Bahasa</string>
+    <string name="button_ok">OK</string>
+    <string name="button_cancel">Batal</string>
+    <string name="chooser_title_send_feedback">Kirim masukan</string>
+    <string name="chooser_title_share">Silakan pilih</string>
+    <string name="chooser_title_share_via">Bagikan melalui</string>
+    <string name="share_app_message_prefix">
+Aplikasi ini sangat berguna, silakan unduh dan coba:
 
-    <!-- VIP -->
-    <string name="vip_screen_title">VIP</string>
-    <string name="vip_badge">VIP</string>
+</string>
+    <string name="language_system_default">Default Sistem</string>
+    <string name="preferences_language_summary">Pilih bahasa aplikasi</string>
     <string name="vip_active">VIP aktif</string>
     <string name="vip_free_user">Pengguna gratis</string>
-    <string name="vip_subtitle_free">Buka pengalaman tanpa iklan</string>
-    <string name="vip_until">Sampai %1$s</string>
+    <string name="vip_subtitle_free">Buka pengalaman bebas iklan</string>
+    <string name="vip_until">Hingga %1$s</string>
     <string name="vip_activated_at">Diaktifkan: %1$s</string>
     <string name="vip_expires_at">Kedaluwarsa: %1$s</string>
-    <string name="vip_remaining">%1$dd %2$02dh %3$02dm %4$02ds</string>
     <string name="vip_active_remaining">Tersisa: %1$dd %2$dh</string>
     <string name="vip_redeem_label">Masukkan kode VIP</string>
     <string name="vip_redeem_button">Aktifkan</string>
@@ -117,7 +129,7 @@
     <string name="vip_restore_locked">Pulihkan pembelian — segera hadir</string>
     <string name="vip_revoke_all_button">Cabut VIP</string>
     <string name="vip_revoke_all_confirm_title">Konfirmasi pencabutan</string>
-    <string name="vip_revoke_all_confirm_message">Yakin ingin mencabut VIP dan kembali ke akun gratis?</string>
+    <string name="vip_revoke_all_confirm_message">Apakah Anda yakin ingin mencabut VIP dan kembali ke akun Gratis?</string>
     <string name="vip_entry_first_install">🎁 Hadiah instalasi baru</string>
     <string name="vip_entry_redeemed">VIP %1$d hari</string>
     <string name="vip_success_title">Berhasil</string>
@@ -126,6 +138,8 @@
     <string name="cancel">Batal</string>
     <string name="confirm">Konfirmasi</string>
     <string name="ok">OK</string>
-    <string name="vip_reward_not_earned">Hadiah tidak diperoleh. Coba lagi nanti.</string>
-    <string name="vip_success_message">Selamat! VIP aktif selama %1$d hari. Nikmati pengalaman tanpa iklan.</string>
+    <string name="action_copy">Salin</string>
+    <string name="action_share">Bagikan</string>
+    <string name="vip_reward_not_earned">Hadiah belum didapatkan. Silakan coba lagi nanti.</string>
+    <string name="vip_success_message">Selamat! VIP diaktifkan selama %1$d hari. Nikmati pengalaman bebas iklan Anda.</string>
 </resources>

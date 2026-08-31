@@ -1,118 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name_display">Калькулятор</string>
+    <string name="backspace">Стерти назад</string>
+    <string name="dialog_physical_constant_title">Вставити фізичну константу</string>
+    <string name="cd_toggle_scientific_mode">Перемкнути наукові функції</string>
+    <string name="cd_parentheses">Дужки</string>
+    <string name="cd_exponent">Ступінь</string>
+    <string name="cd_divide">Поділити</string>
+    <string name="cd_multiply">Помножити</string>
+    <string name="cd_subtract">Відняти</string>
+    <string name="cd_add">Додати</string>
+    <string name="cd_decimal_point">Десяткова крапка</string>
+    <string name="cd_equals">Дорівнює</string>
+    <string name="cd_more_options">Додаткові параметри</string>
+    <string name="cd_pin_history">Закріпити це обчислення, щоб зберегти його під час очищення історії</string>
+    <string name="hint_search_history">Пошук в історії</string>
+    <string name="base_converter_title">Конвертер систем числення</string>
+    <string name="app_menu_base_converter">Конвертер систем числення</string>
+    <string name="base_converter_hint">Введіть число в будь-якій системі — інші оновляться автоматично</string>
+    <string name="base_converter_dec">DEC (10-кова)</string>
+    <string name="base_converter_hex">HEX (16-кова)</string>
+    <string name="base_converter_oct">OCT (8-кова)</string>
+    <string name="base_converter_bin">BIN (2-кова)</string>
+    <string name="bill_splitter_title">Розподіл рахунку</string>
+    <string name="app_menu_bill_splitter">Розподіл рахунку</string>
+    <string name="bill_splitter_amount_label">Сума рахунку</string>
+    <string name="bill_splitter_people_label">Кількість осіб</string>
+    <string name="bill_splitter_tip_label">Чайові</string>
+    <string name="bill_splitter_total_label">Разом (з чайовими)</string>
+    <string name="bill_splitter_per_person_label">З кожної особи</string>
     <string name="app_menu_show_history">Показати історію</string>
     <string name="app_menu_hide_history">Сховати історію</string>
     <string name="app_menu_theme">Тема</string>
     <string name="app_menu_clear_history">Очистити історію</string>
-    <string name="app_menu_about">Про застосунок (Ads may appear)</string>
-    <string name="theme_system">Система</string>
-    <string name="theme_amoled">Амолед</string>
+    <string name="app_menu_export_history">Експорт історії</string>
+    <string name="export_history_empty">Історія порожня, нема чого експортувати</string>
+    <string name="export_history_success">Історію експортовано</string>
+    <string name="export_history_failed">Не вдалося експортувати історію</string>
+    <string name="app_menu_import_history">Імпорт історії</string>
+    <string name="import_history_success">Імпортовано записів: %d</string>
+    <string name="import_history_skipped">(пропущено: %d)</string>
+    <string name="import_history_failed">Не вдалося імпортувати історію: немає дійсних рядків</string>
+    <string name="import_history_truncated">(файл завеликий, ліміт рядків: %d)</string>
+    <string name="app_menu_about">Про додаток (Може містити рекламу)</string>
+    <string name="theme_system">Системна</string>
+    <string name="theme_amoled">AMOLED</string>
+    <string name="theme_light">Світла</string>
+    <string name="theme_dark">Темна</string>
     <string name="theme_sunset">Захід сонця</string>
     <string name="theme_ocean">Океан</string>
     <string name="theme_forest">Ліс</string>
     <string name="theme_nord">Nord</string>
     <string name="theme_highcontrast">Високий контраст</string>
     <string name="theme_lavender">Лаванда</string>
-    <string name="app_name_display">Калькулятор</string>
-    <string name="infinity">Нескінченність</string>
-    <string name="math_error">Математична помилка</string>
-    <string name="theme_dark">Темна</string>
     <string name="value_copied">Скопійовано</string>
-    <string name="theme_light">Світла</string>
-    <string name="division_by_0">Не можна ділити на 0</string>
-    <string name="domain_error">Помилка домену</string>
+    <string name="infinity">Нескінченність</string>
+    <string name="division_by_0">Ділення на 0 неможливе</string>
+    <string name="domain_error">Помилка області визначення</string>
+    <string name="math_error">Математична помилка</string>
     <string name="syntax_error">Синтаксична помилка</string>
-    <string name="value_too_large">Значення занадто велике</string>
-    <string name="app_menu_settings">Налаштування (Ads may appear)</string>
+    <string name="error_explain_log_nonpositive">ln/log визначено лише для x > 0</string>
+    <string name="error_explain_tan_singularity">tan тут невизначений (cos = 0)</string>
+    <string name="app_menu_settings">Налаштування (Може містити рекламу)</string>
+    <string name="value_too_large">Значення завелике</string>
     <string name="preferences_title">Налаштування</string>
     <string name="preferences_general_category">ЗАГАЛЬНІ</string>
     <string name="preferences_history_category">ІСТОРІЯ</string>
-    <string name="preferences_vibration_title">Вібрації</string>
-    <string name="preferences_prevent_phone_from_sleeping_title">Запобігати сплячому режиму телефону</string>
+    <string name="preferences_prevent_phone_from_sleeping_summary">Запобігати вимкненню екрана під час роботи додатка</string>
+    <string name="preferences_vibration_summary">Вібрація під час натискання кнопок</string>
+    <string name="preferences_history_size">Кількість результатів, збережених в історії</string>
+    <string name="preferences_vibration_title">Вібрація</string>
+    <string name="preferences_prevent_phone_from_sleeping_title">Не вимикати екран</string>
+    <string name="preferences_advanced_category">РОЗШИРЕНІ</string>
+    <string name="preferences_scientif_mode_enabled_by_default_summary">Вмикати науковий режим за замовчуванням</string>
     <string name="preferences_scientif_mode_enabled_by_default_title">Науковий режим</string>
     <string name="preferences_radians_instead_of_degrees_by_default_title">Радіани</string>
     <string name="preferences_radians_instead_of_degrees_by_default_summary">Використовувати радіани замість градусів за замовчуванням</string>
-    <string name="about_other_category">ІНШЕ</string>
-    <string name="about_rate">Оцінити застосунок</string>
-    <string name="app_version_title">Версія</string>
-    <string name="thanks_for_using_app">Дякуємо за використання Calculator ❤️</string>
-    <string name="privacy_policy">Політика конфіденційності</string>
-    <string name="preferences_vibration_summary">Видавати вібрацію при натисканні кнопки</string>
-    <string name="preferences_history_size">Результати зберігаються в історії</string>
-    <string name="preferences_scientif_mode_enabled_by_default_summary">Активувати науковий режим за замовчуванням</string>
-    <string name="preferences_language_title">Мова</string>
-    <string name="preferences_prevent_phone_from_sleeping_summary">Запобігання переходу телефону в сплячий режим, коли застосунок на передньому плані</string>
-    <string name="preferences_advanced_category">РОЗШИРЕНИЙ</string>
     <string name="about_help_us_category">ДОПОМОЖІТЬ НАМ</string>
+    <string name="about_other_category">ІНШЕ</string>
+    <string name="about_rate">Оцінити додаток</string>
+    <string name="app_version_title">Версія</string>
+    <string name="thanks_for_using_app">Дякуємо за використання Калькулятора ❤️</string>
     <string name="preferences_number_precision">Кількість знаків після коми</string>
-    <string name="about_title">Про застосунок</string>
-    <string name="send_feedback">Надіслати відгук</string>
-
-    <!-- Clipboard labels -->
-    <string name="clipboard_label_copied_result">Результат скопійовано</string>
-    <string name="clipboard_label_copied_calc_and_result">Обчислення та результат скопійовано</string>
-
-    <!-- Toast messages -->
-    <string name="toast_double_back_to_exit">Будь ласка, натисніть НАЗАД ще раз для виходу</string>
-
-    <!-- Dialog text -->
-    <string name="dialog_tester_community_title">Підтвердити</string>
-    <string name="dialog_tester_community_message">Якщо ви також програміст і шукаєте тестувальників для тестування вашого застосунку. Приєднуйтесь до нашої спільноти тестувальників зараз</string>
-    <string name="dialog_select_language_title">Виберіть мову</string>
-    <string name="button_ok">ОК</string>
-    <string name="button_cancel">Скасувати</string>
-
-    <!-- Calculator mode indicators -->
-    <string name="degree_mode_deg">DEG</string>
-    <string name="degree_mode_rad">RAD</string>
-
-    <!-- Chooser titles -->
-    <string name="chooser_title_send_feedback">Надіслати відгук</string>
-    <string name="chooser_title_share">Будь ласка, оберіть</string>
-    <string name="chooser_title_share_via">Поділитися через</string>
-
-    <!-- Share/Marketing text -->
-    <string name="share_app_message_prefix">\nЦей застосунок дуже корисний, будь ласка, завантажте та встановіть, щоб спробувати\n\n</string>
-    <string name="developer_name">SAIGON PHANTOM LABS</string>
-
-    <!-- Language settings -->
-    <string name="language_system_default">Системний за замовчуванням</string>
-    <string name="preferences_language_summary">Вибрати мову застосунку</string>
-
-    <!-- Missing strings -->
-    <string name="deg">DEG</string>
-    <string name="_45">45</string>
-    <string name="get_more_apps">Отримати більше застосунків</string>
-    <string name="share_this_app">Поділитися цим застосунком</string>
-    <string name="github">Вихідний код (Forked)</string>
+    <string name="privacy_policy">Політика конфіденційності</string>
+    <string name="about_title">Про додаток</string>
+    <string name="preferences_language_title">Мова</string>
+    <string name="get_more_apps">Більше додатків</string>
+    <string name="share_this_app">Поділитися цим додатком</string>
+    <string name="github">Вихідний код (Fork)</string>
     <string name="source_code">Вихідний код (Original)</string>
     <string name="license">Ліцензія</string>
     <string name="join_tester_community">Приєднатися до спільноти тестувальників</string>
+    <string name="send_feedback">Надіслати відгук</string>
+    <string name="clipboard_label_copied_result">Результат скопійовано</string>
+    <string name="clipboard_label_copied_calc_and_result">Обчислення та результат скопійовано</string>
+    <string name="history_entry_deleted">Запис історії видалено</string>
+    <string name="undo">Скасувати</string>
+    <string name="toast_double_back_to_exit">Будь ласка, натисніть НАЗАД ще раз, щоб вийти</string>
+    <string name="dialog_tester_community_title">Підтвердити</string>
+    <string name="dialog_tester_community_message">Якщо ви також розробник і шукаєте тестувальників для свого додатка, приєднуйтесь до нашої спільноти вже зараз!</string>
+    <string name="dialog_select_language_title">Виберіть мову</string>
+    <string name="button_ok">ОК</string>
+    <string name="button_cancel">Скасувати</string>
+    <string name="chooser_title_send_feedback">Надіслати відгук</string>
+    <string name="chooser_title_share">Будь ласка, оберіть</string>
+    <string name="chooser_title_share_via">Поділитися через</string>
+    <string name="share_app_message_prefix">
+Цей додаток дуже корисний, завантажте та спробуйте:
 
-    <!-- VIP -->
-    <string name="vip_screen_title">VIP</string>
-    <string name="vip_badge">VIP</string>
+</string>
+    <string name="language_system_default">Системна за замовчуванням</string>
+    <string name="preferences_language_summary">Виберіть мову додатка</string>
     <string name="vip_active">VIP активний</string>
     <string name="vip_free_user">Безкоштовний користувач</string>
     <string name="vip_subtitle_free">Відкрийте досвід без реклами</string>
     <string name="vip_until">До %1$s</string>
     <string name="vip_activated_at">Активовано: %1$s</string>
     <string name="vip_expires_at">Закінчується: %1$s</string>
-    <string name="vip_remaining">%1$dd %2$02dh %3$02dm %4$02ds</string>
-    <string name="vip_active_remaining">Залишилось: %1$dd %2$dh</string>
+    <string name="vip_active_remaining">Залишилося: %1$dd %2$dh</string>
     <string name="vip_redeem_label">Введіть VIP-код</string>
     <string name="vip_redeem_button">Активувати</string>
     <string name="vip_redeem_invalid">Недійсний VIP-код</string>
-    <string name="vip_watch_ad_3d">Дивитися рекламу → 3 дні VIP</string>
+    <string name="vip_watch_ad_3d">Переглянути рекламу → 3 дні VIP</string>
     <string name="vip_buy_30d_locked">Купити VIP 30 днів — незабаром</string>
     <string name="vip_buy_90d_locked">Купити VIP 90 днів — незабаром</string>
     <string name="vip_buy_1y_locked">Купити VIP 1 рік — незабаром</string>
     <string name="vip_buy_lifetime_locked">Купити VIP назавжди — незабаром</string>
     <string name="vip_restore_locked">Відновити покупку — незабаром</string>
-    <string name="vip_revoke_all_button">Скасувати VIP</string>
-    <string name="vip_revoke_all_confirm_title">Підтвердити скасування</string>
-    <string name="vip_revoke_all_confirm_message">Ви впевнені, що хочете скасувати VIP і повернутися до безкоштовного облікового запису?</string>
-    <string name="vip_entry_first_install">🎁 Подарунок за встановлення</string>
+    <string name="vip_revoke_all_button">Відкликати VIP</string>
+    <string name="vip_revoke_all_confirm_title">Підтвердіть відкликання</string>
+    <string name="vip_revoke_all_confirm_message">Ви впевнені, що хочете відкликати VIP та повернутися до безкоштовного акаунта?</string>
+    <string name="vip_entry_first_install">🎁 Подарунок за нове встановлення</string>
     <string name="vip_entry_redeemed">VIP %1$d дн.</string>
     <string name="vip_success_title">Успішно</string>
     <string name="vip_failed_title">Помилка</string>
@@ -120,6 +138,8 @@
     <string name="cancel">Скасувати</string>
     <string name="confirm">Підтвердити</string>
     <string name="ok">OK</string>
-    <string name="vip_reward_not_earned">Винагороду не отримано. Спробуйте пізніше.</string>
-    <string name="vip_success_message">Вітаємо! VIP активовано на %1$d дн. Насолоджуйтесь без реклами.</string>
+    <string name="action_copy">Копіювати</string>
+    <string name="action_share">Поділитися</string>
+    <string name="vip_reward_not_earned">Винагороду не отримано. Будь ласка, спробуйте пізніше.</string>
+    <string name="vip_success_message">Вітаємо! VIP активовано на %1$d дн. Насолоджуйтесь користуванням без реклами.</string>
 </resources>

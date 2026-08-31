@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+<resources>
     <string name="app_name" translatable="false">Calculator</string>
     <string name="app_name_display">Calculator</string>
     <string name="zero" translatable="false">0</string>
@@ -67,10 +67,10 @@
     <string name="app_menu_bill_splitter">Bill Splitter</string>
     <string name="bill_splitter_amount_label">Bill amount</string>
     <string name="bill_splitter_people_label">Number of people</string>
-    <string name="bill_splitter_minus">−</string>
-    <string name="bill_splitter_plus">+</string>
+    <string name="bill_splitter_minus" translatable="false">−</string>
+    <string name="bill_splitter_plus" translatable="false">+</string>
     <string name="bill_splitter_tip_label">Tip</string>
-    <string name="bill_splitter_tip_value">%1$d%%</string>
+    <string name="bill_splitter_tip_value" translatable="false">%1$d%%</string>
     <string name="bill_splitter_total_label">Total (incl. tip)</string>
     <string name="bill_splitter_per_person_label">Each person pays</string>
 
@@ -145,8 +145,8 @@
     <string name="privacy_policy">Privacy policy</string>
     <string name="about_title">About</string>
     <string name="preferences_language_title">Language</string>
-    <string name="deg">DEG</string>
-    <string name="_45">45</string>
+    <string name="deg" translatable="false">DEG</string>
+    <string name="_45" translatable="false">45</string>
     <string name="get_more_apps">Get more apps</string>
     <string name="share_this_app">Share this app</string>
     <string name="github">Source code (Forked)</string>
@@ -173,8 +173,8 @@
     <string name="button_cancel">Cancel</string>
 
     <!-- Calculator mode indicators -->
-    <string name="degree_mode_deg">DEG</string>
-    <string name="degree_mode_rad">RAD</string>
+    <string name="degree_mode_deg" translatable="false">DEG</string>
+    <string name="degree_mode_rad" translatable="false">RAD</string>
 
     <!-- Chooser titles -->
     <string name="chooser_title_send_feedback">Send feedback</string>
@@ -183,22 +183,22 @@
 
     <!-- Share/Marketing text -->
     <string name="share_app_message_prefix">\nThis application is very useful, please download and install to experience\n\n</string>
-    <string name="developer_name">SAIGON PHANTOM LABS</string>
+    <string name="developer_name" translatable="false">SAIGON PHANTOM LABS</string>
 
     <!-- Language settings -->
     <string name="language_system_default">System Default</string>
     <string name="preferences_language_summary">Select app language</string>
 
     <!-- VIP -->
-    <string name="vip_screen_title">VIP</string>
-    <string name="vip_badge">VIP</string>
+    <string name="vip_screen_title" translatable="false">VIP</string>
+    <string name="vip_badge" translatable="false">VIP</string>
     <string name="vip_active">VIP active</string>
     <string name="vip_free_user">Free user</string>
     <string name="vip_subtitle_free">Unlock an ad-free experience</string>
     <string name="vip_until">Until %1$s</string>
     <string name="vip_activated_at">Activated: %1$s</string>
     <string name="vip_expires_at">Expires: %1$s</string>
-    <string name="vip_remaining">%1$dd %2$02dh %3$02dm %4$02ds</string>
+    <string name="vip_remaining" translatable="false">%1$dd %2$02dh %3$02dm %4$02ds</string>
     <string name="vip_active_remaining">Remaining: %1$dd %2$dh</string>
     <string name="vip_redeem_label">Enter VIP code</string>
     <string name="vip_redeem_button">Activate</string>

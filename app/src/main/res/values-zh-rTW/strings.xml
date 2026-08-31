@@ -1,113 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name_display">計算機</string>
-    <!-- App Menu -->
+    <string name="backspace">退格</string>
+    <string name="dialog_physical_constant_title">插入物理常數</string>
+    <string name="cd_toggle_scientific_mode">切換科學函數</string>
+    <string name="cd_parentheses">括號</string>
+    <string name="cd_exponent">指數</string>
+    <string name="cd_divide">除</string>
+    <string name="cd_multiply">乘</string>
+    <string name="cd_subtract">減</string>
+    <string name="cd_add">加</string>
+    <string name="cd_decimal_point">小數點</string>
+    <string name="cd_equals">等於</string>
+    <string name="cd_more_options">更多選項</string>
+    <string name="cd_pin_history">釘選此計算以在清除歷史記錄時保留</string>
+    <string name="hint_search_history">搜尋歷史記錄</string>
+    <string name="base_converter_title">進制轉換</string>
+    <string name="app_menu_base_converter">進制轉換</string>
+    <string name="base_converter_hint">輸入任意進制的數字 — 其他進制將自動更新</string>
+    <string name="base_converter_dec">DEC (10進制)</string>
+    <string name="base_converter_hex">HEX (16進制)</string>
+    <string name="base_converter_oct">OCT (8進制)</string>
+    <string name="base_converter_bin">BIN (2進制)</string>
+    <string name="bill_splitter_title">帳單分攤</string>
+    <string name="app_menu_bill_splitter">帳單分攤</string>
+    <string name="bill_splitter_amount_label">帳單金額</string>
+    <string name="bill_splitter_people_label">人數</string>
+    <string name="bill_splitter_tip_label">小費</string>
+    <string name="bill_splitter_total_label">總計 (含小費)</string>
+    <string name="bill_splitter_per_person_label">每人應付</string>
     <string name="app_menu_show_history">顯示歷史記錄</string>
     <string name="app_menu_hide_history">隱藏歷史記錄</string>
     <string name="app_menu_theme">主題</string>
     <string name="app_menu_clear_history">清除計算記錄</string>
-    <string name="app_menu_about">關於 (Ads may appear)</string>
-    <!-- Theme choices -->
-    <string name="theme_system">預設</string>
-    <string name="theme_amoled">Amoled黑</string>
-    <string name="theme_light">燈光</string>
-    <string name="theme_dark">黑暗</string>
+    <string name="app_menu_export_history">匯出歷史記錄</string>
+    <string name="export_history_empty">歷史記錄為空，無可匯出內容</string>
+    <string name="export_history_success">歷史記錄已匯出</string>
+    <string name="export_history_failed">匯出歷史記錄失敗</string>
+    <string name="app_menu_import_history">匯入歷史記錄</string>
+    <string name="import_history_success">已匯入條目：%d</string>
+    <string name="import_history_skipped">(已略過：%d)</string>
+    <string name="import_history_failed">匯入歷史記錄失敗：未找到有效內容</string>
+    <string name="import_history_truncated">(檔案過大，行數限制：%d)</string>
+    <string name="app_menu_about">關於 (可能包含廣告)</string>
+    <string name="theme_system">系統預設</string>
+    <string name="theme_amoled">AMOLED 純黑</string>
+    <string name="theme_light">淺色</string>
+    <string name="theme_dark">深色</string>
     <string name="theme_sunset">日落</string>
     <string name="theme_ocean">海洋</string>
     <string name="theme_forest">森林</string>
     <string name="theme_nord">Nord</string>
     <string name="theme_highcontrast">高對比度</string>
     <string name="theme_lavender">薰衣草</string>
-    <!-- Others -->
     <string name="value_copied">已複製</string>
-    <string name="infinity">無限</string>
+    <string name="infinity">無限大</string>
     <string name="division_by_0">無法除以 0</string>
-    <string name="domain_error">無法顯示</string>
-    <string name="math_error">無法計算</string>
-    <string name="syntax_error">格式錯誤</string>
-    <string name="app_menu_settings">設置 (Ads may appear)</string>
-    <string name="value_too_large">數值太大</string>
-
-    <!-- Preference Titles -->
-    <string name="preferences_title">設置</string>
+    <string name="domain_error">定義域錯誤</string>
+    <string name="math_error">數學錯誤</string>
+    <string name="syntax_error">語法錯誤</string>
+    <string name="error_explain_log_nonpositive">ln/log 僅在 x > 0 時有定義</string>
+    <string name="error_explain_tan_singularity">tan 在此處無定義 (cos = 0)</string>
+    <string name="app_menu_settings">設定 (可能包含廣告)</string>
+    <string name="value_too_large">數值過大</string>
+    <string name="preferences_title">設定</string>
     <string name="preferences_general_category">一般</string>
-    <string name="preferences_history_category">歷史</string>
-
-    <!-- Messages Preferences -->
-    <string name="preferences_prevent_phone_from_sleeping_summary">當正在使用此應用程式時, 永不關掉屏幕</string>
-    <string name="preferences_vibration_summary">按下按鈕時發出震動</string>
-    <string name="preferences_history_size">儲存在歷史記錄的數目</string>
+    <string name="preferences_history_category">歷史記錄</string>
+    <string name="preferences_prevent_phone_from_sleeping_summary">應用程式處於前景時保持螢幕開啟</string>
+    <string name="preferences_vibration_summary">按下按鈕時震動</string>
+    <string name="preferences_history_size">儲存在歷史記錄中的數目</string>
     <string name="preferences_vibration_title">震動</string>
-    <string name="preferences_prevent_phone_from_sleeping_title">防止休眠</string>
+    <string name="preferences_prevent_phone_from_sleeping_title">防止螢幕休眠</string>
     <string name="preferences_advanced_category">進階</string>
-    <string name="preferences_scientif_mode_enabled_by_default_summary">預設啓用科學模式</string>
+    <string name="preferences_scientif_mode_enabled_by_default_summary">預設啟用科學模式</string>
     <string name="preferences_scientif_mode_enabled_by_default_title">科學模式</string>
     <string name="preferences_radians_instead_of_degrees_by_default_title">弧度</string>
     <string name="preferences_radians_instead_of_degrees_by_default_summary">預設使用弧度代替度數</string>
-    <string name="about_help_us_category">幫助我們</string>
+    <string name="about_help_us_category">支持我們</string>
     <string name="about_other_category">其他</string>
-    <string name="about_rate">爲此APP評分</string>
+    <string name="about_rate">為此應用評分</string>
     <string name="app_version_title">版本</string>
-    <string name="thanks_for_using_app">感謝使用 Calculator ❤️</string>
-    <string name="preferences_number_precision">小數位準確性</string>
-    <string name="privacy_policy">隱私政策</string>
+    <string name="thanks_for_using_app">感謝使用計算機 ❤️</string>
+    <string name="preferences_number_precision">小數位精確度</string>
+    <string name="privacy_policy">隱私權政策</string>
     <string name="about_title">關於</string>
     <string name="preferences_language_title">語言</string>
-    <string name="send_feedback">發送反饋</string>
-
-    <!-- Clipboard labels -->
+    <string name="get_more_apps">取得更多應用程式</string>
+    <string name="share_this_app">分享此應用程式</string>
+    <string name="github">原始碼 (分支版本)</string>
+    <string name="source_code">原始碼 (原始版本)</string>
+    <string name="license">授權條款</string>
+    <string name="join_tester_community">加入測試人員社群</string>
+    <string name="send_feedback">傳送意見回饋</string>
     <string name="clipboard_label_copied_result">已複製結果</string>
-    <string name="clipboard_label_copied_calc_and_result">已複製計算和結果</string>
-
-    <!-- Toast messages -->
-    <string name="toast_double_back_to_exit">請再次點擊返回以退出</string>
-
-    <!-- Dialog text -->
+    <string name="clipboard_label_copied_calc_and_result">已複製計算與結果</string>
+    <string name="history_entry_deleted">已刪除歷史記錄項目</string>
+    <string name="undo">復原</string>
+    <string name="toast_double_back_to_exit">請再次點擊返回鍵以結束</string>
     <string name="dialog_tester_community_title">確認</string>
-    <string name="dialog_tester_community_message">如果您也是程序員並正在尋找測試人員來測試您的應用程式。立即加入我們的測試人員社區</string>
+    <string name="dialog_tester_community_message">如果您也是開發者並正在尋找測試人員來測試您的應用程式，立即加入我們的測試社群！</string>
     <string name="dialog_select_language_title">選擇語言</string>
     <string name="button_ok">確定</string>
     <string name="button_cancel">取消</string>
-
-    <!-- Calculator mode indicators -->
-    <string name="degree_mode_deg">DEG</string>
-    <string name="degree_mode_rad">RAD</string>
-
-    <!-- Chooser titles -->
-    <string name="chooser_title_send_feedback">發送反饋</string>
+    <string name="chooser_title_send_feedback">傳送意見回饋</string>
     <string name="chooser_title_share">請選擇</string>
     <string name="chooser_title_share_via">分享方式</string>
+    <string name="share_app_message_prefix">
+這個應用程式非常實用，請下載並安裝體驗：
 
-    <!-- Share/Marketing text -->
-    <string name="share_app_message_prefix">\n這個應用程式非常有用，請下載並安裝以體驗\n\n</string>
-    <string name="developer_name">SAIGON PHANTOM LABS</string>
-
-    <!-- Language settings -->
+</string>
     <string name="language_system_default">系統預設</string>
     <string name="preferences_language_summary">選擇應用程式語言</string>
-
-    <!-- Missing strings -->
-    <string name="deg">DEG</string>
-    <string name="_45">45</string>
-    <string name="get_more_apps">取得更多應用程式</string>
-    <string name="share_this_app">分享此應用程式</string>
-    <string name="github">原始碼 (Forked)</string>
-    <string name="source_code">原始碼 (Original)</string>
-    <string name="license">授權條款</string>
-    <string name="join_tester_community">加入測試人員社區</string>
-
-    <!-- VIP -->
-    <string name="vip_screen_title">VIP</string>
-    <string name="vip_badge">VIP</string>
     <string name="vip_active">VIP 已啟用</string>
     <string name="vip_free_user">免費使用者</string>
     <string name="vip_subtitle_free">解鎖無廣告體驗</string>
     <string name="vip_until">至 %1$s</string>
     <string name="vip_activated_at">啟用：%1$s</string>
     <string name="vip_expires_at">到期：%1$s</string>
-    <string name="vip_remaining">%1$dd %2$02dh %3$02dm %4$02ds</string>
     <string name="vip_active_remaining">剩餘：%1$dd %2$dh</string>
-    <string name="vip_redeem_label">輸入 VIP 碼</string>
+    <string name="vip_redeem_label">輸入 VIP 兌換碼</string>
     <string name="vip_redeem_button">啟用</string>
     <string name="vip_redeem_invalid">VIP 碼無效</string>
     <string name="vip_watch_ad_3d">觀看廣告 → 3 天 VIP</string>
@@ -126,7 +137,9 @@
     <string name="back">返回</string>
     <string name="cancel">取消</string>
     <string name="confirm">確認</string>
-    <string name="ok">OK</string>
+    <string name="ok">確定</string>
+    <string name="action_copy">複製</string>
+    <string name="action_share">分享</string>
     <string name="vip_reward_not_earned">未獲得獎勵，請稍後再試。</string>
     <string name="vip_success_message">恭喜！已啟用 %1$d 天 VIP。盡情享受無廣告體驗。</string>
 </resources>

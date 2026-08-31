@@ -1,125 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name_display">ماشین حساب</string>
+    <string name="backspace">پس‌بر</string>
+    <string name="dialog_physical_constant_title">درج ثابت فیزیکی</string>
+    <string name="cd_toggle_scientific_mode">تغییر توابع علمی</string>
+    <string name="cd_parentheses">پرانتز</string>
+    <string name="cd_exponent">توان</string>
+    <string name="cd_divide">تقسیم</string>
+    <string name="cd_multiply">ضرب</string>
+    <string name="cd_subtract">تفریق</string>
+    <string name="cd_add">جمع</string>
+    <string name="cd_decimal_point">نقطه اعشار</string>
+    <string name="cd_equals">مساوی</string>
+    <string name="cd_more_options">گزینه‌های بیشتر</string>
+    <string name="cd_pin_history">سنجاق کردن این محاسبه برای حفظ آن هنگام پاکسازی تاریخچه</string>
+    <string name="hint_search_history">جستجو در تاریخچه</string>
+    <string name="base_converter_title">تبدیل مبنا</string>
+    <string name="app_menu_base_converter">تبدیل مبنا</string>
+    <string name="base_converter_hint">عددی را در هر مبنایی وارد کنید — سایر مبناها خودکار به‌روزرسانی می‌شوند</string>
+    <string name="base_converter_dec">DEC (مبنای 10)</string>
+    <string name="base_converter_hex">HEX (مبنای 16)</string>
+    <string name="base_converter_oct">OCT (مبنای 8)</string>
+    <string name="base_converter_bin">BIN (مبنای 2)</string>
+    <string name="bill_splitter_title">تقسیم صورت‌حساب</string>
+    <string name="app_menu_bill_splitter">تقسیم صورت‌حساب</string>
+    <string name="bill_splitter_amount_label">مبلغ صورت‌حساب</string>
+    <string name="bill_splitter_people_label">تعداد افراد</string>
+    <string name="bill_splitter_tip_label">انعام</string>
+    <string name="bill_splitter_total_label">مجموع (با انعام)</string>
+    <string name="bill_splitter_per_person_label">سهم هر نفر</string>
     <string name="app_menu_show_history">نمایش تاریخچه</string>
-    <string name="app_menu_hide_history">مخفی کردن تاریخچه</string>
-    <string name="app_menu_theme">تم</string>
-    <string name="app_menu_about"> (Ads may appear)درباره</string>
+    <string name="app_menu_hide_history">پنهان کردن تاریخچه</string>
+    <string name="app_menu_theme">پوسته</string>
+    <string name="app_menu_clear_history">پاک کردن تاریخچه</string>
+    <string name="app_menu_export_history">خروجی گرفتن از تاریخچه</string>
+    <string name="export_history_empty">تاریخچه خالی است، موردی برای خروجی وجود ندارد</string>
+    <string name="export_history_success">تاریخچه با موفقیت ذخیره شد</string>
+    <string name="export_history_failed">خطا در خروجی گرفتن از تاریخچه</string>
+    <string name="app_menu_import_history">وارد کردن تاریخچه</string>
+    <string name="import_history_success">موارد وارد شده: %d</string>
+    <string name="import_history_skipped">(رد شده: %d)</string>
+    <string name="import_history_failed">خطا در وارد کردن تاریخچه: سطر معتبری یافت نشد</string>
+    <string name="import_history_truncated">(فایل بسیار بزرگ است، سقف سطر: %d)</string>
+    <string name="app_menu_about">درباره (شاید حاوی تبلیغات باشد)</string>
+    <string name="theme_system">سیستم</string>
+    <string name="theme_amoled">Amoled</string>
+    <string name="theme_light">روشن</string>
+    <string name="theme_dark">تاریک</string>
     <string name="theme_sunset">غروب آفتاب</string>
     <string name="theme_ocean">اقیانوس</string>
     <string name="theme_forest">جنگل</string>
     <string name="theme_nord">Nord</string>
     <string name="theme_highcontrast">کنتراست بالا</string>
     <string name="theme_lavender">اسطوخودوس</string>
-    <string name="send_feedback">ارسال بازخورد</string>
-
-    <!-- Clipboard labels -->
-    <string name="clipboard_label_copied_result">نتیجه کپی شد</string>
-    <string name="clipboard_label_copied_calc_and_result">محاسبه و نتیجه کپی شد</string>
-
-    <!-- Toast messages -->
-    <string name="toast_double_back_to_exit">لطفاً دوباره برگشت را فشار دهید برای خروج</string>
-
-    <!-- Dialog text -->
-    <string name="dialog_tester_community_title">تأیید</string>
-    <string name="dialog_tester_community_message">اگر شما هم یک برنامه نویس هستید و به دنبال آزمایش کنندگان برای آزمایش برنامه خود می گردید. همین الان به جامعه آزمایش کنندگان ما بپیوندید</string>
-    <string name="dialog_select_language_title">انتخاب زبان</string>
-    <string name="button_ok">تأیید</string>
-    <string name="button_cancel">لغو</string>
-
-    <!-- Calculator mode indicators -->
-    <string name="degree_mode_deg">DEG</string>
-    <string name="degree_mode_rad">RAD</string>
-
-    <!-- Chooser titles -->
-    <string name="chooser_title_send_feedback">ارسال بازخورد</string>
-    <string name="chooser_title_share">لطفاً انتخاب کنید</string>
-    <string name="chooser_title_share_via">اشتراک گذاری از طریق</string>
-
-    <!-- Share/Marketing text -->
-    <string name="share_app_message_prefix">\nاین برنامه بسیار مفید است، لطفاً دانلود و نصب کنید تا تجربه کنید\n\n</string>
-    <string name="developer_name">SAIGON PHANTOM LABS</string>
-
-    <!-- Language settings -->
-    <string name="language_system_default">پیش فرض سیستم</string>
-    <string name="preferences_language_summary">انتخاب زبان برنامه</string>
-
-    <!-- Missing strings -->
-    <string name="app_menu_clear_history">پاک کردن تاریخچه</string>
-    <string name="theme_system">سیستم</string>
-    <string name="theme_amoled">آمولد</string>
-    <string name="theme_light">روشن</string>
-    <string name="theme_dark">تاریک</string>
     <string name="value_copied">کپی شد</string>
     <string name="infinity">بی‌نهایت</string>
-    <string name="division_by_0">نمی‌توان بر 0 تقسیم کرد</string>
-    <string name="domain_error">خطای دامنه</string>
+    <string name="division_by_0">تقسیم بر صفر امکان‌پذیر نیست</string>
+    <string name="domain_error">خطای دامنه ریاضی</string>
     <string name="math_error">خطای ریاضی</string>
-    <string name="syntax_error">خطای نحوی</string>
-    <string name="app_menu_settings">تنظیمات (Ads may appear)</string>
+    <string name="syntax_error">خطای نگارشی</string>
+    <string name="error_explain_log_nonpositive">ln/log فقط برای x > 0 تعریف شده است</string>
+    <string name="error_explain_tan_singularity">tan در این نقطه تعریف نشده است (cos = 0)</string>
+    <string name="app_menu_settings">تنظیمات (شاید حاوی تبلیغات باشد)</string>
     <string name="value_too_large">مقدار بسیار بزرگ است</string>
     <string name="preferences_title">تنظیمات</string>
     <string name="preferences_general_category">عمومی</string>
     <string name="preferences_history_category">تاریخچه</string>
-    <string name="preferences_prevent_phone_from_sleeping_summary">جلوگیری از خواب رفتن تلفن وقتی برنامه در پیش‌زمینه است</string>
-    <string name="preferences_vibration_summary">لرزش هنگام فشردن دکمه</string>
-    <string name="preferences_history_size">نتایج ذخیره شده در تاریخچه</string>
-    <string name="preferences_vibration_title">لرزش‌ها</string>
-    <string name="preferences_prevent_phone_from_sleeping_title">جلوگیری از خواب رفتن تلفن</string>
+    <string name="preferences_prevent_phone_from_sleeping_summary">جلوگیری از خاموش شدن صفحه هنگام اجرای برنامه در پیش‌زمینه</string>
+    <string name="preferences_vibration_summary">لرزش هنگام لمس دکمه‌ها</string>
+    <string name="preferences_history_size">تعداد نتایج ذخیره شده در تاریخچه</string>
+    <string name="preferences_vibration_title">لرزش</string>
+    <string name="preferences_prevent_phone_from_sleeping_title">روشن نگه داشتن صفحه</string>
     <string name="preferences_advanced_category">پیشرفته</string>
-    <string name="preferences_scientif_mode_enabled_by_default_summary">فعال کردن حالت علمی به طور پیش‌فرض</string>
+    <string name="preferences_scientif_mode_enabled_by_default_summary">فعال‌سازی پیش‌فرض حالت علمی</string>
     <string name="preferences_scientif_mode_enabled_by_default_title">حالت علمی</string>
     <string name="preferences_radians_instead_of_degrees_by_default_title">رادیان</string>
-    <string name="preferences_radians_instead_of_degrees_by_default_summary">استفاده از رادیان به جای درجه به طور پیش‌فرض</string>
-    <string name="about_help_us_category">به ما کمک کنید</string>
+    <string name="preferences_radians_instead_of_degrees_by_default_summary">استفاده پیش‌فرض از رادیان به جای درجه</string>
+    <string name="about_help_us_category">حمایت از ما</string>
     <string name="about_other_category">سایر</string>
-    <string name="about_rate">امتیاز دادن به این برنامه</string>
+    <string name="about_rate">امتیاز به برنامه</string>
     <string name="app_version_title">نسخه</string>
-    <string name="thanks_for_using_app">از استفاده‌تان از Calculator متشکریم ❤️</string>
-    <string name="preferences_number_precision">تعداد اعداد اعشاری</string>
-    <string name="privacy_policy">سیاست حریم خصوصی</string>
+    <string name="thanks_for_using_app">از استفاده شما از ماشین حساب متشکریم ❤️</string>
+    <string name="preferences_number_precision">تعداد ارقام اعشار</string>
+    <string name="privacy_policy">سیاست حفظ حریم خصوصی</string>
     <string name="about_title">درباره</string>
     <string name="preferences_language_title">زبان</string>
-    <string name="deg">DEG</string>
-    <string name="_45">45</string>
-    <string name="get_more_apps">دریافت برنامه‌های بیشتر</string>
+    <string name="get_more_apps">برنامه‌های بیشتر</string>
     <string name="share_this_app">اشتراک‌گذاری این برنامه</string>
-    <string name="github">کد منبع (Forked)</string>
-    <string name="source_code">کد منبع (Original)</string>
+    <string name="github">سورس کد (Fork)</string>
+    <string name="source_code">سورس کد (اصلی)</string>
     <string name="license">مجوز</string>
-    <string name="join_tester_community">به جامعه آزمایش‌کنندگان بپیوندید</string>
+    <string name="join_tester_community">پیوستن به جامعه آزمایش‌کنندگان</string>
+    <string name="send_feedback">ارسال بازخورد</string>
+    <string name="clipboard_label_copied_result">نتیجه کپی شد</string>
+    <string name="clipboard_label_copied_calc_and_result">محاسبه و نتیجه کپی شد</string>
+    <string name="history_entry_deleted">مورد از تاریخچه حذف شد</string>
+    <string name="undo">واگرد</string>
+    <string name="toast_double_back_to_exit">برای خروج لطفاً دوباره بازگشت را بزنید</string>
+    <string name="dialog_tester_community_title">تأیید</string>
+    <string name="dialog_tester_community_message">اگر شما نیز برنامه‌نویس هستید و به دنبال آزمایش‌کننده برای برنامه خود می‌گردید، همین حالا به جامعه ما بپیوندید!</string>
+    <string name="dialog_select_language_title">انتخاب زبان</string>
+    <string name="button_ok">تأیید</string>
+    <string name="button_cancel">لغو</string>
+    <string name="chooser_title_send_feedback">ارسال بازخورد</string>
+    <string name="chooser_title_share">لطفاً انتخاب کنید</string>
+    <string name="chooser_title_share_via">اشتراک‌گذاری از طریق</string>
+    <string name="share_app_message_prefix">
+این برنامه بسیار کاربردی است، لطفاً دانلود و تجربه کنید:
 
-    <!-- VIP -->
-    <string name="vip_screen_title">VIP</string>
-    <string name="vip_badge">VIP</string>
-    <string name="vip_active">VIP فعال</string>
+</string>
+    <string name="language_system_default">پیش‌فرض سیستم</string>
+    <string name="preferences_language_summary">انتخاب زبان برنامه</string>
+    <string name="vip_active">VIP فعال است</string>
     <string name="vip_free_user">کاربر رایگان</string>
-    <string name="vip_subtitle_free">تجربه بدون تبلیغات را باز کنید</string>
+    <string name="vip_subtitle_free">باز کردن تجربه بدون تبلیغات</string>
     <string name="vip_until">تا %1$s</string>
-    <string name="vip_activated_at">فعال شد: %1$s</string>
+    <string name="vip_activated_at">فعال شده: %1$s</string>
     <string name="vip_expires_at">انقضا: %1$s</string>
-    <string name="vip_remaining">%1$dd %2$02dh %3$02dm %4$02ds</string>
     <string name="vip_active_remaining">باقی‌مانده: %1$dd %2$dh</string>
     <string name="vip_redeem_label">کد VIP را وارد کنید</string>
     <string name="vip_redeem_button">فعال‌سازی</string>
     <string name="vip_redeem_invalid">کد VIP نامعتبر است</string>
-    <string name="vip_watch_ad_3d">تماشای تبلیغ → 3 روز VIP</string>
-    <string name="vip_buy_30d_locked">خرید VIP 30 روزه — به‌زودی</string>
-    <string name="vip_buy_90d_locked">خرید VIP 90 روزه — به‌زودی</string>
-    <string name="vip_buy_1y_locked">خرید VIP 1 ساله — به‌زودی</string>
+    <string name="vip_watch_ad_3d">مشاهده تبلیغ → ۳ روز VIP</string>
+    <string name="vip_buy_30d_locked">خرید VIP ۳۰ روزه — به‌زودی</string>
+    <string name="vip_buy_90d_locked">خرید VIP ۹۰ روزه — به‌زودی</string>
+    <string name="vip_buy_1y_locked">خرید VIP ۱ ساله — به‌زودی</string>
     <string name="vip_buy_lifetime_locked">خرید VIP مادام‌العمر — به‌زودی</string>
     <string name="vip_restore_locked">بازیابی خرید — به‌زودی</string>
     <string name="vip_revoke_all_button">لغو VIP</string>
     <string name="vip_revoke_all_confirm_title">تأیید لغو</string>
-    <string name="vip_revoke_all_confirm_message">آیا مطمئنید می‌خواهید VIP را لغو کنید و به حساب رایگان بازگردید؟</string>
+    <string name="vip_revoke_all_confirm_message">آیا مطمئن هستید که می‌خواهید VIP را لغو کرده و به حساب رایگان بازگردید؟</string>
     <string name="vip_entry_first_install">🎁 هدیه نصب جدید</string>
     <string name="vip_entry_redeemed">VIP %1$d روز</string>
-    <string name="vip_success_title">موفق</string>
+    <string name="vip_success_title">موفقیت‌آمیز</string>
     <string name="vip_failed_title">ناموفق</string>
     <string name="back">بازگشت</string>
     <string name="cancel">لغو</string>
     <string name="confirm">تأیید</string>
-    <string name="ok">OK</string>
-    <string name="vip_reward_not_earned">پاداش دریافت نشد. بعداً دوباره تلاش کنید.</string>
-    <string name="vip_success_message">تبریک! VIP برای %1$d روز فعال شد. از تجربه بدون تبلیغات لذت ببرید.</string>
+    <string name="ok">تأیید</string>
+    <string name="action_copy">کپی</string>
+    <string name="action_share">اشتراک‌گذاری</string>
+    <string name="vip_reward_not_earned">پاداش دریافت نشد. لطفاً بعداً دوباره امتحان کنید.</string>
+    <string name="vip_success_message">تبریک! VIP به مدت %1$d روز فعال شد. از تجربه بدون تبلیغات لذت ببرید.</string>
 </resources>

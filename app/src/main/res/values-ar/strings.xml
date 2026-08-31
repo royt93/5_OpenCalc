@@ -1,125 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_menu_about">عن التطبيق (Ads may appear)</string>
+    <string name="app_name_display">الحاسبة</string>
+    <string name="backspace">مسافة للخلف</string>
+    <string name="dialog_physical_constant_title">إدراج ثابت فيزيائي</string>
+    <string name="cd_toggle_scientific_mode">تبديل الدوال العلمية</string>
+    <string name="cd_parentheses">أقواس</string>
+    <string name="cd_exponent">أس</string>
+    <string name="cd_divide">قسمة</string>
+    <string name="cd_multiply">ضرب</string>
+    <string name="cd_subtract">طرح</string>
+    <string name="cd_add">جمع</string>
+    <string name="cd_decimal_point">فاصلة عشرية</string>
+    <string name="cd_equals">يساوي</string>
+    <string name="cd_more_options">خيارات إضافية</string>
+    <string name="cd_pin_history">تثبيت هذه العملية الحسابية للاحتفاظ بها عند مسح السجل</string>
+    <string name="hint_search_history">البحث في السجل</string>
+    <string name="base_converter_title">محول أنظمة العد</string>
+    <string name="app_menu_base_converter">محول أنظمة العد</string>
+    <string name="base_converter_hint">اكتب رقماً بأي نظام عد — وسيتم تحديث الأنظمة الأخرى تلقائياً</string>
+    <string name="base_converter_dec">DEC (النظام العشري)</string>
+    <string name="base_converter_hex">HEX (النظام السداسي عشر)</string>
+    <string name="base_converter_oct">OCT (النظام الثماني)</string>
+    <string name="base_converter_bin">BIN (النظام الثنائي)</string>
+    <string name="bill_splitter_title">تقسيم الفاتورة</string>
+    <string name="app_menu_bill_splitter">تقسيم الفاتورة</string>
+    <string name="bill_splitter_amount_label">مبلغ الفاتورة</string>
+    <string name="bill_splitter_people_label">عدد الأشخاص</string>
+    <string name="bill_splitter_tip_label">الإكرامية</string>
+    <string name="bill_splitter_total_label">الإجمالي (شامل الإكرامية)</string>
+    <string name="bill_splitter_per_person_label">نصيب كل شخص</string>
     <string name="app_menu_show_history">إظهار السجل</string>
     <string name="app_menu_hide_history">إخفاء السجل</string>
-    <string name="app_menu_theme">السمة</string>
-    <string name="app_name_display">الحاسبة</string>
-    <string name="infinity">Infinity</string>
-    <string name="app_menu_clear_history">مسح التاريخ</string>
+    <string name="app_menu_theme">المظهر</string>
+    <string name="app_menu_clear_history">مسح السجل</string>
+    <string name="app_menu_export_history">تصدير السجل</string>
+    <string name="export_history_empty">السجل فارغ، لا يوجد شيء لتصديره</string>
+    <string name="export_history_success">تم تصدير السجل بنجاح</string>
+    <string name="export_history_failed">فشل تصدير السجل</string>
+    <string name="app_menu_import_history">استيراد السجل</string>
+    <string name="import_history_success">تم استيراد العناصر: %d</string>
+    <string name="import_history_skipped">(تم تخطيها: %d)</string>
+    <string name="import_history_failed">فشل استيراد السجل: لم يتم العثور على أسطر صالحة</string>
+    <string name="import_history_truncated">(الملف كبير جداً، الحد الأقصى للأسطر: %d)</string>
+    <string name="app_menu_about">حول التطبيق (قد يحتوي على إعلانات)</string>
+    <string name="theme_system">النظام</string>
+    <string name="theme_amoled">Amoled</string>
+    <string name="theme_light">فاتح</string>
+    <string name="theme_dark">داكن</string>
     <string name="theme_sunset">غروب الشمس</string>
     <string name="theme_ocean">المحيط</string>
     <string name="theme_forest">الغابة</string>
     <string name="theme_nord">Nord</string>
     <string name="theme_highcontrast">تباين عالي</string>
-    <string name="theme_lavender">اللافندر</string>
-    <string name="send_feedback">إرسال ملاحظات</string>
-
-    <!-- Clipboard labels -->
-    <string name="clipboard_label_copied_result">نسخ النتيجة</string>
-    <string name="clipboard_label_copied_calc_and_result">نسخ الحساب والنتيجة</string>
-
-    <!-- Toast messages -->
-    <string name="toast_double_back_to_exit">الرجاء الضغط على زر الرجوع مرة أخرى للخروج</string>
-
-    <!-- Dialog text -->
-    <string name="dialog_tester_community_title">تأكيد</string>
-    <string name="dialog_tester_community_message">إذا كنت أيضًا مبرمجًا وتبحث عن مختبرين لاختبار تطبيقك. انضم إلى مجتمع المختبرين الآن</string>
-    <string name="dialog_select_language_title">اختر اللغة</string>
-    <string name="button_ok">موافق</string>
-    <string name="button_cancel">إلغاء</string>
-
-    <!-- Calculator mode indicators -->
-    <string name="degree_mode_deg">DEG</string>
-    <string name="degree_mode_rad">RAD</string>
-
-    <!-- Chooser titles -->
-    <string name="chooser_title_send_feedback">إرسال ملاحظات</string>
-    <string name="chooser_title_share">الرجاء الاختيار</string>
-    <string name="chooser_title_share_via">مشاركة عبر</string>
-
-    <!-- Share/Marketing text -->
-    <string name="share_app_message_prefix">\nهذا التطبيق مفيد جدًا، يرجى تنزيله وتثبيته لتجربته\n\n</string>
-    <string name="developer_name">SAIGON PHANTOM LABS</string>
-
-    <!-- Language settings -->
-    <string name="language_system_default">الافتراضي للنظام</string>
-    <string name="preferences_language_summary">اختر لغة التطبيق</string>
-
-    <!-- Missing strings -->
-    <string name="theme_system">النظام</string>
-    <string name="theme_amoled">أموليد</string>
-    <string name="theme_light">فاتح</string>
-    <string name="theme_dark">داكن</string>
+    <string name="theme_lavender">خزامى</string>
     <string name="value_copied">تم النسخ</string>
+    <string name="infinity">لا نهاية</string>
     <string name="division_by_0">لا يمكن القسمة على 0</string>
-    <string name="domain_error">خطأ في المجال</string>
+    <string name="domain_error">خطأ في المجال الرياضي</string>
     <string name="math_error">خطأ رياضي</string>
-    <string name="syntax_error">خطأ في بناء الجملة</string>
-    <string name="app_menu_settings">الإعدادات (Ads may appear)</string>
-    <string name="value_too_large">القيمة كبيرة جدًا</string>
+    <string name="syntax_error">خطأ في الصيغة</string>
+    <string name="error_explain_log_nonpositive">ln/log معرف فقط للقيم x > 0</string>
+    <string name="error_explain_tan_singularity">tan غير معرف هنا (cos = 0)</string>
+    <string name="app_menu_settings">الإعدادات (قد يحتوي على إعلانات)</string>
+    <string name="value_too_large">القيمة كبيرة جداً</string>
     <string name="preferences_title">الإعدادات</string>
     <string name="preferences_general_category">عام</string>
     <string name="preferences_history_category">السجل</string>
-    <string name="preferences_prevent_phone_from_sleeping_summary">منع الهاتف من النوم أثناء تشغيل التطبيق في المقدمة</string>
-    <string name="preferences_vibration_summary">إصدار اهتزازات عند الضغط على زر</string>
-    <string name="preferences_history_size">النتائج المحفوظة في السجل</string>
-    <string name="preferences_vibration_title">الاهتزازات</string>
-    <string name="preferences_prevent_phone_from_sleeping_title">منع الهاتف من النوم</string>
+    <string name="preferences_prevent_phone_from_sleeping_summary">منع إيقاف الشاشة أثناء تشغيل التطبيق في المقدمة</string>
+    <string name="preferences_vibration_summary">اهتزاز عند الضغط على الزر</string>
+    <string name="preferences_history_size">عدد النتائج المحفوظة في السجل</string>
+    <string name="preferences_vibration_title">الاهتزاز</string>
+    <string name="preferences_prevent_phone_from_sleeping_title">إبقاء الشاشة قيد التشغيل</string>
     <string name="preferences_advanced_category">متقدم</string>
-    <string name="preferences_scientif_mode_enabled_by_default_summary">تفعيل الوضع العلمي افتراضيًا</string>
+    <string name="preferences_scientif_mode_enabled_by_default_summary">تفعيل الوضع العلمي افتراضياً</string>
     <string name="preferences_scientif_mode_enabled_by_default_title">الوضع العلمي</string>
-    <string name="preferences_radians_instead_of_degrees_by_default_title">راديان</string>
-    <string name="preferences_radians_instead_of_degrees_by_default_summary">استخدام الراديان بدلاً من الدرجات افتراضيًا</string>
+    <string name="preferences_radians_instead_of_degrees_by_default_title">الراديان</string>
+    <string name="preferences_radians_instead_of_degrees_by_default_summary">استخدام الراديان بدلاً من الدرجات افتراضياً</string>
     <string name="about_help_us_category">ساعدنا</string>
     <string name="about_other_category">أخرى</string>
-    <string name="about_rate">قيّم هذا التطبيق</string>
+    <string name="about_rate">تقييم هذا التطبيق</string>
     <string name="app_version_title">الإصدار</string>
-    <string name="thanks_for_using_app">شكرًا لاستخدام Calculator ❤️</string>
-    <string name="preferences_number_precision">عدد المنازل العشرية</string>
+    <string name="thanks_for_using_app">شكراً لاستخدامك الحاسبة ❤️</string>
+    <string name="preferences_number_precision">عدد الخانات العشرية</string>
     <string name="privacy_policy">سياسة الخصوصية</string>
     <string name="about_title">حول</string>
     <string name="preferences_language_title">اللغة</string>
-    <string name="deg">DEG</string>
-    <string name="_45">45</string>
-    <string name="get_more_apps">احصل على المزيد من التطبيقات</string>
-    <string name="share_this_app">شارك هذا التطبيق</string>
-    <string name="github">الكود المصدري (Forked)</string>
-    <string name="source_code">الكود المصدري (Original)</string>
+    <string name="get_more_apps">المزيد من التطبيقات</string>
+    <string name="share_this_app">مشاركة هذا التطبيق</string>
+    <string name="github">شفرة المصدر (Fork)</string>
+    <string name="source_code">شفرة المصدر (الأصلية)</string>
     <string name="license">الترخيص</string>
-    <string name="join_tester_community">انضم إلى مجتمع المختبرين</string>
+    <string name="join_tester_community">الانضمام إلى مجتمع المختبرين</string>
+    <string name="send_feedback">إرسال تعليقات</string>
+    <string name="clipboard_label_copied_result">تم نسخ النتيجة</string>
+    <string name="clipboard_label_copied_calc_and_result">تم نسخ العملية والنتيجة</string>
+    <string name="history_entry_deleted">تم حذف عنصر من السجل</string>
+    <string name="undo">تراجع</string>
+    <string name="toast_double_back_to_exit">يرجى الضغط على زر الرجوع مرة أخرى للخروج</string>
+    <string name="dialog_tester_community_title">تأكيد</string>
+    <string name="dialog_tester_community_message">إذا كنت أيضاً مطوراً وتبحث عن مختبرين لتطبيقك، انضم إلى مجتمع المختبرين الآن!</string>
+    <string name="dialog_select_language_title">اختر اللغة</string>
+    <string name="button_ok">موافق</string>
+    <string name="button_cancel">إلغاء</string>
+    <string name="chooser_title_send_feedback">إرسال تعليقات</string>
+    <string name="chooser_title_share">يرجى الاختيار</string>
+    <string name="chooser_title_share_via">المشاركة عبر</string>
+    <string name="share_app_message_prefix">
+هذا التطبيق مفيد جداً، يرجى تنزيله وتثبيته لتجربته:
 
-    <!-- VIP -->
-    <string name="vip_screen_title">VIP</string>
-    <string name="vip_badge">VIP</string>
-    <string name="vip_active">VIP مفعّل</string>
+</string>
+    <string name="language_system_default">افتراضي النظام</string>
+    <string name="preferences_language_summary">تحديد لغة التطبيق</string>
+    <string name="vip_active">VIP نشط</string>
     <string name="vip_free_user">مستخدم مجاني</string>
-    <string name="vip_subtitle_free">افتح تجربة بدون إعلانات</string>
+    <string name="vip_subtitle_free">فتح تجربة خالية من الإعلانات</string>
     <string name="vip_until">حتى %1$s</string>
-    <string name="vip_activated_at">مُفعّل: %1$s</string>
-    <string name="vip_expires_at">ينتهي: %1$s</string>
-    <string name="vip_remaining">%1$dd %2$02dh %3$02dm %4$02ds</string>
+    <string name="vip_activated_at">تم التفعيل: %1$s</string>
+    <string name="vip_expires_at">ينتهي في: %1$s</string>
     <string name="vip_active_remaining">المتبقي: %1$dd %2$dh</string>
     <string name="vip_redeem_label">أدخل رمز VIP</string>
     <string name="vip_redeem_button">تفعيل</string>
     <string name="vip_redeem_invalid">رمز VIP غير صالح</string>
-    <string name="vip_watch_ad_3d">مشاهدة إعلان → 3 أيام VIP</string>
-    <string name="vip_buy_30d_locked">شراء VIP 30 يومًا — قريبًا</string>
-    <string name="vip_buy_90d_locked">شراء VIP 90 يومًا — قريبًا</string>
-    <string name="vip_buy_1y_locked">شراء VIP سنة — قريبًا</string>
-    <string name="vip_buy_lifetime_locked">شراء VIP مدى الحياة — قريبًا</string>
-    <string name="vip_restore_locked">استعادة الشراء — قريبًا</string>
+    <string name="vip_watch_ad_3d">مشاهدة إعلان ← 3 أيام VIP</string>
+    <string name="vip_buy_30d_locked">شراء VIP لمدة 30 يوماً — قريباً</string>
+    <string name="vip_buy_90d_locked">شراء VIP لمدة 90 يوماً — قريباً</string>
+    <string name="vip_buy_1y_locked">شراء VIP لمدة سنة — قريباً</string>
+    <string name="vip_buy_lifetime_locked">شراء VIP مدى الحياة — قريباً</string>
+    <string name="vip_restore_locked">استعادة المشتريات — قريباً</string>
     <string name="vip_revoke_all_button">إلغاء VIP</string>
     <string name="vip_revoke_all_confirm_title">تأكيد الإلغاء</string>
-    <string name="vip_revoke_all_confirm_message">هل أنت متأكد أنك تريد إلغاء VIP والعودة إلى حساب مجاني؟</string>
+    <string name="vip_revoke_all_confirm_message">هل أنت متأكد من رغبتك في إلغاء VIP والعودة للحساب المجاني؟</string>
     <string name="vip_entry_first_install">🎁 هدية التثبيت الجديد</string>
-    <string name="vip_entry_redeemed">VIP %1$d أيام</string>
-    <string name="vip_success_title">نجح</string>
+    <string name="vip_entry_redeemed">VIP لمدة %1$d يوم</string>
+    <string name="vip_success_title">نجاح</string>
     <string name="vip_failed_title">فشل</string>
     <string name="back">رجوع</string>
     <string name="cancel">إلغاء</string>
     <string name="confirm">تأكيد</string>
-    <string name="ok">OK</string>
-    <string name="vip_reward_not_earned">لم تحصل على المكافأة. حاول مرة أخرى لاحقًا.</string>
-    <string name="vip_success_message">تهانينا! تم تفعيل VIP لمدة %1$d أيام. استمتع بتجربة بدون إعلانات.</string>
+    <string name="ok">موافق</string>
+    <string name="action_copy">نسخ</string>
+    <string name="action_share">مشاركة</string>
+    <string name="vip_reward_not_earned">لم يتم الحصول على المكافأة. يرجى المحاولة مرة أخرى لاحقاً.</string>
+    <string name="vip_success_message">تهانينا! تم تفعيل VIP لمدة %1$d يوم. استمتع بتجربتك بدون إعلانات.</string>
 </resources>
