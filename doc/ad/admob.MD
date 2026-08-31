@@ -1,5 +1,5 @@
 package name: com.mckimquyen.opencal
-admob app id: 
+admob app id: ca-app-pub-3004713799155145~2001950526
 banner: ca-app-pub-3004713799155145/9886405901
 inter: ca-app-pub-3004713799155145/2805614932
 open app: ca-app-pub-3004713799155145/7978050569
