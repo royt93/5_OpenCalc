@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.pm.PackageManager
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.google.android.gms.ads.MobileAds
 import com.mckimquyen.opencal.feature.vip.VipActivity
 import com.mckimquyen.opencal.ui.SplashActivity
 import com.roy.sdkadbmob.AdManager
@@ -31,6 +30,11 @@ class AdHostIntegrationTest {
         assertEquals(BuildConfig.ADMOB_INTERSTITIAL_ID, config.admobInterstitialId)
         assertEquals(BuildConfig.ADMOB_APP_OPEN_ID, config.admobAppOpenId)
         assertEquals(BuildConfig.ADMOB_REWARDED_ID, config.admobRewardedId)
+        assertEquals(BuildConfig.APPLOVIN_SDK_KEY, config.applovinSdkKey)
+        assertEquals(BuildConfig.APPLOVIN_BANNER_ID, config.applovinBannerId)
+        assertEquals(BuildConfig.APPLOVIN_INTERSTITIAL_ID, config.applovinInterstitialId)
+        assertEquals(BuildConfig.APPLOVIN_APP_OPEN_ID, config.applovinAppOpenId)
+        assertEquals(BuildConfig.APPLOVIN_REWARDED_ID, config.applovinRewardedId)
         assertTrue(config.blockLoadUntilConsent)
         assertEquals("G", config.maxAdContentRating)
         assertEquals(AdSafetyLimits.TEST, config.safety)
@@ -63,7 +67,7 @@ class AdHostIntegrationTest {
 
     @Test
     fun qaTestDeviceHashes_areInstalledBeforeAdRequests() {
-        val ids = MobileAds.getRequestConfiguration().testDeviceIds
+        val ids = AdManager.getTestDeviceIds()
         assertEquals(12, ids.size)
         assertEquals(ids.size, ids.distinct().size)
         assertTrue(ids.all { it.matches(Regex("[0-9A-F]{32}")) })

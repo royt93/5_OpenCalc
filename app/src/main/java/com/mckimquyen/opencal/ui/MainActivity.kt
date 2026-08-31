@@ -243,7 +243,7 @@ class MainActivity : BaseActivity() {
 
         onBackPressedDispatcher.addCallback(this, doubleBackToExitCallback)
 
-        AdManager.setCurrentActivity(this)
+        // setCurrentActivity giờ gọi chung ở BaseActivity.onResume (chạy ngay sau onCreate).
         AdManager.loadInterstitial(this)
 
         // Chip VIP badge: bấm vào mở VIP screen (không show interstitial khi đã là VIP).
@@ -1265,11 +1265,15 @@ class MainActivity : BaseActivity() {
     fun physicalConstantButton(view: View) {
         keyVibration(view)
         val labels = PhysicalConstants.ALL.map { it.label }.toTypedArray()
+        // Khoá App Open tự-động resume quanh dialog — tránh App Open che dialog nếu app background
+        // rồi resume đúng lúc dialog đang mở trên MainActivity (Activity đã cho phép App Open).
+        AdManager.suppressAppOpenTemporarily(true)
         MaterialAlertDialogBuilder(this)
             .setTitle(R.string.dialog_physical_constant_title)
             .setItems(labels) { _, which ->
                 updateDisplay(view, PhysicalConstants.ALL[which].token)
             }
+            .setOnDismissListener { AdManager.suppressAppOpenTemporarily(false) }
             .show()
     }
 
@@ -1729,6 +1733,7 @@ class MainActivity : BaseActivity() {
     }
 
     private fun showDialogTesterCommunity() {
+        AdManager.suppressAppOpenTemporarily(true)
         MaterialAlertDialogBuilder(this)
             .setTitle(getString(R.string.dialog_tester_community_title))
             .setMessage(getString(R.string.dialog_tester_community_message))
@@ -1739,6 +1744,7 @@ class MainActivity : BaseActivity() {
             .setNegativeButton(getString(R.string.button_cancel)) { dialog, _ ->
                 dialog.dismiss()
             }
+            .setOnDismissListener { AdManager.suppressAppOpenTemporarily(false) }
             .show()
     }
 }

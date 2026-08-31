@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.play.core.review.ReviewInfo
 import com.google.android.play.core.review.ReviewManagerFactory
 import com.mckimquyen.opencal.util.Logger
+import com.roy.sdkadbmob.AdManager
 import com.roy.sdkadbmob.UIUtils
 import java.util.Calendar
 
@@ -55,6 +56,9 @@ open class BaseActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        // Chung cho mọi Activity: App Open tự-động resume dùng đúng Activity đang foreground thay vì
+        // reference cũ (vd MainActivity đã stop) khi quay lại app từ About/Settings/Vip/Splash.
+        AdManager.setCurrentActivity(this)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             enableAdaptiveRefreshRate()
         }

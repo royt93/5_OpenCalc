@@ -6,7 +6,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_UNSPECIFIED
 import androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode
-import com.google.android.gms.ads.MobileAds
 import com.mckimquyen.opencal.common.const.AdKeys
 import com.mckimquyen.opencal.db.MyPreferences
 import com.mckimquyen.opencal.feature.vip.VipKeys
@@ -16,6 +15,7 @@ import com.mckimquyen.opencal.util.Logger
 import com.roy.sdkadbmob.AdManager
 import com.roy.sdkadbmob.AdSafetyLimits
 import com.roy.sdkadbmob.AdSdkConfig
+import com.roy.sdkadbmob.PaidEventListener
 
 //review in app
 //applovin done ad id
@@ -58,14 +58,6 @@ class RApp : Application() {
     }
 
     private fun setupAd() {
-        // Các hash AdMob do chính GMA SDK in từ logcat; KHÔNG phải GAID. Áp trước wrapper init để
-        // cả App Open preload đầu tiên trên release QA cũng là test request.
-        val requestConfiguration = MobileAds.getRequestConfiguration()
-            .toBuilder()
-            .setTestDeviceIds(ADMOB_QA_TEST_DEVICE_HASHES)
-            .build()
-        MobileAds.setRequestConfiguration(requestConfiguration)
-
         val adConfig = AdSdkConfig(
             isEnableAdmob = BuildConfig.IS_ENABLE_ADMOB,
             isDebug = BuildConfig.DEBUG,
@@ -73,6 +65,14 @@ class RApp : Application() {
             admobInterstitialId = BuildConfig.ADMOB_INTERSTITIAL_ID,
             admobAppOpenId = BuildConfig.ADMOB_APP_OPEN_ID,
             admobRewardedId = BuildConfig.ADMOB_REWARDED_ID,
+            // AppLovin: SDK chọn ĐÚNG 1 provider theo isEnableAdmob (không chạy song song, không tự
+            // failover). Cấu hình đủ ở đây chỉ để sẵn sàng nếu sau này CHỦ ĐỘNG đổi
+            // IS_ENABLE_ADMOB=false (vd AdMob bị khoá tài khoản) mà không cần rebuild thêm field.
+            applovinBannerId = BuildConfig.APPLOVIN_BANNER_ID,
+            applovinInterstitialId = BuildConfig.APPLOVIN_INTERSTITIAL_ID,
+            applovinAppOpenId = BuildConfig.APPLOVIN_APP_OPEN_ID,
+            applovinRewardedId = BuildConfig.APPLOVIN_REWARDED_ID,
+            applovinSdkKey = BuildConfig.APPLOVIN_SDK_KEY,
             vipKeySecret = AdKeys.VIP_SECRET,
             vipRedeemCodes = mapOf(
                 VipKeys.VIP_30D_KEY to 30,
@@ -92,11 +92,33 @@ class RApp : Application() {
             // Debug: nới throttle để QC test ad nhanh. Release: preset UTILITY (UX-first cho app công cụ).
             safety = if (BuildConfig.DEBUG) AdSafetyLimits.TEST else AdSafetyLimits.UTILITY,
         )
-        AdManager.setConfig(adConfig)
+        AdManager.setConfig(adConfig) // 1) main thread, ĐẦU TIÊN
+
+        // Các hash AdMob do chính GMA SDK in từ logcat; KHÔNG phải GAID. Đăng ký qua wrapper (không
+        // phải MobileAds API thô) để AdManager.getDiagnostics()/getTestDeviceIds() phản ánh đúng.
+        // Phải gọi SAU setConfig() — setConfig() reset internal state, gọi trước sẽ bị dọn sạch.
+        AdManager.setTestDeviceIds(*ADMOB_QA_TEST_DEVICE_HASHES.toTypedArray())
+
+        // BẮT BUỘC set ở đây (Application.onCreate), KHÔNG set từ Activity — SDK gắn "chủ sở hữu"
+        // listener là Activity foreground lúc set và tự xoá khi Activity đó destroy (chống leak).
+        AdManager.paidEventListener =
+            PaidEventListener { adType, valueMicros, currency, precision, adSource ->
+                Logger.d("AdsRevenue: $adType $valueMicros $currency $precision $adSource")
+            }
+
         // SDK 1.7.x tự early-init, khởi tạo provider và đăng ký App Open lifecycle.
         // Với GMS, provider được defer đến khi Splash hoàn tất UMP consent.
-        AdManager.initialize(this) { success, gaid ->
-            Logger.d("AdManager init success=$success, gaid=$gaid")
+        AdManager.initialize(this) { success, gaid -> // 2) provider init defer tới khi có consent
+            when {
+                !success && AdManager.isWaitingForConsent() ->
+                    Logger.d("AdManager init: đang chờ consent, KHÔNG phải lỗi. gaid=$gaid")
+
+                !success ->
+                    Logger.e("AdManager init lỗi thật: ${AdManager.getDiagnostics()}")
+
+                else ->
+                    Logger.d("AdManager init success gaid=$gaid")
+            }
         }
     }
 

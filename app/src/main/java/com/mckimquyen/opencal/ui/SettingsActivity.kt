@@ -5,7 +5,6 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
-import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.ImageView
@@ -25,8 +24,6 @@ import java.util.Locale
 
 class SettingsActivity : BaseActivity() {
 
-    private var adView: View? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -36,7 +33,6 @@ class SettingsActivity : BaseActivity() {
     override fun onResume() {
         super.onResume()
         rateAppInApp(BuildConfig.DEBUG)
-        AdManager.bannerResume(adView)
     }
 
     private fun setupViews(savedInstanceState: Bundle?) {
@@ -68,30 +64,16 @@ class SettingsActivity : BaseActivity() {
             finish()
         }
 
-//        adView = this@SettingsActivity.createAdBanner(
-//            logTag = SettingsActivity::class.simpleName,
-//            viewGroup = findViewById<FrameLayout>(R.id.flAd),
-//            isAdaptiveBanner = true,
-//        )
         val layoutAdBanner = findViewById<ViewGroup>(R.id.layoutAdBanner)
         val bannerContainer = layoutAdBanner.findViewById<FrameLayout>(R.id.bannerContainer)
         val tvLabelAd = layoutAdBanner.findViewById<TextView>(R.id.tvLabelAd)
-        adView = AdManager.loadBanner(
+        // autoManageLifecycle mặc định true: SDK tự hook resume/pause/destroy qua
+        // ActivityLifecycleCallbacks — KHÔNG tự gọi bannerResume/Pause/Destroy (double lifecycle).
+        AdManager.loadBanner(
             context = this,
             container = bannerContainer,
             tvLabelAd = tvLabelAd,
         )
-    }
-
-    override fun onPause() {
-        AdManager.bannerPause(adView)
-        super.onPause()
-    }
-
-    override fun onDestroy() {
-        AdManager.bannerDestroy(adView)
-//        findViewById<FrameLayout>(R.id.flAd).destroyAdBanner(adView)
-        super.onDestroy()
     }
 
     class SettingsFragment : PreferenceFragmentCompat() {

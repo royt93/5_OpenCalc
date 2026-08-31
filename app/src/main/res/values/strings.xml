@@ -1,6 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name" translatable="false">Calculator</string>
     <string name="app_name_display">Calculator</string>
+    <string name="attribution_ads_label" translatable="false">Ad Networks (AdMob / AppLovin MAX)</string>
     <string name="zero" translatable="false">0</string>
     <string name="one" translatable="false">1</string>
     <string name="two" translatable="false">2</string>

@@ -61,6 +61,16 @@ android {
             buildConfigField "String", "ADMOB_INTERSTITIAL_ID", "\"${releaseSecret('admobInterstitialIdRelease')}\""
             buildConfigField "String", "ADMOB_APP_OPEN_ID", "\"${releaseSecret('admobAppOpenIdRelease')}\""
             buildConfigField "String", "ADMOB_REWARDED_ID", "\"${releaseSecret('admobRewardedIdRelease')}\""
+            // AppLovin — SDK chọn ĐÚNG 1 provider theo IS_ENABLE_ADMOB (GmsBridge.createProvider:
+            // if/else, KHÔNG chạy song song, KHÔNG tự failover khi AdMob lỗi). Cấu hình đủ ở đây chỉ
+            // để sẵn sàng nếu sau này CHỦ ĐỘNG đổi IS_ENABLE_ADMOB=false (vd tài khoản AdMob bị khoá,
+            // cần thao tác thủ công + rebuild). Đọc từ keystore.properties (KHÔNG hardcode plain vào
+            // git-tracked file — key này từng bị commit/push lên repo public trước đây, xem README).
+            buildConfigField "String", "APPLOVIN_SDK_KEY", "\"${releaseSecret('applovinSdkKey')}\""
+            buildConfigField "String", "APPLOVIN_BANNER_ID", "\"${releaseSecret('applovinBannerId')}\""
+            buildConfigField "String", "APPLOVIN_INTERSTITIAL_ID", "\"${releaseSecret('applovinInterstitialId')}\""
+            buildConfigField "String", "APPLOVIN_APP_OPEN_ID", "\"${releaseSecret('applovinAppOpenId')}\""
+            buildConfigField "String", "APPLOVIN_REWARDED_ID", "\"${releaseSecret('applovinRewardedId')}\""
             // VIP secret (Base64 của plain key 30 ngày) — đi qua BuildConfig, không hardcode plain trong .kt.
             buildConfigField "String", "VIP_SECRET_B64", "\"OWZBMHE3ZU4hMjdjTHgwNEAyMTk5M1kydTBJNyNRMA==\""
             buildConfigField "String", "PRIVACY_POLICY_URL", "\"${releaseSecret('privacyPolicyUrl')}\""
@@ -77,6 +87,13 @@ android {
             buildConfigField "String", "ADMOB_INTERSTITIAL_ID", "\"ca-app-pub-3940256099942544/1033173712\""
             buildConfigField "String", "ADMOB_APP_OPEN_ID", "\"ca-app-pub-3940256099942544/9257395921\""
             buildConfigField "String", "ADMOB_REWARDED_ID", "\"ca-app-pub-3940256099942544/5224354917\""
+            // AppLovin — cùng ID với release, đọc từ keystore.properties (AppLovin không có khái niệm
+            // "test ad unit ID" tách biệt như AdMob; xem ghi chú ở block release).
+            buildConfigField "String", "APPLOVIN_SDK_KEY", "\"${releaseSecret('applovinSdkKey')}\""
+            buildConfigField "String", "APPLOVIN_BANNER_ID", "\"${releaseSecret('applovinBannerId')}\""
+            buildConfigField "String", "APPLOVIN_INTERSTITIAL_ID", "\"${releaseSecret('applovinInterstitialId')}\""
+            buildConfigField "String", "APPLOVIN_APP_OPEN_ID", "\"${releaseSecret('applovinAppOpenId')}\""
+            buildConfigField "String", "APPLOVIN_REWARDED_ID", "\"${releaseSecret('applovinRewardedId')}\""
             buildConfigField "String", "VIP_SECRET_B64", "\"OWZBMHE3ZU4hMjdjTHgwNEAyMTk5M1kydTBJNyNRMA==\""
             buildConfigField "String", "PRIVACY_POLICY_URL", "\"https://loitp.notion.site/loitp/Privacy-Policy-319b1cd8783942fa8923d2a3c9bce60f/\""
             buildConfigField "Boolean", "IS_ENABLE_ADMOB", "true"
@@ -181,6 +198,11 @@ gradle.taskGraph.whenReady { graph ->
         'admobRewardedIdRelease',
         'admobNativeIdRelease',
         'privacyPolicyUrl',
+        'applovinSdkKey',
+        'applovinBannerId',
+        'applovinInterstitialId',
+        'applovinAppOpenId',
+        'applovinRewardedId',
     ]
     def missing = required.findAll { key ->
         def value = releaseSecret(key)

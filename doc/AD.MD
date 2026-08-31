@@ -1,9 +1,16 @@
 # 📊 AD SYSTEM — AdmobApplovinWrapper SDK v1.1.5
 
-> **SDK:** `com.github.royt93:AdmobApplovinWrapper:1.1.5` (migrate từ `AdmobWrapper:1.1.1`)
-> **Provider:** AppLovin MAX (default, `IS_ENABLE_ADMOB=false`) | AdMob (fallback)
+> ⚠️ **TÀI LIỆU LỊCH SỬ, KHÔNG PHẢI TRẠNG THÁI HIỆN TẠI** — đây là snapshot ghi lại đợt migrate
+> 2026-05-31 lên SDK 1.1.5. Project đã lên `1.7.3` từ lâu và `IS_ENABLE_ADMOB` hiện là `true` (AdMob
+> chính, AppLovin cấu hình sẵn nhưng KHÔNG chạy song song/fallback tự động — SDK chỉ chọn đúng 1
+> provider). Dòng "Single-secret design" ở mục VIP bên dưới cũng đã lỗi thời (SDK giờ dùng
+> `vipRedeemCodes` multi-code). **Nguồn chân lý hiện tại: `doc/AD_PROMPT_AOS.MD` + `CLAUDE.md`.** Phần
+> còn lại của file này giữ nguyên làm log lịch sử đợt migrate, không cập nhật theo thời gian.
+
+> **SDK lúc migrate:** `com.github.royt93:AdmobApplovinWrapper:1.1.5` (migrate từ `AdmobWrapper:1.1.1`)
+> **Provider lúc migrate:** AppLovin MAX (default, `IS_ENABLE_ADMOB=false`) | AdMob (fallback)
 > **Ngày migrate:** 2026-05-31
-> **Status:** ✅ Đã migrate + 2 build variant xanh (devDebug, productionRelease)
+> **Status lúc đó:** ✅ Đã migrate + 2 build variant xanh (devDebug, productionRelease)
 
 ---
 
@@ -54,7 +61,7 @@ requestConsentInfoUpdate(this) { canRequestAds ->
 - `VipKeys` — whitelist key app-side (Base64), `lookupDays(input)`.
 - `VipPrefs` — lưu `grantedAtMs` + cờ `userRedeemedOnce` (lib chưa expose `getVipByKeyGrantedAt`).
 - `common/const/AdKeys` — `VIP_SECRET` (decode Base64 từ `BuildConfig.VIP_SECRET_B64`), `PRIVACY_POLICY_URL`.
-- **Single-secret design:** mọi activate gọi `activateVipByKey(ctx, AdKeys.VIP_SECRET, days)` với `days` do whitelist app-side quyết định (key user gõ không cần bằng secret).
+- **Single-secret design (LỖI THỜI — xem cảnh báo đầu file):** lúc migrate mọi activate gọi `activateVipByKey(ctx, AdKeys.VIP_SECRET, days)`. SDK hiện tại dùng multi-code qua `AdSdkConfig.vipRedeemCodes`, gọi `activateVipByKey(ctx, input, days)` — truyền thẳng key user gõ, xem `CLAUDE.md`.
 - **Auto-trial 1 ngày:** SDK tự grant khi cài mới (release), `InstallReferrer` chống abuse. App KHÔNG re-implement.
 
 ---

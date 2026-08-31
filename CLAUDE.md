@@ -55,21 +55,23 @@ Toàn bộ code ở `app/src/main/java/com/mckimquyen/opencal/`. Package chính:
 
 Tính toán nặng chạy trên `Dispatchers.Default`, cập nhật UI bằng `withContext(Dispatchers.Main)`. `decimalSeparatorSymbol`/`groupingSeparatorSymbol` lấy từ locale và được luồn xuyên suốt — không hardcode `.` hoặc `,`.
 
-### Hệ thống quảng cáo (AdmobWrapper SDK)
+### Hệ thống quảng cáo (AdmobApplovinWrapper SDK)
 
-Tích hợp qua thư viện ngoài `com.github.royt93:AdmobWrapper` (package `com.roy.sdkadbmob.AdManager`). **Đọc `doc/AD.MD`** để biết chi tiết — đó là source-of-truth cho ad IDs, touchpoints và lifecycle.
+Tích hợp qua thư viện ngoài `com.github.royt93:AdmobApplovinWrapper` (package `com.roy.sdkadbmob.AdManager`). **Đọc `doc/AD_PROMPT_AOS.MD`** để biết chi tiết — đó là guide chính thức cho ad IDs, touchpoints và lifecycle (`doc/AD.MD` là ghi chú nội bộ, không phải nguồn chân lý API).
 
-- Provider mặc định chọn bằng cờ build `BuildConfig.IS_ENABLE_ADMOB` (hiện `false` → dùng AppLovin MAX; `true` → AdMob). Quyết định nhánh init trong `RApp.setupAd()`.
-- Mọi ad ID và SDK key được khai báo dưới dạng `buildConfigField` trong `app/build.gradle` (test ID của Google cho debug, ID thật cho release).
-- `registerAppOpenAdLifecycle` **bắt buộc gọi trên Main Thread** (đã có `Handler(Looper.getMainLooper()).post {...}` — đừng bỏ).
-- Touchpoint: App Open ở `SplashActivity`; Banner ở `About`/`Settings` (kèm `bannerResume/Pause/Destroy` theo lifecycle); Interstitial ở `MainActivity` (preload trong `onCreate`, show trước khi mở About/Settings).
+- Provider chọn bằng cờ build `BuildConfig.IS_ENABLE_ADMOB` — SDK chọn **ĐÚNG 1** provider (`GmsBridge.createProvider`: `if (useAdmob) AdMobProvider else AppLovinProvider`), **không chạy song song, không tự failover** khi AdMob lỗi/bị khoá. Hiện `true` → AdMob chính; AppLovin vẫn cấu hình đủ ID/key để sẵn sàng nếu sau này **chủ động** đổi cờ (thao tác thủ công + rebuild), không phải mediation/fallback tự động. Quyết định nhánh init trong `RApp.setupAd()`.
+- Mọi ad ID và SDK key được khai báo dưới dạng `buildConfigField` trong `app/build.gradle` (test ID của Google cho debug, ID thật cho release; AppLovin dùng chung 1 bộ ID cho cả debug/release vì không có khái niệm test-unit-id riêng).
+- SDK 1.7.x **tự gộp** `earlyInit` + provider init + đăng ký App Open lifecycle vào bên trong `AdManager.initialize()` — không còn API `registerAppOpenAdLifecycle` riêng, không cần tự bọc `Handler(Looper.getMainLooper()).post {...}`.
+- `AdManager.paidEventListener` **phải set trong `RApp.setupAd()` (`Application.onCreate`)**, không set từ Activity — SDK tự xoá listener khi Activity "chủ sở hữu" lúc set bị destroy.
+- `AdManager.setCurrentActivity(this)` gọi tập trung ở `BaseActivity.onResume()` — mọi Activity con thừa hưởng, không tự gọi lại riêng lẻ.
+- Touchpoint: App Open ở `SplashActivity`; Banner ở `About`/`Settings` dùng `autoManageLifecycle=true` (mặc định) — SDK tự hook resume/pause/destroy qua `ActivityLifecycleCallbacks`, **không** tự gọi `bannerResume/Pause/Destroy` (double lifecycle); Interstitial ở `MainActivity` (preload trong `onCreate`, show trước khi mở About/Settings).
 
 ### Hệ thống VIP (`feature/vip/`)
 
-VIP do chính `AdmobWrapper` SDK quản lý (auto-trial 1 ngày khi cài mới, expiry, `AdManager.activateVipByKey`); app chỉ render UI + validate key + rewarded grant, không tự chấm VIP.
+VIP do chính `AdmobApplovinWrapper` SDK quản lý (auto-trial 1 ngày khi cài mới, expiry, `AdManager.activateVipByKey`); app chỉ render UI + validate key + rewarded grant, không tự chấm VIP.
 
-- SDK dùng thiết kế **single-secret**: `activateVipByKey` chỉ so khớp với `AdSdkConfig.vipKeySecret` (= `AdKeys.VIP_SECRET`). Vì vậy key user gõ **không** đưa thẳng vào SDK — `VipKeys.lookupDays(input)` validate app-side trước, map ra số ngày, rồi luôn gọi SDK với `AdKeys.VIP_SECRET` kèm số ngày đó.
-- Cả `VIP_SECRET` (trong `AdKeys`) lẫn key phụ (`VipKeys.VIP_3D_B64`) chỉ lưu dạng Base64 trong source — mức che giấu đã thống nhất là "khó đọc trực tiếp, không chống decompile hoàn toàn".
+- SDK dùng thiết kế **multi-code** qua `AdSdkConfig.vipRedeemCodes` (map key → số ngày, không phải single-secret nữa). App validate `input` qua `VipKeys.lookupDays()` (bản sao app-side của cùng map) trước, rồi gọi `AdManager.activateVipByKey(context, input, days)` — truyền thẳng key user gõ kèm số ngày đã resolve, KHÔNG phải `AdKeys.VIP_SECRET` (giá trị đó chỉ dùng làm `vipKeySecret` — HMAC chống-tamper SharedPreferences nội bộ SDK, việc khác hẳn).
+- `AdKeys.VIP_SECRET` (secret HMAC chống-tamper prefs nội bộ SDK) và các mã redeem công khai trong `VipKeys` (`VIP_30D_B64`, `VIP_3D_B64`) là **giá trị độc lập, cố ý không trùng nhau** — lộ mã redeem không được kéo theo lộ secret bảo vệ prefs. Cả 3 chỉ lưu dạng Base64 trong source — mức che giấu đã thống nhất là "khó đọc trực tiếp, không chống decompile hoàn toàn".
 - `VipPrefs` lưu thêm `grantedAtMs` (SDK không expose) để vẽ progress bar kiểu "elapsed" (0% lúc kích hoạt → 100% lúc hết hạn), và cờ `userRedeemedOnce` để phân biệt trial cài đặt vs key do user tự nhập.
 - Logic số học thuần (progress %, đếm ngược, gia hạn không rút ngắn) tách riêng vào `VipMath` (object, không phụ thuộc Android) để unit-test trên JVM — theo pattern này khi thêm logic VIP mới, ưu tiên viết vào `VipMath` thay vì trực tiếp trong `VipActivity`.
 - `VipActivity` có `CountDownTimer`/`ObjectAnimator`/`ValueAnimator` — nhớ null-out + cancel ở `onDestroy` (theo rule memory-leak chung của project).

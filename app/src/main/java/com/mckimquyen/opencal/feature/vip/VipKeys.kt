@@ -1,7 +1,6 @@
 package com.mckimquyen.opencal.feature.vip
 
 import android.util.Base64
-import com.mckimquyen.opencal.common.const.AdKeys
 
 /**
  * Whitelist VIP key app-side + che giấu key.
@@ -11,14 +10,22 @@ import com.mckimquyen.opencal.common.const.AdKeys
  *
  * Plain key KHÔNG hardcode trong source — chỉ hardcode chuỗi Base64 (mức che giấu đã thống nhất:
  * dễ reverse nhưng đủ chặn user thường peek decompiled APK).
+ *
+ * Cố ý KHÔNG dùng chung giá trị với [com.mckimquyen.opencal.common.const.AdKeys.VIP_SECRET]: đó là
+ * secret HMAC chống-tamper SharedPreferences nội bộ SDK, còn key ở đây là mã redeem công khai chia
+ * sẻ cho user — lộ mã redeem không được kéo theo lộ luôn secret bảo vệ prefs.
  */
 object VipKeys {
 
-    /** Base64 của plain key 3 ngày. (Key 30 ngày = [AdKeys.VIP_SECRET], không lặp lại ở đây.) */
+    /** Base64 của plain key 3 ngày. */
     private const val VIP_3D_B64 = "ZVE3QDkzTDBmITJZMjcwN3hOMDQwMjE5OTN1MEkjMmFL"
 
-    /** Key 30 ngày trùng với VIP secret của SDK. */
-    val VIP_30D_KEY: String get() = AdKeys.VIP_SECRET
+    /** Base64 của plain key 30 ngày — độc lập với [com.mckimquyen.opencal.common.const.AdKeys.VIP_SECRET]. */
+    private const val VIP_30D_B64 = "SzlAMDRMcU43ZSEzMGRZMjE5OXhJMyN6TTZ2QjE="
+
+    val VIP_30D_KEY: String by lazy {
+        String(Base64.decode(VIP_30D_B64, Base64.NO_WRAP))
+    }
 
     val VIP_3D_KEY: String by lazy {
         String(Base64.decode(VIP_3D_B64, Base64.NO_WRAP))
