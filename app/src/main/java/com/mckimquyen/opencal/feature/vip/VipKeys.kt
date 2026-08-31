@@ -13,15 +13,18 @@ import android.util.Base64
  *
  * Cố ý KHÔNG dùng chung giá trị với [com.mckimquyen.opencal.common.const.AdKeys.VIP_SECRET]: đó là
  * secret HMAC chống-tamper SharedPreferences nội bộ SDK, còn key ở đây là mã redeem công khai chia
- * sẻ cho user — lộ mã redeem không được kéo theo lộ luôn secret bảo vệ prefs.
+ * sẻ cho user — lộ mã redeem không được kéo theo lộ luôn secret bảo vệ prefs. Mã 30 ngày dưới đây
+ * TRÙNG PLAIN TEXT với secret nội bộ bản cũ có chủ đích (đây là mã đã phát hành cho user thật,
+ * không đổi được nữa) — an toàn vì `AdKeys.VIP_SECRET`/`BuildConfig.VIP_SECRET_B64` đã được ROTATE
+ * sang giá trị khác hẳn, nên 2 giá trị không còn trùng nhau trong app hiện tại.
  */
 object VipKeys {
 
     /** Base64 của plain key 3 ngày. */
     private const val VIP_3D_B64 = "ZVE3QDkzTDBmITJZMjcwN3hOMDQwMjE5OTN1MEkjMmFL"
 
-    /** Base64 của plain key 30 ngày — độc lập với [com.mckimquyen.opencal.common.const.AdKeys.VIP_SECRET]. */
-    private const val VIP_30D_B64 = "SzlAMDRMcU43ZSEzMGRZMjE5OXhJMyN6TTZ2QjE="
+    /** Base64 của plain key 30 ngày (mã đã phát hành cho user — xem ghi chú rotate ở KDoc trên). */
+    private const val VIP_30D_B64 = "OWZBMHE3ZU4hMjdjTHgwNEAyMTk5M1kydTBJNyNRMA=="
 
     val VIP_30D_KEY: String by lazy {
         String(Base64.decode(VIP_30D_B64, Base64.NO_WRAP))

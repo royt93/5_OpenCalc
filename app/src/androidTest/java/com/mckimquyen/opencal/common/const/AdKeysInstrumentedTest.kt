@@ -15,7 +15,9 @@ import org.junit.runner.RunWith
 class AdKeysInstrumentedTest {
 
     @Test fun vipSecret_decodesToExpectedPlainKey() {
-        assertEquals("9fA0q7eN!27cLx04@21993Y2u0I7#Q0", AdKeys.VIP_SECRET)
+        // Rotated khỏi "9fA0q7eN!27cLx04@21993Y2u0I7#Q0" (giá trị đó giờ là mã redeem 30 ngày công
+        // khai trong VipKeys, cố ý tách biệt — xem vip30dKey_isIndependentFromSdkSecret).
+        assertEquals("R7@41zN9qP!vX3852cW01997mE6#tY4", AdKeys.VIP_SECRET)
     }
 
     @Test fun vip30dKey_isIndependentFromSdkSecret() {
