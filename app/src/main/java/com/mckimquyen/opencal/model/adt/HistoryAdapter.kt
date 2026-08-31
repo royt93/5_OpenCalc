@@ -109,6 +109,28 @@ class HistoryAdapter(
         return true
     }
 
+    /**
+     * E-UI-5: swipe-to-delete 1 dòng — [adapterPosition] là vị trí ĐANG HIỂN THỊ (đã qua filter
+     * nếu có), map về index thật qua [indexAt]. Trả về entry vừa xoá (cho caller tự persist +
+     * làm Undo — KHÔNG có callback onDelete ở đây: persist phải đọc lại từ disk bên trong
+     * historyMutex như mọi write-path khác, snapshot RAM tại đây có thể đã cũ so với lúc coroutine
+     * persist thực sự chạy), hoặc null nếu vị trí không hợp lệ.
+     */
+    fun removeAt(adapterPosition: Int): History? {
+        // Check trước bằng itemCount (đã tính đúng cho cả 2 trường hợp filter/không filter) —
+        // gọi indexAt() trực tiếp với vị trí ngoài phạm vi khi đang filter sẽ ném
+        // IndexOutOfBoundsException từ filteredIndices!!.get(), không trả về null như doc hứa.
+        if (adapterPosition !in 0 until itemCount) return null
+        val index = indexAt(adapterPosition)
+        if (index !in history.indices) return null
+        val removed = history.removeAt(index)
+        recomputeFilter()
+        // notifyItemRemoved (không phải notifyDataSetChanged) để không cắt ngang animation
+        // swipe-out có sẵn của ItemTouchHelper.
+        notifyItemRemoved(adapterPosition)
+        return removed
+    }
+
     @SuppressLint("NotifyDataSetChanged")
     fun clearHistory() {
         this.history.clear()

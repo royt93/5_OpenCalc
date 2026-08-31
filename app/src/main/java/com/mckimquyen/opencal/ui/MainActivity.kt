@@ -30,8 +30,11 @@ import android.content.res.ColorStateList
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
 import com.mckimquyen.opencal.BaseActivity
 import com.mckimquyen.opencal.BuildConfig
 import com.mckimquyen.opencal.R
@@ -313,6 +316,7 @@ class MainActivity : BaseActivity() {
             },
         )
         binding.rvHistory.adapter = historyAdapter
+        attachHistorySwipeToDelete()
         // F-DATA-2: đọc + parse JSON toàn bộ history không được block Main thread lúc mở app
         lifecycleScope.launch(Dispatchers.IO) {
             val historyList = prefs.getHistory()
@@ -611,6 +615,93 @@ class MainActivity : BaseActivity() {
                     historyAdapter.clearHistory()
                     if (remaining.isNotEmpty()) {
                         historyAdapter.appendHistory(remaining)
+                    }
+                }
+            }
+        }
+    }
+
+    // E-UI-5: swipe trái/phải trên 1 dòng history để xoá — bổ sung cho "Clear History" vốn
+    // all-or-nothing. Không chặn swipe trên entry đã ghim: ghim chỉ bảo vệ khỏi trim/Clear History
+    // TỰ ĐỘNG, không phải khỏi thao tác xoá THỦ CÔNG rõ ràng của chính user trên đúng dòng đó.
+    private fun attachHistorySwipeToDelete() {
+        val callback = object : ItemTouchHelper.SimpleCallback(
+            0,
+            ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
+        ) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ) = false
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position = viewHolder.bindingAdapterPosition
+                if (position == RecyclerView.NO_POSITION) return
+                // removeAt() chỉ cập nhật state UI trong RAM. Persist THẬT SỰ chạy NGAY (không
+                // hoãn tới lúc Snackbar đóng) — thử hoãn tới đó ở vòng trước bị lộ 1 vấn đề khác:
+                // lifecycleScope bị huỷ khi Activity destroy TRƯỚC khi Snackbar kịp tự đóng (vd user
+                // bấm back 2 lần thoát app ngay sau khi swipe) khiến lệnh xoá không bao giờ chạy —
+                // entry "xoá" trên UI lại sống lại sau khi mở app lần sau.
+                val removed = historyAdapter.removeAt(position) ?: return
+                val deleteJob = commitHistoryDelete(removed)
+                Snackbar.make(binding.rvHistory, R.string.history_entry_deleted, Snackbar.LENGTH_LONG)
+                    .setAction(R.string.undo) { undoDeleteHistoryEntry(deleteJob, removed) }
+                    .show()
+            }
+        }
+        ItemTouchHelper(callback).attachToRecyclerView(binding.rvHistory)
+    }
+
+    private fun commitHistoryDelete(removed: History): Job = lifecycleScope.launch(Dispatchers.IO) {
+        // NonCancellable: nếu Activity bị destroy (vd double-back thoát app) NGAY sau khi coroutine
+        // này bắt đầu chạy, lifecycleScope hủy nó giữa chừng — bọc NonCancellable để lệnh ghi disk
+        // luôn chạy tới nơi tới chốn thay vì bị cắt dở dang (cùng pattern đã dùng ở equalsButton).
+        withContext(NonCancellable) {
+            historyMutex.withLock {
+                val current = prefs.getHistory()
+                // ponytail: khớp theo value-equality (History không có id ổn định). 2 rủi ro còn
+                // lại đều rất hẹp, chấp nhận được cho tính năng history cá nhân 1 thiết bị (muốn
+                // triệt để cả 2 cần thêm id ổn định vào History — đổi schema, chưa cần thiết):
+                // (1) nếu tồn tại 2 entry giống hệt nhau (vd import CSV trùng lặp) VÀ cả 2 đều bị
+                // swipe trong cùng phiên, có thể xoá nhầm bản còn lại thay vì bản đã swipe.
+                // (2) onPinToggle (tính năng ghim, N-DATA-4) persist bằng snapshot RAM chứ không
+                // đọc lại disk trong lock như ở đây — nếu user ghim RỒI swipe-xoá NGAY chính dòng đó
+                // trước khi coroutine persist của ghim kịp chạy, indexOf() có thể không khớp (do
+                // isPinned khác disk) và bỏ sót không xoá được. Cần user thao tác 2 hành động trái
+                // ngược nhau (ghim rồi xoá ngay) trong cửa sổ vài chục ms — không sửa onPinToggle ở
+                // đây vì đó là refactor rộng hơn nhiều cho 1 tính năng đã ổn định từ trước.
+                val index = current.indexOf(removed)
+                if (index != -1) current.removeAt(index)
+                prefs.saveHistory(current)
+            }
+        }
+    }
+
+    private fun undoDeleteHistoryEntry(deleteJob: Job, removed: History) {
+        lifecycleScope.launch(Dispatchers.IO) {
+            // NonCancellable phải bọc từ TRƯỚC join(), không phải sau: join() là 1 suspension point
+            // cancellable — nếu Activity destroy đúng lúc đang đợi ở đây, coroutine bị huỷ ngay tại
+            // chỗ và không bao giờ vào được block bên dưới để ghi lại entry (cùng loại lỗi mà
+            // comment ở equalsButton phía trên đã cảnh báo, xem dòng ~1387).
+            withContext(NonCancellable) {
+                // Đợi lệnh xoá (đang chạy hoặc đã xong) hoàn tất TRƯỚC khi ghi lại — đảm bảo thứ tự
+                // ghi disk luôn là "xoá rồi mới thêm lại" bất kể bấm Undo nhanh cỡ nào, loại bỏ hẳn
+                // race thắng-thua qua historyMutex (Mutex không đảm bảo FIFO giữa 2 coroutine độc
+                // lập). deleteJob tự bọc NonCancellable nên join() luôn đợi được nó ghi xong thật
+                // sự, không chỉ đợi tới lúc nó bị đánh dấu huỷ.
+                deleteJob.join()
+                historyMutex.withLock {
+                    val restored = prefs.getHistory()
+                    restored.add(removed)
+                    // Sort lại theo time (cùng lý do với N-DATA-2 Import): chèn thẳng vào cuối danh
+                    // sách sẽ phá bất biến "vị trí đầu = cũ nhất" mà logic trim của
+                    // MyPreferences.saveHistory dựa vào nếu entry được undo không phải mới nhất.
+                    restored.sortBy { it.time?.toLongOrNull() ?: Long.MAX_VALUE }
+                    prefs.saveHistory(restored)
+                    withContext(Dispatchers.Main) {
+                        historyAdapter.clearHistory()
+                        historyAdapter.appendHistory(restored)
                     }
                 }
             }

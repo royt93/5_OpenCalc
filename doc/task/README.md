@@ -129,6 +129,12 @@ Loop #4 theo yêu cầu user: sửa `HistoryAdapterInstrumentedTest.kt` (phát h
 - Fix 2 lỗi biên dịch: constructor `HistoryAdapter(mutableListOf()) { ... }` gọi bằng trailing lambda khớp nhầm vào `onPinToggle` (tham số cuối) thay vì `onElementClick` — sửa dùng named param. `adapter.removeFirstHistoryElement()` gọi hàm không còn tồn tại — đổi sang `removeOldestUnpinnedHistoryElement()` (đổi tên qua tính năng pin N-DATA-4 ở Sprint 2), test đổi tên theo cho khớp và assert thêm giá trị trả về.
 - Verify: `compileDevDebugAndroidTestKotlin` PASS, chạy riêng file này trên emulator (5/5 test pass), sau đó chạy **toàn bộ suite `connectedDevDebugAndroidTest`** lần đầu tiên (42/42 test pass, 0 fail, 0 skip) — xác nhận không có file test instrumented hỏng nào khác đang ẩn.
 
+## ✅ Sprint 8 — ĐÃ XONG (2026-08-31)
+
+User chọn "Swipe-to-delete history row" (E-UI-5) qua `AskUserQuestion`.
+
+- ✅ **E-UI-5 (Swipe-to-delete history row)** — xem chi tiết ở [`02_enhancements.md`](02_enhancements.md). `ItemTouchHelper` + Snackbar Undo. **Trải qua 7 vòng code-review** trước khi ship (nhiều nhất từ trước tới giờ) — lần lượt bắt được: persist bằng snapshot RAM thay vì đọc lại disk trong lock (2 lần, ở 2 thiết kế khác nhau: bản đầu và bản "hoãn tới Snackbar dismiss"); hoãn commit tới Snackbar dismiss lại làm `lifecycleScope` bị huỷ mất lệnh xoá nếu user thoát app nhanh; `removeAt()` ném `IndexOutOfBoundsException` thay vì trả null khi đang filter; `notifyDataSetChanged()` cắt animation swipe-out; thiếu `NonCancellable` quanh lệnh ghi disk (2 lần — lần đầu thiếu hẳn, lần sau đặt sai vị trí trước 1 suspension point). Thiết kế cuối: xoá commit ngay lập tức (không hoãn) + Undo dùng `deleteJob.join()` bọc `NonCancellable` để đảm bảo thứ tự ghi mà không cần chờ thời gian. Verify: 3 test instrumented mới PASS trên emulator + device thật (`SM-S928B`), nhiều vòng smoke test tay + đọc trực tiếp `shared_prefs/*.xml` xác nhận disk khớp UI ở từng bước (bao gồm cả trường hợp Undo và không Undo).
+
 Tính năng tiếp theo cho vòng loop kế tiếp chưa chọn — chờ user quyết định qua `AskUserQuestion` khi bắt đầu.
 
 ## Priority & Size convention

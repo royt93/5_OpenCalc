@@ -159,6 +159,8 @@
     <!-- Clipboard labels -->
     <string name="clipboard_label_copied_result">Copied result</string>
     <string name="clipboard_label_copied_calc_and_result">Copied calculation and result</string>
+    <string name="history_entry_deleted">History entry deleted</string>
+    <string name="undo">Undo</string>
 
     <!-- Toast messages -->
     <string name="toast_double_back_to_exit">Please click BACK again to exit</string>

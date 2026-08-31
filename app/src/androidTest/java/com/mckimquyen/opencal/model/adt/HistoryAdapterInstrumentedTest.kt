@@ -84,4 +84,41 @@ class HistoryAdapterInstrumentedTest {
         }
         assertEquals(0, adapter.itemCount)
     }
+
+    // E-UI-5: swipe-to-delete
+    @Test
+    fun removeAtDeletesCorrectEntryAndUpdatesCount() {
+        var removedEntry: History? = null
+        onMain {
+            adapter.appendHistory(listOf(h("a", "1"), h("b", "2"), h("c", "3")))
+            removedEntry = adapter.removeAt(1) // "b"
+        }
+        assertEquals("b", removedEntry?.calculation)
+        assertEquals(2, adapter.itemCount)
+    }
+
+    @Test
+    fun removeAtInvalidPositionReturnsNullAndKeepsListUnchanged() {
+        var removedEntry: History? = h("sentinel", "0")
+        onMain {
+            adapter.appendHistory(listOf(h("a", "1")))
+            removedEntry = adapter.removeAt(5)
+        }
+        assertEquals(null, removedEntry)
+        assertEquals(1, adapter.itemCount)
+    }
+
+    // Vị trí ngoài phạm vi TRONG LÚC đang filter trước đây ném IndexOutOfBoundsException thay vì
+    // trả về null như doc hứa (filteredIndices!!.get() không tự bounds-check).
+    @Test
+    fun removeAtInvalidPositionWhileFilteredReturnsNullInsteadOfThrowing() {
+        var removedEntry: History? = h("sentinel", "0")
+        onMain {
+            adapter.appendHistory(listOf(h("apple pie", "1"), h("banana", "2")))
+            adapter.filter("apple") // chỉ còn 1 item hiển thị (itemCount == 1)
+            removedEntry = adapter.removeAt(5) // ngoài phạm vi filteredIndices
+        }
+        assertEquals(null, removedEntry)
+        assertEquals(1, adapter.itemCount)
+    }
 }
