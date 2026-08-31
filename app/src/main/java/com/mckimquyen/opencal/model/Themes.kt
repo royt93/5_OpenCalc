@@ -243,6 +243,6 @@ class Themes(private val context: Context) {
             theme =
                 if (DynamicColors.isDynamicColorAvailable()) MATERIAL_YOU_THEME_INDEX else DEFAULT_THEME_INDEX
         }
-        return themeMap[theme] ?: DEFAULT_THEME_INDEX
+        return themeMap[theme] ?: R.style.AppTheme
     }
 }

@@ -43,15 +43,16 @@ object LanguageHelper {
         Language("ja", "Japanese", "日本語"),
         Language("mk", "Macedonian", "Македонски"),
         Language("ml", "Malayalam", "മലയാളം"),
-        Language("nb", "Norwegian", "Norsk"),
+        Language("nb-NO", "Norwegian (Bokmål)", "Norsk (Bokmål)"),
         Language("or", "Odia", "ଓଡ଼ିଆ"),
         Language("pl", "Polish", "Polski"),
-        Language("pt", "Portuguese", "Português"),
+        Language("pt-BR", "Portuguese (Brazil)", "Português (Brasil)"),
         Language("ru", "Russian", "Русский"),
         Language("sr", "Serbian", "Српски"),
         Language("tr", "Turkish", "Türkçe"),
         Language("uk", "Ukrainian", "Українська"),
-        Language("zh-TW", "Chinese Traditional", "繁體中文"),
+        Language("zh-HK", "Chinese Traditional (Hong Kong)", "繁體中文（香港）"),
+        Language("zh-TW", "Chinese Traditional (Taiwan)", "繁體中文（台灣）"),
     )
 
     fun showLanguagePicker(activity: Activity) {

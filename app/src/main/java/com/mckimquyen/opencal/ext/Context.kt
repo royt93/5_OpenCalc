@@ -46,7 +46,7 @@ fun Context.launchSystemSetting(
 fun Context?.sendEmail(
 ) {
     val emailIntent = Intent(Intent.ACTION_SENDTO)
-    emailIntent.data = Uri.parse("mailto: roy.mobile.dev@gmail.com")
+    emailIntent.data = Uri.parse("mailto:roy.mobile.dev@gmail.com")
     this?.startActivity(Intent.createChooser(emailIntent, this?.getString(com.mckimquyen.opencal.R.string.chooser_title_send_feedback)))
 }
 

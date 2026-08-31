@@ -158,12 +158,13 @@ class HistoryAdapter(
             // Set calculation, result and time
             calculation.text = historyElement.calculation
             result.text = historyElement.result
-            // To avoid crashes with former histories that do not have stored dates
-            if (historyElement.time.isNullOrEmpty() == true) {
+            // To avoid crashes with former histories that do not have stored dates or malformed timestamps
+            val elementTimeMillis = historyElement.time?.toLongOrNull()
+            if (elementTimeMillis == null) {
                 time.visibility = View.GONE
             } else {
                 time.text = DateUtils.getRelativeTimeSpanString(
-                    /* time = */ historyElement.time.toLong(),
+                    /* time = */ elementTimeMillis,
                     /* now = */ System.currentTimeMillis(),
                     /* minResolution = */ DateUtils.DAY_IN_MILLIS,
                     /* flags = */ DateUtils.FORMAT_ABBREV_RELATIVE,
@@ -174,10 +175,11 @@ class HistoryAdapter(
                 // nhau trên màn hình có thể cách xa nhau trong `history` thật.
                 if (adapterPosition > 0) {
                     val prevElement = history[indexAt(adapterPosition - 1)]
+                    val prevTimeMillis = prevElement.time?.toLongOrNull()
                     if (
-                        prevElement.time?.isNotEmpty() == true
+                        prevTimeMillis != null
                         && DateUtils.getRelativeTimeSpanString(
-                            /* time = */ prevElement.time?.toLong() ?: 0,
+                            /* time = */ prevTimeMillis,
                             /* now = */ System.currentTimeMillis(),
                             /* minResolution = */ DateUtils.DAY_IN_MILLIS,
                             /* flags = */ DateUtils.FORMAT_ABBREV_RELATIVE,
@@ -193,9 +195,11 @@ class HistoryAdapter(
                 // Check if the next VISIBLE result has the same date -> hide the separator
                 if (adapterPosition + 1 < itemCount) {
                     val nextElement = history[indexAt(adapterPosition + 1)]
+                    val nextTimeMillis = nextElement.time?.toLongOrNull()
                     if (
-                        DateUtils.getRelativeTimeSpanString(
-                            /* time = */ nextElement.time?.toLong() ?: 0,
+                        nextTimeMillis != null
+                        && DateUtils.getRelativeTimeSpanString(
+                            /* time = */ nextTimeMillis,
                             /* now = */ System.currentTimeMillis(),
                             /* minResolution = */ DateUtils.DAY_IN_MILLIS,
                             /* flags = */ DateUtils.FORMAT_ABBREV_RELATIVE,
