@@ -122,6 +122,13 @@ User yêu cầu bỏ qua nhóm liên quan Ad SDK (Crashlytics/In-app Update cũn
 
 - ✅ **N-DATA-2 (Import History CSV)** — xem chi tiết ở [`03_new_features.md`](03_new_features.md). Parser tách riêng `helper/HistoryCsv.kt` + 12 unit test. **Code-review tự bắt được 1 bug thật** trước khi ship: merge entry import vào cuối danh sách phá bất biến "đầu = cũ nhất" mà logic trim dựa vào (entry import cũ có thể sống sót thay vì entry hôm nay) — fix bằng `sortBy { time }` trước khi lưu. Verify bằng cách đọc thẳng `shared_prefs/*.xml` qua `adb run-as` (đáng tin hơn cuộn UI qua adb gesture, vốn khó điều khiển chính xác qua SlidingUpPanel + RecyclerView lồng nhau).
 
+## ✅ Sprint 7 — ĐÃ XONG (2026-08-31)
+
+Loop #4 theo yêu cầu user: sửa `HistoryAdapterInstrumentedTest.kt` (phát hiện hỏng ở Sprint 5, `compileDevDebugAndroidTestKotlin` fail từ trước phiên này).
+
+- Fix 2 lỗi biên dịch: constructor `HistoryAdapter(mutableListOf()) { ... }` gọi bằng trailing lambda khớp nhầm vào `onPinToggle` (tham số cuối) thay vì `onElementClick` — sửa dùng named param. `adapter.removeFirstHistoryElement()` gọi hàm không còn tồn tại — đổi sang `removeOldestUnpinnedHistoryElement()` (đổi tên qua tính năng pin N-DATA-4 ở Sprint 2), test đổi tên theo cho khớp và assert thêm giá trị trả về.
+- Verify: `compileDevDebugAndroidTestKotlin` PASS, chạy riêng file này trên emulator (5/5 test pass), sau đó chạy **toàn bộ suite `connectedDevDebugAndroidTest`** lần đầu tiên (42/42 test pass, 0 fail, 0 skip) — xác nhận không có file test instrumented hỏng nào khác đang ẩn.
+
 Tính năng tiếp theo cho vòng loop kế tiếp chưa chọn — chờ user quyết định qua `AskUserQuestion` khi bắt đầu.
 
 ## Priority & Size convention

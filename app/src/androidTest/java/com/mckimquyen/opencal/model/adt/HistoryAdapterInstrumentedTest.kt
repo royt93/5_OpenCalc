@@ -6,6 +6,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.mckimquyen.opencal.model.History
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -32,7 +33,10 @@ class HistoryAdapterInstrumentedTest {
     @Before
     fun setup() = onMain {
         val ctx = ApplicationProvider.getApplicationContext<android.content.Context>()
-        adapter = HistoryAdapter(mutableListOf()) { value -> lastClicked = value }
+        adapter = HistoryAdapter(
+            history = mutableListOf(),
+            onElementClick = { value -> lastClicked = value },
+        )
         recycler = RecyclerView(ctx).apply {
             layoutManager =
                 androidx.recyclerview.widget.LinearLayoutManager(ctx)
@@ -62,11 +66,13 @@ class HistoryAdapterInstrumentedTest {
     }
 
     @Test
-    fun removeFirstDecrements() {
+    fun removeOldestUnpinnedDecrements() {
+        var removed = false
         onMain {
             adapter.appendHistory(listOf(h("a", "1"), h("b", "2")))
-            adapter.removeFirstHistoryElement()
+            removed = adapter.removeOldestUnpinnedHistoryElement()
         }
+        assertTrue(removed)
         assertEquals(1, adapter.itemCount)
     }
 
