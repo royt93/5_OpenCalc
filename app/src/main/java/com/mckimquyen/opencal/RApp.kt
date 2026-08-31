@@ -2,16 +2,16 @@ package com.mckimquyen.opencal
 
 import android.app.Application
 import android.content.Context
-import android.os.Handler
-import android.os.Looper
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_UNSPECIFIED
 import androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode
-import com.applovin.sdk.AppLovinSdk
 import com.google.android.gms.ads.MobileAds
 import com.mckimquyen.opencal.common.const.AdKeys
 import com.mckimquyen.opencal.db.MyPreferences
+import com.mckimquyen.opencal.feature.vip.VipKeys
+import com.mckimquyen.opencal.feature.vip.VipActivity
+import com.mckimquyen.opencal.ui.SplashActivity
 import com.mckimquyen.opencal.util.Logger
 import com.roy.sdkadbmob.AdManager
 import com.roy.sdkadbmob.AdSafetyLimits
@@ -58,6 +58,14 @@ class RApp : Application() {
     }
 
     private fun setupAd() {
+        // Các hash AdMob do chính GMA SDK in từ logcat; KHÔNG phải GAID. Áp trước wrapper init để
+        // cả App Open preload đầu tiên trên release QA cũng là test request.
+        val requestConfiguration = MobileAds.getRequestConfiguration()
+            .toBuilder()
+            .setTestDeviceIds(ADMOB_QA_TEST_DEVICE_HASHES)
+            .build()
+        MobileAds.setRequestConfiguration(requestConfiguration)
+
         val adConfig = AdSdkConfig(
             isEnableAdmob = BuildConfig.IS_ENABLE_ADMOB,
             isDebug = BuildConfig.DEBUG,
@@ -65,42 +73,47 @@ class RApp : Application() {
             admobInterstitialId = BuildConfig.ADMOB_INTERSTITIAL_ID,
             admobAppOpenId = BuildConfig.ADMOB_APP_OPEN_ID,
             admobRewardedId = BuildConfig.ADMOB_REWARDED_ID,
-            applovinBannerId = BuildConfig.APPLOVIN_BANNER_ID,
-            applovinInterstitialId = BuildConfig.APPLOVIN_INTERSTITIAL_ID,
-            applovinAppOpenId = BuildConfig.APPLOVIN_APP_OPEN_ID,
-            applovinRewardedId = BuildConfig.APPLOVIN_REWARDED_ID,
-            applovinSdkKey = BuildConfig.APPLOVIN_SDK_KEY,
             vipKeySecret = AdKeys.VIP_SECRET,
+            vipRedeemCodes = mapOf(
+                VipKeys.VIP_30D_KEY to 30,
+                VipKeys.VIP_3D_KEY to 3,
+            ),
+            // Host owns the reward transaction so one completed ad grants exactly once and the
+            // screen can update atomically. Keep SDK auto-grant disabled to prevent double grants
+            // if a wrapper release starts enforcing this currently-passive compatibility flag.
+            grantRewardOnEarn = false,
+            blockLoadUntilConsent = true,
+            maxAdContentRating = "G",
+            applovinPrivacyPolicyUrl = BuildConfig.PRIVACY_POLICY_URL,
+            appOpenExcludedActivities = listOf(
+                SplashActivity::class.java,
+                VipActivity::class.java,
+            ),
             // Debug: nới throttle để QC test ad nhanh. Release: preset UTILITY (UX-first cho app công cụ).
             safety = if (BuildConfig.DEBUG) AdSafetyLimits.TEST else AdSafetyLimits.UTILITY,
         )
         AdManager.setConfig(adConfig)
-        AdManager.earlyInit(this)
-
-        if (BuildConfig.IS_ENABLE_ADMOB) {
-            // AdMob: init trực tiếp trên Main Thread (yêu cầu của Google)
-            MobileAds.initialize(this) { status ->
-                AdManager.init(this, adConfig) { success, gaid ->
-                    Logger.d("AdManager init success=$success, gaid=$gaid")
-                    // registerAppOpenAdLifecycle phải gọi trên Main Thread
-                    Handler(Looper.getMainLooper()).post {
-                        AdManager.registerAppOpenAdLifecycle(this@RApp)
-                    }
-                }
-            }
-        } else {
-            // AppLovin: init SDK trước, sau đó mới gọi AdManager.init
-            val sdk = AppLovinSdk.getInstance(this)
-            sdk.mediationProvider = "max"
-            sdk.initializeSdk {
-                AdManager.init(this, adConfig) { success, gaid ->
-                    Logger.d("AdManager init success=$success, gaid=$gaid")
-                    // registerAppOpenAdLifecycle phải gọi trên Main Thread
-                    Handler(Looper.getMainLooper()).post {
-                        AdManager.registerAppOpenAdLifecycle(this@RApp)
-                    }
-                }
-            }
+        // SDK 1.7.x tự early-init, khởi tạo provider và đăng ký App Open lifecycle.
+        // Với GMS, provider được defer đến khi Splash hoàn tất UMP consent.
+        AdManager.initialize(this) { success, gaid ->
+            Logger.d("AdManager init success=$success, gaid=$gaid")
         }
+    }
+
+    private companion object {
+        val ADMOB_QA_TEST_DEVICE_HASHES = listOf(
+            "813DCF48B3E486F15A60676D49A2AB09",
+            "E165942547A491D06E43E24870B990B2",
+            "C3632968623F0B44E87CE401A06AC8F9",
+            "4A2AA8832A7FE9D7805081AD03C9CE68",
+            "DEE1D0C6AEA4CA5C94FA4D709087A3AC",
+            "5D2E85389997C743F9CC33DF5F70D736",
+            "EB7B6504801B5E518C4CE6D519ED325C",
+            "FED3CA82141FF6113F2D069F8395B966",
+            "96E61CBFCE6BC0BDCA1612F1BACB56BE",
+            "5B409111AF01C6BB9F9FF77AEEB44275",
+            "D1B50484E250B064A9BF6F7CAE29A941",
+            "322285166ACB542864828826D2D92491",
+        )
     }
 }

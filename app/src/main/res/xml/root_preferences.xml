@@ -14,6 +14,14 @@
             app:summary="@string/preferences_language_summary"
             app:title="@string/preferences_language_title" />
 
+        <Preference
+            app:enabled="true"
+            app:icon="@drawable/ic_privacy"
+            app:key="mckimquyen.opencal.AD_PRIVACY_OPTIONS"
+            app:selectable="true"
+            app:summary="@string/preferences_ad_privacy_summary"
+            app:title="@string/preferences_ad_privacy_title" />
+
         <SwitchPreferenceCompat
             app:defaultValue="true"
             app:icon="@drawable/ic_vibrate"

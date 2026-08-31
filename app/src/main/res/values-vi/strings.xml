@@ -111,6 +111,8 @@
 </string>
     <string name="language_system_default">Mặc định hệ thống</string>
     <string name="preferences_language_summary">Chọn ngôn ngữ ứng dụng</string>
+    <string name="preferences_ad_privacy_title">Quyền riêng tư quảng cáo</string>
+    <string name="preferences_ad_privacy_summary">Xem lại hoặc thay đổi lựa chọn đồng ý quảng cáo</string>
     <string name="vip_active">VIP đang kích hoạt</string>
     <string name="vip_free_user">Người dùng miễn phí</string>
     <string name="vip_subtitle_free">Mở khoá trải nghiệm không quảng cáo</string>

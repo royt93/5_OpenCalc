@@ -1,6 +1,19 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
+import java.util.Properties
+
+def defaultSecretsDir = '/Users/loitran/AndroidStudioProjects/@mckimquyen/myKeyStore/com.mckimquyen.opencal'
+def secretsDir = providers.gradleProperty('OPEN_CALC_SECRETS_DIR').orNull ?:
+    System.getenv('OPEN_CALC_SECRETS_DIR') ?: defaultSecretsDir
+def releaseProperties = new Properties()
+def releasePropertiesFile = new File(secretsDir, 'keystore.properties')
+if (releasePropertiesFile.exists()) {
+    releasePropertiesFile.withInputStream { releaseProperties.load(it) }
+}
+
+def releaseSecret = { String key -> releaseProperties.getProperty(key, '').trim() }
+
 android {
     compileSdk 37
 
@@ -25,10 +38,11 @@ android {
 
     signingConfigs {
         release {
-            storeFile file("keystore.jks")
-            storePassword KS_PW
-            keyAlias KS_ALIAS
-            keyPassword KS_PW
+            def releaseStoreFile = releaseSecret('storeFile')
+            storeFile releaseStoreFile ? new File(secretsDir, releaseStoreFile) : null
+            storePassword releaseSecret('storePassword')
+            keyAlias releaseSecret('keyAlias')
+            keyPassword releaseSecret('keyPassword')
         }
     }
 
@@ -41,41 +55,31 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
 //            applicationIdSuffix ".release"
-            // nhớ check APPLICATION_ID trong manifest
-            buildConfigField "String", "ADMOB_BANNER_ID", "\"ca-app-pub-3612191981543807/4627557404\""
-            buildConfigField "String", "ADMOB_INTERSTITIAL_ID", "\"ca-app-pub-3612191981543807/4059747044\""
-            buildConfigField "String", "ADMOB_APP_OPEN_ID", "\"ca-app-pub-3612191981543807/7338622864\""
-            buildConfigField "String", "APPLOVIN_SDK_KEY", "\"e75FnQfS9XTTqM1Kne69U7PW_MBgAnGQTFvtwVVui6kRPKs5L7ws9twr5IQWwVfzPKZ5pF2IfDa7lguMgGlCyt\""
-            buildConfigField "String", "APPLOVIN_BANNER_ID", "\"86cdc9050561f316\""
-            buildConfigField "String", "APPLOVIN_INTERSTITIAL_ID", "\"4e8de0b36750ea6c\""
-            buildConfigField "String", "APPLOVIN_APP_OPEN_ID", "\"e9b4e3a8e16b96d4\""
-            // Rewarded: AdMob dùng test ID Google tạm thời (thay ID thật trước khi phát hành);
-            // AppLovin dùng ID có sẵn trong source (doc/AD.MD).
-            buildConfigField "String", "ADMOB_REWARDED_ID", "\"ca-app-pub-3940256099942544/5224354917\""
-            buildConfigField "String", "APPLOVIN_REWARDED_ID", "\"5423b3cd5889dcae\""
+            // Không có fallback test cho release. Task release fail-fast bên dưới nếu thiếu config.
+            manifestPlaceholders = [admobAppId: releaseSecret('admobAppIdRelease')]
+            buildConfigField "String", "ADMOB_BANNER_ID", "\"${releaseSecret('admobBannerIdRelease')}\""
+            buildConfigField "String", "ADMOB_INTERSTITIAL_ID", "\"${releaseSecret('admobInterstitialIdRelease')}\""
+            buildConfigField "String", "ADMOB_APP_OPEN_ID", "\"${releaseSecret('admobAppOpenIdRelease')}\""
+            buildConfigField "String", "ADMOB_REWARDED_ID", "\"${releaseSecret('admobRewardedIdRelease')}\""
             // VIP secret (Base64 của plain key 30 ngày) — đi qua BuildConfig, không hardcode plain trong .kt.
             buildConfigField "String", "VIP_SECRET_B64", "\"OWZBMHE3ZU4hMjdjTHgwNEAyMTk5M1kydTBJNyNRMA==\""
-            buildConfigField "String", "PRIVACY_POLICY_URL", "\"https://loitp.notion.site/loitp/Privacy-Policy-319b1cd8783942fa8923d2a3c9bce60f/\""
-            buildConfigField "Boolean", "IS_ENABLE_ADMOB", "false"
+            buildConfigField "String", "PRIVACY_POLICY_URL", "\"${releaseSecret('privacyPolicyUrl')}\""
+            buildConfigField "Boolean", "IS_ENABLE_ADMOB", "true"
         }
         debug {
             minifyEnabled false
             //used android.enableR8=true in gradle.properties
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 //            applicationIdSuffix ".debug"
+            // Google sample App ID + ad unit IDs: debug tuyệt đối không dùng inventory production.
+            manifestPlaceholders = [admobAppId: 'ca-app-pub-3940256099942544~3347511713']
             buildConfigField "String", "ADMOB_BANNER_ID", "\"ca-app-pub-3940256099942544/6300978111\""
             buildConfigField "String", "ADMOB_INTERSTITIAL_ID", "\"ca-app-pub-3940256099942544/1033173712\""
             buildConfigField "String", "ADMOB_APP_OPEN_ID", "\"ca-app-pub-3940256099942544/9257395921\""
-            buildConfigField "String", "APPLOVIN_SDK_KEY", "\"e75FnQfS9XTTqM1Kne69U7PW_MBgAnGQTFvtwVVui6kRPKs5L7ws9twr5IQWwVfzPKZ5pF2IfDa7lguMgGlCyt\""
-            buildConfigField "String", "APPLOVIN_BANNER_ID", "\"86cdc9050561f316\""
-            buildConfigField "String", "APPLOVIN_INTERSTITIAL_ID", "\"4e8de0b36750ea6c\""
-            buildConfigField "String", "APPLOVIN_APP_OPEN_ID", "\"e9b4e3a8e16b96d4\""
-            // Rewarded test ID Google cho debug.
             buildConfigField "String", "ADMOB_REWARDED_ID", "\"ca-app-pub-3940256099942544/5224354917\""
-            buildConfigField "String", "APPLOVIN_REWARDED_ID", "\"5423b3cd5889dcae\""
             buildConfigField "String", "VIP_SECRET_B64", "\"OWZBMHE3ZU4hMjdjTHgwNEAyMTk5M1kydTBJNyNRMA==\""
             buildConfigField "String", "PRIVACY_POLICY_URL", "\"https://loitp.notion.site/loitp/Privacy-Policy-319b1cd8783942fa8923d2a3c9bce60f/\""
-            buildConfigField "Boolean", "IS_ENABLE_ADMOB", "false"
+            buildConfigField "Boolean", "IS_ENABLE_ADMOB", "true"
         }
     }
 
@@ -116,24 +120,12 @@ android {
             dimension "type"
             buildConfigField("String", "FLAVOR_buildEnv", '"dev"')
 //            resValue "string", "app_name", "Base DEV"
-
-//            resValue("string", "SDK_KEY", "e75FnQfS9XTTqM1Kne69U7PW_MBgAnGQTFvtwVVui6kRPKs5L7ws9twr5IQWwVfzPKZ5pF2IfDa7lguMgGlCyt")
-//            resValue("string", "BANNER", "86cdc9050561f316")
-//            resValue("string", "INTER", "4e8de0b36750ea6c")
-//            resValue("string", "EnableAdInter", "true")
-//            resValue("string", "EnableAdBanner", "true")
         }
 
         production {
             dimension "type"
             buildConfigField("String", "FLAVOR_buildEnv", '"prod"')
 //            resValue "string", "app_name", "Base"
-
-//            resValue("string", "SDK_KEY", "e75FnQfS9XTTqM1Kne69U7PW_MBgAnGQTFvtwVVui6kRPKs5L7ws9twr5IQWwVfzPKZ5pF2IfDa7lguMgGlCyt")
-//            resValue("string", "BANNER", "86cdc9050561f316")
-//            resValue("string", "INTER", "4e8de0b36750ea6c")
-//            resValue("string", "EnableAdInter", "true")
-//            resValue("string", "EnableAdBanner", "true")
         }
 
     }
@@ -149,9 +141,8 @@ dependencies {
     api "androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7"
     api 'com.github.hannesa2:AndroidSlidingUpPanel:4.5.0'
     api 'com.google.code.gson:gson:2.13.1'
-//    api 'com.applovin:applovin-sdk:13.0.1'
-    // AdmobApplovinWrapper SDK — AdMob + AppLovin + AdSafety + UMP consent + VIP-by-key + auto-trial
-    implementation("com.github.royt93:AdmobApplovinWrapper:1.1.5")
+    // Tag mới nhất đã xác minh có artifact JitPack ngày 2026-08-31.
+    implementation("com.github.royt93:AdmobApplovinWrapper:1.7.3")
     implementation("com.google.android.play:review:2.0.2")
     implementation("com.google.android.play:review-ktx:2.0.2")
     // Confetti khi activate VIP thành công (VIP screen animation #5)
@@ -169,4 +160,41 @@ dependencies {
     androidTestImplementation 'androidx.test:rules:1.6.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
     androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.6.1'
+}
+
+// Release không được phép build bằng Google test IDs hoặc ID rỗng.
+gradle.taskGraph.whenReady { graph ->
+    def buildingRelease = graph.allTasks.any {
+        it.project == project && it.name.toLowerCase(Locale.ROOT).contains('release')
+    }
+    if (!buildingRelease) return
+
+    def required = [
+        'storeFile',
+        'storePassword',
+        'keyAlias',
+        'keyPassword',
+        'admobAppIdRelease',
+        'admobBannerIdRelease',
+        'admobInterstitialIdRelease',
+        'admobAppOpenIdRelease',
+        'admobRewardedIdRelease',
+        'admobNativeIdRelease',
+        'privacyPolicyUrl',
+    ]
+    def missing = required.findAll { key ->
+        def value = releaseSecret(key)
+        value.isEmpty() || value.startsWith('YOUR_') || value.startsWith('ca-app-pub-3940256099942544')
+    }
+    if (!missing.isEmpty()) {
+        throw new GradleException(
+            "Release AdMob config missing/unsafe: ${missing.join(', ')}. " +
+                "Configure ${releasePropertiesFile}."
+        )
+    }
+
+    def signingFile = new File(secretsDir, releaseSecret('storeFile'))
+    if (!signingFile.isFile()) {
+        throw new GradleException("Release keystore not found: ${signingFile}")
+    }
 }

@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name" translatable="false">Calculator</string>
     <string name="app_name_display">Calculator</string>
     <string name="zero" translatable="false">0</string>
@@ -188,6 +188,8 @@
     <!-- Language settings -->
     <string name="language_system_default">System Default</string>
     <string name="preferences_language_summary">Select app language</string>
+    <string name="preferences_ad_privacy_title" tools:ignore="MissingTranslation">Ad privacy options</string>
+    <string name="preferences_ad_privacy_summary" tools:ignore="MissingTranslation">Review or change your advertising consent choices</string>
 
     <!-- VIP -->
     <string name="vip_screen_title" translatable="false">VIP</string>

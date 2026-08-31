@@ -8,7 +8,6 @@ import androidx.test.core.app.ActivityScenario
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.mckimquyen.opencal.R
-import com.mckimquyen.opencal.common.const.AdKeys
 import com.roy.sdkadbmob.AdManager
 import org.junit.After
 import org.junit.Assert.assertEquals
@@ -93,7 +92,7 @@ class VipActivityInstrumentedTest {
     }
 
     @Test fun preActivatedVip_rendersActiveOnLaunch() {
-        AdManager.activateVipByKey(ctx, AdKeys.VIP_SECRET, 3)
+        AdManager.grantVipDays(ctx, 3)
         ActivityScenario.launch(VipActivity::class.java).use { scenario ->
             scenario.onActivity { act ->
                 assertEquals(

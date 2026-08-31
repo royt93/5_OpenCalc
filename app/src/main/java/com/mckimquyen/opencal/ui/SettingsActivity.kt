@@ -109,6 +109,13 @@ class SettingsActivity : BaseActivity() {
                 activity?.let { com.mckimquyen.opencal.util.LanguageHelper.showLanguagePicker(it) }
                 true
             }
+
+            findPreference<Preference>("mckimquyen.opencal.AD_PRIVACY_OPTIONS")
+                ?.setOnPreferenceClickListener {
+                    val host = activity ?: return@setOnPreferenceClickListener false
+                    AdManager.showConsentFormIfAvailable(host)
+                    true
+                }
         }
     }
 

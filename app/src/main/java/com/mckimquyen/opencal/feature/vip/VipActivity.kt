@@ -152,9 +152,9 @@ class VipActivity : BaseActivity() {
 
     private fun bindActiveUi() {
         val expiryMs = AdManager.getVipByKeyExpiry()
-        var grantedAtMs = vipPrefs.getGrantedAtMs()
+        var grantedAtMs = AdManager.getVipGrantedAtMs()
 
-        // Grace entry (SDK grant first-install): app chưa lưu grantedAt → suy ra từ expiry.
+        // Fallback chỉ dành cho state rất cũ được tạo trước khi SDK persist grantedAt.
         // Grace = active nhưng user chưa từng tự redeem key.
         val isGrace = !vipPrefs.userRedeemedAtLeastOnce()
         if (grantedAtMs <= 0L) {
@@ -164,7 +164,6 @@ class VipActivity : BaseActivity() {
             } else {
                 System.currentTimeMillis()
             }
-            vipPrefs.saveGrantedAtMs(grantedAtMs)
         }
 
         binding.layoutStatusHeader.setBackgroundResource(R.drawable.bg_vip_status_header_active)
@@ -284,16 +283,12 @@ class VipActivity : BaseActivity() {
         if (input.isEmpty()) return
 
         val days = VipKeys.lookupDays(input)
-        if (days == null) {
+        if (days == null || !AdManager.activateVipByKey(this, input, days)) {
             showResultDialog(success = false, days = 0)
             return
         }
-        if (grantVipDays(days)) {
-            binding.etKey.setText("")
-            onVipActivated(days)
-        } else {
-            showResultDialog(success = false, days = 0)
-        }
+        binding.etKey.setText("")
+        onVipActivated(days)
     }
 
     /**
@@ -329,13 +324,11 @@ class VipActivity : BaseActivity() {
      * còn lại (làm tròn lên) → tổng expiry ≥ expiry cũ. Chặn bug "rớt hạng" khi đang VIP.
      */
     private fun grantVipDays(days: Int): Boolean {
-        val total = VipMath.extendedDays(days, AdManager.getVipByKeyExpiry(), System.currentTimeMillis())
-        return AdManager.activateVipByKey(this, AdKeys.VIP_SECRET, total)
+        return AdManager.grantVipDays(this, days)
     }
 
     /** Gọi sau khi activate VIP thành công (key hoặc rewarded). */
     private fun onVipActivated(days: Int) {
-        vipPrefs.saveGrantedAtMs(System.currentTimeMillis())
         vipPrefs.markUserRedeemed()
         Logger.d("VIP activated for $days days")
 
@@ -355,7 +348,6 @@ class VipActivity : BaseActivity() {
             .setPositiveButton(R.string.confirm) { d, _ ->
                 d.dismiss()
                 AdManager.clearVipByKey()
-                vipPrefs.clearGrantedAtMs()
                 bindUi()
             }
             .show()

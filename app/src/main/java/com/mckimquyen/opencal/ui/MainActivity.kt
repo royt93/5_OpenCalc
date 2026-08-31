@@ -498,15 +498,9 @@ class MainActivity : BaseActivity() {
     }
 
     fun openSettings(menuItem: MenuItem) {
-        AdManager.showInterstitial(this) { success ->
-            if (success) {
-                Logger.d("Ad đã hiển thị và đóng thành công")
-            } else {
-                Logger.d("Ad không hiển thị được hoặc có lỗi")
-            }
-            val intent = Intent(this, SettingsActivity::class.java)
-            startActivity(intent, null)
-        }
+        // Settings chứa quyền riêng tư/consent: không được chặn đường truy cập bằng fullscreen ad.
+        val intent = Intent(this, SettingsActivity::class.java)
+        startActivity(intent, null)
     }
 
     fun openBillSplitter(menuItem: MenuItem) {

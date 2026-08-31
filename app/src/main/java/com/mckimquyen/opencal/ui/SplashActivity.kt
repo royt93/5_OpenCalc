@@ -9,19 +9,11 @@ import com.mckimquyen.opencal.databinding.ActivitySplashBinding
 import com.mckimquyen.opencal.util.Logger
 import com.roy.sdkadbmob.AdManager
 import com.roy.sdkadbmob.UIUtils
-import java.util.concurrent.atomic.AtomicBoolean
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySplashBinding
-
-    // Chỉ proceed sang App Open warmup đúng 1 lần (consent callback HOẶC timeout, cái nào tới trước).
-    private val consentResolved = AtomicBoolean(false)
-    private val consentTimeoutRunnable = Runnable {
-        Logger.d("UMP consent timeout → proceed")
-        proceedAfterConsent()
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,13 +33,9 @@ class SplashActivity : AppCompatActivity() {
             Logger.d("UMP consent gathered, canRequestAds=$canRequestAds")
             proceedAfterConsent()
         }
-        // Chốt chặn: nếu consent callback không về (network hang) → vẫn vào app sau timeout.
-        window.decorView.postDelayed(consentTimeoutRunnable, CONSENT_TIMEOUT_MS)
     }
 
     private fun proceedAfterConsent() {
-        if (!consentResolved.compareAndSet(false, true)) return
-        window.decorView.removeCallbacks(consentTimeoutRunnable)
         if (isFinishing || isDestroyed) return
         AdManager.initSplashScreen(this) {
             goToMain()
@@ -69,11 +57,6 @@ class SplashActivity : AppCompatActivity() {
     override fun onDestroy() {
         // Fix memory leak: remove pending postDelayed callbacks
         window.decorView.removeCallbacks(finishRunnable)
-        window.decorView.removeCallbacks(consentTimeoutRunnable)
         super.onDestroy()
-    }
-
-    private companion object {
-        const val CONSENT_TIMEOUT_MS = 4000L
     }
 }

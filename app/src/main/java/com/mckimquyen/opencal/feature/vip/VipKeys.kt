@@ -6,10 +6,8 @@ import com.mckimquyen.opencal.common.const.AdKeys
 /**
  * Whitelist VIP key app-side + che giấu key.
  *
- * Lib dùng single-secret design: [com.roy.sdkadbmob.AdManager.activateVipByKey] chỉ validate
- * `key == AdSdkConfig.vipKeySecret`. Vì thế app KHÔNG đưa key user gõ thẳng vào SDK. Thay vào đó:
- *   1. [lookupDays] validate input (app-side) → số ngày tương ứng.
- *   2. Caller luôn gọi `AdManager.activateVipByKey(ctx, AdKeys.VIP_SECRET, days)` với số ngày đó.
+ * Các mã được truyền vào `AdSdkConfig.vipRedeemCodes`; SDK kiểm tra code, cộng dồn hạn và ngăn dùng
+ * lại cùng một code trên một thiết bị. [lookupDays] chỉ phục vụ nội dung UI sau khi SDK xác nhận.
  *
  * Plain key KHÔNG hardcode trong source — chỉ hardcode chuỗi Base64 (mức che giấu đã thống nhất:
  * dễ reverse nhưng đủ chặn user thường peek decompiled APK).
